@@ -1,0 +1,6 @@
+venv
+build
+.env
+*.pyc
+*.swp
+piconfig.py
