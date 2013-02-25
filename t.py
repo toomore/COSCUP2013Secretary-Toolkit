@@ -7,24 +7,12 @@ import piconfig
 
 ses = SESConnection(piconfig.AWSID, piconfig.AWSKEY)
 env = Environment(loader=FileSystemLoader('./templates/'))
-
-getleadermail = {
-    '0': 'bobchao@gmail.com',  # 總召
-    '1': 'lagunawang@gmail.com',  # 紀錄
-    '2': 'yurenju@gmail.com',  # 議程
-    '3': 'davihuan@gmail.com',  # 線路
-    '4': 'timchen119@gmail.com',  # 會計
-    '5': 'lily.lilyhsu@gmail.com',  # 銷售
-    '6': 'chu7733@gmail.com',  # 場務
-    '7': 'snoopy60313@gmail.com',  # 行銷
-    '8': 'toomore0929@gmail.com',  # 行政
-}
+getleadermail = piconfig.getleadermail
 
 
 def gettestinfo():
     ''' 取得測試用資料 '''
     u = {
-        'user': u'toomore',
         'nickname': u'Toomore Chiang',
         'mail': u'toomore0929@gmail.com',
         'leaderno': '8',
@@ -34,7 +22,7 @@ def gettestinfo():
 
 def send_welcome(info):
     ''' 發送歡迎信
-        :info: dict 包含 [mail, user, nickname, leaderno]
+        :info: dict 包含 [mail, nickname, leaderno]
     '''
     ses.send_email(
         source='Toomore Chiang <toomore0929@gmail.com>',
@@ -43,14 +31,14 @@ def send_welcome(info):
         cc_addresses='{0}'.format(getleadermail[info.get('leaderno')]),
         format='html',
         return_path='toomore0929@gmail.com',
-        reply_addresses='toomore0929@gmail.com',
+        reply_addresses=['toomore0929@gmail.com', getleadermail[info.get('leaderno')]],
         body=template.render(**info),
     )
 
 
 def send_first(info):
     ''' 發送登錄信
-        :info: dict 包含 [mail, user, nickname]
+        :info: dict 包含 [mail, nickname]
     '''
     ses.send_email(
         source='Toomore Chiang <toomore0929@gmail.com>',

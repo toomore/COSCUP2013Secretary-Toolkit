@@ -1,2 +1,2 @@
 boto
-jinja2
+flask
