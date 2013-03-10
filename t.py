@@ -31,7 +31,9 @@ def send_welcome(info):
         cc_addresses='{0}'.format(getleadermail[info.get('leaderno')]),
         format='html',
         return_path='toomore0929@gmail.com',
-        reply_addresses=['toomore0929@gmail.com', getleadermail[info.get('leaderno')]],
+        reply_addresses=[
+            'toomore0929@gmail.com',
+            getleadermail[info.get('leaderno')]],
         body=template.render(**info),
     )
 
@@ -48,6 +50,18 @@ def send_first(info):
         return_path='toomore0929@gmail.com',
         reply_addresses='toomore0929@gmail.com',
         body=template.render(**info),
+    )
+
+
+def send_weekly(no, html, mail='toomorebeta@googlegroups.com'):
+    ''' 發送週報
+    '''
+    ses.send_email(
+        source='Toomore Chiang <toomore0929@gmail.com>',
+        subject=u'COSCUP2013 Weekly #{0:02}'.format(no),
+        to_addresses='{0}'.format(mail),
+        format='html',
+        body=html,
     )
 
 

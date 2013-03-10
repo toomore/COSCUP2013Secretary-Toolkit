@@ -8,16 +8,23 @@ from flask import url_for
 from flask import redirect
 from flask import session
 from functools import wraps
+from piconfig import ALLOWED_EXTENSIONS
 import t
 app = Flask(__name__)
 app.session_cookie_name = 'COSCUP_session'
-app.secret_key = 'LGV\x1a\tfp\xd2z\xfa[\xc0u\xde\x7f\xe4(\x08\x1a\x9bT\xd9\xb3\x90\xb6\xde\x05\x1c\x07\x07c\xf7\xcb\x91^\x99\x97yPi\xd1\xe0\x81\x8dW\x8f\x96\xad:\xd3@g\x8d\x8ex\xc8^)\xb0O\x0c\x04\xf7*' #os.urandom(128)
+app.secret_key = 'LGV\x1a\tfp\xd2z\xfa[\xc0u\xde\x7f\xe4(\x08\x1a\x9bT\xd9\xb3\x90\xb6\xde\x05\x1c\x07\x07c\xf7\xcb\x91^\x99\x97yPi\xd1\xe0\x81\x8dW\x8f\x96\xad:\xd3@g\x8d\x8ex\xc8^)\xb0O\x0c\x04\xf7*'  # os.urandom(128)
+app.config['ALLOWED_EXTENSIONS'] = ALLOWED_EXTENSIONS
+
 
 def getmenu():
     lg = url_for('logout') if session.get('user') else url_for('login')
     lgw = u'Logout' if session.get('user') else u'Login'
-    return u"<a href='{0}'>登錄信</a> | <a href='{1}'>歡迎信</a> | <a href='{2}'>{3}</a>".format(
-        url_for('sendfirst'), url_for('sendwelcome'), lg, lgw)
+    return u"<a href='{0}'>登錄信</a> | <a href='{1}'>歡迎信</a> | <a href='{4}'>週報</a> | <a href='{2}'>{3}</a>".format(
+        url_for('sendfirst'), url_for('sendwelcome'), lg, lgw, url_for('send_weekly'))
+
+def allowed_file(filename):
+    return '.' in filename and \
+        filename.rsplit('.', 1)[1] in app.config['ALLOWED_EXTENSIONS']
 
 def login_required(f):
     @wraps(f)
@@ -33,6 +40,7 @@ def login_required(f):
 @app.route("/")
 def hello():
     return getmenu()
+
 
 @app.route("/send_welcome", methods=['POST', 'GET'])
 @login_required
@@ -55,6 +63,23 @@ def sendfirst():
     else:
         return make_response(render_template('t_sendfirst.htm'))
 
+
+@app.route("/send_weekly", methods=['POST', 'GET'])
+@login_required
+def send_weekly():
+    if request.method == "POST":
+        f = request.files.get('file')
+        if f and allowed_file(f.filename):
+            no = int(request.form.get('no'))
+            mail = request.form.get('mail')
+            t.send_weekly(no, f.stream.read(), mail)
+            return u'{0}<br>{1}'.format(request.form.to_dict(), getmenu())
+        else:
+            return u'No Files.'
+    else:
+        return make_response(render_template('t_sendweekly.htm'))
+
+
 @app.route("/login", methods=['POST', 'GET'])
 def login():
     if request.method == "POST":
@@ -73,10 +98,12 @@ def login():
         else:
             return make_response(render_template('t_login.htm'))
 
+
 @app.route("/logout")
 def logout():
     session.pop('user', None)
     return redirect(url_for('hello'))
+
 
 if __name__ == "__main__":
     #app.run(host='127.0.0.1',debug=True)
