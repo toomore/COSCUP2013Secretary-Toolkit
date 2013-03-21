@@ -1,18 +1,13 @@
 {% extends "base.htm"%}
 {% block style %}
-<style>
-    input {
-        margin: 5px;
-    }
-</style>
 {% endblock %}
 {% block content%}
 <h4>傳送歡迎信</h4>
 <form method="POST">
-    暱稱：<input name="nickname"><br>
-    Mail：<input name="mail" type="email"><br>
+    <input class="input-block-level" name="nickname" type="text" placeholder="暱稱"><br>
+    <input class="input-block-level" name="mail" type="email" placeholder="mail"><br>
     組別：
-        <select name="leaderno">
+        <select name="leaderno" class="input-block-level">
             <option value="-">請選擇</option>
             <option value="0">總召</option>
             <option value="1">紀錄</option>
@@ -25,6 +20,6 @@
             <option value="8">行政</option>
         </select>
         <br>
-        <input type="SUBMIT">
+        <button type="submit" class="btn btn-large btn-block btn-primary">寄送</button>
 </form>
 {% endblock %}

@@ -9,15 +9,15 @@
 {% block content%}
 <h4>發送 COSCUP2013 Weekly</h4>
 <form method="POST" enctype="multipart/form-data">
-    期數：<input name="no"><br>
-    檔案：<input name="file" type="file">
-        <br>
-    信箱：
-        <select name="mail">
+    <input name="no" type="text" class="input-block-level" placeholder="期數"><br>
+    檔案：<input name="file" type="file" class="input-block-level">
+    <br>
+    信箱：<br>
+        <select name="mail" class="input-block-level">
             <option value="toomorebeta@googlegroups.com">測試信箱</option>
             <option value="coscup-general@googlegroups.com">coscup-general</option>
         </select>
         <br>
-        <input type="SUBMIT">
+        <button type="submit" class="btn btn-large btn-block btn-primary">寄送</button>
 </form>
 {% endblock %}

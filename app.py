@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from flask import Flask
+from flask import flash
 from flask import render_template
 from flask import make_response
 from flask import request
@@ -37,6 +38,7 @@ def login_required(f):
 
 
 @app.route("/")
+@login_required
 def hello():
     return make_response(render_template('base.htm'))
 
@@ -48,9 +50,10 @@ def send_welcome():
     if request.method == "POST":
         t.template = t.env.get_template('./coscup_welcome.htm')
         t.send_welcome(request.form.to_dict())
-        return u'{0}<br>{1}'.format(request.form.to_dict(), getmenu())
+        flash(u'已寄送歡迎信：{nickname} / {mail} / {leaderno}'.format(**request.form.to_dict()))
+        return redirect(url_for('send_welcome'))
     else:
-        return make_response(render_template('t_sendwelcome.htm', title=title))
+        return make_response(render_template('t_sendwelcome.htm', title=title, send_welcome=1))
 
 
 @app.route("/send_first", methods=['POST', 'GET'])
@@ -60,9 +63,10 @@ def send_first():
     if request.method == "POST":
         t.template = t.env.get_template('./coscup_first.htm')
         t.send_first(request.form.to_dict())
-        return u'{0}<br>{1}'.format(request.form.to_dict(), getmenu())
+        flash(u'已寄送登錄信：{nickname} / {mail}'.format(**request.form.to_dict()))
+        return redirect(url_for('send_first'))
     else:
-        return make_response(render_template('t_sendfirst.htm', title=title))
+        return make_response(render_template('t_sendfirst.htm', title=title, send_first=1))
 
 
 @app.route("/send_weekly", methods=['POST', 'GET'])
@@ -75,16 +79,18 @@ def send_weekly():
             no = int(request.form.get('no'))
             mail = request.form.get('mail')
             t.send_weekly(no, f.stream.read(), mail)
-            return u'{0}<br>{1}'.format(request.form.to_dict(), getmenu())
+            flash(u'已寄送週報：#{0:02} / {1}'.format(no, mail))
+            return redirect(url_for('send_weekly'))
         else:
-            return u'No Files.'
+            flash(u'沒有檔案！')
+            return redirect(url_for('send_weekly'))
     else:
-        return make_response(render_template('t_sendweekly.htm', title=title))
+        return make_response(render_template('t_sendweekly.htm', title=title, send_weekly=1))
 
 
 @app.route("/login", methods=['POST', 'GET'])
 def login():
-    title = u'Login In'
+    title = u'Login'
     if request.method == "POST":
         u = request.form.get('user')
         pwd = request.form.get('pwd')

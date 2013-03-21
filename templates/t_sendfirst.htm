@@ -9,9 +9,9 @@
 {% block content%}
 <h4>傳送登錄信</h4>
 <form method="POST">
-    暱稱：<input name="nickname"><br>
-    Mail：<input name="mail" type="email"><br>
+    <input class="input-block-level" name="nickname" type="text" placeholder="暱稱"><br>
+    <input class="input-block-level" name="mail" type="email" placeholder="mail"><br>
     <br>
-    <input type="SUBMIT">
+    <button type="submit" class="btn btn-large btn-block btn-primary">寄送</button>
 </form>
 {% endblock %}
