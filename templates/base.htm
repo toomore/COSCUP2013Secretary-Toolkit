@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="viewport" content="target-densitydpi=device-dpi"/>
+        <title>{{title|default('!')}} - COSCUP Mail Sender</title>
+        {% block style%}{%endblock%}
+    </head>
+    <body>
+        {% if session.get('user')%}
+        <a href='{{url_for('send_first')}}'>登錄信</a> | <a href='{{url_for('send_welcome')}}'>歡迎信</a> | <a href='{{url_for('send_weekly')}}'>週報</a> | <a href='{{url_for('logout')}}'>登出</a>
+        {%else%}
+        <a href={{url_for('login')}}>登入</a>
+        {%endif%}
+        {% block content%}{%endblock%}
+        {% block js%}{%endblock%}
+    </body>
+</html>

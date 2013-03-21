@@ -1,8 +1,12 @@
+{% extends "base.htm"%}
+{% block style %}
 <style>
     input {
         margin: 5px;
     }
 </style>
+{% endblock %}
+{% block content%}
 <h4>傳送歡迎信</h4>
 <form method="POST">
     暱稱：<input name="nickname"><br>
@@ -23,3 +27,4 @@
         <br>
         <input type="SUBMIT">
 </form>
+{% endblock %}

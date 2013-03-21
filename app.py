@@ -15,7 +15,6 @@ app.session_cookie_name = 'COSCUP_session'
 app.secret_key = 'LGV\x1a\tfp\xd2z\xfa[\xc0u\xde\x7f\xe4(\x08\x1a\x9bT\xd9\xb3\x90\xb6\xde\x05\x1c\x07\x07c\xf7\xcb\x91^\x99\x97yPi\xd1\xe0\x81\x8dW\x8f\x96\xad:\xd3@g\x8d\x8ex\xc8^)\xb0O\x0c\x04\xf7*'  # os.urandom(128)
 app.config['ALLOWED_EXTENSIONS'] = ALLOWED_EXTENSIONS
 
-
 def getmenu():
     lg = url_for('logout') if session.get('user') else url_for('login')
     lgw = u'Logout' if session.get('user') else u'Login'
@@ -39,34 +38,37 @@ def login_required(f):
 
 @app.route("/")
 def hello():
-    return getmenu()
+    return make_response(render_template('base.htm'))
 
 
 @app.route("/send_welcome", methods=['POST', 'GET'])
 @login_required
-def sendwelcome():
+def send_welcome():
+    title = u'Send Welcome'
     if request.method == "POST":
         t.template = t.env.get_template('./coscup_welcome.htm')
         t.send_welcome(request.form.to_dict())
         return u'{0}<br>{1}'.format(request.form.to_dict(), getmenu())
     else:
-        return make_response(render_template('t_sendwelcome.htm'))
+        return make_response(render_template('t_sendwelcome.htm', title=title))
 
 
 @app.route("/send_first", methods=['POST', 'GET'])
 @login_required
-def sendfirst():
+def send_first():
+    title = u'Send First'
     if request.method == "POST":
         t.template = t.env.get_template('./coscup_first.htm')
         t.send_first(request.form.to_dict())
         return u'{0}<br>{1}'.format(request.form.to_dict(), getmenu())
     else:
-        return make_response(render_template('t_sendfirst.htm'))
+        return make_response(render_template('t_sendfirst.htm', title=title))
 
 
 @app.route("/send_weekly", methods=['POST', 'GET'])
 @login_required
 def send_weekly():
+    title = u'Send Weekly'
     if request.method == "POST":
         f = request.files.get('file')
         if f and allowed_file(f.filename):
@@ -77,11 +79,12 @@ def send_weekly():
         else:
             return u'No Files.'
     else:
-        return make_response(render_template('t_sendweekly.htm'))
+        return make_response(render_template('t_sendweekly.htm', title=title))
 
 
 @app.route("/login", methods=['POST', 'GET'])
 def login():
+    title = u'Login In'
     if request.method == "POST":
         u = request.form.get('user')
         pwd = request.form.get('pwd')
@@ -96,7 +99,7 @@ def login():
         if session.get('user'):
             return redirect(url_for('hello'))
         else:
-            return make_response(render_template('t_login.htm'))
+            return make_response(render_template('t_login.htm', title=title))
 
 
 @app.route("/logout")

@@ -1,13 +1,16 @@
+{% extends "base.htm"%}
+{% block style %}
 <style>
     input {
         margin: 5px;
     }
 </style>
+{% endblock %}
+{% block content%}
 <h4>發送 COSCUP2013 Weekly</h4>
-<form method="POST" method="post" enctype="multipart/form-data">
+<form method="POST" enctype="multipart/form-data">
     期數：<input name="no"><br>
-    檔案：
-        <input name="file" type="file">
+    檔案：<input name="file" type="file">
         <br>
     信箱：
         <select name="mail">
@@ -17,3 +20,4 @@
         <br>
         <input type="SUBMIT">
 </form>
+{% endblock %}

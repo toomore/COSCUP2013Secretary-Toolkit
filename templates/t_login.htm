@@ -1,8 +1,12 @@
+{% extends "base.htm"%}
+{% block style %}
 <style>
     input {
         margin: 5px;
     }
 </style>
+{% endblock %}
+{% block content%}
 <h4>登入</h4>
 <form method="POST">
     帳號：<input name="user"><br>
@@ -22,4 +26,5 @@
         </select>
         <br>
         <input type="SUBMIT">
-</form>
+    </form>
+{% endblock %}
