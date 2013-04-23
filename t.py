@@ -4,6 +4,7 @@ import sys
 from jinja2 import Environment, FileSystemLoader
 from boto.ses.connection import SESConnection
 import piconfig
+import csv
 
 ses = SESConnection(piconfig.AWSID, piconfig.AWSKEY)
 env = Environment(loader=FileSystemLoader('./templates/'))
@@ -64,6 +65,11 @@ def send_weekly(no, html, mail='toomorebeta@googlegroups.com'):
         body=html,
     )
 
+def read_csv(path):
+    with open(path, 'r') as f:
+        result = csv.DictReader(f.readlines())
+
+    return result
 
 def output(u):
     ''' 匯出電子報檔案 htm '''
@@ -71,14 +77,14 @@ def output(u):
         f.write(template.render(u).encode('utf-8'))
 
 
-def sendall(sendlist):
+def sendall(sendlist, send):
     ''' 大量傳送 '''
     for i in sendlist:
         try:
             send(i)
             print i.get('user'), i.get('nickname'), i.get('mail')
-        except:
-            print u'Error: ', i.get('user'), i.get('nickname'), i.get('mail')
+        except Exception as e:
+            print u'Error: ', i.get('user'), i.get('nickname'), i.get('mail'), e
 
 
 if __name__ == '__main__':

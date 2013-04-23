@@ -11,6 +11,7 @@ from flask import session
 from functools import wraps
 from piconfig import ALLOWED_EXTENSIONS
 import t
+
 app = Flask(__name__)
 app.session_cookie_name = 'COSCUP_session'
 app.secret_key = 'LGV\x1a\tfp\xd2z\xfa[\xc0u\xde\x7f\xe4(\x08\x1a\x9bT\xd9\xb3\x90\xb6\xde\x05\x1c\x07\x07c\xf7\xcb\x91^\x99\x97yPi\xd1\xe0\x81\x8dW\x8f\x96\xad:\xd3@g\x8d\x8ex\xc8^)\xb0O\x0c\x04\xf7*'  # os.urandom(128)
