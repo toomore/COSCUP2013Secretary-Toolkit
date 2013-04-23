@@ -1,0 +1,17 @@
+{% extends "base.htm"%}
+{% block style %}
+<style>
+    input {
+        margin: 5px;
+    }
+</style>
+{% endblock %}
+{% block content%}
+<h4>發送 COSCUP2013 登錄信（大量）</h4>
+<form method="POST" enctype="multipart/form-data">
+    csv 檔，nickname, mail<br>
+    檔案：<input name="file" type="file" class="input-block-level">
+    <br>
+    <button type="submit" class="btn btn-large btn-block btn-primary">寄送</button>
+</form>
+{% endblock %}

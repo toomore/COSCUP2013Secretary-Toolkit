@@ -69,6 +69,19 @@ def send_first():
     else:
         return make_response(render_template('t_sendfirst.htm', title=title, send_first=1))
 
+@app.route("/send_all_first", methods=['POST', 'GET'])
+@login_required
+def send_all_first():
+    title = u'Send All People First'
+    if request.method == "POST":
+        f = request.files.get('file')
+        if f and allowed_file(f.filename):
+            t.template = t.env.get_template('./coscup_first.htm')
+            t.sendall(t.read_csv(f), t.send_first)
+            flash(u'寄送大量登錄信')
+        return redirect(url_for('send_all_first'))
+    else:
+        return make_response(render_template('t_sendallfirst.htm', title=title, send_all_first=1))
 
 @app.route("/send_weekly", methods=['POST', 'GET'])
 @login_required

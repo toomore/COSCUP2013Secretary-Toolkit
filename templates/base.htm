@@ -35,6 +35,7 @@
                         <h4><a href="/">COSCUP2013 行政組 小工具</a></h4>
                     </div>
                     <a class="btn btn-block btn-large{%if send_first %} disabled{%endif%}" href='{{url_for('send_first')}}'>登錄信</a>
+                    <a class="btn btn-block btn-large{%if send_all_first %} disabled{%endif%}" href='{{url_for('send_all_first')}}'>登錄信(大量)</a>
                     <a class="btn btn-block btn-large{%if send_welcome %} disabled{%endif%}" href='{{url_for('send_welcome')}}'>歡迎信</a>
                     <a class="btn btn-block btn-large{%if send_weekly %} disabled{%endif%}" href='{{url_for('send_weekly')}}'>週報</a>
                     <hr>

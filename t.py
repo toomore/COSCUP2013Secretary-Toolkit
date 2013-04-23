@@ -65,11 +65,12 @@ def send_weekly(no, html, mail='toomorebeta@googlegroups.com'):
         body=html,
     )
 
-def read_csv(path):
-    with open(path, 'r') as f:
-        result = csv.DictReader(f.readlines())
-
-    return result
+def read_csv(f):
+    c = csv.DictReader(f.readlines())
+    for i in c:
+        for v in i:
+            i[v] = unicode(i[v], 'utf-8')
+        yield i
 
 def output(u):
     ''' 匯出電子報檔案 htm '''
@@ -82,9 +83,9 @@ def sendall(sendlist, send):
     for i in sendlist:
         try:
             send(i)
-            print i.get('user'), i.get('nickname'), i.get('mail')
+            print u'SEND: {}'.format(i)
         except Exception as e:
-            print u'Error: ', i.get('user'), i.get('nickname'), i.get('mail'), e
+            print u'ERROR: {}, {}'.format(i, e)
 
 
 if __name__ == '__main__':
