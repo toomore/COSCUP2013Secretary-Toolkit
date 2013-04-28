@@ -1,12 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import sys
-from jinja2 import Environment, FileSystemLoader
+from jinja2 import Environment
+from jinja2 import FileSystemLoader
 from boto.ses.connection import SESConnection
-import piconfig
+from setting import AWSID
+from setting import AWSKEY
+from setting import LEADER_MAIL
+import sys
 import csv
 
-ses = SESConnection(piconfig.AWSID, piconfig.AWSKEY)
+ses = SESConnection(AWSID, AWSKEY)
 env = Environment(loader=FileSystemLoader('./templates/'))
 
 
@@ -28,12 +31,12 @@ def send_welcome(info):
         source='Toomore Chiang <toomore0929@gmail.com>',
         subject=u'COSCUP2013 歡迎你 - {nickname}'.format(**info),
         to_addresses='{mail}'.format(**info),
-        cc_addresses='{0}'.format(piconfig.LEADER_MAIL[info.get('leaderno')]),
+        cc_addresses='{0}'.format(LEADER_MAIL[info.get('leaderno')]),
         format='html',
         return_path='toomore0929@gmail.com',
         reply_addresses=[
             'toomore0929@gmail.com',
-            piconfig.LEADER_MAIL[info.get('leaderno')]],
+            LEADER_MAIL[info.get('leaderno')]],
         body=template.render(**info),
     )
 
