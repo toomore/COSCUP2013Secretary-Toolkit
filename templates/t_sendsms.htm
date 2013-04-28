@@ -19,9 +19,17 @@
         <option value="all">全部傳送**</option>
     </select>
     內容： <br>
-    <input class="input-block-level" name="msg" type="text" maxlength="152" placeholder="152 words..."><br>
+    <input id="smsmsg" class="input-block-level" name="msg" type="text" maxlength="152" placeholder="152 words..."><br>
+    <span id="msg_count"></span>
     <br>
     <br>
     <button type="submit" class="btn btn-large btn-block btn-primary">寄送</button>
 </form>
+{% endblock %}
+{% block js %}
+<script>
+    $('#smsmsg').on('keyup onchange', function(event){
+        $('#msg_count').text($(this).val().length);}
+    );
+</script>
 {% endblock %}
