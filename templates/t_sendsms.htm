@@ -1,0 +1,27 @@
+{% extends "base.htm"%}
+{% block style %}
+{% endblock %}
+{% block content%}
+<h4>傳送 SMS</h4>
+<form method="POST">
+    組別：
+    <br>
+    <select name="leaderno" class="input-block-level" multiple="multiple">
+        <option value="0">總召</option>
+        <option value="1">紀錄</option>
+        <option value="2">議程</option>
+        <option value="3">線路</option>
+        <option value="4">會計</option>
+        <option value="5">銷售</option>
+        <option value="6">場務</option>
+        <option value="7">行銷公關</option>
+        <option value="8">行政</option>
+        <option value="all">全部傳送**</option>
+    </select>
+    內容： <br>
+    <input class="input-block-level" name="msg" type="text" maxlength="152" placeholder="152 words..."><br>
+    <br>
+    <br>
+    <button type="submit" class="btn btn-large btn-block btn-primary">寄送</button>
+</form>
+{% endblock %}
