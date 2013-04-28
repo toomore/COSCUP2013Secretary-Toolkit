@@ -10,6 +10,8 @@ from flask import redirect
 from flask import session
 from functools import wraps
 from piconfig import ALLOWED_EXTENSIONS
+from piconfig import LEADER_SMS
+from sms import SMS
 import t
 
 app = Flask(__name__)
@@ -55,6 +57,35 @@ def send_welcome():
         return redirect(url_for('send_welcome'))
     else:
         return make_response(render_template('t_sendwelcome.htm', title=title, send_welcome=1))
+
+
+@app.route("/send_sms", methods=['POST', 'GET'])
+@login_required
+def send_sms():
+    title = u'Send SMS'
+    if request.method == "POST":
+        leaderno = request.form.getlist('leaderno')
+        body = request.form.get('msg')
+        if body:
+            if 'all' in leaderno:
+                for i in LEADER_SMS.values():
+                    s = SMS().send(i, body)
+                    flash(u'{0} {1}'.format(i, s))
+                return redirect(url_for('send_sms'))
+            else:
+                if leaderno:
+                    for i in leaderno:
+                        s = SMS().send(LEADER_SMS.get(i), body)
+                        flash(u'{0} {1}'.format(LEADER_SMS.get(i), s))
+                    return redirect(url_for('send_sms'))
+                else:
+                    flash(u'沒有選擇組別！')
+                    return redirect(url_for('send_sms'))
+        else:
+            flash(u'沒有內容！')
+            return redirect(url_for('send_sms'))
+    else:
+        return make_response(render_template('t_sendsms.htm', title=title, send_sms=1))
 
 
 @app.route("/send_first", methods=['POST', 'GET'])

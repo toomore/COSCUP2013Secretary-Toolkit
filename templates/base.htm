@@ -34,10 +34,25 @@
                     <div class="alert alert-success" style="text-align: center;margin-top:20px;">
                         <h4><a href="/">COSCUP2013 行政組 小工具</a></h4>
                     </div>
-                    <a class="btn btn-block btn-large{%if send_first %} disabled{%endif%}" href='{{url_for('send_first')}}'>登錄信</a>
-                    <a class="btn btn-block btn-large{%if send_all_first %} disabled{%endif%}" href='{{url_for('send_all_first')}}'>登錄信(大量)</a>
-                    <a class="btn btn-block btn-large{%if send_welcome %} disabled{%endif%}" href='{{url_for('send_welcome')}}'>歡迎信</a>
-                    <a class="btn btn-block btn-large{%if send_weekly %} disabled{%endif%}" href='{{url_for('send_weekly')}}'>週報</a>
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <a class="span6 btn btn-large{%if send_first %} disabled{%endif%}" href='{{url_for('send_first')}}'>登錄信</a>
+                            <a class="span6 btn btn-large{%if send_all_first %} disabled{%endif%}" href='{{url_for('send_all_first')}}'>登錄信(大量)</a>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <a class="span6 btn btn-large{%if send_welcome %} disabled{%endif%}" href='{{url_for('send_welcome')}}'>歡迎信</a>
+                            <a class="span6 btn btn-large{%if send_weekly %} disabled{%endif%}" href='{{url_for('send_weekly')}}'>週報</a>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <a class="span6 btn btn-large{%if send_sms %} disabled{%endif%}" href='{{url_for('send_sms')}}'>SMS</a>
+                        </div>
+                    </div>
                     <hr>
                     <a class="btn btn-warning pull-right" href='{{url_for('logout')}}'>登出</a>
                     <br>
@@ -47,7 +62,7 @@
         </div>
         {%else%}
         {%endif%}
-        <script src="http://code.jquery.com/jquery.js"></script>
+        <script src="/static/js/jquery-1.9.1.min.js"></script>
         <script src="/static/js/bootstrap.min.js"></script>
         {% block js%}{%endblock%}
     </body>

@@ -8,7 +8,6 @@ import csv
 
 ses = SESConnection(piconfig.AWSID, piconfig.AWSKEY)
 env = Environment(loader=FileSystemLoader('./templates/'))
-getleadermail = piconfig.getleadermail
 
 
 def gettestinfo():
@@ -29,12 +28,12 @@ def send_welcome(info):
         source='Toomore Chiang <toomore0929@gmail.com>',
         subject=u'COSCUP2013 歡迎你 - {nickname}'.format(**info),
         to_addresses='{mail}'.format(**info),
-        cc_addresses='{0}'.format(getleadermail[info.get('leaderno')]),
+        cc_addresses='{0}'.format(piconfig.LEADER_MAIL[info.get('leaderno')]),
         format='html',
         return_path='toomore0929@gmail.com',
         reply_addresses=[
             'toomore0929@gmail.com',
-            getleadermail[info.get('leaderno')]],
+            piconfig.LEADER_MAIL[info.get('leaderno')]],
         body=template.render(**info),
     )
 

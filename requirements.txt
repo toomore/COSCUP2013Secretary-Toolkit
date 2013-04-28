@@ -1,3 +1,4 @@
 boto
 flask
 uwsgi
+twilio
