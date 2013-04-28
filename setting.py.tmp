@@ -1,0 +1,20 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+FLASK_KEY = ''  # os.urandom()
+FLASK_SESSION = ''
+LOGIN_ID = ''
+LOGIN_PWD = ''
+LOGIN_CHOICE = ''
+AWSID = ''
+AWSKEY = ''
+TWILIO_ID = ''
+TWILIO_PWD = ''
+TWILIO_FROM = ''
+ALLOWED_EXTENSIONS = set(['',])
+LEADER_MAIL = {
+    '0': '@gmail.com',  # who
+}
+
+LEADER_SMS = {
+    '0': '0800092000',  # who
+}

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from twilio.rest import TwilioRestClient
-from piconfig import TWILIO_ID, TWILIO_PWD, TWILIO_FROM
+from setting import TWILIO_ID, TWILIO_PWD, TWILIO_FROM
 
 
 class SMS(object):

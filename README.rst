@@ -1,5 +1,5 @@
 ===================================
-jinja2 - mail
+COSCUP2013Secretary Tool Kit
 ===================================
 
 以 jinja2 模板引擎排版電子報並利用 Amazon SES 發送
@@ -11,18 +11,20 @@ jinja2 - mail
 需要 boto, jinja2 套件
 
 - boto： https://github.com/boto/boto
-- jinja2： https://github.com/mitsuhiko/jinja2
+- flask： https://pypi.python.org/pypi/Flask
+- uwsgi： https://pypi.python.org/pypi/uWSGI
+- twilio： https://pypi.python.org/pypi/twilio
 
 ::
 
     pip install -r ./requirements.txt
 
 
-需要 Amazon AWS ID, KEY
+需要 Amazon AWS ID, KEY, twilio SID, TOKEN
 
 ::
 
-    請在 ./piconfig_temp.py 鍵入必要資料後改名為 ./piconfig.py
+    請在 ./setting.py.tmp 鍵入必要資料後改名為 ./setting.py
 
 電子報樣板
 -----------------------------------
@@ -60,3 +62,15 @@ jinja2 - mail
 -----------------------------------
 
 原來的程式有接來自資料庫使用者資料，但這部份只要在 sendall 改寫並餵入 [mail, user, nickname] 的基本欄位 dict 資料後就可以大量傳送郵件，歡迎嘗試改寫調整。
+
+
+Web Server
+-----------------------------------
+
+Flask
+
+- python ./app.py
+
+uWSGI
+
+- uwsgi -w app:app --http :6666 --logto /run/shm/coscup_sender_uwsgi.log

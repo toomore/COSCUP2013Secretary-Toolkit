@@ -9,14 +9,19 @@ from flask import url_for
 from flask import redirect
 from flask import session
 from functools import wraps
-from piconfig import ALLOWED_EXTENSIONS
-from piconfig import LEADER_SMS
+from setting import ALLOWED_EXTENSIONS
+from setting import LEADER_SMS
+from setting import FLASK_KEY
+from setting import FLASK_SESSION
+from setting import LOGIN_ID
+from setting import LOGIN_PWD
+from setting import LOGIN_CHOICE
 from sms import SMS
 import t
 
 app = Flask(__name__)
-app.session_cookie_name = 'COSCUP_session'
-app.secret_key = 'LGV\x1a\tfp\xd2z\xfa[\xc0u\xde\x7f\xe4(\x08\x1a\x9bT\xd9\xb3\x90\xb6\xde\x05\x1c\x07\x07c\xf7\xcb\x91^\x99\x97yPi\xd1\xe0\x81\x8dW\x8f\x96\xad:\xd3@g\x8d\x8ex\xc8^)\xb0O\x0c\x04\xf7*'  # os.urandom(128)
+app.session_cookie_name = FLASK_SESSION
+app.secret_key = FLASK_KEY
 app.config['ALLOWED_EXTENSIONS'] = ALLOWED_EXTENSIONS
 
 def getmenu():
@@ -140,7 +145,7 @@ def login():
         u = request.form.get('user')
         pwd = request.form.get('pwd')
         pwdw = request.form.get('pwdw')
-        if u == 'coscup' and pwd == 'ticc' and pwdw == '3':
+        if u == LOGIN_ID and pwd == LOGIN_PWD and pwdw == LOGIN_CHOICE:
             session['user'] = 1
             #return u'IN POST {0}'.format(request.form)
             return redirect(url_for('hello'))
