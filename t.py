@@ -67,12 +67,6 @@ def send_weekly(no, html, mail='toomorebeta@googlegroups.com'):
         body=html,
     )
 
-def read_csv(f):
-    c = csv.DictReader(f.readlines())
-    for i in c:
-        for v in i:
-            i[v] = unicode(i[v], 'utf-8')
-        yield i
 
 def output(u):
     ''' 匯出電子報檔案 htm '''

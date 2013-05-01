@@ -16,8 +16,12 @@ from setting import FLASK_SESSION
 from setting import LOGIN_ID
 from setting import LOGIN_PWD
 from setting import LOGIN_CHOICE
+from setting import STAFF_CNO
+from setting import STAFF_SMS
 from sms import SMS
+from util import read_csv
 import t
+
 
 app = Flask(__name__)
 app.session_cookie_name = FLASK_SESSION
@@ -93,6 +97,32 @@ def send_sms():
         return make_response(render_template('t_sendsms.htm', title=title, send_sms=1))
 
 
+@app.route("/send_sms_coll", methods=['POST', 'GET'])
+@login_required
+def send_sms_coll():
+    title = u'Send SMS by Coll'
+    if request.method == "POST":
+        cno = request.form.getlist('cno')
+        body = request.form.get('msg')
+        cno = STAFF_SMS if 'all' in cno else cno
+
+        for i in cno:
+            for u in STAFF_SMS[i]:
+                s = SMS().send(u['phone'], body)
+                flash(u'{0} {1}'.format(u['phone'], s))
+
+        return redirect(url_for('send_sms_coll'))
+    else:
+        coll = []
+        for i in STAFF_SMS:
+            coll.append(
+                    {
+                        'CNO': i,
+                        'CNO_NAME': STAFF_CNO[i],
+                        })
+
+        return make_response(render_template('t_sendsmscoll.htm', coll=coll, title=title, send_sms_coll=1))
+
 @app.route("/send_first", methods=['POST', 'GET'])
 @login_required
 def send_first():
@@ -113,7 +143,7 @@ def send_all_first():
         f = request.files.get('file')
         if f and allowed_file(f.filename):
             t.template = t.env.get_template('./coscup_first.htm')
-            t.sendall(t.read_csv(f), t.send_first)
+            t.sendall(read_csv(f), t.send_first)
             flash(u'寄送大量登錄信')
         return redirect(url_for('send_all_first'))
     else:
