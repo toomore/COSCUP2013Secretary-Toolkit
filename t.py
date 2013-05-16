@@ -27,7 +27,7 @@ def send_welcome(info):
     ''' 發送歡迎信
         :info: dict 包含 [mail, nickname, leaderno]
     '''
-    ses.send_email(
+    r = ses.send_email(
         source='Toomore Chiang <toomore0929@gmail.com>',
         subject=u'COSCUP2013 歡迎你 - {nickname}'.format(**info),
         to_addresses='{mail}'.format(**info),
@@ -40,12 +40,14 @@ def send_welcome(info):
         body=template.render(**info),
     )
 
+    return r
+
 
 def send_first(info):
     ''' 發送登錄信
         :info: dict 包含 [mail, nickname]
     '''
-    ses.send_email(
+    r = ses.send_email(
         source='Toomore Chiang <toomore0929@gmail.com>',
         subject=u'COSCUP2013 請先完成資料登錄 - {nickname}'.format(**info),
         to_addresses='{mail}'.format(**info),
@@ -54,6 +56,8 @@ def send_first(info):
         reply_addresses='toomore0929@gmail.com',
         body=template.render(**info),
     )
+
+    return r
 
 
 def send_weekly(no, html, mail='toomorebeta@googlegroups.com'):
