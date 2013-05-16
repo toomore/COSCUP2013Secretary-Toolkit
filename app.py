@@ -18,9 +18,11 @@ from setting import LOGIN_PWD
 from setting import LOGIN_CHOICE
 from setting import STAFF_CNO
 from setting import STAFF_SMS
+from setting import QUEUE_NAME_SENDFIRST
 from sms import SMS
 from util import read_csv
 import t
+import sqs
 
 
 app = Flask(__name__)
@@ -142,9 +144,18 @@ def send_all_first():
     if request.method == "POST":
         f = request.files.get('file')
         if f and allowed_file(f.filename):
-            t.template = t.env.get_template('./coscup_first.htm')
-            t.sendall(read_csv(f), t.send_first)
-            flash(u'寄送大量登錄信')
+            if request.form.get('sendby') == 'sqs':
+                sqs.add(QUEUE_NAME_SENDFIRST, read_csv(f))
+                flash(u'丟到 AWS SQS')
+
+            elif request.form.get('sendby') == 'mail':
+                #t.template = t.env.get_template('./coscup_first.htm')
+                #t.sendall(read_csv(f), t.send_first)
+                flash(u'寄送大量登錄信')
+
+            else:
+                flash(u'錯誤選擇！')
+
         return redirect(url_for('send_all_first'))
     else:
         return make_response(render_template('t_sendallfirst.htm', title=title, send_all_first=1))
