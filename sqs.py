@@ -68,6 +68,11 @@ def sqs_send_first():
     r = keepgoing(setting.QUEUE_NAME_SENDFIRST, t.send_first)
     print r
 
+def sqs_send_register():
+    t.template = t.env.get_template('./coscup_register.htm')
+    r = keepgoing(setting.QUEUE_NAME_REGISTER, t.send_register)
+    print r
+
 if __name__ == '__main__':
     #print clear(setting.QUEUE_NAME_SENDFIRST)
     #add(setting.QUEUE_NAME, [str(datetime.now()), str(datetime.now())])

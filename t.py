@@ -63,7 +63,7 @@ def send_first(info):
 def send_weekly(no, html, mail='toomorebeta@googlegroups.com'):
     ''' 發送週報
     '''
-    ses.send_email(
+    r = ses.send_email(
         source='Toomore Chiang <toomore0929@gmail.com>',
         subject=u'COSCUP2013 Weekly #{0:02}'.format(no),
         to_addresses='{0}'.format(mail),
@@ -71,6 +71,24 @@ def send_weekly(no, html, mail='toomorebeta@googlegroups.com'):
         body=html,
     )
 
+    return r
+
+
+def send_register(info):
+    ''' 發送會眾報名信
+        :info: dict 包含 [mail, nickname, code]
+    '''
+    r = ses.send_email(
+        source='COSCUP2013 Attendee <attendee@coscup.org>',
+        subject=u'[TEST] COSCUP2013 即將完成活動報名 - {nickname}'.format(**info),
+        to_addresses='{mail}'.format(**info),
+        format='html',
+        return_path='attendee@coscup.org',
+        reply_addresses='attendee@coscup.org',
+        body=template.render(**info),
+    )
+
+    return r
 
 def output(u):
     ''' 匯出電子報檔案 htm '''

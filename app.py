@@ -19,6 +19,7 @@ from setting import LOGIN_CHOICE
 from setting import STAFF_CNO
 from setting import STAFF_SMS
 from setting import QUEUE_NAME_SENDFIRST
+from setting import QUEUE_NAME_LIST
 from sms import SMS
 from util import read_csv
 import t
@@ -159,6 +160,24 @@ def send_all_first():
         return redirect(url_for('send_all_first'))
     else:
         return make_response(render_template('t_sendallfirst.htm', title=title, send_all_first=1))
+
+@app.route("/send_register", methods=['POST', 'GET'])
+@login_required
+def send_register():
+    title = u'Send attendee register'
+    if request.method == "POST":
+        f = request.files.get('file')
+        if f and allowed_file(f.filename):
+            sendby = request.form.get('sendby')
+            if sendby:
+                sqs.add(sendby, read_csv(f))
+                flash(u'丟到 AWS SQS {0}'.format(sendby))
+            else:
+                flash(u'錯誤選擇！')
+
+        return redirect(url_for('send_register'))
+    else:
+        return make_response(render_template('t_sendregister.htm', title=title, qlist=QUEUE_NAME_LIST ,send_register=1))
 
 @app.route("/send_weekly", methods=['POST', 'GET'])
 @login_required

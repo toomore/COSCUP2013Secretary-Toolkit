@@ -54,6 +54,13 @@
                             <a class="span6 btn btn-large{%if send_sms_coll %} disabled{%endif%}" href='{{url_for('send_sms_coll')}}'>SMS（各組）</a>
                         </div>
                     </div>
+                    <br>
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <a class="span6 btn btn-large{%if send_register %} disabled{%endif%}" href='{{url_for('send_register')}}'>SQS</a>
+                        </div>
+                    </div>
+                    <br>
                     <hr>
                     <a class="btn btn-warning pull-right" href='{{url_for('logout')}}'>登出</a>
                     <br>
