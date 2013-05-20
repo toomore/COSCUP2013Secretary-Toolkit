@@ -161,10 +161,10 @@ def send_all_first():
     else:
         return make_response(render_template('t_sendallfirst.htm', title=title, send_all_first=1))
 
-@app.route("/send_register", methods=['POST', 'GET'])
+@app.route("/awssqs", methods=['POST', 'GET'])
 @login_required
-def send_register():
-    title = u'Send attendee register'
+def awssqs():
+    title = u'AWS SQS'
     if request.method == "POST":
         f = request.files.get('file')
         if f and allowed_file(f.filename):
@@ -175,9 +175,9 @@ def send_register():
             else:
                 flash(u'錯誤選擇！')
 
-        return redirect(url_for('send_register'))
+        return redirect(url_for('awssqs'))
     else:
-        return make_response(render_template('t_sendregister.htm', title=title, qlist=QUEUE_NAME_LIST ,send_register=1))
+        return make_response(render_template('t_awssqs.htm', title=title, qlist=QUEUE_NAME_LIST ,awssqs=1))
 
 @app.route("/send_weekly", methods=['POST', 'GET'])
 @login_required
