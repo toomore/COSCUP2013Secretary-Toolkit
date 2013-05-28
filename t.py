@@ -90,6 +90,24 @@ def send_register(info):
 
     return r
 
+
+def send_leadervipcode(info):
+    ''' 發送組長 VIP CODE
+        :info: dict 包含 [mail, nickname, code]
+    '''
+    r = ses.send_email(
+        source='COSCUP2013 Attendee <attendee@coscup.org>',
+        subject=u'COSCUP2013 VIP Code - {code}'.format(**info),
+        to_addresses='{mail}'.format(**info),
+        format='html',
+        return_path='attendee@coscup.org',
+        reply_addresses='attendee@coscup.org',
+        body=template.render(**info),
+    )
+
+    return r
+
+
 def output(u):
     ''' 匯出電子報檔案 htm '''
     with open('/run/shm/ppaper.htm', 'w') as f:
