@@ -81,6 +81,9 @@ def sqs_send_leadervipcode():
     t.template = t.env.get_template('./coscup_leader_vip.htm')
     r = keepgoing(setting.QUEUE_NAME_SENDLEADERVIPCODE, t.send_leadervipcode)
 
+def sqs_send_oscvipcode():
+    t.template = t.env.get_template('./coscup_osc.htm')
+    r = keepgoing(setting.QUEUE_NAME_SENDOSCVIPCODE, t.send_leadervipcode)
 
 if __name__ == '__main__':
     #print clear(setting.QUEUE_NAME_SENDFIRST)
