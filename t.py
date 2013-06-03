@@ -80,7 +80,7 @@ def send_register(info):
     '''
     r = ses.send_email(
         source='COSCUP2013 Attendee <attendee@coscup.org>',
-        subject=u'[TEST] COSCUP2013 即將完成活動報名 - {nickname}'.format(**info),
+        subject=u'COSCUP2013 尚未完成活動報名 - {nickname}'.format(**info),
         to_addresses='{mail}'.format(**info),
         format='html',
         return_path='attendee@coscup.org',
