@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from boto.sqs import connect_to_region
 import setting
-import json
+import ujson as json
 import t
 
 
