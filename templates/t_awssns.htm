@@ -7,16 +7,13 @@
 </style>
 {% endblock %}
 {% block content%}
-<h4>AWS SQS</h4>
-<form method="POST" enctype="multipart/form-data">
-    csv 檔，nickname, mail, code<br>
-    檔案：<input name="file" type="file" class="input-block-level">
-    <br>
+<h4>AWS SNS</h4>
+<form method="POST">
     <select name="sendby" class="input-block-level">
         {%for i in qlist-%}
         <option value="{{i}}">{{i}}</option>
         {%endfor-%}
     </select>
-    <button type="submit" class="btn btn-large btn-block btn-primary">啟動 SQS</button>
+    <button type="submit" class="btn btn-large btn-block btn-primary">啟動 SNS</button>
 </form>
 {% endblock %}

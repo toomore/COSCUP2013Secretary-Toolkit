@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from boto.sqs import connect_to_region
+from sms import SMS
 import setting
 import ujson as json
 import t
@@ -11,6 +12,13 @@ AWSSQS = connect_to_region(
         aws_access_key_id=setting.AWSID,
         aws_secret_access_key=setting.AWSKEY
         )
+
+AWSSQSLIST = []
+
+def SQSLIST(f):
+    AWSSQSLIST.append(f.__name__)
+    return f
+
 
 def add(QUEUE_NAME, DATA):
     isinstance(DATA, list)
@@ -63,27 +71,35 @@ def keepgoing(QUEUE_NAME, DOING):
 
     return []
 
+@SQSLIST
 def sqs_send_first():
     t.template = t.env.get_template('./coscup_first.htm')
     r = keepgoing(setting.QUEUE_NAME_SENDFIRST, t.send_first)
-    print r
 
+@SQSLIST
 def sqs_send_register():
     t.template = t.env.get_template('./coscup_register.htm')
     r = keepgoing(setting.QUEUE_NAME_REGISTER, t.send_register)
-    print r
 
+@SQSLIST
 def sqs_send_welcome():
     t.template = t.env.get_template('./coscup_welcome.htm')
     r = keepgoing(setting.QUEUE_NAME_SENDWELCOME, t.send_welcome)
 
+@SQSLIST
 def sqs_send_leadervipcode():
     t.template = t.env.get_template('./coscup_leader_vip.htm')
     r = keepgoing(setting.QUEUE_NAME_SENDLEADERVIPCODE, t.send_leadervipcode)
 
+@SQSLIST
 def sqs_send_oscvipcode():
     t.template = t.env.get_template('./coscup_osc.htm')
     r = keepgoing(setting.QUEUE_NAME_SENDOSCVIPCODE, t.send_leadervipcode)
+
+@SQSLIST
+def sqs_sms_leader():
+    doing_sms = SMS().send
+    r = keepgoing(setting.QUEUE_NAME_SMSLEADER, doing_sms)
 
 if __name__ == '__main__':
     #print clear(setting.QUEUE_NAME_SENDFIRST)

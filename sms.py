@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from twilio.rest import TwilioRestClient
-from setting import TWILIO_ID, TWILIO_PWD, TWILIO_FROM
+from setting import TWILIO_FROM
+from setting import TWILIO_ID
+from setting import TWILIO_PWD
 
 
 class SMS(object):
@@ -9,11 +11,11 @@ class SMS(object):
     def __init__(self):
         self.client = TwilioRestClient(TWILIO_ID, TWILIO_PWD)
 
-    def send(self, to, body, from_=TWILIO_FROM):
+    def send(self, msg):
         data = {
-                'to': to,
-                'body': u'[COSCUP]{0}'.format(body[:152]),
-                'from_': from_,
+                'to': msg['to'],
+                'body': u'[COSCUP]{0}'.format(msg['body'][:152]),
+                'from_': TWILIO_FROM,
                 }
         try:
             m = self.client.sms.messages.create(**data)
