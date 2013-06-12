@@ -119,7 +119,7 @@ def send_sms_coll():
             for i in cno:
                 for u in STAFF_SMS[i]:
                     msgs.append({'to': u['phone'], 'body': body})
-                    flash(u'{0} {1}'.format(u['phone'], s))
+                    flash(u'{0} {1}'.format(u['phone'], body))
 
                 sqs.add(QUEUE_NAME_SMSLEADER, msgs)
         else:
