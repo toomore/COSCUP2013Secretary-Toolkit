@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from boto.sqs import connect_to_region
+from sms import SMS
 import setting
 import ujson as json
 import t
@@ -94,6 +95,11 @@ def sqs_send_leadervipcode():
 def sqs_send_oscvipcode():
     t.template = t.env.get_template('./coscup_osc.htm')
     r = keepgoing(setting.QUEUE_NAME_SENDOSCVIPCODE, t.send_leadervipcode)
+
+@SQSLIST
+def sqs_sms_leader():
+    doing_sms = SMS().send
+    r = keepgoing(setting.QUEUE_NAME_SMSLEADER, doing_sms)
 
 if __name__ == '__main__':
     #print clear(setting.QUEUE_NAME_SENDFIRST)

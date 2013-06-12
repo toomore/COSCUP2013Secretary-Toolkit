@@ -20,7 +20,7 @@ from setting import STAFF_CNO
 from setting import STAFF_SMS
 from setting import QUEUE_NAME_SENDFIRST
 from setting import QUEUE_NAME_LIST
-from sms import SMS
+from setting import QUEUE_NAME_SMSLEADER
 from util import read_csv
 import t
 import sns
@@ -81,23 +81,26 @@ def send_sms():
         leaderno = request.form.getlist('leaderno')
         body = request.form.get('msg')
         if body:
+            msgs = []
             if 'all' in leaderno:
                 for i in LEADER_SMS.values():
-                    s = SMS().send(i, body)
-                    flash(u'{0} {1}'.format(i, s))
-                return redirect(url_for('send_sms'))
+                    msgs.append({'to': i, 'body': body})
+                    flash(u'{0} {1}'.format(i, body))
+
+                sqs.add(QUEUE_NAME_SMSLEADER, msgs)
             else:
                 if leaderno:
                     for i in leaderno:
-                        s = SMS().send(LEADER_SMS.get(i), body)
-                        flash(u'{0} {1}'.format(LEADER_SMS.get(i), s))
-                    return redirect(url_for('send_sms'))
+                        msgs.append({'to': LEADER_SMS[i], 'body': body})
+                        flash(u'{0} {1}'.format(LEADER_SMS[i], body))
+
+                    sqs.add(QUEUE_NAME_SMSLEADER, msgs)
                 else:
                     flash(u'沒有選擇組別！')
-                    return redirect(url_for('send_sms'))
         else:
             flash(u'沒有內容！')
-            return redirect(url_for('send_sms'))
+
+        return redirect(url_for('send_sms'))
     else:
         return make_response(render_template('t_sendsms.htm', title=title, send_sms=1))
 
@@ -111,10 +114,16 @@ def send_sms_coll():
         body = request.form.get('msg')
         cno = STAFF_SMS if 'all' in cno else cno
 
-        for i in cno:
-            for u in STAFF_SMS[i]:
-                s = SMS().send(u['phone'], body)
-                flash(u'{0} {1}'.format(u['phone'], s))
+        if body:
+            msgs = []
+            for i in cno:
+                for u in STAFF_SMS[i]:
+                    msgs.append({'to': u['phone'], 'body': body})
+                    flash(u'{0} {1}'.format(u['phone'], s))
+
+                sqs.add(QUEUE_NAME_SMSLEADER, msgs)
+        else:
+            flash(u'沒有內容！')
 
         return redirect(url_for('send_sms_coll'))
     else:
