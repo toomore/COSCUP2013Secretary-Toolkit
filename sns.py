@@ -13,4 +13,5 @@ def publish(*args):
     AWSSNS.publish(setting.COSCUSSNSARN, *args)
 
 if __name__ == "__main__":
-    AWSSNS.publish(setting.COSCUSSNSARN, 'FROM PYTHON', 'COOL')
+    #AWSSNS.publish(setting.COSCUSSNSARN, 'FROM PYTHON', 'COOL')
+    print 'IN SNS.'

@@ -219,7 +219,7 @@ def send_weekly():
 @app.route("/api", methods=['POST',])
 def api():
     if request.method == "POST":
-        ## For get AWS SNS comfirm msgs.
+        ## For getting AWS SNS comfirm msgs.
         ## print request.headers, request.data
         sqsmessage = json.loads(request.data).get('Message')
         getattr(sqs, sqsmessage)() if hasattr(sqs, sqsmessage) else None
