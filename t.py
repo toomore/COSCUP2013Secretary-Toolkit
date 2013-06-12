@@ -107,6 +107,21 @@ def send_leadervipcode(info):
 
     return r
 
+def send_personal_sponsor(info):
+    ''' 發送個人貢獻 VIP CODE
+        :info: dict 包含 [mail, nickname, code]
+    '''
+    r = ses.send_email(
+        source='COSCUP2013 Attendee <attendee@coscup.org>',
+        subject=u'COSCUP2013 VIP Code Personal Sponsor - {code}'.format(**info),
+        to_addresses='{mail}'.format(**info),
+        format='html',
+        return_path='attendee@coscup.org',
+        reply_addresses='attendee@coscup.org',
+        body=template.render(**info),
+    )
+
+    return r
 
 def output(u):
     ''' 匯出電子報檔案 htm '''

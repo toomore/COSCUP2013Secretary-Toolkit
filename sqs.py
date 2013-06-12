@@ -97,6 +97,11 @@ def sqs_send_oscvipcode():
     r = keepgoing(setting.QUEUE_NAME_SENDOSCVIPCODE, t.send_leadervipcode)
 
 @SQSLIST
+def sqs_send_personalsponsor():
+    t.template = t.env.get_template('./coscup_personal_sponsor.htm')
+    r = keepgoing(setting.QUEUE_NAME_SENDOSCVIPCODE, t.send_personal_sponsor)
+
+@SQSLIST
 def sqs_sms_leader():
     doing_sms = SMS().send
     r = keepgoing(setting.QUEUE_NAME_SMSLEADER, doing_sms)
