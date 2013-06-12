@@ -20,10 +20,12 @@ from setting import STAFF_CNO
 from setting import STAFF_SMS
 from setting import QUEUE_NAME_SENDFIRST
 from setting import QUEUE_NAME_LIST
-from sms import SMS
+from setting import QUEUE_NAME_SMSLEADER
 from util import read_csv
 import t
+import sns
 import sqs
+import ujson as json
 
 
 app = Flask(__name__)
@@ -79,23 +81,26 @@ def send_sms():
         leaderno = request.form.getlist('leaderno')
         body = request.form.get('msg')
         if body:
+            msgs = []
             if 'all' in leaderno:
                 for i in LEADER_SMS.values():
-                    s = SMS().send(i, body)
-                    flash(u'{0} {1}'.format(i, s))
-                return redirect(url_for('send_sms'))
+                    msgs.append({'to': i, 'body': body})
+                    flash(u'{0} {1}'.format(i, body))
+
+                sqs.add(QUEUE_NAME_SMSLEADER, msgs)
             else:
                 if leaderno:
                     for i in leaderno:
-                        s = SMS().send(LEADER_SMS.get(i), body)
-                        flash(u'{0} {1}'.format(LEADER_SMS.get(i), s))
-                    return redirect(url_for('send_sms'))
+                        msgs.append({'to': LEADER_SMS[i], 'body': body})
+                        flash(u'{0} {1}'.format(LEADER_SMS[i], body))
+
+                    sqs.add(QUEUE_NAME_SMSLEADER, msgs)
                 else:
                     flash(u'沒有選擇組別！')
-                    return redirect(url_for('send_sms'))
         else:
             flash(u'沒有內容！')
-            return redirect(url_for('send_sms'))
+
+        return redirect(url_for('send_sms'))
     else:
         return make_response(render_template('t_sendsms.htm', title=title, send_sms=1))
 
@@ -109,10 +114,16 @@ def send_sms_coll():
         body = request.form.get('msg')
         cno = STAFF_SMS if 'all' in cno else cno
 
-        for i in cno:
-            for u in STAFF_SMS[i]:
-                s = SMS().send(u['phone'], body)
-                flash(u'{0} {1}'.format(u['phone'], s))
+        if body:
+            msgs = []
+            for i in cno:
+                for u in STAFF_SMS[i]:
+                    msgs.append({'to': u['phone'], 'body': body})
+                    flash(u'{0} {1}'.format(u['phone'], body))
+
+                sqs.add(QUEUE_NAME_SMSLEADER, msgs)
+        else:
+            flash(u'沒有內容！')
 
         return redirect(url_for('send_sms_coll'))
     else:
@@ -179,6 +190,22 @@ def awssqs():
     else:
         return make_response(render_template('t_awssqs.htm', title=title, qlist=QUEUE_NAME_LIST ,awssqs=1))
 
+@app.route("/awssns", methods=['POST', 'GET'])
+@login_required
+def awssns():
+    title = u'AWS SQS'
+    if request.method == "POST":
+        sendby = request.form.get('sendby')
+        if sendby:
+            sns.publish(sendby, 'COSCUPSNS')
+            flash(u'啟動 AWS SQS {0}'.format(sendby))
+        else:
+            flash(u'錯誤選擇！')
+
+        return redirect(url_for('awssns'))
+    else:
+        return make_response(render_template('t_awssns.htm', title=title, qlist=sqs.AWSSQSLIST ,awssns=1))
+
 @app.route("/send_weekly", methods=['POST', 'GET'])
 @login_required
 def send_weekly():
@@ -197,6 +224,15 @@ def send_weekly():
     else:
         return make_response(render_template('t_sendweekly.htm', title=title, send_weekly=1))
 
+
+@app.route("/api", methods=['POST',])
+def api():
+    if request.method == "POST":
+        ## For getting AWS SNS comfirm msgs.
+        ## print request.headers, request.data
+        sqsmessage = json.loads(request.data).get('Message')
+        getattr(sqs, sqsmessage)() if hasattr(sqs, sqsmessage) else None
+    return ''
 
 @app.route("/login", methods=['POST', 'GET'])
 def login():

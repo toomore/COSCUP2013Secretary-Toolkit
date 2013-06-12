@@ -2,3 +2,4 @@ boto
 flask
 uwsgi
 twilio
+ujson

@@ -6,6 +6,7 @@
         <meta name="viewport" content="target-densitydpi=device-dpi"/>
         <title>{{title|default('Go!')}} - COSCUP2013 行政組小工具</title>
         <link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link rel="shortcut icon" href="/static/ico/favicon.ico">
         {% block style%}{%endblock%}
     </head>
     <body>
@@ -50,7 +51,7 @@
                     <br>
                     <div class="row-fluid">
                         <div class="span12">
-                            <a class="span6 btn btn-large{%if send_sms %} disabled{%endif%}" href='{{url_for('send_sms')}}'>SMS</a>
+                            <a class="span6 btn btn-large{%if send_sms %} disabled{%endif%}" href='{{url_for('send_sms')}}'>SMS（組長）</a>
                             <a class="span6 btn btn-large{%if send_sms_coll %} disabled{%endif%}" href='{{url_for('send_sms_coll')}}'>SMS（各組）</a>
                         </div>
                     </div>
@@ -58,6 +59,7 @@
                     <div class="row-fluid">
                         <div class="span12">
                             <a class="span6 btn btn-large{%if awssqs %} disabled{%endif%}" href='{{url_for('awssqs')}}'>SQS</a>
+                            <a class="span6 btn btn-large{%if awssns %} disabled{%endif%}" href='{{url_for('awssns')}}'>SNS</a>
                         </div>
                     </div>
                     <br>
