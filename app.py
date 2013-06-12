@@ -23,7 +23,9 @@ from setting import QUEUE_NAME_LIST
 from sms import SMS
 from util import read_csv
 import t
+import sns
 import sqs
+import ujson as json
 
 
 app = Flask(__name__)
@@ -179,6 +181,22 @@ def awssqs():
     else:
         return make_response(render_template('t_awssqs.htm', title=title, qlist=QUEUE_NAME_LIST ,awssqs=1))
 
+@app.route("/awssns", methods=['POST', 'GET'])
+@login_required
+def awssns():
+    title = u'AWS SQS'
+    if request.method == "POST":
+        sendby = request.form.get('sendby')
+        if sendby:
+            sns.publish(sendby, 'COSCUPSNS')
+            flash(u'啟動 AWS SQS {0}'.format(sendby))
+        else:
+            flash(u'錯誤選擇！')
+
+        return redirect(url_for('awssns'))
+    else:
+        return make_response(render_template('t_awssns.htm', title=title, qlist=sqs.AWSSQSLIST ,awssns=1))
+
 @app.route("/send_weekly", methods=['POST', 'GET'])
 @login_required
 def send_weekly():
@@ -197,6 +215,15 @@ def send_weekly():
     else:
         return make_response(render_template('t_sendweekly.htm', title=title, send_weekly=1))
 
+
+@app.route("/api", methods=['POST',])
+def api():
+    if request.method == "POST":
+        ## For get AWS SNS comfirm msgs.
+        ## print request.headers, request.data
+        sqsmessage = json.loads(request.data).get('Message')
+        getattr(sqs, sqsmessage, None)()
+    return ''
 
 @app.route("/login", methods=['POST', 'GET'])
 def login():
