@@ -222,7 +222,7 @@ def api():
         ## For get AWS SNS comfirm msgs.
         ## print request.headers, request.data
         sqsmessage = json.loads(request.data).get('Message')
-        getattr(sqs, sqsmessage, None)()
+        getattr(sqs, sqsmessage)() if hasattr(sqs, sqsmessage) else None
     return ''
 
 @app.route("/login", methods=['POST', 'GET'])
