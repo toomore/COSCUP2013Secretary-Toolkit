@@ -102,6 +102,11 @@ def sqs_send_personalsponsor():
     r = keepgoing(setting.QUEUE_NAME_SENDPERSONALSPONSOR, t.send_personal_sponsor)
 
 @SQSLIST
+def sqs_send_personalsponsorresend():
+    t.template = t.env.get_template('./coscup_personal_sponsor_resend.htm')
+    r = keepgoing(setting.QUEUE_NAME_SENDPERSONALSPONSOR, t.send_personal_sponsor)
+
+@SQSLIST
 def sqs_sms_leader():
     doing_sms = SMS().send
     r = keepgoing(setting.QUEUE_NAME_SMSLEADER, doing_sms)
