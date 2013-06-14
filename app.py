@@ -115,8 +115,8 @@ def send_sms_coll():
         cno = STAFF_SMS if 'all' in cno else cno
 
         if body:
-            msgs = []
             for i in cno:
+                msgs = []
                 for u in STAFF_SMS[i]:
                     msgs.append({'to': u['phone'], 'body': body})
                     flash(u'{0} {1}'.format(u['phone'], body))
