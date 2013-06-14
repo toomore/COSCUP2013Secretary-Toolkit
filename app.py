@@ -193,7 +193,7 @@ def awssqs():
 @app.route("/awssns", methods=['POST', 'GET'])
 @login_required
 def awssns():
-    title = u'AWS SQS'
+    title = u'AWS SNS'
     if request.method == "POST":
         sendby = request.form.get('sendby')
         if sendby:
