@@ -74,3 +74,4 @@ Flask
 uWSGI
 
 - uwsgi -w app:app --http :6666 --logto /run/shm/coscup_sender_uwsgi.log
+- uwsgi --ini ./uwsgi.ini
