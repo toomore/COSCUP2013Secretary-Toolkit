@@ -18,7 +18,10 @@ def dict_staff(data, groupby):
         result[i] = []
 
     for p in datas:
-        p['phone'] = '+886' + p['phone'].replace(' ','')[1:]
+        if p['phone'][0] == '0':
+            p['phone'] = '+886' + p['phone'].replace(' ','')[1:]
+        else:
+            p['phone'] = '+' + p['phone'].replace(' ','')
         result[p[groupby]].append(p)
 
     return result
