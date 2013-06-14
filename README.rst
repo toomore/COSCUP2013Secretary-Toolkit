@@ -2,7 +2,7 @@
 COSCUP2013Secretary Tool Kit
 ===================================
 
-以 jinja2 模板引擎排版電子報並利用 Amazon SES 發送
+以 jinja2 模板引擎排版電子報並利用 Amazon SES 發送，使用 twilio 傳送簡訊通知，所有的任務丟到 AWS SQS，再透過 AWS SNS 喚起執行任務。
 
 
 安裝
@@ -14,6 +14,7 @@ COSCUP2013Secretary Tool Kit
 - flask： https://pypi.python.org/pypi/Flask
 - uwsgi： https://pypi.python.org/pypi/uWSGI
 - twilio： https://pypi.python.org/pypi/twilio
+- ujson： https://pypi.python.org/pypi/ujson
 
 ::
 
@@ -29,34 +30,8 @@ COSCUP2013Secretary Tool Kit
 電子報樣板
 -----------------------------------
 
-樣板位於 ./templates/，樣板範例預覽： `View <http://toomore.s3.amazonaws.com/pipaper/pi_isuphoto_org_paper20121210.htm>`_
+樣板位於 ./templates/，樣板範例預覽： `View <http://bit.ly/173gH41>`_
 
-如何發送
------------------------------------
-
-執行：
-
-::
-
-    python ./t.py (功能) (樣板位置)
-
-功能：
-
-#. output：匯出電子報檔案。
-
-#. send：寄送電子報。
-
-#. sendall：大量傳送電子報。
-
-範例：
-
-::
-
-    python ./t.py output ./paper20121210.htm #輸出到 /run/shm/ppaper.htm
-
-::
-
-    python ./t.py send ./paper20121210.htm #寄送郵件
 
 延伸功能
 -----------------------------------
