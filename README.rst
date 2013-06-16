@@ -50,3 +50,9 @@ uWSGI
 
 - uwsgi -w app:app --http :6666 --logto /run/shm/coscup_sender_uwsgi.log
 - uwsgi --ini ./uwsgi.ini
+
+ScreenShot
+-----------------------------------
+
+.. image:: http://s3.toomore.net/coscup/2013-06-15+02.19.07.png
+
