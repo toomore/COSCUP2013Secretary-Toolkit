@@ -7,7 +7,6 @@ from setting import AWSID
 from setting import AWSKEY
 from setting import LEADER_MAIL
 import sys
-import csv
 
 ses = SESConnection(AWSID, AWSKEY)
 env = Environment(loader=FileSystemLoader('./templates/'))
@@ -107,6 +106,7 @@ def send_leadervipcode(info):
 
     return r
 
+
 def send_personal_sponsor(info):
     ''' 發送個人貢獻 VIP CODE
         :info: dict 包含 [mail, nickname, code]
@@ -122,6 +122,7 @@ def send_personal_sponsor(info):
     )
 
     return r
+
 
 def output(u):
     ''' 匯出電子報檔案 htm '''

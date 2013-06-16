@@ -7,13 +7,12 @@ import ujson as json
 import t
 
 
-AWSSQS = connect_to_region(
-        setting.AWSREGION,
-        aws_access_key_id=setting.AWSID,
-        aws_secret_access_key=setting.AWSKEY
-        )
+AWSSQS = connect_to_region(setting.AWSREGION,
+                           aws_access_key_id=setting.AWSID,
+                           aws_secret_access_key=setting.AWSKEY)
 
 AWSSQSLIST = []
+
 
 def SQSLIST(f):
     AWSSQSLIST.append(f.__name__)
@@ -69,47 +68,55 @@ def keepgoing(QUEUE_NAME, DOING):
             if sleep_times >= setting.SLEEP_TIMES:
                 break
 
-    return []
 
 @SQSLIST
 def sqs_send_first():
     t.template = t.env.get_template('./coscup_first.htm')
-    r = keepgoing(setting.QUEUE_NAME_SENDFIRST, t.send_first)
+    keepgoing(setting.QUEUE_NAME_SENDFIRST, t.send_first)
+
 
 @SQSLIST
 def sqs_send_register():
     t.template = t.env.get_template('./coscup_register.htm')
-    r = keepgoing(setting.QUEUE_NAME_REGISTER, t.send_register)
+    keepgoing(setting.QUEUE_NAME_REGISTER, t.send_register)
+
 
 @SQSLIST
 def sqs_send_welcome():
     t.template = t.env.get_template('./coscup_welcome.htm')
-    r = keepgoing(setting.QUEUE_NAME_SENDWELCOME, t.send_welcome)
+    keepgoing(setting.QUEUE_NAME_SENDWELCOME, t.send_welcome)
+
 
 @SQSLIST
 def sqs_send_leadervipcode():
     t.template = t.env.get_template('./coscup_leader_vip.htm')
-    r = keepgoing(setting.QUEUE_NAME_SENDLEADERVIPCODE, t.send_leadervipcode)
+    keepgoing(setting.QUEUE_NAME_SENDLEADERVIPCODE, t.send_leadervipcode)
+
 
 @SQSLIST
 def sqs_send_oscvipcode():
     t.template = t.env.get_template('./coscup_osc.htm')
-    r = keepgoing(setting.QUEUE_NAME_SENDOSCVIPCODE, t.send_leadervipcode)
+    keepgoing(setting.QUEUE_NAME_SENDOSCVIPCODE, t.send_leadervipcode)
+
 
 @SQSLIST
 def sqs_send_personalsponsor():
     t.template = t.env.get_template('./coscup_personal_sponsor.htm')
-    r = keepgoing(setting.QUEUE_NAME_SENDPERSONALSPONSOR, t.send_personal_sponsor)
+    keepgoing(setting.QUEUE_NAME_SENDPERSONALSPONSOR, t.send_personal_sponsor)
+
 
 @SQSLIST
 def sqs_send_personalsponsorresend():
     t.template = t.env.get_template('./coscup_personal_sponsor_resend.htm')
-    r = keepgoing(setting.QUEUE_NAME_SENDPERSONALSPONSORRESEND, t.send_personal_sponsor)
+    keepgoing(setting.QUEUE_NAME_SENDPERSONALSPONSORRESEND,
+              t.send_personal_sponsor)
+
 
 @SQSLIST
 def sqs_sms_leader():
     doing_sms = SMS().send
-    r = keepgoing(setting.QUEUE_NAME_SMSLEADER, doing_sms)
+    keepgoing(setting.QUEUE_NAME_SMSLEADER, doing_sms)
+
 
 if __name__ == '__main__':
     #print clear(setting.QUEUE_NAME_SMSLEADER)

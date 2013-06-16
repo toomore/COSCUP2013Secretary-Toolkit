@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import csv
-from timeit import timeit
+
 
 def read_csv(f):
     c = csv.DictReader(f.readlines())
@@ -9,6 +9,7 @@ def read_csv(f):
         for v in i:
             i[v] = unicode(i[v], 'utf-8')
         yield i
+
 
 def dict_staff(data, groupby):
     result = {}
@@ -19,9 +20,9 @@ def dict_staff(data, groupby):
 
     for p in datas:
         if p['phone'][0] == '0':
-            p['phone'] = '+886' + p['phone'].replace(' ','')[1:]
+            p['phone'] = '+886' + p['phone'].replace(' ', '')[1:]
         else:
-            p['phone'] = '+' + p['phone'].replace(' ','')
+            p['phone'] = '+' + p['phone'].replace(' ', '')
         result[p[groupby]].append(p)
 
     return result

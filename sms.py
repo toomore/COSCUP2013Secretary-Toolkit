@@ -12,22 +12,19 @@ class SMS(object):
         self.client = TwilioRestClient(TWILIO_ID, TWILIO_PWD)
 
     def send(self, msg):
-        data = {
-                'to': msg['to'],
+        data = {'to': msg['to'],
                 'body': u'[COSCUP]{0}'.format(msg['body'][:152]),
                 'from_': TWILIO_FROM,
                 }
         try:
             m = self.client.sms.messages.create(**data)
-            return {
-                    'status': True,
+            return {'status': True,
                     'msg': m,
                     'sid': m.sid,
                     'price': m.price,
                     }
         except Exception as e:
-            return {
-                    'status': False,
+            return {'status': False,
                     'ERROR': str(e),
                     'data': data,
                     }

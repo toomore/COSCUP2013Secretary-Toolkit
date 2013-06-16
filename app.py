@@ -33,15 +33,11 @@ app.session_cookie_name = FLASK_SESSION
 app.secret_key = FLASK_KEY
 app.config['ALLOWED_EXTENSIONS'] = ALLOWED_EXTENSIONS
 
-def getmenu():
-    lg = url_for('logout') if session.get('user') else url_for('login')
-    lgw = u'Logout' if session.get('user') else u'Login'
-    return u"<a href='{0}'>登錄信</a> | <a href='{1}'>歡迎信</a> | <a href='{4}'>週報</a> | <a href='{2}'>{3}</a>".format(
-        url_for('sendfirst'), url_for('sendwelcome'), lg, lgw, url_for('send_weekly'))
 
 def allowed_file(filename):
     return '.' in filename and \
         filename.rsplit('.', 1)[1] in app.config['ALLOWED_EXTENSIONS']
+
 
 def login_required(f):
     @wraps(f)
@@ -67,10 +63,12 @@ def send_welcome():
     if request.method == "POST":
         t.template = t.env.get_template('./coscup_welcome.htm')
         t.send_welcome(request.form.to_dict())
-        flash(u'已寄送歡迎信：{nickname} / {mail} / {leaderno}'.format(**request.form.to_dict()))
+        flash(u'已寄送歡迎信：{nickname} / {mail} / {leaderno}'.format(
+            **request.form.to_dict()))
         return redirect(url_for('send_welcome'))
     else:
-        return make_response(render_template('t_sendwelcome.htm', title=title, send_welcome=1))
+        return make_response(render_template('t_sendwelcome.htm',
+                                             title=title, send_welcome=1))
 
 
 @app.route("/send_sms", methods=['POST', 'GET'])
@@ -102,7 +100,8 @@ def send_sms():
 
         return redirect(url_for('send_sms'))
     else:
-        return make_response(render_template('t_sendsms.htm', title=title, send_sms=1))
+        return make_response(render_template('t_sendsms.htm', title=title,
+                                             send_sms=1))
 
 
 @app.route("/send_sms_coll", methods=['POST', 'GET'])
@@ -129,13 +128,12 @@ def send_sms_coll():
     else:
         coll = []
         for i in STAFF_SMS:
-            coll.append(
-                    {
-                        'CNO': i,
-                        'CNO_NAME': STAFF_CNO[i],
-                        })
+            coll.append({'CNO': i,
+                         'CNO_NAME': STAFF_CNO[i], })
 
-        return make_response(render_template('t_sendsmscoll.htm', coll=coll, title=title, send_sms_coll=1))
+        return make_response(render_template('t_sendsmscoll.htm', coll=coll,
+                                             title=title, send_sms_coll=1))
+
 
 @app.route("/send_first", methods=['POST', 'GET'])
 @login_required
@@ -147,7 +145,9 @@ def send_first():
         flash(u'已寄送登錄信：{nickname} / {mail}'.format(**request.form.to_dict()))
         return redirect(url_for('send_first'))
     else:
-        return make_response(render_template('t_sendfirst.htm', title=title, send_first=1))
+        return make_response(render_template('t_sendfirst.htm',
+                                             title=title, send_first=1))
+
 
 @app.route("/send_all_first", methods=['POST', 'GET'])
 @login_required
@@ -170,7 +170,9 @@ def send_all_first():
 
         return redirect(url_for('send_all_first'))
     else:
-        return make_response(render_template('t_sendallfirst.htm', title=title, send_all_first=1))
+        return make_response(render_template('t_sendallfirst.htm',
+                                             title=title, send_all_first=1))
+
 
 @app.route("/awssqs", methods=['POST', 'GET'])
 @login_required
@@ -188,7 +190,9 @@ def awssqs():
 
         return redirect(url_for('awssqs'))
     else:
-        return make_response(render_template('t_awssqs.htm', title=title, qlist=QUEUE_NAME_LIST ,awssqs=1))
+        return make_response(render_template('t_awssqs.htm', title=title,
+                                             qlist=QUEUE_NAME_LIST, awssqs=1))
+
 
 @app.route("/awssns", methods=['POST', 'GET'])
 @login_required
@@ -204,7 +208,9 @@ def awssns():
 
         return redirect(url_for('awssns'))
     else:
-        return make_response(render_template('t_awssns.htm', title=title, qlist=sqs.AWSSQSLIST ,awssns=1))
+        return make_response(render_template('t_awssns.htm', title=title,
+                                             qlist=sqs.AWSSQSLIST, awssns=1))
+
 
 @app.route("/send_weekly", methods=['POST', 'GET'])
 @login_required
@@ -222,10 +228,11 @@ def send_weekly():
             flash(u'沒有檔案！')
             return redirect(url_for('send_weekly'))
     else:
-        return make_response(render_template('t_sendweekly.htm', title=title, send_weekly=1))
+        return make_response(render_template('t_sendweekly.htm', title=title,
+                                             send_weekly=1))
 
 
-@app.route("/api", methods=['POST',])
+@app.route("/api", methods=['POST', ])
 def api():
     if request.method == "POST":
         ## For getting AWS SNS comfirm msgs.
@@ -233,6 +240,7 @@ def api():
         sqsmessage = json.loads(request.data).get('Message')
         getattr(sqs, sqsmessage)() if hasattr(sqs, sqsmessage) else None
     return ''
+
 
 @app.route("/login", methods=['POST', 'GET'])
 def login():
