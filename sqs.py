@@ -82,6 +82,11 @@ def sqs_send_register():
 
 
 @SQSLIST
+def sqs_send_paper():
+    keepgoing(setting.QUEUE_NAME_SENDPAPER, t.send_paper)
+
+
+@SQSLIST
 def sqs_send_welcome():
     t.template = t.env.get_template('./coscup_welcome.htm')
     keepgoing(setting.QUEUE_NAME_SENDWELCOME, t.send_welcome)

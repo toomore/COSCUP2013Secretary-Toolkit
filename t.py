@@ -90,6 +90,24 @@ def send_register(info):
     return r
 
 
+def send_paper(info):
+    ''' 發送會眾電子報
+        :info: dict 包含 [mail, nickname, issues]
+    '''
+    template = env.get_template('./paper_{issues}.htm'.format(**info))
+    r = ses.send_email(
+        source='COSCUP2013 Attendee <attendee@coscup.org>',
+        subject=u'COSCUP2013 電子報 - {issues}'.format(**info),
+        to_addresses='{mail}'.format(**info),
+        format='html',
+        return_path='attendee@coscup.org',
+        reply_addresses='attendee@coscup.org',
+        body=template.render(**info),
+    )
+
+    return r
+
+
 def send_leadervipcode(info):
     ''' 發送組長 VIP CODE
         :info: dict 包含 [mail, nickname, code]
