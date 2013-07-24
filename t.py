@@ -97,7 +97,7 @@ def send_paper(info):
     template = env.get_template('./paper_{issues}.htm'.format(**info))
     r = ses.send_email(
         source='COSCUP2013 Attendee <attendee@coscup.org>',
-        subject=u'COSCUP2013 電子報 - {issues}'.format(**info),
+        subject=u'COSCUP2013 電子報 - {issues} {title}'.format(**info),
         to_addresses='{mail}'.format(**info),
         format='html',
         return_path='attendee@coscup.org',
