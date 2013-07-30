@@ -90,6 +90,23 @@ def send_register(info):
     return r
 
 
+def send_speakerparty(info):
+    ''' 發送講者晚宴通知
+        :info: dict 包含 [mail, nickname]
+    '''
+    r = ses.send_email(
+        source='COSCUP2013 Secretary <secretary@coscup.org>',
+        subject=u'COSCUP 講者晚宴行前通知 / Speaker’s Party Notice - {nickname}'.format(**info),
+        to_addresses='{mail}'.format(**info),
+        format='html',
+        return_path='secretary@coscup.org',
+        reply_addresses='secretary@coscup.org',
+        body=template.render(**info),
+    )
+
+    return r
+
+
 def send_paper(info):
     ''' 發送會眾電子報
         :info: dict 包含 [mail, nickname, issues]

@@ -82,6 +82,12 @@ def sqs_send_register():
 
 
 @SQSLIST
+def sqs_send_speakerparty():
+    t.template = t.env.get_template('./coscup_speakerparty.htm')
+    keepgoing(setting.QUEUE_NAME_SENDSPEAKERPARTY, t.send_speakerparty)
+
+
+@SQSLIST
 def sqs_send_paper():
     keepgoing(setting.QUEUE_NAME_SENDPAPER, t.send_paper)
 
