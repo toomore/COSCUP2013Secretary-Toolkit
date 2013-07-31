@@ -28,7 +28,7 @@ sup {
                     <li>時間：2013/08/03 ~ 2013/08/04</li>
                     <li>地點：外貿協會台北國際會議中心（TICC） <a href="http://go.coscup.org/coscup2013map">110 台北市信義區信義路五段1號 (map)</a></li>
                 </ul>
-                {% if foreigner %}
+                {% if foreigner=='1' %}
                 <p>請前往會場大廳入口左側報到處報到</p>
                 {% else %}
                 <p>請攜帶識別證至會場大廳入口右側報到處報到，並避免折損或撕除識別證上的貼紙，以便加速您的報到流程。</p>
@@ -55,7 +55,7 @@ sup {
                 <div style="padding:10px;">
                     <ol>
                         <li style="margin-bottom:10px;">如遇颱風或其他特殊情形，請密切注意 <a href="http://blog.coscup.org/?utm_source=newsletter&utm_medium=email&utm_campaign=reminder">COSCUP Blog</a>、<a href="http://go.coscup.org/coscup-fb">Facebook</a>、<a href="http://go.coscup.org/coscup-plurk">Plurk</a>、<a href="http://go.coscup.org/coscup-twitter">Twitter</a> 或 <a href="http://go.coscup.org/coscup-gplus">Google+</a>，我們將會視情況公布是否停辦或順延。</li>
-                        <li style="margin-bottom:10px;">{% if foreigner %}{% else %}識別證一定要帶，也{% endif %}別忘了帶名片來結識新朋友。（如果您是學生，可考慮自行印製一些名片，方便交換聯絡方式。）</li>
+                        <li style="margin-bottom:10px;">{% if foreigner=='1' %}{% else %}識別證一定要帶，也{% endif %}別忘了帶名片來結識新朋友。（如果您是學生，可考慮自行印製一些名片，方便交換聯絡方式。）</li>
                         <li style="margin-bottom:10px;">3G 網卡：大會備有 WiFi，但無法保證品質，歡迎攜帶 3G 網卡 。又，大會禁用個人熱點，請以接線方式使用 3G 網路。</li>
                         <li style="margin-bottom:10px;"><b>行動電源：會議室內無電源，會議室外充電區電源有限，如有需要請自備行動電源。</b></li>
                         <li style="margin-bottom:10px;">網路線：會議室外充電區另備有有線網路座，歡迎有需要的朋友自備網路線使用。</li>
@@ -144,7 +144,7 @@ sup {
                         <li style="margin-bottom:10px;">In case of bad weather or any unexpected conditions, the COSCUP team would take adequate actions to respond.(e.g. postpone or cancel the meeting, etc.) <b>Please keep updating our latest announcements on <a href="http://blog.coscup.org/?utm_source=newsletter&utm_medium=email&utm_campaign=reminder">COSCUP Blog</a>, <a href="http://go.coscup.org/coscup-fb">Facebook</a>, <a href="http://go.coscup.org/coscup-plurk">Plurk</a>, <a
                                 href="http://go.coscup.org/coscup-twitter">Twitter</a> or <a href="http://go.coscup.org/coscup-gplus">Google+</a></b> .</li>
                         <li style="margin-bottom:10px;">The registration starts at 8:15am.</li>
-                        {% if foreigner %}
+                        {% if foreigner=='1' %}
                         <li style="margin-bottom:10px;">Please collect your badge from our registration counter on the left hand side of Main (East) entrance of TICC.&nbsp;</li>
                         {% else %}
                         <li style="margin-bottom:10px;">We’ve sent you the pass / badge last week, please <b>bring your badge</b> for registration. If you haven’t got one, please contact <a href="mailto:attendee@coscup.org">attendee@coscup.org</a> with your name and email address.</li>
