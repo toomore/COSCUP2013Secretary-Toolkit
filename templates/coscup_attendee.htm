@@ -28,11 +28,13 @@ sup {
                     <li style="margin-bottom:10px;">時間：2013/08/03 ~ 2013/08/04</li>
                     <li style="margin-bottom:10px;">地點：外貿協會台北國際會議中心（TICC） <a href="http://go.coscup.org/coscup2013map">110 台北市信義區信義路五段1號 (map)</a></li>
                 </ul>
-                {% if foreigner=='1' %}
-                <p>請前往會場大廳入口左側報到處報到</p>
-                {% else %}
-                <p>請攜帶識別證至會場大廳入口右側報到處報到，並避免折損或撕除識別證上的貼紙，以便加速您的報到流程。</p>
-                {% endif %}
+                <p style="margin-left:10px;">
+                    {% if foreigner=='1' %}
+                        請前往會場大廳入口左側報到處報到
+                    {% else %}
+                        請攜帶識別證至會場大廳入口右側報到處報到，並避免折損或撕除識別證上的貼紙，以便加速您的報到流程。
+                    {% endif %}
+                </p>
             </td>
         </tr>
         <tr>
