@@ -1,0 +1,232 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<style>
+body,table{
+    font-size: 14px;
+}
+sup {
+    font-size:10px;
+}
+</style>
+</head>
+<body>
+    <table align="center" width="640" cellpadding="2" cellspacing="2" style="border:2px #ded solid;border-radius:10px;padding:10px;font-family:Arial;background-color:#fff;margin-top:15px;">
+        <tr>
+            <td style="color:green;font-family:Arial;font-weight:bold;"><a href="http://coscup.org/"><img src="http://coscup.org/2012-theme/assets/coscup.png" height="50px" align="right" alt="圖片 COSCUP Logo"></a>
+                <p style="font-size:16px;">COSCUP 2013 會眾行前通知信<br>
+                <a href="http://coscup.org/" style="color:green;text-decoration:none;">coscup.org</p>
+            </td>
+        </tr>
+        <tr>
+            <td style="color:#466;">
+                <p>親愛的與會夥伴 <b>{{nickname}}</b> 您好：</p>
+                <p style="margin-left:10px;">提醒您 COSCUP 2013 即將到來</p>
+                <ul>
+                    <li>時間：2013/08/03 ~ 2013/08/04</li>
+                    <li>地點：外貿協會台北國際會議中心（TICC） <a href="http://go.coscup.org/coscup2013map">110 台北市信義區信義路五段1號 (map)</a></li>
+                </ul>
+                {% if foreigner %}
+                <p>請前往會場大廳入口左側報到處報到</p>
+                {% else %}
+                <p>請攜帶識別證至會場大廳入口右側報到處報到，並避免折損或撕除識別證上的貼紙，以便加速您的報到流程。</p>
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div style="padding:10px;margin-top:10px;background-color:#bfb;border-radius:5px;color:#252;font-weight:bold;">報到資訊與會場規則</div>
+                <div style="padding:10px;">
+                    <ol>
+                        <li style="margin-bottom:10px;">大會報到台設於台北國際中心一樓大廳（近莊敬路），於 08:15 開始受理報到，請遵循會場工作人員指示報到。報到時將領取識別證掛繩，<b>「識別證＋識別證掛繩」兩者缺一均不得進入會議廳內</b>。</li>
+                        <li style="margin-bottom:10px;">歡迎搭乘大眾運輸工具與會，請參考 <a href="http://coscup.org/2013/zh-tw/venue/?utm_source=newsletter&utm_medium=email&utm_campaign=reminder">http://coscup.org/2013/zh-tw/venue/</a> 。若您開車前來，請參考信義區停車資訊導引系統 <a href="http://go.coscup.org/coscup13-parking-info">http://go.coscup.org/coscup13-parking-info</a></li>
+                        <li style="margin-bottom:10px;">今年大會不備中餐，歡迎與夥伴一同前往會場附近餐廳用餐。</li>
+                        <li style="margin-bottom:10px;"><b>會議廳內禁止飲食，並請將所有設備設為靜音或振動。</b></li>
+                        <li style="margin-bottom:10px;">嚴禁使用會場網路進行網路攻擊</li>
+                    </ol>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div style="padding:10px;margin-top:10px;background-color:#bfb;border-radius:5px;color:#252;font-weight:bold;">出門前的準備，及攜帶物品</div>
+                <div style="padding:10px;">
+                    <ol>
+                        <li style="margin-bottom:10px;">如遇颱風或其他特殊情形，請密切注意 <a href="http://blog.coscup.org/?utm_source=newsletter&utm_medium=email&utm_campaign=reminder">COSCUP Blog</a>、<a href="http://go.coscup.org/coscup-fb">Facebook</a>、<a href="http://go.coscup.org/coscup-plurk">Plurk</a>、<a href="http://go.coscup.org/coscup-twitter">Twitter</a> 或 <a href="http://go.coscup.org/coscup-gplus">Google+</a>，我們將會視情況公布是否停辦或順延。</li>
+                        <li style="margin-bottom:10px;">{% if foreigner %}{% else %}識別證一定要帶，也{% endif %}別忘了帶名片來結識新朋友。（如果您是學生，可考慮自行印製一些名片，方便交換聯絡方式。）</li>
+                        <li style="margin-bottom:10px;">3G 網卡：大會備有 WiFi，但無法保證品質，歡迎攜帶 3G 網卡 。又，大會禁用個人熱點，請以接線方式使用 3G 網路。</li>
+                        <li style="margin-bottom:10px;"><b>行動電源：會議室內無電源，會議室外充電區電源有限，如有需要請自備行動電源。</b></li>
+                        <li style="margin-bottom:10px;">網路線：會議室外充電區另備有有線網路座，歡迎有需要的朋友自備網路線使用。</li>
+                        <li style="margin-bottom:10px;">環保杯：現場紙杯有限，歡迎自備飲水容器</li>
+                        <li style="margin-bottom:10px;">出門前的準備<b>請確保筆電及其他設備中各項軟體都已升級</b>，請勿利用會場網路大量下載檔案</li>
+                    </ol>
+
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div style="padding:10px;margin-top:10px;background-color:#bfb;border-radius:5px;color:#252;font-weight:bold;">COSCUP 現場延伸活動</div>
+                <div style="padding:10px;">
+                    <ol>
+                        <li style="margin-bottom:10px;">我們<b>鼓勵各社群於大會期間自發組織 BoF（同好聚會）</b>，歡迎撥空參加或提議您喜愛的主題，請上 BoF 網頁（<a href="http://go.coscup.org/2013bof">http://go.coscup.org/2013bof</a>）</li>
+                        <li style="margin-bottom:10px;">大會首日（8/3）各攤位設有<b>尋寶闖關活動</b>，前兩百名達成任務者可獲得 COSCUP 2013 特別紀念品一份，詳情請見 <a href="http://blog.coscup.org/2013/07/blog-post_5732.html?utm_source=newsletter&utm_medium=email&utm_campaign=reminder">http://blog.coscup.org/2013/07/blog-post_5732.html</a></li>
+                        <li style="margin-bottom:10px;"><b>大會第二天（8/4）下午將有抽獎活動</b>，歡迎現場的朋友參加，詳情請見 <a href="http://blog.coscup.org/2013/07/blog-post_985.html?utm_source=newsletter&utm_medium=email&utm_campaign=reminder">http://blog.coscup.org/2013/07/blog-post_985.html</a></li>
+                    </ol>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div style="padding:10px;margin-top:10px;background-color:#bfb;border-radius:5px;color:#252;font-weight:bold;">COSCUP 網路活動</div>
+                <div style="padding:10px;">
+                    <ol>
+                        <li style="margin-bottom:10px;">如有想即時分享訊息與照片，歡迎在 Google+ Events （<a href="http://go.coscup.org/2013gplusevent">http://go.coscup.org/2013gplusevent</a>） 與我們互動。</li>
+                        <li style="margin-bottom:10px;">大會的聊天室位於 irc://irc.freenode.net/coscup， 如果您不習慣文字介面，您也可以到 <a href="http://go.coscup.org/freenodewebchat">http://webchat.freenode.net/</a> 和我們聊天。</li>
+                        <li style="margin-bottom:10px;">本次大會通用標籤為「#coscup」。任何關於大會的部落格、照片、Facebook、Google+、twitter，請將 tag 標示為 #coscup2013，感謝幫忙。</li>
+                    </ol>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div style="padding:10px;margin-top:10px;background-color:#bfb;border-radius:5px;color:#252;font-weight:bold;">關於 COSCUP</div>
+                <div style="padding:10px;">
+                    <ol>
+                        <li>COSCUP 網站 <a href="http://coscup.org/2013/zh-tw/?utm_source=newsletter&utm_medium=email&utm_campaign=reminder">http://coscup.org</a></li>
+                        <li>COSCUP 部落格 <a href="http://blog.coscup.org/?utm_source=newsletter&utm_medium=email&utm_campaign=reminder">http://blog.coscup.org</a></li>
+                        <li>COSCUP 頻道 <a href="http://go.coscup.org/coscup-youtube">http://go.coscup.org/coscup-youtube</a></li>
+                    </ol>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div style="padding:10px;margin-top:10px;margin-bottom:20px;background-color:#eee;border-radius:5px;color:#343;font-weight:bold;text-align:justify;line-height:21px;letter-spacing:1px;">本次大會由 Amazon Web Services (AWS)、RS Components Ltd 英商歐諾時股份有限公司、KKBOX、PIXNET、Yahoo!、QNAP 威聯通科技、Vpon、Mozilla、雪爾萊克、MAKE 雜誌、晶璽商旅
+                世貿館、祐生研究基金會、Faria Systems、CLBC 慶隆商務俱樂部、AcoMo 杏昕科技、Softnext 中華數位科技、非常婚禮 veryWed.com、巴哈姆特、精誠資訊、仕橙 3G、數位無限軟體、慧邦科技股份有限公司(神來也)、瞻營全電子、遊戲基地、Hiiir 時間軸科技、Nulab Inc.、悠夏爾科技、cacaFly 聖洋科技、廣達研究院、數位時代、OSSF 自由軟體鑄造場、中央大學資訊工程學系、中國文化大學、桑格設計書店、Registrano、海琴影像、富銘科技。 等單位熱情贊助！</div>
+            </td>
+        </tr>
+        <tr>
+            <td style="color:#466;">
+                <p style="margin-left:10px;">感謝您的支持，並期待與您相會</p>
+            </td>
+        </tr>
+        <tr>
+            <td style="color:#575;text-align:right;">COSCUP 2013 籌備委員會敬上</td>
+        </tr>
+    </table>
+
+    <table align="center" width="640" cellpadding="2" cellspacing="2" style="border:2px #ded solid;border-radius:10px;padding:10px;font-family:Arial;background-color:#fff;margin-top:15px;">
+        <tr>
+            <td style="color:green;font-family:Arial;font-weight:bold;"><a href="http://coscup.org/"><img src="http://coscup.org/2012-theme/assets/coscup.png" height="50px" align="right" alt="圖片 COSCUP Logo"></a>
+                <p style="font-size:16px;">COSCUP 2013 Reminder for Attendee
+                    <br>
+                <a href="http://coscup.org/" style="color:green;text-decoration:none;">coscup.org</p>
+            </td>
+        </tr>
+        <tr>
+            <td style="color:#466;">
+                <p>Dear friend <b>{{nickname}}</b></p>
+                <p style="margin-left:10px;">We would like to remind you that COSCUP 2013 is coming in a week!</p>
+                <ul>
+                    <li>Date:  Aug 3rd and 4th, 2013 (Saturday and Sunday).</li>
+                    <li>Location: Taipei International Convention Center (TICC), please visit <a href="http://coscup.org/2013/en/venue/?utm_source=newsletter&utm_medium=email&utm_campaign=reminder">http://coscup.org/2013/en/venue/</a> for details.</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div style="padding:10px;margin-top:10px;background-color:#bfb;border-radius:5px;color:#252;font-weight:bold;">The first things you should know</div>
+                <div style="padding:10px;">
+                    <ol>
+                        <li style="margin-bottom:10px;">In case of bad weather or any unexpected conditions, the COSCUP team would take adequate actions to respond.(e.g. postpone or cancel the meeting, etc.) <b>Please keep updating our latest announcements on <a href="http://blog.coscup.org/?utm_source=newsletter&utm_medium=email&utm_campaign=reminder">COSCUP Blog</a>, <a href="http://go.coscup.org/coscup-fb">Facebook</a>, <a href="http://go.coscup.org/coscup-plurk">Plurk</a>, <a
+                                href="http://go.coscup.org/coscup-twitter">Twitter</a> or <a href="http://go.coscup.org/coscup-gplus">Google+</a></b> .</li>
+                        <li style="margin-bottom:10px;">The registration starts at 8:15am.</li>
+                        {% if foreigner %}
+                        <li style="margin-bottom:10px;">Please collect your badge from our registration counter on the left hand side of Main (East) entrance of TICC.&nbsp;</li>
+                        {% else %}
+                        <li style="margin-bottom:10px;">We’ve sent you the pass / badge last week, please <b>bring your badge</b> for registration. If you haven’t got one, please contact <a href="mailto:attendee@coscup.org">attendee@coscup.org</a> with your name and email address.</li>
+                        {% endif %}
+                        <li style="margin-bottom:10px;">You may come to TICC by public transportation, please check <a href="http://coscup.org/2013/en/venue/?utm_source=newsletter&utm_medium=email&utm_campaign=reminder">http://coscup.org/2013/en/venue/</a> for reference.</li>
+                        <li style="margin-bottom:10px;">If you drive, please check <a href="http://go.coscup.org/coscup13-parking-info">http://go.coscup.org/coscup13-parking-info</a> for parking assistance. (The website is Chinese only)</li>
+                        <li style="margin-bottom:10px;">Lunch will NOT be served by COSCUP team this year, please enjoy your lunch with friends at nearby restaurants.</li>
+                        <li style="margin-bottom:10px;">No food & drinks in conference room, also, please set your equipments to silent or vibrate mode only.</li>
+                        <li style="margin-bottom:10px;">DO NOT commence cyber attack in the meeting.</li>
+                        <li style="margin-bottom:10px;">Please upgrade all necessary software in advance, downloading activity in the meeting may affect network quality.</li>
+                    </ol>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div style="padding:10px;margin-top:10px;background-color:#bfb;border-radius:5px;color:#252;font-weight:bold;">Please consider to bring the following gadgets with you</div>
+                <div style="padding:10px;">
+                    <h3>3G network card</h3> 
+                    <p>There will be WiFi in the conference, but we can not guarantee the quality or bandwidth of the network. Please consider to bring your own 3G network card and use USB tethering to surf the net.  WiFi Hotspot is prohibited.</p>
+                    <h3>Power banks, batteries</h3>
+                    <p>No power plugs available in conference room & limited power supply area around the corridor. Please bring your own power solutions to have a better experience.</p>
+                    <h3>Ethernet cable</h3> 
+                    <p>Wired connection will be provided at power supply area, be prepared when you need it.</p>
+                    <h3>Name cards</h3> 
+                    <p>It's good to keep in touch with people you have met.</p>
+                    <h3>Reusable cup with cap</h3> 
+                    <p>It’s the best way to assure your water supply.</p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div style="padding:10px;margin-top:10px;background-color:#bfb;border-radius:5px;color:#252;font-weight:bold;">COSCUP Side-events</div>
+                <div style="padding:10px;">
+                    <ol>
+                        <li style="margin-bottom:10px;">Please considering to join one of the community-hold Birds-of-a-Feather session on the evening of August 3rd (7:00pm to 9:00pm), or propose your own topic.  See <a href="http://go.coscup.org/2013bof">http://go.coscup.org/2013bof</a> for more details.</li>
+                        <li style="margin-bottom:10px;">A Treasure Hunting Game will be held among sponsors’ booths at Day 1 (Aug/3), the first 200 who completed the mission will be rewarded with special COSCUP souvenir. For more information please visit <a href="http://blog.coscup.org/2013/07/blog-post_5732.html?utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign=reminder">http://blog.coscup.org/2013/07/blog-post_5732.html</a></li>
+                        <li style="margin-bottom:10px;">There will be a Lottery Event in Day 2 afternoon (Aug/4), don’t miss the chance of winning the jackpot. Please visit <a href="http://blog.coscup.org/2013/07/blog-post_985.html?utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign=reminder">http://blog.coscup.org/2013/07/blog-post_985.html</a> for more details.</li>
+                    </ol>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div style="padding:10px;margin-top:10px;background-color:#bfb;border-radius:5px;color:#252;font-weight:bold;">COSCUP on the web</div>
+                <div style="padding:10px;">
+                    <ol>
+                        <li style="margin-bottom:10px;">Join the official Google+ Event! <a href="http://go.coscup.org/2013gplusevent">http://go.coscup.org/2013gplusevent</a></li>
+                        <li style="margin-bottom:10px;">Please use #coscup to tag your photos, blogs, twitter or any other social networks.</li>
+                        <li style="margin-bottom:10px;">We have an irc channel,  irc://irc.freenode.net/coscup . You can also use<a href="http://webchat.freenode.net/"> </a><a href="http://go.coscup.org/freenodewebchat">http://webchat.freenode.net/</a> to chat with us.</li>
+                    </ol>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div style="padding:10px;margin-top:10px;background-color:#bfb;border-radius:5px;color:#252;font-weight:bold;">About COSCUP</div>
+                <div style="padding:10px;">
+                    Want to be more involved with us? Please visit:
+                    <ol>
+                        <li style="margin-bottom:10px;">COSCUP website <a href="http://coscup.org/2013/en/?utm_source=newsletter&utm_medium=email&utm_campaign=reminder">http://coscup.org</a></li>
+                        <li style="margin-bottom:10px;">COSCUP blog <a href="http://blog.coscup.org/?utm_source=newsletter&utm_medium=email&utm_campaign=reminder">http://blog.coscup.org</a></li>
+                        <li style="margin-bottom:10px;">COSCUP YouTube channel <a href="http://go.coscup.org/coscup-youtube">http://go.coscup.org/coscup-youtube</a></li>
+                    </ol>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div style="padding:10px;margin-top:10px;margin-bottom:20px;background-color:#eee;border-radius:5px;color:#343;font-weight:bold;text-align:justify;line-height:21px;letter-spacing:1px;">The COSCUP 2013 is sponsored by Amazon Web Services (AWS), RS Components Ltd., KKBOX, PIXNET, Yahoo!, QNAP, Vpon, Mozilla, SHARELIKE, TAI TIEN ELECTRIC CO. LTD, AT Boutique Hotel, Archilife Research Foundation, Faria Systems, CLBC, AcoMo, Softnext, veryWed.com, BAHAMUT, etu, Moko365, Infinities software, Gamesofa, DMP Electronics Inc., Gamebase, Hiiir, Nulab Inc., UniSharp, cacaFly Int'l Media, Quanta Research Institute, Business NEXT, OSSF, Department of Computer Science and information Engineering at National Central University, Chinese Culture University, Sungoodbooks, Registrano, sK Photography, Cinchy Corporation.
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="color:#466;">
+                <p style="margin-left:10px;">Thank you very much for your support! We are looking forward to seeing you there!</p>
+            </td>
+        </tr>
+        <tr>
+            <td style="color:#575;text-align:right;">The COSCUP 2013 Organizing Team</td>
+        </tr>
+    </table>
+</body>
+</html>
