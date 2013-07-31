@@ -107,6 +107,22 @@ def send_speakerparty(info):
     return r
 
 
+def send_attendee_reminder(info):
+    ''' 發送會眾行前通知
+        :info: dict 包含 [mail, nickname, foreigner]
+    '''
+    r = ses.send_email(
+        source='COSCUP2013 Attendee <attendee@coscup.org>',
+        subject=u'COSCUP 會眾行前通知信 / Reminder for Attendee - {nickname}'.format(**info),
+        to_addresses='{mail}'.format(**info),
+        format='html',
+        return_path='attendee@coscup.org',
+        reply_addresses='attendee@coscup.org',
+        body=template.render(**info),
+    )
+
+    return r
+
 def send_paper(info):
     ''' 發送會眾電子報
         :info: dict 包含 [mail, nickname, issues]
