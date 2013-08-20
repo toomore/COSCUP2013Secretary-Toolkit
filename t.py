@@ -124,6 +124,22 @@ def send_attendee_reminder(info):
     return r
 
 
+def send_survey(info):
+    ''' 發送會眾問卷
+        :info: dict 包含 [mail, nickname]
+    '''
+    r = ses.send_email(
+        source='COSCUP2013 Attendee <attendee@coscup.org>',
+        subject=u"COSCUP 會眾問卷 / Attendee's Survey - {nickname}".format(**info),
+        to_addresses='{mail}'.format(**info),
+        format='html',
+        return_path='attendee@coscup.org',
+        reply_addresses='attendee@coscup.org',
+        body=template.render(**info),
+    )
+
+    return r
+
 def send_staff_reminder(info):
     ''' 發送工作人員行前通知信
         :info: dict 包含 [mail, nickname]

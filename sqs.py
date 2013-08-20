@@ -94,6 +94,12 @@ def sqs_send_attendee_reminder():
 
 
 @SQSLIST
+def sqs_send_survey():
+    t.template = t.env.get_template('./coscup_survey.htm')
+    keepgoing(setting.QUEUE_NAME_SENDATTENDEEREMINDER, t.send_survey)
+
+
+@SQSLIST
 def sqs_send_staff_reminder():
     t.template = t.env.get_template('./coscup_staff.htm')
     keepgoing(setting.QUEUE_NAME_SENDSTAFFREMINDER, t.send_staff_reminder)
