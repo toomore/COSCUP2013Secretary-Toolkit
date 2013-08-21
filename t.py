@@ -59,6 +59,25 @@ def send_first(info):
     return r
 
 
+def send_transportation_fare(info):
+    ''' 發送交通費補助
+        :info: dict 包含 [mail, nickname, fee]
+    '''
+    info['fee'] = u'{0:,}'.format(int(info['fee']))
+
+    r = ses.send_email(
+        source='Toomore Chiang <toomore0929@gmail.com>',
+        subject=u'COSCUP2013 交通費補助確認信 - {nickname} ${fee}'.format(**info),
+        to_addresses='{mail}'.format(**info),
+        format='html',
+        return_path='toomore0929@gmail.com',
+        reply_addresses='toomore0929@gmail.com',
+        body=template.render(**info),
+    )
+
+    return r
+
+
 def send_weekly(no, html, mail='toomorebeta@googlegroups.com'):
     ''' 發送週報
     '''

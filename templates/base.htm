@@ -63,6 +63,11 @@
                         </div>
                     </div>
                     <br>
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <a class="span6 btn btn-large{%if send_transportation_fare %} disabled{%endif%}" href='{{url_for('send_transportation_fare')}}'>交通費補助確認信</a>
+                        </div>
+                    </div>
                     <hr>
                     <a class="btn btn-warning pull-right" href='{{url_for('logout')}}'>登出</a>
                     <br>

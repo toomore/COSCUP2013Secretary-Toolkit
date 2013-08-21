@@ -174,6 +174,20 @@ def send_all_first():
                                              title=title, send_all_first=1))
 
 
+@app.route("/send_transportation_fare", methods=['POST', 'GET'])
+@login_required
+def send_transportation_fare():
+    title = u'Send Transportation Fare'
+    if request.method == "POST":
+        t.template = t.env.get_template('./coscup_transportation_fare.htm')
+        t.send_transportation_fare(request.form.to_dict())
+        flash(u'已交通費確認信：{nickname} / {mail}'.format(**request.form.to_dict()))
+        return redirect(url_for('send_transportation_fare'))
+    else:
+        return make_response(render_template('t_sendtransportation_fare.htm',
+                                             title=title,
+                                             send_transportation_fare=1))
+
 @app.route("/awssqs", methods=['POST', 'GET'])
 @login_required
 def awssqs():

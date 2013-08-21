@@ -1,0 +1,18 @@
+{% extends "base.htm"%}
+{% block style %}
+<style>
+    input {
+        margin: 5px;
+    }
+</style>
+{% endblock %}
+{% block content%}
+<h4>傳送交通費確認信</h4>
+<form method="POST">
+    <input class="input-block-level" name="nickname" type="text" placeholder="暱稱"><br>
+    <input class="input-block-level" name="mail" type="email" placeholder="mail"><br>
+    <input class="input-block-level" name="fee" type="number" placeholder="number"><br>
+    <br>
+    <button type="submit" class="btn btn-large btn-block btn-primary">寄送</button>
+</form>
+{% endblock %}
