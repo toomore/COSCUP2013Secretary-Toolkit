@@ -255,6 +255,13 @@ def api():
         getattr(sqs, sqsmessage)() if hasattr(sqs, sqsmessage) else None
     return ''
 
+@app.route("/aws", methods=['POST', ])
+def aws():
+    if request.method == "POST":
+        ## For getting AWS SNS comfirm msgs.
+        print request.headers, request.data
+    return ''
+
 
 @app.route("/login", methods=['POST', 'GET'])
 def login():
