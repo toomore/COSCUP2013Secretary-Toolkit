@@ -83,7 +83,7 @@ def send_weekly(no, html, mail='toomorebeta@googlegroups.com'):
     '''
     r = ses.send_email(
         source='Toomore Chiang <toomore0929@gmail.com>',
-        subject=u'COSCUP2013 Weekly #{0:02}'.format(no),
+        subject=u'COSCUP2015 Weekly #{0:02}'.format(no),
         to_addresses='{0}'.format(mail),
         format='html',
         body=html,
@@ -264,6 +264,10 @@ if __name__ == '__main__':
         print u'{0:-^30}'.format(u'大量傳送電子報')
         template = env.get_template(sys.argv[2])
         sendall([gettestinfo(), ])
+    elif sys.argv[1] == 'send_weekly':
+        print u'{0:-^30}'.format(u'傳送週報')
+        with open(sys.argv[3], 'r') as f:
+            send_weekly(int(sys.argv[2]), f.read(), mail=sys.argv[4])
     else:
         print 'output, send, sendall'
     print sys.argv
