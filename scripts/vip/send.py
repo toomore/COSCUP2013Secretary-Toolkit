@@ -5,6 +5,7 @@ sys.path.insert(0, '...') # git rev-parse --show-toplevel
 
 import csv
 from boto.ses.connection import SESConnection
+from email.header import Header
 from jinja2 import Environment
 from jinja2 import FileSystemLoader
 from setting import AWSID
@@ -24,13 +25,14 @@ def by_csv(csv_path, template_path):
         for row in reader:
             row = {key: unicode(value, 'utf8') for key, value in row.iteritems()}
             row['body'] = template.render(row)
-            send(row)
+            print send(row)
 
 def send(info):
+    print "sending <%(name)s, %(email)s>" % info
     return ses.send_email(
         source='COSCUP2015 Attendee <attendee@coscup.org>',
         subject=u'COSCUP2015 VIP program: Need you provide more information.',
-        to_addresses='%(email)s' % info,
+        to_addresses='"%s" <%s>' % (Header(info['name'], 'utf-8'), info['email']),
         format='html',
         return_path='attendee@coscup.org',
         reply_addresses='attendee@coscup.org',
