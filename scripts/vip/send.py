@@ -31,7 +31,7 @@ def send(info):
     print "sending <%(name)s, %(email)s>" % info
     return ses.send_email(
         source='COSCUP2015 Attendee <attendee@coscup.org>',
-        subject=u'COSCUP2015 VIP program: Need you provide more information.',
+        subject=u'COSCUP2015 VIP program',
         to_addresses='"%s" <%s>' % (Header(info['name'], 'utf-8'), info['email']),
         format='html',
         return_path='attendee@coscup.org',
@@ -40,4 +40,7 @@ def send(info):
     )
 
 if __name__ == '__main__':
-    by_csv('./COSCUP_2015_VIP_UTF8_bk.csv', './tpl_vip.htm')
+    #by_csv('./vip_no.csv', './tpl_vip_no.htm')
+    #by_csv('./vip_yes.csv', './tpl_vip_yes.htm')
+    #by_csv('./vip_help.csv', './tpl_vip_help.htm')
+    pass
