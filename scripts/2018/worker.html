@@ -1,0 +1,440 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>COSCUP 2018</title>
+    <style>
+      /* -------------------------------------
+          GLOBAL RESETS
+      ------------------------------------- */
+      img {
+        border: none;
+        -ms-interpolation-mode: bicubic;
+        max-width: 100%; }
+
+      body {
+        background-color: #ffffff;
+        font-family: sans-serif;
+        -webkit-font-smoothing: antialiased;
+        font-size: 14px;
+        line-height: 1.4;
+        margin: 0;
+        padding: 0;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%; }
+
+      table {
+        border-collapse: separate;
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+        width: 100%; }
+        table td {
+          font-family: sans-serif;
+          font-size: 14px;
+          vertical-align: top; }
+
+      /* -------------------------------------
+          BODY & CONTAINER
+      ------------------------------------- */
+
+      .body {
+        background-color: #ffffff;
+        width: 100%; }
+
+      /* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */
+      .container {
+        display: block;
+        margin: 0 auto !important;
+        /* makes it centered */
+        max-width: 580px;
+        padding: 10px; }
+
+      /* This should also be a block element, so that it will fill 100% of the .container */
+      .content {
+        box-sizing: border-box;
+        display: block;
+        margin: 0 auto;
+        max-width: 580px;
+        padding: 10px;
+        background-color: #3D9238; }
+
+      /* -------------------------------------
+          HEADER, FOOTER, MAIN
+      ------------------------------------- */
+      .main {
+        background: #fff;
+        border-radius: 3px;
+        width: 100%; }
+
+      .wrapper {
+        box-sizing: border-box;
+        padding: 20px; }
+
+      .footer {
+        clear: both;
+        padding-top: 10px;
+        text-align: center;
+        width: 100%; }
+        .footer td,
+        .footer p,
+        .footer span,
+        .footer a {
+          color: #ffffff;
+          font-size: 12px;
+          text-align: center; }
+
+      /* -------------------------------------
+          TYPOGRAPHY
+      ------------------------------------- */
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: #000000;
+        font-family: sans-serif;
+        font-weight: 400;
+        line-height: 1.4;
+        margin: 0;
+        margin-bottom: 30px; }
+
+      h1 {
+        font-size: 35px;
+        font-weight: 300;
+        text-align: center;
+        text-transform: capitalize; }
+
+      p,
+      ul,
+      ol {
+        font-family: sans-serif;
+        font-size: 14px;
+        font-weight: normal;
+        margin: 0;
+        margin-bottom: 15px; }
+        p li,
+        ul li,
+        ol li {
+          list-style-position: inside;
+          margin-left: 5px; }
+
+      a {
+        color: #3498db;
+        text-decoration: underline; }
+
+      /* -------------------------------------
+          BUTTONS
+      ------------------------------------- */
+      .btn {
+        box-sizing: border-box;
+        width: 100%; }
+        .btn > tbody > tr > td {
+          padding-bottom: 15px; }
+        .btn table {
+          width: auto; }
+        .btn table td {
+          background-color: #ffffff;
+          border-radius: 5px;
+          text-align: center; }
+        .btn a {
+          background-color: #ffffff;
+          border: solid 1px #3498db;
+          border-radius: 5px;
+          box-sizing: border-box;
+          color: #3498db;
+          cursor: pointer;
+          display: inline-block;
+          font-size: 14px;
+          font-weight: bold;
+          margin: 0;
+          padding: 12px 25px;
+          text-decoration: none;
+          text-transform: capitalize; }
+
+      .btn-primary table td {
+        background-color: #3498db; }
+
+      .btn-primary a {
+        background-color: #3498db;
+        border-color: #3498db;
+        color: #ffffff; }
+
+      /* -------------------------------------
+          OTHER STYLES THAT MIGHT BE USEFUL
+      ------------------------------------- */
+      .last {
+        margin-bottom: 0; }
+
+      .first {
+        margin-top: 0; }
+
+      .align-center {
+        text-align: center; }
+
+      .align-right {
+        text-align: right; }
+
+      .align-left {
+        text-align: left; }
+
+      .clear {
+        clear: both; }
+
+      .mt0 {
+        margin-top: 0; }
+
+      .mb0 {
+        margin-bottom: 0; }
+
+      .preheader {
+        color: transparent;
+        display: none;
+        height: 0;
+        max-height: 0;
+        max-width: 0;
+        opacity: 0;
+        overflow: hidden;
+        mso-hide: all;
+        visibility: hidden;
+        width: 0; }
+
+      .powered-by a {
+        text-decoration: none; }
+
+      hr {
+        border: 0;
+        border-bottom: 1px solid #f6f6f6;
+        margin: 20px 0; }
+
+      /* -------------------------------------
+          RESPONSIVE AND MOBILE FRIENDLY STYLES
+      ------------------------------------- */
+      @media only screen and (max-width: 580px) {
+        table[class=body] h1 {
+          font-size: 28px !important;
+          margin-bottom: 10px !important; }
+        table[class=body] p,
+        table[class=body] ul,
+        table[class=body] ol,
+        table[class=body] td,
+        table[class=body] span,
+        table[class=body] a {
+          font-size: 16px !important; }
+        table[class=body] .wrapper,
+        table[class=body] .article {
+          padding: 10px !important; }
+        table[class=body] .content {
+          padding: 0 !important; }
+        table[class=body] .container {
+          padding: 0 !important;
+          width: 100% !important; }
+        table[class=body] .main {
+          border-left-width: 0 !important;
+          border-radius: 0 !important;
+          border-right-width: 0 !important; }
+        table[class=body] .btn table {
+          width: 100% !important; }
+        table[class=body] .btn a {
+          width: 100% !important; }
+        table[class=body] .img-responsive {
+          height: auto !important;
+          max-width: 100% !important;
+          width: auto !important; }}
+
+      /* -------------------------------------
+          PRESERVE THESE STYLES IN THE HEAD
+      ------------------------------------- */
+      @media all {
+        .ExternalClass {
+          width: 100%; }
+        .ExternalClass,
+        .ExternalClass p,
+        .ExternalClass span,
+        .ExternalClass font,
+        .ExternalClass td,
+        .ExternalClass div {
+          line-height: 100%; }
+        .apple-link a {
+          color: inherit !important;
+          font-family: inherit !important;
+          font-size: inherit !important;
+          font-weight: inherit !important;
+          line-height: inherit !important;
+          text-decoration: none !important; }
+        .btn-primary table td:hover {
+          background-color: #34495e !important; }
+        .btn-primary a:hover {
+          background-color: #34495e !important;
+          border-color: #34495e !important; } }
+
+      .quote {
+        color: #334433;
+        font-style: italic;
+        font-size: small;
+      }
+      h2 {
+        font-weight: bold;
+        font-family: "Arial";
+        border-bottom: 1px #3D9238 dashed;
+        padding-left: 1px;
+        margin-top: 30px;
+        margin-bottom: 12px;
+      }
+      h3 {
+        margin-bottom: 5px;
+        margin-top: 20px;
+        color: #3D9238;
+        font-weight: bold;
+      }
+      ol li,
+      ul li {
+        list-style-position: outside;
+        margin-left: 0px;
+        line-height: 2;
+      }
+      span.note {
+        border-radius: 2px;
+        padding: 3px;
+        font-weight: bold;
+        color: #ffffff;
+        font-size: 8pt;
+      }
+      span.first {
+        background-color: #2962FF;
+      }
+      span.second {
+        background-color: #FF6F00;
+      }
+      span.ef {
+        background-color: #7B1FA2;
+      }
+      span.sf {
+        background-color: #9C27B0;
+      }
+      span.local {
+        background-color: #009688;
+      }
+      .tips {
+        font-family: "Courier New";
+        background-color: #fafafa;
+        padding: 6px;
+        border-radius: 3px;
+        border: 1px #81d4fa solid;
+        font-size: 12px;
+        color: #01579b;
+      }
+      .tips-green {
+        color: #2E7D32;
+        border: 1px #43A047 solid;
+      }
+      pre {
+        font-size: small;
+        line-height: 12px;
+        color: #607D8B;
+        text-align: right;
+      }
+    </style>
+  </head>
+  <body class="">
+    <table border="0" cellpadding="0" cellspacing="0" class="body">
+      <tr>
+        <td>&nbsp;</td>
+        <td class="container">
+          <div class="content">
+
+            <!-- START CENTERED WHITE CONTAINER -->
+            <span class="preheader">志工夥伴行前通知</span>
+            <table class="main">
+
+              <!-- START MAIN CONTENT AREA -->
+              <tr>
+                <td class="wrapper">
+                  <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td>
+                        <p class="align-right" style="margin-bottom:0px;"><a href="https://2018.coscup.org/"><img width="135" src="http://coscup.org/2012-theme/assets/coscup.png" alt="COSCUP Logo" title="COSCUP Logo"></a></p>
+                        <p>親愛的 {{name}} 你好：</p>
+                        <p>你知道後天就是 COSCUP 了嗎！（驚）活動正式開始前，有些資訊想要提醒大家：</p>
+                        <h2>報到與工人服領取</h2>
+                        <ul>
+                        	<li><a href="{{url}}">給 {{name}} 的專屬連結</a></li>
+                        	<li>請提前下載 COSCUP Pass app（iOS 與 Android 皆有），並使用上述專屬連結登入。</li>
+                        	<li>大會兩日可自行報到，但仍需至<strong>工人休息室（IB408）</strong>領取 T-shirt。 </li>
+                        	<li>如果你沒有智慧型手機或不想使用此 app，請在大會當日至工人休息室（IB408）找行政組的人報到並領取 T-shirt。</li>
+                        	<li>兩天都有工人服，第一天的正面是 May the Source be with You，第二天的正面是 COSCUP x GNOME.Asia x openSUSE.Asia 2018 的 logo（如附件）</li>
+                        </ul>
+                        <h2>場佈</h2>
+                        <p>8/10（五）09:00 - 18:00 為場佈時間，有報名場佈的夥伴請別忘！</p>
+                        <p>時間地點以負責人告知的為準，原則上各項工作都有自己的時間，請自行確認。</p>
+                        <h2>大會時間</h2>
+                        <ul>
+                        	<li>今年 COSCUP 在台灣科技大學國際大樓（IB）（<a href="https://goo.gl/maps/zkxknK2nu1r">Google 地圖</a>）</li>
+                        	<li>大會時間為 8/11（六）、8/12（日），早上 8:00 到傍晚 17:00</li>
+                        	<li><strong>場務組</strong>組員須在 <strong>7:15 前</strong>抵達</li>
+                        	<li>大會會幫各位工作人員準備<strong>早餐</strong>（IB408），7:15 即會抵達，請安心的前往會場！</li>
+                        	<li>工作人員<strong>最晚請在 8:00 前</strong>到達會場，於 IB408 工人休息室報到並做好準備。</li>
+                        	<li>Day 1 18:00 - 20:30 全場地、Day2 09:30 - 15:30 IB307 有各社群自行主辦的 BoF 活動，可自行參加。參考 <a href="https://docs.google.com/document/d/14I51R_FauCe9kwhz3vd1EQhnlNS6ALh9OksNtc3aH9Y/edit#">BoF 揪團區</a>。</li>
+                        	<li>8/12（Day 2）晚上是慶功宴，詳如下述。</li>
+                        </ul>
+                        <h2>歡迎大家一起參加「開源巔峰挑戰賽」</h2>
+                        <ul>
+                        	<li>攜帶 COSCUP PASS app，秀出 QRcode 讓攤位人員掃描。</li>
+                        	<li>攤位有：Gandi、Cobinhood 、比特兔、KKBOX、雷亞遊戲、Skymizer、Appier、新蛋、17.media、Oracle、工研院、EMQ、Shopee。</li>
+                        	<li>集滿上述攤位，可到大會攤位領取贈品，數量有限！</li>
+                        </ul>
+                        <h2>大合照</h2>
+                        <p><strong>Day 2 早上 8:15</strong> 請大家在國際大樓（IB）1 樓大門口集合，拍大合照！</p>
+                        <h2>各組工作</h2>
+                        <p>理想上各組負責人都會跟大家聯絡，並確認要分派給你的工作。</p>
+                        <p>如果你什麼都沒收到的話，去找那個把你找進來的人（aka 你的組長）</p>
+                        <h2>工人住宿</h2>
+                        <ul>
+                        	<li>無論你有沒有申請住宿，請確認一下 <a href="https://docs.google.com/spreadsheets/d/1RVR1vgTVEjwu8_abkSWfNw7j30yFDHC6nWPq4r9Ujz0/edit#gid=284908346">住宿名單</a> 有沒有你。如果有錯趕快通知，還來得及想辦法！</li>
+                        	<li>住宿地點為晶璽商旅，台北市信義區信義路四段468號（<a href="https://goo.gl/maps/ycctoTHpaHK2">Google 地圖</a>）</li>
+                        	<li>大會提供的住宿為 8/10（五）與 8/11（六）晚上，可入住時間為 15:00，請自行前往並告知櫃檯「COSCUP 開源人年會」以及<strong>你的名字</strong>（需出示有你本名的身分證件以利櫃台核對身份），以辦理登記入住。</li>
+                        	<li>兩日早上有接駁車前往台科大，每日分為兩個班次（6:45、7:10）在飯店門口上車。</li>
+                        	<li>住宿地點有提供洗衣機，如果你的衣服需要連穿兩天，可以使用洗衣設施讓自己保持乾淨清爽。</li>
+                        	<li><strong>第二天早上記得退房</strong>。</li>
+                        </ul>
+                        <h2>交通補助</h2>
+                        <ul>
+                        	<li>有申請交通補助的夥伴，請記得攜帶票根，於 Day 1 8:30 - 16:30 到工人休息室（IB 408）找行政組領取。</li>
+                        	<li><a href="https://docs.google.com/spreadsheets/d/1RVR1vgTVEjwu8_abkSWfNw7j30yFDHC6nWPq4r9Ujz0/edit#gid=544011745">交通補助申請名單</a></li>
+                        </ul>
+                        <h2>慶功宴</h2>
+                        <ul>
+                        	<li>慶功宴將於 Day 2 晚上舉行，是個歡樂的時刻，希望你能參加。（<a href="https://docs.google.com/spreadsheets/d/1RVR1vgTVEjwu8_abkSWfNw7j30yFDHC6nWPq4r9Ujz0/edit#gid=1203972240">目前參加名單</a>）</li>
+                        	<li>地點在新東南海鮮餐廳松山店，台北市松山區八德路四段656號。（<a href="https://goo.gl/maps/2pgmRBDpEgQ2">Google 地圖</a>）</li>
+                        	<li>有接駁車從台科大前往，請記得撤場後儘快到外面搭車！分為兩個班次（17:10、17:50）。</li>
+                        	<li>餐廳無提供停車場，自行開車前往的工人，可以停在附近的停車場。停車費比照交通補助請領辦法，請將當晚停車費票根寄至 OCF 辦公室進行後續請領，如可開發票請記得打統編：<strong>38552170</strong>。</li>
+                          <li>慶功宴地圖（如附件）</li>
+                        	<li><strong>「最晚」</strong>22:00 會結束。</li>
+                        </ul>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            <!-- END MAIN CONTENT AREA -->
+            </table>
+
+            <!-- START FOOTER -->
+            <div class="footer">
+              <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td class="content-block">
+                    <span class="apple-link">COSCUP x GNOME.Asia x openSUSE.Asia 2018</span>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <!-- END FOOTER -->
+
+          <!-- END CENTERED WHITE CONTAINER -->
+          </div>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+  </body>
+</html>

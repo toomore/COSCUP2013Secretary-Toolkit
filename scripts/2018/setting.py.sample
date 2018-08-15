@@ -1,0 +1,5 @@
+# -*- coding: utf-8 -*-
+
+REGION = ''  #ex: ap-northeast-1
+ID = ''
+KEY = ''
