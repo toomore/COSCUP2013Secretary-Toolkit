@@ -198,5 +198,31 @@ def worker_1(path):
             ))
 
 
+def worker_2(path):
+    '''
+
+        need fields: mail, nickname
+
+    '''
+    template = TPLENV.get_template('./worker_apply_2.html')
+    with open(path, 'r') as csv_file:
+        csvReader = csv.DictReader(csv_file)
+        _n = 0
+        for i in csvReader:
+            for k in i:
+                i[k] = i[k].strip()
+
+            _n += 1
+            print(_n)
+            print(i)
+            print(AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+                source=AwsSESTools.mail_header(u'COSCUP 行政組', 'secretary@coscup.org'),
+                to_addresses=AwsSESTools.mail_header(i['nickname'], i['mail']),
+                subject=u'[COSCUP2019] 歡迎加入 - %s' % i['nickname'],
+                body=template.render(i),
+            ))
+
+
 if __name__ == '__main__':
-    worker_1('worker_1.csv')
+    #worker_1('worker_1.csv')
+    worker_2('worker_2.csv')
