@@ -189,6 +189,9 @@ def worker_1(path, dry_run=True):
         csvReader = csv.DictReader(csv_file)
         _n = 0
         for i in csvReader:
+            if i['status'] != 'Send_apply_1':
+                continue
+
             for rk in ('mail', 'code', 'team'):
                 if rk not in i:
                     raise Exception('Required `%s`' % rk)
@@ -219,6 +222,9 @@ def worker_2(path, dry_run=True):
         csvReader = csv.DictReader(csv_file)
         _n = 0
         for i in csvReader:
+            if i['status'] != 'Send_apply_2':
+                continue
+
             for rk in ('mail', 'nickname'):
                 if rk not in i:
                     raise Exception('Required `%s`' % rk)
