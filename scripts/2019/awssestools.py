@@ -12,7 +12,16 @@ from email.mime.text import MIMEText
 from email.utils import formataddr
 from uuid import uuid4
 
+import setting
+
 import boto3
+from jinja2 import Environment
+from jinja2 import FileSystemLoader
+
+
+TPLENV = Environment(loader=FileSystemLoader('./tpl'))
+
+
 
 def dateisoformat(date=None, with_z=True):
     if not date:
@@ -120,7 +129,7 @@ class AwsSESTools(object):
         msg_all['To'] = kwargs['to_addresses']
         msg_all['Subject'] = kwargs['subject']
 
-        msg_all.attach(MIMEText(kwargs['body'], kwargs['format'], 'utf-8'))
+        msg_all.attach(MIMEText(kwargs['body'], 'html', 'utf-8'))
 
         #ics = render_ics(
         #    title=u'COSCUP x GNOME.Asia x openSUSE.Asia 2018',
@@ -164,20 +173,14 @@ class AwsSESTools(object):
         #return msg_all.as_string()
 
 
-if __name__ == '__main__':
-    print('remove comment before use')
-    import setting
+def worker_1(path):
+    '''
 
-    from jinja2 import Environment
-    from jinja2 import FileSystemLoader
+        need fields: mail, code, team
 
-    env = Environment(loader=FileSystemLoader('./'))
-    #template = env.get_template('./user_reminder.html')
-    #template = env.get_template('./speaker.html')
-    #template = env.get_template('./worker.html')
-    template = env.get_template('./survey.html')
-
-    with open('./suvery.csv', 'r') as csv_file:
+    '''
+    template = TPLENV.get_template('./worker_apply_1.html')
+    with open(path, 'r') as csv_file:
         csvReader = csv.DictReader(csv_file)
         _n = 0
         for i in csvReader:
@@ -188,12 +191,12 @@ if __name__ == '__main__':
             print(_n)
             print(i)
             print(AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
-                    source=AwsSESTools.mail_header(u'COSCUP Attendee', 'attendee@coscup.org'),
-                    #source=AwsSESTools.mail_header(u'COSCUP Program', 'program@coscup.org'),
-                    to_addresses=AwsSESTools.mail_header(i['name'], i['email']),
-                    #subject=u'[Action Required] Your ticket and information about COSCUP x GNOME.Asia x openSUSE.Asia 2018',
-                    #subject=u'與會者行前通知 COSCUP x GNOME.Asia x openSUSE.Asia 2018',
-                    subject=u'問卷調查|Survey COSCUP x GNOME.Asia x openSUSE.Asia 2018',
-                    body=template.render(i),
-                    #token=i['token'],
-                    format='html'))
+                source=AwsSESTools.mail_header(u'COSCUP 行政組', 'secretary@coscup.org'),
+                to_addresses=i['mail'],
+                subject=u'[COSCUP2019] 工作人員登錄 - %s' % i['code'],
+                body=template.render(i),
+            ))
+
+
+if __name__ == '__main__':
+    worker_1('worker_1.csv')
