@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 ''' My AWS Tools '''
 import csv
+import string
 from datetime import datetime
 from datetime import timedelta
 from email import encoders
@@ -10,6 +11,7 @@ from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.utils import formataddr
+from random import sample
 from uuid import uuid4
 
 import setting
@@ -21,6 +23,9 @@ from jinja2 import FileSystemLoader
 
 TPLENV = Environment(loader=FileSystemLoader('./tpl'))
 
+
+def rand_str(l=6):
+    return ''.join(sample(string.ascii_lowercase+string.digits, l))
 
 
 def dateisoformat(date=None, with_z=True):
@@ -225,4 +230,6 @@ def worker_2(path):
 
 if __name__ == '__main__':
     #worker_1('worker_1.csv')
-    worker_2('worker_2.csv')
+    #worker_2('worker_2.csv')
+    for i in range(30):
+        print(rand_str())
