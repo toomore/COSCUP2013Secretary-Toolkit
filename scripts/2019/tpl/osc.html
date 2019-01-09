@@ -1,0 +1,459 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>COSCUP 2019 開源貢獻者保留票申請 / Open Source Contributors (OSC) Tickets Application</title>
+    <style>
+      /* -------------------------------------
+          GLOBAL RESETS
+      ------------------------------------- */
+      img {
+        border: none;
+        -ms-interpolation-mode: bicubic;
+        max-width: 100%; }
+
+      body {
+        background-color: #ffffff;
+        font-family: sans-serif;
+        -webkit-font-smoothing: antialiased;
+        font-size: 14px;
+        line-height: 1.4;
+        margin: 0;
+        padding: 0;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%; }
+
+      table {
+        border-collapse: separate;
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+        width: 100%; }
+        table td {
+          font-family: sans-serif;
+          font-size: 14px;
+          vertical-align: top; }
+
+      /* -------------------------------------
+          BODY & CONTAINER
+      ------------------------------------- */
+
+      .body {
+        background-color: #ffffff;
+        width: 100%; }
+
+      /* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */
+      .container {
+        display: block;
+        margin: 0 auto !important;
+        /* makes it centered */
+        max-width: 580px;
+        padding: 10px; }
+
+      /* This should also be a block element, so that it will fill 100% of the .container */
+      .content {
+        box-sizing: border-box;
+        display: block;
+        margin: 0 auto;
+        max-width: 580px;
+        padding: 10px;
+        background-color: #3D9238; }
+
+      /* -------------------------------------
+          HEADER, FOOTER, MAIN
+      ------------------------------------- */
+      .main {
+        background: #fff;
+        border-radius: 3px;
+        width: 100%; }
+
+      .wrapper {
+        box-sizing: border-box;
+        padding: 20px; }
+
+      .footer {
+        clear: both;
+        padding-top: 10px;
+        text-align: center;
+        width: 100%; }
+        .footer td,
+        .footer p,
+        .footer span,
+        .footer a {
+          color: #ffffff;
+          font-size: 12px;
+          text-align: center; }
+
+      /* -------------------------------------
+          TYPOGRAPHY
+      ------------------------------------- */
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: #000000;
+        font-family: sans-serif;
+        font-weight: 400;
+        line-height: 1.4;
+        margin: 0;
+        margin-bottom: 30px; }
+
+      h1 {
+        font-size: 35px;
+        font-weight: 300;
+        text-align: center;
+        text-transform: capitalize; }
+
+      p,
+      ul,
+      ol {
+        font-family: sans-serif;
+        font-size: 14px;
+        font-weight: normal;
+        margin: 0;
+        margin-bottom: 15px; }
+        p li,
+        ul li,
+        ol li {
+          list-style-position: inside;
+          margin-left: 5px; }
+
+      a {
+        color: #3498db;
+        text-decoration: underline; }
+
+      /* -------------------------------------
+          BUTTONS
+      ------------------------------------- */
+      .btn {
+        box-sizing: border-box;
+        width: 100%; }
+        .btn > tbody > tr > td {
+          padding-bottom: 15px; }
+        .btn table {
+          width: auto; }
+        .btn table td {
+          background-color: #ffffff;
+          border-radius: 5px;
+          text-align: center; }
+        .btn a {
+          background-color: #ffffff;
+          border: solid 1px #3498db;
+          border-radius: 5px;
+          box-sizing: border-box;
+          color: #3498db;
+          cursor: pointer;
+          display: inline-block;
+          font-size: 14px;
+          font-weight: bold;
+          margin: 0;
+          padding: 12px 25px;
+          text-decoration: none;
+          text-transform: capitalize; }
+
+      .btn-primary table td {
+        background-color: #3498db; }
+
+      .btn-primary a {
+        background-color: #3498db;
+        border-color: #3498db;
+        color: #ffffff; }
+
+      /* -------------------------------------
+          OTHER STYLES THAT MIGHT BE USEFUL
+      ------------------------------------- */
+      .last {
+        margin-bottom: 0; }
+
+      .first {
+        margin-top: 0; }
+
+      .align-center {
+        text-align: center; }
+
+      .align-right {
+        text-align: right; }
+
+      .align-left {
+        text-align: left; }
+
+      .clear {
+        clear: both; }
+
+      .mt0 {
+        margin-top: 0; }
+
+      .mb0 {
+        margin-bottom: 0; }
+
+      .preheader {
+        color: transparent;
+        display: none;
+        height: 0;
+        max-height: 0;
+        max-width: 0;
+        opacity: 0;
+        overflow: hidden;
+        mso-hide: all;
+        visibility: hidden;
+        width: 0; }
+
+      .powered-by a {
+        text-decoration: none; }
+
+      hr {
+        border: 0;
+        border-bottom: 1px solid #f6f6f6;
+        margin: 20px 0; }
+
+      /* -------------------------------------
+          RESPONSIVE AND MOBILE FRIENDLY STYLES
+      ------------------------------------- */
+      @media only screen and (max-width: 580px) {
+        table[class=body] h1 {
+          font-size: 28px !important;
+          margin-bottom: 10px !important; }
+        table[class=body] p,
+        table[class=body] ul,
+        table[class=body] ol,
+        table[class=body] td,
+        table[class=body] span,
+        table[class=body] a {
+          font-size: 16px !important; }
+        table[class=body] .wrapper,
+        table[class=body] .article {
+          padding: 10px !important; }
+        table[class=body] .content {
+          padding: 0 !important; }
+        table[class=body] .container {
+          padding: 0 !important;
+          width: 100% !important; }
+        table[class=body] .main {
+          border-left-width: 0 !important;
+          border-radius: 0 !important;
+          border-right-width: 0 !important; }
+        table[class=body] .btn table {
+          width: 100% !important; }
+        table[class=body] .btn a {
+          width: 100% !important; }
+        table[class=body] .img-responsive {
+          height: auto !important;
+          max-width: 100% !important;
+          width: auto !important; }}
+
+      /* -------------------------------------
+          PRESERVE THESE STYLES IN THE HEAD
+      ------------------------------------- */
+      @media all {
+        .ExternalClass {
+          width: 100%; }
+        .ExternalClass,
+        .ExternalClass p,
+        .ExternalClass span,
+        .ExternalClass font,
+        .ExternalClass td,
+        .ExternalClass div {
+          line-height: 100%; }
+        .apple-link a {
+          color: inherit !important;
+          font-family: inherit !important;
+          font-size: inherit !important;
+          font-weight: inherit !important;
+          line-height: inherit !important;
+          text-decoration: none !important; }
+        .btn-primary table td:hover {
+          background-color: #34495e !important; }
+        .btn-primary a:hover {
+          background-color: #34495e !important;
+          border-color: #34495e !important; } }
+
+      .quote {
+        color: #334433;
+        font-style: italic;
+        font-size: small;
+      }
+      h2 {
+        font-weight: bold;
+        font-family: "Arial";
+        border-bottom: 1px #3D9238 dashed;
+        padding-left: 1px;
+        margin-top: 30px;
+        margin-bottom: 12px;
+      }
+      h3 {
+        margin-bottom: 5px;
+        margin-top: 20px;
+        color: #3D9238;
+        font-weight: bold;
+      }
+      ol li,
+      ul li {
+        list-style-position: outside;
+        margin-left: 0px;
+        line-height: 2;
+      }
+      span.note {
+        border-radius: 2px;
+        padding: 3px;
+        font-weight: bold;
+        color: #ffffff;
+        font-size: 8pt;
+      }
+      span.first {
+        background-color: #2962FF;
+      }
+      span.second {
+        background-color: #FF6F00;
+      }
+      span.ef {
+        background-color: #7B1FA2;
+      }
+      span.sf {
+        background-color: #9C27B0;
+      }
+      span.local {
+        background-color: #009688;
+      }
+      .tips {
+        font-family: "Courier New";
+        background-color: #fafafa;
+        padding: 6px;
+        border-radius: 3px;
+        border: 1px #81d4fa solid;
+        font-size: 12px;
+        color: #01579b;
+      }
+      .tips-green {
+        color: #2E7D32;
+        border: 1px #43A047 solid;
+      }
+      pre {
+        font-size: small;
+        line-height: 12px;
+        color: #607D8B;
+        text-align: right;
+      }
+      p small,
+      li small {
+        color: #898989;
+      }
+    </style>
+  </head>
+  <body class="">
+    <table border="0" cellpadding="0" cellspacing="0" class="body">
+      <tr>
+        <td>&nbsp;</td>
+        <td class="container">
+          <div class="content">
+
+            <!-- START CENTERED WHITE CONTAINER -->
+            <span class="preheader">～ 2019/05/12</span>
+            <table class="main">
+
+              <!-- START MAIN CONTENT AREA -->
+              <tr>
+                <td class="wrapper">
+                  <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td>
+                        <p class="align-right" style="margin-bottom:0px;"><a href="https://coscup.org/"><img width="135" src="http://coscup.org/2012-theme/assets/coscup.png" alt="COSCUP Logo" title="COSCUP Logo"></a></p>
+                        <p>Hi {{name}} 你好：</p>
+                        <h3>開源貢獻者資格</h3>
+                        <p>由 <strong>2018/5/12</strong> 到現在，實際針對開源專案提供開發、推廣、或其他有助專案進展之貢獻者，提出貢獻相關證明即可報名。</p>
+                        <ul>
+                        	<li>開源專案意指專案成果以 <a href="https://www.fsf.org/licensing/">FSF</a> 或 <a href="https://opensource.org/licenses">OSI</a> 認同之公眾授權條款釋出者</li>
+                        	<li>所提出之貢獻，必須可以經由公開途徑查證（例如提供 GitHub、Google Code、SourceForge 等公開專案平台上的討論紀錄、網址、commit log、信件文本、公開釋出之演講投影片紀錄等。）</li>
+                        </ul>
+                        <h3>海外參與者</h3>
+                        <p>你身在海外，雖想回台參與 <a href="https://2019.coscup.org/">COSCUP</a>，但並非貢獻者又害怕搶不到票嗎？<a href="https://2019.coscup.org/">COSCUP</a> 歡迎所有的海外人士前來參加！只要你居住在海外、承諾與會，並願意於 SNS 或個人 blog 公佈自己即將與會之訊息，即使非貢獻者或講者，也將優先獲得我們的 VIP 邀請。請在報名表上註明您的出發地，我們將再與您聯絡。</p>
+                        <p>海外參與者請於第四個 Section 告訴我們您從哪裡來，並勾選相關選項。</p>
+                        <h3>Key dates</h3>
+                        <ul>
+                        	<li>5/12 報名截止。</li>
+                        	<li>5/13 ~ 5/18 審查期間。</li>
+                        	<li>5/19 第一次審查完畢，開始補件。</li>
+                        	<li>5/26 前補件完成。</li>
+                        	<li>6/2 公告開源貢獻者正式名單，通過的開源貢獻者可以在 KKTIX 上報名。</li>
+                        </ul>
+                        <h3>申請表單</h3>
+                        <p>申請方法與詳細資訊：<a href="https://goo.gl/forms/x7rmsEPsooBSK46T2">https://goo.gl/forms/x7rmsEPsooBSK46T2</a></p>
+                        <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
+                          <tbody>
+                            <tr>
+                              <td align="center">
+                                <table border="0" cellpadding="0" cellspacing="0">
+                                  <tbody>
+                                    <tr>
+                                      <td> <a href="https://goo.gl/forms/x7rmsEPsooBSK46T2" target="_blank">申請 開源貢獻者保留票</a> </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <hr />
+                        <p>Hi {{name}}：</p>
+                        <h3>Who can apply for OSC tickets?</h3>
+                        <p>Your participation in an open source project since <strong>2018/5/12</strong> makes you eligible for applying for a Registration Code. The open source project and your participation must meet the following conditions:</p>
+                        <ul>
+                        	<li>The project source code must be released with a license approved by <a href="https://www.fsf.org/licensing/">Free Software Foundation</a> or <a href="https://opensource.org/licenses">Open Source Initiative</a></li>
+                        	<li>The project must be hosted on a public repository such as GitHub, Google Code, SourceForge, or others. You must provide proofs of your contributions along with your application in the form of web pages, commit logs, mail contents or others that are publicly accessible.</li>
+                        	<li>Your contributions can be code, documentation, promotion campaign, or any other activities that help the project in a positive way.</li>
+                        </ul>
+                        <h3>For oversea attendee</h3>
+                        <p>Please tell us your location and we will contact you later. Once you are qualified, promise to attend <a href="https://2019.coscup.org/">COSCUP 2019</a>, and post a message about attend to <a href="https://2019.coscup.org/">COSCUP</a> on SNS (Twetter, Facebook... etc.,) you might have a better chance to get the invitation code. :)</p>
+                        <p>For oversea attendee, please tell us where you come from in Section 4.</p>
+                        <p>If you have any question, please contact <a href="mailto:attendee@coscup.org">attendee@coscup.org</a>.</p>
+                        <h3>Key dates</h3>
+                        <ul>
+                        	<li>12th May: The deadline for OSC tickets application</li>
+                        	<li>19th May: The notification to applicants who need to provide more information</li>
+                        	<li>26th May: The notification to all applicants who are accepted or declined</li>
+                        	<li>2nd June: Start to redeem your invitation code</li>
+                        </ul>
+                        <h3>Form</h3>
+                        <p><a href="https://goo.gl/forms/x7rmsEPsooBSK46T2">https://goo.gl/forms/x7rmsEPsooBSK46T2</a></p>
+                        <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
+                          <tbody>
+                            <tr>
+                              <td align="center">
+                                <table border="0" cellpadding="0" cellspacing="0">
+                                  <tbody>
+                                    <tr>
+                                      <td> <a href="https://goo.gl/forms/x7rmsEPsooBSK46T2" target="_blank">Registration Form</a> </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            <!-- END MAIN CONTENT AREA -->
+            </table>
+
+            <!-- START FOOTER -->
+            <div class="footer">
+              <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td class="content-block">
+                    <span class="apple-link">COSCUP 2019</span>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <!-- END FOOTER -->
+
+          <!-- END CENTERED WHITE CONTAINER -->
+          </div>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+  </body>
+</html>
