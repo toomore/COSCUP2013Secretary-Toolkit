@@ -39,7 +39,7 @@ def dateisoformat(date=None, with_z=True):
 
 
 def render_ics(title, description, location, start, end, created, admin,
-        admin_mail, url):
+        admin_mail, url, all_day=False):
     # https://tools.ietf.org/html/rfc2445
     return u'''BEGIN:VCALENDAR
 VERSION:2.0
@@ -72,10 +72,10 @@ UID:%(uuid)s
 END:VEVENT
 END:VCALENDAR''' % {
             'title': title,
-            'description': description,
+            'description': description,  #html ok
             'location': location.replace(',', '\,'),
-            'start': dateisoformat(start, False),
-            'end': dateisoformat(end, False),
+            'start': dateisoformat(start, False) if not all_day else start,
+            'end': dateisoformat(end, False) if not all_day else end,
             'created': dateisoformat(created),
             'admin': admin,
             'admin_mail': admin_mail,
@@ -136,23 +136,44 @@ class AwsSESTools(object):
 
         msg_all.attach(MIMEText(kwargs['body'], 'html', 'utf-8'))
 
-        #ics = render_ics(
-        #    title=u'COSCUP x GNOME.Asia x openSUSE.Asia 2018',
-        #    description=u'https://coscup2018.kktix.cc/events/coscup2018regist',
-        #    location=u'台灣科技大學+國際大樓, 10607 台北市大安區基隆路四段43號',
-        #    start=datetime(2018, 8, 11, 8),
-        #    end=datetime(2018, 8, 12, 18, 30),
-        #    created=None,
-        #    admin=u'COSCUP2018 Attendee',
-        #    admin_mail=u'attendee@coscup.org',
-        #    url=u'https://2018.coscup.org/'
-        #)
-        #attachment = MIMEBase('text', 'calendar; name=calendar.ics; method=REQUEST; charset=UTF-8')
-        #attachment.set_payload(ics.encode('utf-8'))
-        #encoders.encode_base64(attachment)
-        #attachment.add_header('Content-Disposition', 'attachment; filename=%s' % "calendar.ics")
+        return self.client.send_raw_email(
+                RawMessage={'Data': msg_all.as_string()})
+        #return msg_all.as_string()
 
-        #msg_all.attach(attachment)
+    def send_raw_email_with_ics(self, **kwargs):
+        ''' still in dev
+
+        :param str source: from
+        :param str to_addresses: to
+        :param str subject: subject
+        :param str body: body
+
+        '''
+        msg_all = MIMEMultipart()
+        msg_all['From'] = kwargs['source']
+        msg_all['To'] = kwargs['to_addresses']
+        msg_all['Subject'] = kwargs['subject']
+
+        msg_all.attach(MIMEText(kwargs['body'], 'html', 'utf-8'))
+
+        ics = render_ics(
+            title=u'COSCUP 2019 開源貢獻者保留票申請 / Open Source Contributors (OSC) Tickets Application',
+            description=u'More info:<br><a href="https://blog.coscup.org/2019/01/coscup-2019-open-source-contributors.html">https://blog.coscup.org/2019/01/coscup-2019-open-source-contributors.html</a>',
+            location=u'',
+            all_day=True,
+            start='20190512',
+            end='20190513',
+            created=datetime.now(),
+            admin=u'COSCUP2019 Attendee',
+            admin_mail=u'attendee@coscup.org',
+            url=u'https://blog.coscup.org/2019/01/coscup-2019-open-source-contributors.html'
+        )
+        attachment = MIMEBase('text', 'calendar; name=calendar.ics; method=REQUEST; charset=UTF-8')
+        attachment.set_payload(ics.encode('utf-8'))
+        encoders.encode_base64(attachment)
+        attachment.add_header('Content-Disposition', 'attachment; filename=%s' % "calendar.ics")
+
+        msg_all.attach(attachment)
 
         #image
         #with open('./png_worker/%s.png' % kwargs['token'], 'r') as i:
@@ -243,9 +264,27 @@ def worker_2(path, dry_run=True):
                     body=template.render(i),
                 ))
 
+def send_with_ics(path, dry_run=True):
+    template = TPLENV.get_template('./osc.html')
+    with open(path, 'r') as csv_file:
+        csvReader = csv.DictReader(csv_file)
+        _n = 0
+        for i in csvReader:
+            _n += 1
+            print(_n)
+            print(i)
+            if not dry_run:
+                print(AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email_with_ics(
+                    source=AwsSESTools.mail_header(u'COSCUP 2019 Attendee', 'attendee@coscup.org'),
+                    to_addresses=AwsSESTools.mail_header(i['name'], i['mail']),
+                    subject=u'COSCUP 2019 開源貢獻者保留票申請 / Open Source Contributors (OSC) Tickets Application i',
+                    body=template.render(i),
+                ))
+
 
 if __name__ == '__main__':
     #worker_1('worker_1.csv')
-    worker_2('worker_2.csv')
+    #worker_2('worker_2.csv')
+    send_with_ics('osc.csv', dry_run=False)
     #for i in range(30):
     #    print(rand_str())
