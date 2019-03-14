@@ -227,7 +227,7 @@ def worker_1(path, dry_run=True):
                 print(AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
                     source=AwsSESTools.mail_header(u'COSCUP 行政組', 'secretary@coscup.org'),
                     to_addresses=i['mail'],
-                    subject=u'[COSCUP2019] 工作人員登錄 [code:%s]' % i['code'],
+                    subject=u'[COSCUP2019] 工作人員登錄與調查 [code:%s]' % i['code'],
                     body=template.render(i),
                 ))
 
@@ -277,14 +277,18 @@ def send_with_ics(path, dry_run=True):
                 print(AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email_with_ics(
                     source=AwsSESTools.mail_header(u'COSCUP 2019 Attendee', 'attendee@coscup.org'),
                     to_addresses=AwsSESTools.mail_header(i['name'], i['mail']),
-                    subject=u'COSCUP 2019 開源貢獻者保留票申請 / Open Source Contributors (OSC) Tickets Application i',
+                    subject=u'COSCUP 2019 開源貢獻者保留票申請 / Open Source Contributors (OSC) Tickets Application',
                     body=template.render(i),
                 ))
+            else:
+                print(AwsSESTools.mail_header(i['name'], i['mail']))
 
 
 if __name__ == '__main__':
-    #worker_1('worker_1.csv')
-    #worker_2('worker_2.csv')
-    send_with_ics('osc.csv', dry_run=False)
+    #worker_1('worker_1.csv', dry_run=False)
+    #worker_2('worker_2.csv', dry_run=False)
+    #send_with_ics('./osc.csv', dry_run=False)
+    #send_with_ics('./all_2018_users.csv')
     #for i in range(30):
     #    print(rand_str())
+    pass
