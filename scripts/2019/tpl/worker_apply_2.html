@@ -329,9 +329,13 @@
       }
       pre {
         font-size: small;
-        line-height: 12px;
-        color: #607D8B;
-        text-align: right;
+        line-height: 18px;
+        color: #386092;
+        text-align: left;
+        background-color: #eeeeee;
+        border-radius: 3px;
+        padding: 12px;
+        border: 1px solid #cdcdcd;
       }
       p small,
       li small {
@@ -364,6 +368,8 @@
                         <p class="align-right" style="margin-bottom:0px;"><a href="https://coscup.org/"><img width="135" src="http://coscup.org/2012-theme/assets/coscup.png" alt="COSCUP Logo" title="COSCUP Logo"></a></p>
                         <p>Hi {{nickname}}：</p>
                         <p>您的 COSCUP 工人相關的服務帳號已經建立好了，可以透過以下的連結前往使用。</p>
+                        <h3>基本資料</h3>
+                        <p><pre>{{form_content|join('\n')}}</pre></p>
                         <h3>slack </h3>
                         <p><a href="https://coscup.slack.com/">https://coscup.slack.com/</a></p>
                         <p>主要的溝通平台，記得加入到 <a href="https://coscup.slack.com/messages/CE8QZPU12/">#coscup-2019</a></p>

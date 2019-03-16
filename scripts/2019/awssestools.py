@@ -2,6 +2,7 @@
 ''' My AWS Tools '''
 import csv
 import string
+from collections import OrderedDict
 from datetime import datetime
 from datetime import timedelta
 from email import encoders
@@ -240,29 +241,35 @@ def worker_2(path, dry_run=True):
     '''
     template = TPLENV.get_template('./worker_apply_2.html')
     with open(path, 'r') as csv_file:
-        csvReader = csv.DictReader(csv_file)
+        csvReader = list(csv.reader(csv_file))
+
         _n = 0
-        for i in csvReader:
-            if i['status'] != 'Send_apply_2':
+        for i in csvReader[1:]:
+            i = [s.strip() for s in i]
+            data = OrderedDict(zip(csvReader[0], i))
+            if not (data['form_ok'] == '1' and data['account_ok'] == '1' and not data['cofirm_ok']):
                 continue
 
-            for rk in ('mail', 'nickname'):
-                if rk not in i:
-                    raise Exception('Required `%s`' % rk)
-
-            for k in i:
-                i[k] = i[k].strip()
+            data['form_content'] = [u'註冊碼：%(code)s' % data, ]
+            for i in data:
+                if i.startswith('f_') and data[i]:
+                    data['form_content'].append('%s：%s' % (i[2:], data[i]))
 
             _n += 1
             print(_n)
-            print(i)
+            print(data['form_content'])
+
             if not dry_run:
                 print(AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
                     source=AwsSESTools.mail_header(u'COSCUP 行政組', 'secretary@coscup.org'),
-                    to_addresses=AwsSESTools.mail_header(i['nickname'], i['mail']),
-                    subject=u'[COSCUP2019] 歡迎加入 - %s' % i['nickname'],
-                    body=template.render(i),
+                    to_addresses=AwsSESTools.mail_header(data['nickname'], data['mail']),
+                    subject=u'[COSCUP2019] 歡迎加入 COSCUP - %s' % data['nickname'],
+                    body=template.render(data),
                 ))
+            else:
+                print(AwsSESTools.mail_header(data['nickname'], data['mail']))
+
+        return
 
 def send_with_ics(path, dry_run=True):
     template = TPLENV.get_template('./osc.html')
@@ -331,7 +338,7 @@ def for_chief_report(path, dry_run=True):
 
 if __name__ == '__main__':
     #worker_1('worker_1.csv', dry_run=False)
-    #worker_2('worker_2.csv', dry_run=False)
+    #worker_2('works_form.csv', dry_run=True)
     #send_with_ics('./osc.csv', dry_run=False)
     #send_with_ics('./all_2018_users.csv')
     #for_chief_report('./works_form.csv', dry_run=False)
