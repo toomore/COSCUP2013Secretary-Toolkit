@@ -283,12 +283,58 @@ def send_with_ics(path, dry_run=True):
             else:
                 print(AwsSESTools.mail_header(i['name'], i['mail']))
 
+def for_chief_report(path, dry_run=True):
+    template = TPLENV.get_template('./worker_report.html')
+    with open(path, 'r') as csv_file:
+        csvReader = list(csv.DictReader(csv_file))
+        data = {}
+        for i in csvReader:
+            if not i['team']:
+                continue
+
+            if i['team'] not in data:
+                data[i['team']] = {}
+
+        for i in csvReader:
+            if not i['team']:
+                continue
+
+            if i['mail'] and not i['cofirm_ok']:
+                if 'Send_apply_1' not in data[i['team']]:
+                    data[i['team']]['Send_apply_1'] = []
+
+                data[i['team']]['Send_apply_1'].append(i)
+
+            elif i['form_ok'] == '1' and i['cofirm_ok'] == '1':
+                if 'DONE' not in data[i['team']]:
+                    data[i['team']]['DONE'] = []
+
+                data[i['team']]['DONE'].append(i)
+
+    with open('./chief.csv', 'r') as csv_file:
+        csvReader = list(csv.DictReader(csv_file))
+
+        for r in csvReader:
+            _render = template.render(data=data, r=r).replace('Send_apply_1', u'填寫中')
+            _render = _render.replace('DONE', u'完成')
+
+            if not dry_run:
+                print(AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+                    source=AwsSESTools.mail_header(u'COSCUP 行政組', 'secretary@coscup.org'),
+                    to_addresses=AwsSESTools.mail_header(r['nickname'], r['mail']),
+                    subject=u'[COSCUP2019] 各組登錄狀況 %s' % datetime.now().strftime('%Y-%m-%d'),
+                    body=_render,
+                ))
+            else:
+                print(AwsSESTools.mail_header(r['nickname'], r['mail']))
+
 
 if __name__ == '__main__':
     #worker_1('worker_1.csv', dry_run=False)
     #worker_2('worker_2.csv', dry_run=False)
     #send_with_ics('./osc.csv', dry_run=False)
     #send_with_ics('./all_2018_users.csv')
+    #for_chief_report('./works_form.csv', dry_run=False)
     #for i in range(30):
     #    print(rand_str())
     pass
