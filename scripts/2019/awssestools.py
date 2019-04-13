@@ -336,12 +336,41 @@ def for_chief_report(path, dry_run=True):
                 print(AwsSESTools.mail_header(r['nickname'], r['mail']))
 
 
+def send_babysister(dry_run=True):
+    template = TPLENV.get_template('./babysitter.html')
+    with open('./all_2018_users_uni_uuid.csv', 'r') as csv_file:
+        csvReader = list(csv.DictReader(csv_file))
+        _n_all = len(csvReader)
+        _n = 0
+        for u in csvReader:
+            _n += 1
+            if u['osc'] == '1':
+                u['osc'] = True
+            else:
+                u['osc'] = False
+
+            print('>>> %s/%s' % (_n, _n_all))
+            print(u)
+
+            _render = template.render(u)
+            if not dry_run:
+                print(AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+                    source=AwsSESTools.mail_header(u'COSCUP 行政組', 'secretary@coscup.org'),
+                    to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+                    subject=u'[COSCUP2019] 托育服務問卷與意願調查',
+                    body=_render,
+                ))
+            else:
+                print(AwsSESTools.mail_header(u['name'], u['mail']))
+
+
 if __name__ == '__main__':
     #worker_1('worker_1.csv', dry_run=False)
-    #worker_2('works_form.csv', dry_run=True)
+    #worker_2('works_form.csv', dry_run=False)
     #send_with_ics('./osc.csv', dry_run=False)
     #send_with_ics('./all_2018_users.csv')
     #for_chief_report('./works_form.csv', dry_run=False)
     #for i in range(30):
     #    print(rand_str())
+    #send_babysister(dry_run=True)
     pass

@@ -363,7 +363,7 @@
           <div class="content">
 
             <!-- START CENTERED WHITE CONTAINER -->
-            <span class="preheader">計畫推出托育服務</span>
+            <span class="preheader">需要你的協助！計畫推出托育服務</span>
             <table class="main">
 
               <!-- START MAIN CONTENT AREA -->
@@ -373,7 +373,7 @@
                     <tr>
                       <td>
                         <p class="align-right" style="margin-bottom:0px;"><a href="https://coscup.org/"><img width="135" src="https://coscup.org/2012-theme/assets/coscup.png" alt="COSCUP Logo" title="COSCUP Logo"></a></p>
-                        <p>Hi {{nickname}}：</p>
+                        <p>Hi {{name}}：</p>
                         <p>今年 COSCUP 2019 計畫推出托育服務，這裡有一份簡短的問卷與意願調查，希望可以幫我們讓托育服務更完善，感謝！</p>
                         <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
                           <tbody>
@@ -394,11 +394,14 @@
                         <h2>工商服務</h2>
                         <h3>大會報告</h3>
                         <p>這裡有一些是大會正在發生的訊息，提供給你參考！</p>
+                        {% if osc %}
                         <p class="tips" style="margin-bottom:8px;">📌目前有收到開源貢獻（OSC）的報名，我們還在審核中，請耐心等待，目前收到約 <strong>190</strong> 位申請！</p>
+                        {% else %}
                         <p class="tips" style="margin-bottom:8px;">📌開源貢獻（OSC）目前還在<a href="https://blog.coscup.org/2019/01/coscup-2019-open-source-contributors.html">開放報名中</a>，請把握最後申請機會，截止日期到 <strong>2019/05/12</strong>，目前收到約 <strong>190</strong> 位申請。</p>
+                        {% endif %}
                         <p class="tips tips-yellow" style="margin-bottom:8px;">📌<a href="https://blog.coscup.org/2019/04/2019-cfp-open.html">COSCUP 2019 CfP</a> is now open, submit your proposal before <strong>May 6th, 2019</strong></p>
                         <p class="tips tips-yellow" style="margin-bottom:8px;">📌<a href="https://blog.coscup.org/2019/02/call-for-participation.html">招募社群參與 Call for Participation</a>: Apply for COSCUP `19 Community Room and Booth now! 議程軌與攤位，即日起招募社群參與。</p>
-                        <p class="tips tips-purple">📌嗨，我是今年的行政組組長 Toomore，組員有小草、維拉、Choupi，目前行政組持續招募組員中，歡迎回覆這封信件報名！</p>
+                        <p class="tips tips-purple">📌嗨，我是今年的行政組組長 Toomore，組員有小草、維拉、Choupi，目前行政組持續招募組員中，歡迎回覆這封信件報名！或是參考<a href="https://hackmd.io/GO-3aJicSbKqk-0ru3eS1Q">各組別介紹</a>。</p>
                         <p style="font-size: 8pt;"><small>💡您會收到這封信是因為您參加過 COSCUP 2018 活動，但我們在去年沒有徵求您的同意發送關於 COSCUP 的活動訊息，造成不便請見諒！如果您還想關注 COSCUP 2019，可以密切注意我們的官方網站 <a href="https://coscup.org/">https://coscup.org/</a> 或是相關的 SNS，再次感謝，期待今年您的參與！</small></p>
                       </td>
                     </tr>
