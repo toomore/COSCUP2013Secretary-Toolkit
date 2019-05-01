@@ -364,13 +364,57 @@ def send_babysister(dry_run=True):
                 print(AwsSESTools.mail_header(u['name'], u['mail']))
 
 
+def send_osc_deny(dry_run=True):
+    template = TPLENV.get_template('./osc_deny.html')
+    with open('./osc.csv', 'r') as csv_file:
+        csvReader = list(csv.DictReader(csv_file))
+        _n_all = len(csvReader)
+        _n = 0
+        for u in csvReader:
+            if u['Status'] == 'PASS':
+                continue
+
+            _n += 1
+            print(_n)
+            print(u)
+
+            _name = u['nickname'].strip() if u['nickname'] else u['name'].strip()
+            _doc = []
+            for i in ('自介 / Self Introduction',
+                      '開放原始碼專案或活動名稱 / Open Source Project or Event Name',
+                      '開放原始碼專案 Repo 位置 / Open Source Project Repo',
+                      '其他有效證明 / Other Valid Proof ',
+                      '開放原始碼專案或活動說明 / Description of Open Source Project or Event ',
+                      '您是海外參與者嗎? / Are you an oversea attendee?',
+                      ):
+                _doc.append('※%s' % i)
+                _doc.append('%s' % u[i])
+                _doc.append('')
+
+            _render = template.render(
+                    name=_name,
+                    reason=u['note_type'],
+                    doc='\r\n'.join(_doc))
+
+            if not dry_run:
+                print(AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+                    source=AwsSESTools.mail_header(u'COSCUP 行政組', 'secretary@coscup.org'),
+                    to_addresses=AwsSESTools.mail_header(_name, u['mail'].lower().strip()),
+                    subject=u'[COSCUP2019] 未通過 開源貢獻者保留票申請',
+                    body=_render,
+                ))
+            else:
+                print(AwsSESTools.mail_header(_name, u['mail'].lower().strip()))
+
+
 if __name__ == '__main__':
     #worker_1('worker_1.csv', dry_run=False)
     #worker_2('works_form.csv', dry_run=False)
     #send_with_ics('./osc.csv', dry_run=False)
     #send_with_ics('./all_2018_users.csv')
     #for_chief_report('./works_form.csv', dry_run=False)
+    #send_osc_deny(dry_run=False)
     #for i in range(30):
     #    print(rand_str())
-    #send_babysister(dry_run=True)
+    #send_babysister(dry_run=False)
     pass
