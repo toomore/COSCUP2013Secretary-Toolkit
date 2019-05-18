@@ -407,6 +407,35 @@ def send_osc_deny(dry_run=True):
                 print(AwsSESTools.mail_header(_name, u['mail'].lower().strip()))
 
 
+def send_hotel(path, dry_run=False):
+    template = TPLENV.get_template('./worker_hotel.html')
+    with open(path, 'r') as csv_file:
+        csvReader = list(csv.DictReader(csv_file))
+
+        for u in csvReader:
+            _name = u['name'].strip()
+            _doc = []
+            _doc.append('code: %s' % u['code'])
+            _doc.append('team: %s' % u['team'])
+            _doc.append('info: %s' % u['info'])
+            _doc.append('group: %s' % u['group'])
+
+            _render = template.render(
+                    name=_name,
+                    doc='\r\n'.join(_doc),
+            )
+
+            if not dry_run:
+                print(AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+                    source=AwsSESTools.mail_header(u'COSCUP 行政組', 'secretary@coscup.org'),
+                    to_addresses=AwsSESTools.mail_header(_name, u['mail'].lower().strip()),
+                    subject=u'[COSCUP2019] 住宿分房名單 2019-05-25 前確認',
+                    body=_render,
+                ))
+            else:
+                print(AwsSESTools.mail_header(_name, u['mail'].lower().strip()))
+
+
 if __name__ == '__main__':
     #worker_1('worker_1.csv', dry_run=False)
     #worker_2('works_form.csv', dry_run=False)
@@ -414,6 +443,7 @@ if __name__ == '__main__':
     #send_with_ics('./all_2018_users.csv')
     #for_chief_report('./works_form.csv', dry_run=False)
     #send_osc_deny(dry_run=False)
+    #send_hotel('./hotel.csv', False)
     #for i in range(30):
     #    print(rand_str())
     #send_babysister(dry_run=False)
