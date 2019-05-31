@@ -407,7 +407,7 @@ def send_osc_deny(dry_run=True):
                 print(AwsSESTools.mail_header(_name, u['mail'].lower().strip()))
 
 
-def send_hotel(path, dry_run=False):
+def send_hotel(path, dry_run=True):
     template = TPLENV.get_template('./worker_hotel.html')
     with open(path, 'r') as csv_file:
         csvReader = list(csv.DictReader(csv_file))
@@ -436,6 +436,55 @@ def send_hotel(path, dry_run=False):
                 print(AwsSESTools.mail_header(_name, u['mail'].lower().strip()))
 
 
+def send_osc_fail(path, dry_run=True):
+    template = TPLENV.get_template('./osc_fail.html')
+    with open(path, 'r') as csv_file:
+        csvReader = list(csv.DictReader(csv_file))
+
+        _n = 0
+        for u in csvReader:
+            if u['in_pass'] == '1':
+                continue
+
+            _n += 1
+            print(_n)
+            u['nickname'] = u['nickname'].strip()
+            u['mail'] = u['mail'].lower().strip()
+
+            if not dry_run:
+                print(AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+                    source=AwsSESTools.mail_header(u'COSCUP 行政組', 'secretary@coscup.org'),
+                    to_addresses=AwsSESTools.mail_header(u['nickname'], u['mail']),
+                    subject=u'[COSCUP2019] OSC 開源貢獻者保留票申請結果 - Deny',
+                    body=template.render(u),
+                ))
+            else:
+                print(AwsSESTools.mail_header(u['nickname'], u['mail']))
+
+
+def send_osc_pass(path, dry_run=True):
+    template = TPLENV.get_template('./osc_pass.html')
+    with open(path, 'r') as csv_file:
+        csvReader = list(csv.DictReader(csv_file))
+
+        _n = 0
+        for u in csvReader:
+            _n += 1
+            print(_n)
+            u['nickname'] = u['nickname'].strip()
+            u['mail'] = u['mail'].lower().strip()
+
+            if not dry_run:
+                print(AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+                    source=AwsSESTools.mail_header(u'COSCUP 行政組', 'secretary@coscup.org'),
+                    to_addresses=AwsSESTools.mail_header(u['nickname'], u['mail']),
+                    subject=u'[COSCUP2019] OSC 開源貢獻者保留票申請結果 - Approved',
+                    body=template.render(u),
+                ))
+            else:
+                print(AwsSESTools.mail_header(u['nickname'], u['mail']))
+
+
 if __name__ == '__main__':
     #worker_1('worker_1.csv', dry_run=False)
     #worker_2('works_form.csv', dry_run=False)
@@ -447,4 +496,6 @@ if __name__ == '__main__':
     #for i in range(30):
     #    print(rand_str())
     #send_babysister(dry_run=False)
+    #send_osc_fail('./osc_count_fail.csv', dry_run=False)
+    #send_osc_pass('./osc_count_pass.csv', dry_run=False)
     pass
