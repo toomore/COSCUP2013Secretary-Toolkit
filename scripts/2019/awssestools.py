@@ -469,6 +469,9 @@ def send_osc_pass(path, dry_run=True):
 
         _n = 0
         for u in csvReader:
+            if u['code_used'] == '1':
+                continue
+
             _n += 1
             print(_n)
             u['nickname'] = u['nickname'].strip()
@@ -478,7 +481,7 @@ def send_osc_pass(path, dry_run=True):
                 print(AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
                     source=AwsSESTools.mail_header(u'COSCUP 行政組', 'secretary@coscup.org'),
                     to_addresses=AwsSESTools.mail_header(u['nickname'], u['mail']),
-                    subject=u'[COSCUP2019] OSC 開源貢獻者保留票申請結果 - Approved',
+                    subject=u'[提醒][COSCUP2019] OSC 開源貢獻者保留票申請結果 - Approved',
                     body=template.render(u),
                 ))
             else:
