@@ -469,7 +469,7 @@ def send_osc_pass(path, dry_run=True):
 
         _n = 0
         for u in csvReader:
-            if u['code_used'] == '1':
+            if u['lost'] != '1':
                 continue
 
             _n += 1
@@ -513,6 +513,23 @@ def chief_vip(path, title, dry_run=True):
                 else:
                     print(AwsSESTools.mail_header(u['nickname'], u['mail']), code)
 
+def baby_form(path, dry_run=True):
+    template = TPLENV.get_template('./baby_form.html')
+
+    with open(path, 'r') as files:
+        csv_reader = csv.DictReader(files)
+        for u in csv_reader:
+            print(u['mail'])
+            if not dry_run:
+                print(AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+                    source=AwsSESTools.mail_header(u'COSCUP 行政組', 'secretary@coscup.org'),
+                    to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+                    subject=u'[COSCUP2019] 托育服務申請 - %s' % u['name'],
+                    body=template.render(u),
+                ))
+            else:
+                print(AwsSESTools.mail_header(u['name'], u['mail']), u['code'])
+
 
 if __name__ == '__main__':
     #worker_1('worker_1.csv', dry_run=False)
@@ -529,4 +546,5 @@ if __name__ == '__main__':
     #send_osc_pass('./osc_count_pass.csv', dry_run=False)
     #chief_vip('chief_vip_code_zh.html', u'邀請碼', False)
     #chief_vip('chief_vip_code_en.html', u'VIP Code', False)
+    #baby_form('./baby.csv', False)
     pass
