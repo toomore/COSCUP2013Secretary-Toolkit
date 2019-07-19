@@ -514,7 +514,8 @@ def chief_vip(path, title, dry_run=True):
                     print(AwsSESTools.mail_header(u['nickname'], u['mail']), code)
 
 def baby_form(path, dry_run=True):
-    template = TPLENV.get_template('./baby_form.html')
+    #template = TPLENV.get_template('./baby_form.html')
+    template = TPLENV.get_template('./baby_form_not_st.html')
 
     with open(path, 'r') as files:
         csv_reader = csv.DictReader(files)
@@ -547,4 +548,5 @@ if __name__ == '__main__':
     #chief_vip('chief_vip_code_zh.html', u'邀請碼', False)
     #chief_vip('chief_vip_code_en.html', u'VIP Code', False)
     #baby_form('./baby.csv', False)
+    #baby_form('./baby_1563508968.csv', False)
     pass
