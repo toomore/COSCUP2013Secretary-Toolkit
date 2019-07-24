@@ -532,6 +532,28 @@ def baby_form(path, dry_run=True):
                 print(AwsSESTools.mail_header(u['name'], u['mail']), u['code'])
 
 
+def installation(dry_run=True):
+    template = TPLENV.get_template('./installation.html')
+
+    with open('./works_form.csv', 'r+') as files:
+        csv_reader = csv.DictReader(files)
+        user = {}
+        for u in csv_reader:
+            user[u['mail']] = u['nickname']
+
+        for mail in user:
+            if not dry_run:
+                print(mail)
+                print(AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+                    source=AwsSESTools.mail_header(u'COSCUP 行政組', 'secretary@coscup.org'),
+                    to_addresses=AwsSESTools.mail_header(user[mail], mail),
+                    subject=u'[COSCUP2019] 協助場務組場佈',
+                    body=template.render(name=user[mail]),
+                ))
+            else:
+                print(AwsSESTools.mail_header(user[mail], mail))
+
+
 if __name__ == '__main__':
     #worker_1('worker_1.csv', dry_run=False)
     #worker_2('works_form.csv', dry_run=False)
@@ -549,4 +571,5 @@ if __name__ == '__main__':
     #chief_vip('chief_vip_code_en.html', u'VIP Code', False)
     #baby_form('./baby.csv', False)
     #baby_form('./baby_1563508968.csv', False)
+    #installation(dry_run=False)
     pass
