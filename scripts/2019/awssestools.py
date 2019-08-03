@@ -554,6 +554,26 @@ def installation(dry_run=True):
                 print(AwsSESTools.mail_header(user[mail], mail))
 
 
+def reminder_to_cancel(path, dry_run=True):
+    template = TPLENV.get_template('./190801_cancel.html')
+
+    with open(path, 'r+') as files:
+        csv_reader = csv.DictReader(files)
+        _n = 0
+        for u in csv_reader:
+            print(">>>", _n)
+            _n += 1
+            if not dry_run:
+                print(u['mail'])
+                print(AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+                    source=AwsSESTools.mail_header(u'COSCUP 行政組', 'secretary@coscup.org'),
+                    to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+                    subject=u'[COSCUP2019] Attendance Confirmation / 出席確認',
+                    body=template.render(name=u['name']),
+                ))
+            else:
+                print(AwsSESTools.mail_header(u['name'], u['mail']))
+
 if __name__ == '__main__':
     #worker_1('worker_1.csv', dry_run=False)
     #worker_2('works_form.csv', dry_run=False)
@@ -572,4 +592,5 @@ if __name__ == '__main__':
     #baby_form('./baby.csv', False)
     #baby_form('./baby_1563508968.csv', False)
     #installation(dry_run=False)
+    #reminder_to_cancel('./attendees-20190731.csv', dry_run=False)
     pass
