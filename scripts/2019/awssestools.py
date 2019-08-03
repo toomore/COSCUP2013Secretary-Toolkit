@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 ''' My AWS Tools '''
 import csv
+import io
 import string
 from collections import OrderedDict
 from datetime import datetime
@@ -158,16 +159,16 @@ class AwsSESTools(object):
         msg_all.attach(MIMEText(kwargs['body'], 'html', 'utf-8'))
 
         ics = render_ics(
-            title=u'COSCUP 2019 開源貢獻者保留票申請 / Open Source Contributors (OSC) Tickets Application',
-            description=u'More info:<br><a href="https://blog.coscup.org/2019/01/coscup-2019-open-source-contributors.html">https://blog.coscup.org/2019/01/coscup-2019-open-source-contributors.html</a>',
-            location=u'',
+            title=u'COSCUP 2019',
+            description=u"No.43, Keelung Rd., Sec.4, Da'an Dist., Taipei 10607, Taiwan",
+            location=u'10607 臺北市大安區基隆路四段43號',
             all_day=True,
-            start='20190512',
-            end='20190513',
+            start='20190817',
+            end='20190819',
             created=datetime.now(),
             admin=u'COSCUP2019 Attendee',
             admin_mail=u'attendee@coscup.org',
-            url=u'https://blog.coscup.org/2019/01/coscup-2019-open-source-contributors.html'
+            url=u'https://coscup.org/2019/'
         )
         attachment = MIMEBase('text', 'calendar; name=calendar.ics; method=REQUEST; charset=UTF-8')
         attachment.set_payload(ics.encode('utf-8'))
@@ -175,6 +176,21 @@ class AwsSESTools(object):
         attachment.add_header('Content-Disposition', 'attachment; filename=%s' % "calendar.ics")
 
         msg_all.attach(attachment)
+
+        # CSV
+        #csv_file = io.StringIO()
+        #fieldnames=('name', 'text')
+        #csv_writer = csv.DictWriter(csv_file, fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
+        #csv_writer.writeheader()
+        #csv_writer.writerow({'name': 'toomore', 'text': '1111.'})
+        #csv_writer.writerow({'name': 'toomore', 'text': '2222.'})
+        #csv_writer.writerow({'name': 'toomore', 'text': u'私は多いです.'})
+
+        #csv_attach = MIMEBase('text', 'csv; name=info.csv; charset=utf-8')
+        #csv_attach.set_payload(csv_file.getvalue().encode('utf-8'))
+        #encoders.encode_base64(csv_attach)
+        #csv_attach.add_header('Content-Disposition', 'attachment; filename=info.csv')
+        #msg_all.attach(csv_attach)
 
         #image
         #with open('./png_worker/%s.png' % kwargs['token'], 'r') as i:
