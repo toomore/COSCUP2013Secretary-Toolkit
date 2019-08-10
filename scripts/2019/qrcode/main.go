@@ -77,7 +77,7 @@ func readCSV(path string) []*User {
 			}
 		}
 	}
-	for i, _ := range result {
+	for i := range result {
 		if result[i].FileNmae == "" {
 			result[i].FileNmae = result[i].Token
 		}
