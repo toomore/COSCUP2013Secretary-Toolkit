@@ -13,6 +13,7 @@ from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.utils import formataddr
+from pathlib import Path
 from random import sample
 from uuid import uuid4
 
@@ -210,6 +211,53 @@ class AwsSESTools(object):
 
         #img.add_header('Content-Disposition', 'attachment; filename=eatmap.png')
         #msg_all.attach(img)
+
+        return self.client.send_raw_email(
+                RawMessage={'Data': msg_all.as_string()})
+        #return msg_all.as_string()
+
+    def send_attach_program(self, **kwargs):
+        ''' still in dev
+
+        :param str source: from
+        :param str to_addresses: to
+        :param str subject: subject
+        :param str body: body
+        :param str token: token
+
+        '''
+        msg_all = MIMEMultipart()
+        msg_all['From'] = kwargs['source']
+        msg_all['To'] = kwargs['to_addresses']
+        msg_all['Subject'] = kwargs['subject']
+
+        msg_all.attach(MIMEText(kwargs['body'], 'html', 'utf-8'))
+
+        ics = render_ics(
+            title=u'COSCUP 2019',
+            description=u"No.43, Keelung Rd., Sec.4, Da'an Dist., Taipei 10607, Taiwan",
+            location=u'10607 臺北市大安區基隆路四段43號',
+            all_day=True,
+            start='20190817',
+            end='20190819',
+            created=datetime.now(),
+            admin=u'COSCUP2019 Attendee',
+            admin_mail=u'attendee@coscup.org',
+            url=u'https://coscup.org/2019/'
+        )
+        attachment = MIMEBase('text', 'calendar; name=calendar.ics; method=REQUEST; charset=UTF-8')
+        attachment.set_payload(ics.encode('utf-8'))
+        encoders.encode_base64(attachment)
+        attachment.add_header('Content-Disposition', 'attachment; filename=%s' % "calendar.ics")
+
+        msg_all.attach(attachment)
+
+        #image
+        with open('./qrcode/program/%s.png' % kwargs['token'], 'rb') as i:
+            img = MIMEImage(i.read())
+
+        img.add_header('Content-Disposition', 'attachment; filename=%s.png' % kwargs['token'])
+        msg_all.attach(img)
 
         return self.client.send_raw_email(
                 RawMessage={'Data': msg_all.as_string()})
@@ -590,6 +638,32 @@ def reminder_to_cancel(path, dry_run=True):
             else:
                 print(AwsSESTools.mail_header(u['name'], u['mail']))
 
+
+def reminder_program_speak(path, temp, title, dry_run=True):
+    template = TPLENV.get_template(temp)
+
+    with open(path, 'r+') as files:
+        csv_reader = csv.DictReader(files)
+        _n = 0
+        for u in csv_reader:
+            print('>>>', _n)
+            _n += 1
+            if not dry_run:
+                print(u['mail'])
+                print(AwsSESTools(setting.AWSID, setting.AWSKEY).send_attach_program(
+                    source=AwsSESTools.mail_header(u'COSCUP Program', 'program@coscup.org'),
+                    to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+                    subject=title,
+                    body=template.render(name=u['name']),
+                    token=u['token'],
+                ))
+                return
+            else:
+                if not Path('./qrcode/program/%s.png' % u['token']).is_file():
+                    raise Exception('no png file', u['token'])
+                print(AwsSESTools.mail_header(u['name'], u['mail']), u['token'])
+
+
 if __name__ == '__main__':
     #worker_1('worker_1.csv', dry_run=False)
     #worker_2('works_form.csv', dry_run=False)
@@ -609,4 +683,16 @@ if __name__ == '__main__':
     #baby_form('./baby_1563508968.csv', False)
     #installation(dry_run=False)
     #reminder_to_cancel('./attendees-20190731.csv', dry_run=False)
+    reminder_program_speak(
+            path='./program_speak.csv',
+            temp='./program_speak.html',
+            title=u'[COSCUP2019] [Please Read!] Your ticket and information about COSCUP2019 | speak',
+            dry_run=False,
+        )
+    reminder_program_speak(
+            path='./program_invite.csv',
+            temp='./program_invite.html',
+            title=u'[COSCUP2019] [Please Read!] Your ticket and information about COSCUP2019 | invite',
+            dry_run=False,
+        )
     pass
