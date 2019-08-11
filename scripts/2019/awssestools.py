@@ -657,7 +657,6 @@ def reminder_program_speak(path, temp, title, dry_run=True):
                     body=template.render(name=u['name']),
                     token=u['token'],
                 ))
-                return
             else:
                 if not Path('./qrcode/program/%s.png' % u['token']).is_file():
                     raise Exception('no png file', u['token'])
@@ -683,16 +682,16 @@ if __name__ == '__main__':
     #baby_form('./baby_1563508968.csv', False)
     #installation(dry_run=False)
     #reminder_to_cancel('./attendees-20190731.csv', dry_run=False)
-    reminder_program_speak(
-            path='./program_speak.csv',
-            temp='./program_speak.html',
-            title=u'[COSCUP2019] [Please Read!] Your ticket and information about COSCUP2019 | speak',
-            dry_run=False,
-        )
-    reminder_program_speak(
-            path='./program_invite.csv',
-            temp='./program_invite.html',
-            title=u'[COSCUP2019] [Please Read!] Your ticket and information about COSCUP2019 | invite',
-            dry_run=False,
-        )
+    #reminder_program_speak(
+    #        path='./program_speak.csv',
+    #        temp='./program_speak.html',
+    #        title=u'[COSCUP2019] [Please Read!] Your ticket and information about COSCUP2019',
+    #        dry_run=False,
+    #    )
+    #reminder_program_speak(
+    #        path='./program_invite.csv',
+    #        temp='./program_invite.html',
+    #        title=u'[COSCUP2019] [Please Read!] Your ticket and information about COSCUP2019',
+    #        dry_run=False,
+    #    )
     pass
