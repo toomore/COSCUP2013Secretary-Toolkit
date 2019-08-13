@@ -772,6 +772,29 @@ def installation(dry_run=True):
                 print(AwsSESTools.mail_header(user[mail], mail))
 
 
+def installation_reminder(dry_run=True):
+    template = TPLENV.get_template('./installation_reminder.html')
+
+    with open('./works_form.csv', 'r+') as files:
+        csv_reader = csv.DictReader(files)
+        user = {}
+        for u in csv_reader:
+            if u['team'] == u'場務組':
+                user[u['mail']] = u['nickname']
+
+        for mail in user:
+            if not dry_run:
+                print(mail)
+                print(AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+                    source=AwsSESTools.mail_header(u'COSCUP 場務組', 'service@coscup.org'),
+                    to_addresses=AwsSESTools.mail_header(user[mail], mail),
+                    subject=u'[COSCUP2019] 場務組行前通知信',
+                    body=template.render(name=user[mail]),
+                ))
+            else:
+                print(AwsSESTools.mail_header(user[mail], mail))
+
+
 def reminder_to_cancel(path, dry_run=True):
     template = TPLENV.get_template('./190801_cancel.html')
 
@@ -964,4 +987,5 @@ if __name__ == '__main__':
     #        data=group_sponsor('./sponsor_list_test.csv', './sponsor_token.csv'),
     #        dry_run=False,
     #    )
+    #installation_reminder(dry_run=False)
     pass
