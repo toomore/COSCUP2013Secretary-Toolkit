@@ -357,6 +357,66 @@ class AwsSESTools(object):
                 RawMessage={'Data': msg_all.as_string()})
         #return msg_all.as_string()
 
+    def send_attach_csv_sponsor(self, **kwargs):
+        ''' Send to sponsor
+
+        :param str source: from
+        :param str to_addresses: to
+        :param str subject: subject
+        :param str body: body
+
+        '''
+        msg_all = MIMEMultipart()
+        msg_all['From'] = kwargs['source']
+        msg_all['To'] = kwargs['to_addresses']
+        msg_all['Subject'] = kwargs['subject']
+
+        msg_all.attach(MIMEText(kwargs['body'], 'html', 'utf-8'))
+
+        ics = render_ics(
+            title=u'COSCUP 2019',
+            description=u"No.43, Keelung Rd., Sec.4, Da'an Dist., Taipei 10607, Taiwan",
+            location=u'10607 臺北市大安區基隆路四段43號',
+            all_day=True,
+            start='20190817',
+            end='20190819',
+            created=datetime.now(),
+            admin=u'COSCUP2019 Attendee',
+            admin_mail=u'attendee@coscup.org',
+            url=u'https://coscup.org/2019/'
+        )
+        attachment = MIMEBase('text', 'calendar; name=calendar.ics; method=REQUEST; charset=UTF-8')
+        attachment.set_payload(ics.encode('utf-8'))
+        encoders.encode_base64(attachment)
+        attachment.add_header('Content-Disposition', 'attachment; filename=%s' % "calendar.ics")
+
+        msg_all.attach(attachment)
+
+        # CSV
+        csv_file = io.StringIO()
+        fieldnames=('token', u'專屬連結')
+        csv_writer = csv.DictWriter(csv_file, fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
+        csv_writer.writeheader()
+        for token in kwargs['data']['tokens']:
+            csv_writer.writerow({'token': token, u'專屬連結': u'https://dl.opass.app/?link=https%3A%2F%2Fopass.app%2Fopen%2F%3Fevent_id%3DCOSCUP_2019%26token%3D' + token + '&apn=app.opass.ccip&amv=35&isi=1436417025&ibi=app.opass.ccip'})
+
+        csv_attach = MIMEBase('text', 'csv; name=info.csv; charset=utf-8')
+        csv_attach.set_payload(csv_file.getvalue().encode('utf-8'))
+        encoders.encode_base64(csv_attach)
+        csv_attach.add_header('Content-Disposition', 'attachment; filename=tokens.csv')
+        msg_all.attach(csv_attach)
+
+        # HTML
+        with open('./tpl/user_reminder_no_btn.html', 'r+') as files:
+            html = MIMEText(files.read())
+
+        html.add_header('Content-Disposition', 'attachment; filename=reminder.html')
+        msg_all.attach(html)
+
+        return self.client.send_raw_email(
+                RawMessage={'Data': msg_all.as_string()})
+        #return msg_all.as_string()
+
 
 def worker_1(path, dry_run=True):
     '''
@@ -807,6 +867,52 @@ def reminder_attendee(path, temp, title, dry_run=True):
                 print(AwsSESTools.mail_header(u['name'], u['mail']), u['token'])
 
 
+def group_sponsor(path, tokens):
+    with open(path, 'r+') as files:
+        csv_reader = csv.DictReader(files)
+        data = {}
+        for r in csv_reader:
+            data[int(r['no'])] = {
+                'type': r['type'],
+                'sponsor': r['sponsor'],
+                'users': [{'name': r['name_1'], 'mail': r['mail_1']}, ],
+                'token_nums': int(r['token_nums']),
+                'tokens': [],
+            }
+            if r['name_2']:
+                data[int(r['no'])]['users'].append({'name': r['name_2'], 'mail': r['mail_2']})
+
+    with open(tokens) as files:
+        csv_reader = csv.DictReader(files)
+        for t in csv_reader:
+            if int(t['no']) in data:
+                data[int(t['no'])]['tokens'].append(t['token'])
+
+    return data
+
+def reminder_sponsor(temp, title, data, dry_run=True):
+    template = TPLENV.get_template(temp)
+
+    _n = 0
+    for u in data:
+        print('>>>', _n)
+        _n += 1
+        if not dry_run:
+            for uu in data[u]['users']:
+                print(uu['mail'])
+                print(AwsSESTools(setting.AWSID, setting.AWSKEY).send_attach_csv_sponsor(
+                    source=AwsSESTools.mail_header(u'COSCUP Sponsorship', 'sponsorship@coscup.org'),
+                    to_addresses=AwsSESTools.mail_header(uu['name'], uu['mail']),
+                    subject=title,
+                    body=template.render(name=uu['name'], **data[u]),
+                    data=data[u],
+                ))
+            return
+        else:
+            for uu in data[u]['users']:
+                print(AwsSESTools.mail_header(uu['name'], uu['mail']))
+
+
 if __name__ == '__main__':
     #worker_1('worker_1.csv', dry_run=False)
     #worker_2('works_form.csv', dry_run=False)
@@ -848,6 +954,14 @@ if __name__ == '__main__':
     #        path='./attendee_token.csv',
     #        temp='./user_reminder.html',
     #        title=u'COSCUP2019 Attendee Reminder / 會眾行前通知信 |',
+    #        dry_run=False,
+    #    )
+    #from pprint import pprint
+    #pprint(group_sponsor('./sponsor_list_test.csv', './sponsor_token.csv'))
+    #reminder_sponsor(
+    #        temp='./sponsor.html',
+    #        title=u'COSCUP2019 入場卷發送（含行前通知信）i',
+    #        data=group_sponsor('./sponsor_list_test.csv', './sponsor_token.csv'),
     #        dry_run=False,
     #    )
     pass
