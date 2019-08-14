@@ -394,7 +394,7 @@ class AwsSESTools(object):
 
         # CSV
         csv_file = io.StringIO()
-        fieldnames=('name', 'token', u'專屬連結')
+        fieldnames=('name', 'token', u'OPass Link')
         csv_writer = csv.DictWriter(csv_file, fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
         csv_writer.writeheader()
         _n = 1
@@ -402,7 +402,7 @@ class AwsSESTools(object):
             csv_writer.writerow({
                     'name': u'%s - %s' % (kwargs['data']['sponsor'], _n),
                     'token': token,
-                    u'專屬連結': u'https://dl.opass.app/?link=https%3A%2F%2Fopass.app%2Fopen%2F%3Fevent_id%3DCOSCUP_2019%26token%3D' + token + '&apn=app.opass.ccip&amv=35&isi=1436417025&ibi=app.opass.ccip'})
+                    u'OPass Link': u'https://dl.opass.app/?link=https%3A%2F%2Fopass.app%2Fopen%2F%3Fevent_id%3DCOSCUP_2019%26token%3D' + token + '&apn=app.opass.ccip&amv=35&isi=1436417025&ibi=app.opass.ccip'})
             _n += 1
 
         csv_attach = MIMEBase('text', 'csv; name=info.csv; charset=utf-8')
@@ -992,8 +992,8 @@ if __name__ == '__main__':
     #from pprint import pprint
     #pprint(group_sponsor('./sponsor_list.csv', './sponsor_token.csv'))
     #reminder_sponsor(
-    #        temp='./sponsor.html',
-    #        title=u'COSCUP2019 入場卷發送（含行前通知信）',
+    #        temp='./sponsor_en.html',
+    #        title=u'COSCUP2019 Tickets（Include reminder letter）',
     #        data=group_sponsor('./sponsor_list.csv', './sponsor_token.csv'),
     #        dry_run=False,
     #    )
