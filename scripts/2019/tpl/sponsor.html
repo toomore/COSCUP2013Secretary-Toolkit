@@ -359,9 +359,72 @@
                         <p class="align-right" style="margin-bottom:0px;"><a href="https://coscup.org/"><img width="135" src="https://coscup.org/2012-theme/assets/coscup.png" alt="COSCUP Logo" title="COSCUP Logo"></a></p>
                         <p>Hi {{name}} 你好：</p>
                         <p>我們要來發送 COSCUP 2019 的入場卷囉！</p>
-                        <p><strong>{{sponsor}}</strong> 是今年度的 <strong>{{type}}</strong>，享有 <strong>{{token_nums}}</strong> 張入場票卷，附件表單可以看到所有的專屬入場卷的連結。</p>
-                        <p>附件為 COSCUP 2019 贊助商行前通知信，入場前請先詳閱。</p>
-                        <p>轉發贊助商入場票給夥伴時，請提供（填入）他/她的專屬入場 Link 、與我們準備的行前通知信。</p>
+                        <p><strong>{{sponsor}}</strong> 是今年度的 <strong>{{type}}級贊助商</strong>，享有 <strong>{{token_nums}} 張</strong>入場票卷，附件表單可以看到所有的專屬入場卷的連結。</p>
+                        <p>另外一個附件為 COSCUP 2019 贊助商行前通知信，入場前請先務必詳閱。</p>
+                        <p>接下來有幾件事情請您再閱讀</p>
+                        <h2>＊發送贊助商票＊</h2>
+                        <p>當您要提供贊助商入場票時，請複製附件 行前通知信的內容(reminder.html)，並從 附件表單複製一個 Link ，填入行前通知信裡，寄給您的夥伴/貴賓  。</p>
+                        <h2>＊台科大國際大樓地下停車場一日券代購＊</h2>
+                        <p>台科大國際大樓地下停車場 40 NTD/hr，另有一日券 120NTD/日，請進入<a href="https://forms.gle/md31c8vMbpyYghf26">這個表單</a>填入您需要的一日券數量。</p>
+                        <p>使用方式：請在地下停車場停好車時（你會拿到灰卡），到大會服務台支付 120 元、兌換黃卡（出場時用黃卡）。請注意！這個代購的費用不提供收據或是發票。</p>
+                        {% if game == '1'%}
+                        <h2>＊請幫忙回覆攤位活動＊</h2>
+                        <p>大會會幫忙宣傳貴單位的攤位活動，請進入<a href="https://forms.gle/3C1utYjxfBMmyRTr8">這個表單</a>填寫，已經填過的同學可以不用再填。</p>
+                        <h2>＊「開源巔峰挑戰賽」需要各攤位主的協助＊</h2>
+                        <p>請詳閱下列說明</p>
+                        <p>大會兩天會需要 <strong>{{sponsor}}</strong> 攤位夥伴的幫忙！為了促進會眾與贊助商接觸的機會，我們舉辦了一個小活動：「開源巔峰挑戰賽」，相關說明介紹如下：</p>
+                        <h3>什麼是「開源巔峰挑戰賽」</h3>
+                        <p>當與會者使用 OPass 參與攤位的到訪後，可獲得點數，湊滿點數到大會攤位可換取紀念品或是加價購。</p>
+                        <h3>為什麼要進行「開源巔峰挑戰賽」</h3>
+                        <p>提供一個與會者到訪攤位的機會，攤位人員可藉此宣傳產品、招募人才、提供贈品、加強企業形象。</p>
+                        <h3>怎麼進行</h3>
+                        <p>與會者參訪攤位時，請他出示 OPass 裡的 QRcode，請攤位人員掃描與會者的 QRcode，與會者到訪過 13 個攤位即可到大會行銷攤位換取紀念品一份。</p>
+                        <h3>誰可以參與這個活動</h3>
+                        <p>有報名 COSCUP 2019 成功且收到 KKTIX QRcode 或是收到贊助商票券連結、且下載 OPass 安裝成功 的朋友。</p>
+                        <h3>攤位人員要做什麼</h3>
+                        <ul>
+                          <li>當與會者到訪攤位想要進行開源巔峰挑戰賽時，請他出示 OPass 裡的 QRcode</li>
+                          <li>請攤位人員使用 手機、平板（具有相機功能的 device）裡的瀏覽器連結這個網址：{    }。</li>
+                          <li>掃描與會者的 QRcode</li>
+                          <li>攤位人員的 device 畫面出現："戳章已經發給  OOO" 完成攤位到訪。</li>
+                        </ul>
+                        <h3>特別注意</h3>
+                        <ul>
+                          <li>與會者如果不願意幫忙填問卷、打卡、或是聽講產品介紹，就請直接幫他掃描 QRcode 即可。</li>
+                          <li>可以另外準備一台有 webcam 的筆電，保持 scan 連結畫面讓會眾自助掃描。</li>
+                          <li>或是另外準備一台有 wifi 功能的 Device，就專門進行這個活動。</li>
+                        </ul>
+                        <h3>問題處理</h3>
+                        <ul>
+                          <li>畫面出現這個訊息：這個條碼好像不正確</li>
+                          <ul>
+                            <li>請重新確認網路是否連線。</li>
+                            <li>請使用瀏覽器重啟「 贊助窗口提供的連結」再掃描一次。</li>
+                            <li>device 請重開機重新與網路連線、使用瀏覽器重啟「 贊助窗口提供的連結」再掃描一次。</li>
+                          </ul>
+                          <li>超過 3 次以上出現上面訊息或是其他訊息，請與你的贊助窗口聯繫。</li>
+                          <li>會眾出示報名成功的 KKTIX QR code 也可以</li>
+                        </ul>
+                        <h3>ＮＯＴＥ</h3>
+                        <ul>
+                          <li>本活動不提供任何與會者的個資。</li>
+                          <li>完賽贈品由大會提供。</li>
+                        </ul>
+                        <p>提供「SITCON 學生計算機年會」、使用 iOS 相機 操作為參考。</p>
+                        <p>再次感謝你們的協助，預祝活動順利精彩！</p>
+                        <p class="align-center" style="margin-bottom:0px;"><a href="https://s3.toomore.net/coscup/2019/sponsor/1.png"><img style="border-radius:3px;" src="https://s3.toomore.net/coscup/2019/sponsor/1.png"></a></p>
+                        <p class="align-center imgnote">1. 點擊連結可看到您的公司 logo</p>
+                        <p class="align-center" style="margin-bottom:0px;"><a href="https://s3.toomore.net/coscup/2019/sponsor/2.png"><img style="border-radius:3px;" src="https://s3.toomore.net/coscup/2019/sponsor/2.png"></a></p>
+                        <p class="align-center imgnote">2. 打開相機</p>
+                        <p class="align-center" style="margin-bottom:0px;"><a href="https://s3.toomore.net/coscup/2019/sponsor/3.png"><img style="border-radius:3px;" src="https://s3.toomore.net/coscup/2019/sponsor/3.png"></a></p>
+                        <p class="align-center imgnote">3. 拍會眾的 QRcode（注意這不是掃瞄QRcode）</p>
+                        <p class="align-center" style="margin-bottom:0px;"><a href="https://s3.toomore.net/coscup/2019/sponsor/4.jpg"><img style="border-radius:3px;" src="https://s3.toomore.net/coscup/2019/sponsor/4.jpg"></a></p>
+                        <p class="align-center imgnote">4. 處理中</p>
+                        <p class="align-center" style="margin-bottom:0px;"><a href="https://s3.toomore.net/coscup/2019/sponsor/5.png"><img style="border-radius:3px;" src="https://s3.toomore.net/coscup/2019/sponsor/5.png"></a></p>
+                        <p class="align-center imgnote">5. 讀取失敗</p>
+                        <p class="align-center" style="margin-bottom:0px;"><a href="https://s3.toomore.net/coscup/2019/sponsor/6.jpg"><img style="border-radius:3px;" src="https://s3.toomore.net/coscup/2019/sponsor/6.jpg"></a></p>
+                        <p class="align-center imgnote">6. 讀取成功，會眾獲得攤位章</p>
+                        {%endif%}
                       </td>
                     </tr>
                   </table>
