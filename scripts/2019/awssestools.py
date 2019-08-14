@@ -394,11 +394,16 @@ class AwsSESTools(object):
 
         # CSV
         csv_file = io.StringIO()
-        fieldnames=('token', u'專屬連結')
+        fieldnames=('name', 'token', u'專屬連結')
         csv_writer = csv.DictWriter(csv_file, fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
         csv_writer.writeheader()
+        _n = 1
         for token in kwargs['data']['tokens']:
-            csv_writer.writerow({'token': token, u'專屬連結': u'https://dl.opass.app/?link=https%3A%2F%2Fopass.app%2Fopen%2F%3Fevent_id%3DCOSCUP_2019%26token%3D' + token + '&apn=app.opass.ccip&amv=35&isi=1436417025&ibi=app.opass.ccip'})
+            csv_writer.writerow({
+                    'name': u'%s - %s' % (kwargs['data']['sponsor'], _n),
+                    'token': token,
+                    u'專屬連結': u'https://dl.opass.app/?link=https%3A%2F%2Fopass.app%2Fopen%2F%3Fevent_id%3DCOSCUP_2019%26token%3D' + token + '&apn=app.opass.ccip&amv=35&isi=1436417025&ibi=app.opass.ccip'})
+            _n += 1
 
         csv_attach = MIMEBase('text', 'csv; name=info.csv; charset=utf-8')
         csv_attach.set_payload(csv_file.getvalue().encode('utf-8'))
@@ -858,7 +863,6 @@ def reminder_workers(path, temp, title, dry_run=True):
                     body=template.render(**u),
                     token=u['token'],
                 ))
-                return
             else:
                 if not Path('./qrcode/worker/%s.png' % u['token']).is_file():
                     raise Exception('no png file', u['token'])
@@ -883,7 +887,6 @@ def reminder_attendee(path, temp, title, dry_run=True):
                     body=template.render(**u),
                     token=u['token'],
                 ))
-                return
             else:
                 if not Path('./qrcode/attendee/%s.png' % u['token']).is_file():
                     raise Exception('no png file', u['token'])
@@ -895,15 +898,23 @@ def group_sponsor(path, tokens):
         csv_reader = csv.DictReader(files)
         data = {}
         for r in csv_reader:
+            if int(r['token_nums']) == 0:
+                continue
+
             data[int(r['no'])] = {
                 'type': r['type'],
                 'sponsor': r['sponsor'],
-                'users': [{'name': r['name_1'], 'mail': r['mail_1']}, ],
+                'users': [{'name': r['name_1'], 'mail': r['mail_1'].lower().strip()}, ],
                 'token_nums': int(r['token_nums']),
                 'tokens': [],
+                'game': r['game'],
+                'link': r['link'],
             }
             if r['name_2']:
-                data[int(r['no'])]['users'].append({'name': r['name_2'], 'mail': r['mail_2']})
+                data[int(r['no'])]['users'].append({'name': r['name_2'], 'mail': r['mail_2'].lower().strip()})
+
+            if r['name_3']:
+                data[int(r['no'])]['users'].append({'name': r['name_3'], 'mail': r['mail_3'].lower().strip()})
 
     with open(tokens) as files:
         csv_reader = csv.DictReader(files)
@@ -930,7 +941,6 @@ def reminder_sponsor(temp, title, data, dry_run=True):
                     body=template.render(name=uu['name'], **data[u]),
                     data=data[u],
                 ))
-            return
         else:
             for uu in data[u]['users']:
                 print(AwsSESTools.mail_header(uu['name'], uu['mail']))
@@ -970,21 +980,21 @@ if __name__ == '__main__':
     #reminder_workers(
     #        path='./worker_token.csv',
     #        temp='./worker_reminder.html',
-    #        title=u'COSCUP2019 工人行前通知信',
+    #        title=u'COSCUP2019 志工夥伴行前通知信',
     #        dry_run=False,
     #    )
     #reminder_attendee(
     #        path='./attendee_token.csv',
     #        temp='./user_reminder.html',
-    #        title=u'COSCUP2019 Attendee Reminder / 會眾行前通知信 |',
+    #        title=u'COSCUP2019 Attendee Reminder / 會眾行前通知信',
     #        dry_run=False,
     #    )
     #from pprint import pprint
-    #pprint(group_sponsor('./sponsor_list_test.csv', './sponsor_token.csv'))
+    #pprint(group_sponsor('./sponsor_list.csv', './sponsor_token.csv'))
     #reminder_sponsor(
     #        temp='./sponsor.html',
-    #        title=u'COSCUP2019 入場卷發送（含行前通知信）i',
-    #        data=group_sponsor('./sponsor_list_test.csv', './sponsor_token.csv'),
+    #        title=u'COSCUP2019 入場卷發送（含行前通知信）',
+    #        data=group_sponsor('./sponsor_list.csv', './sponsor_token.csv'),
     #        dry_run=False,
     #    )
     #installation_reminder(dry_run=False)
