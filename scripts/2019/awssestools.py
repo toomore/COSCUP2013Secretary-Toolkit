@@ -988,6 +988,56 @@ def reminder_190817(dry_run=True):
             else:
                 print(AwsSESTools.mail_header(data[mail], mail))
 
+def reminder_190818(dry_run=True):
+    template = TPLENV.get_template('./190818.html')
+    data = {}
+    with open('./attendee_token.csv', 'r+') as files:
+        csv_reader = csv.DictReader(files)
+        for u in csv_reader:
+            data[u['mail']] = u['name']
+
+        _n = 0
+        for mail in data:
+            if not dry_run:
+                print('>>>', _n)
+                print('>>>', mail)
+                _n += 1
+                print(AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+                    source=AwsSESTools.mail_header(u'COSCUP 行政組', 'secretary@coscup.org'),
+                    to_addresses=AwsSESTools.mail_header(data[mail], mail),
+                    subject=u'[COSCUP2019] 8/18 ＊Important!! 注意事項＊',
+                    body=template.render(name=data[mail]),
+                ))
+            else:
+                print(AwsSESTools.mail_header(data[mail], mail))
+
+
+def reminder_190818_sponsor(dry_run=True):
+    template = TPLENV.get_template('./190818_sponor.html')
+
+    with open('./attendee_token.csv', 'r+') as files:
+        csv_reader = csv.DictReader(files)
+        data = {}
+        for u in csv_reader:
+            if int(u['fee']) < 2500:
+                continue
+
+            data[u['mail']] = u['name']
+
+        if not dry_run:
+            for mail in data:
+                print(mail)
+                print(AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+                    source=AwsSESTools.mail_header(u'COSCUP Sponsorship', 'sponsorship@coscup.org'),
+                    to_addresses=AwsSESTools.mail_header(data[mail], mail),
+                    subject=u'[COSCUP2019] 速領取個人贊助贈品 到 15:30 TR513',
+                    body=template.render(name=data[mail]),
+                ))
+        else:
+            for mail in data:
+                print(AwsSESTools.mail_header(data[mail], mail))
+
+
 
 if __name__ == '__main__':
     #worker_1('worker_1.csv', dry_run=False)
@@ -1043,4 +1093,6 @@ if __name__ == '__main__':
     #installation_reminder(dry_run=False)
     #reminder_baby(dry_run=False)
     #reminder_190817(dry_run=False)
+    #reminder_190818(dry_run=False)
+    #reminder_190818_sponsor(dry_run=False)
     pass
