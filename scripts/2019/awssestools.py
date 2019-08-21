@@ -1038,6 +1038,26 @@ def reminder_190818_sponsor(dry_run=True):
                 print(AwsSESTools.mail_header(data[mail], mail))
 
 
+def after_coscup(dry_run=True):
+    template = TPLENV.get_template('./after_coscup.html')
+
+    with open('./after_coscup_maillist_uuid.csv', 'r+') as files:
+        csv_reader = csv.DictReader(files)
+
+        _n = 0
+        if not dry_run:
+            for u in csv_reader:
+                print(_n, u['mail'])
+                _n += 1
+                print(AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+                    source=AwsSESTools.mail_header(u'COSCUP Attendee', 'attendee@coscup.org'),
+                    to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+                    subject=u'[COSCUP2019] 會後問卷 / Survey',
+                    body=template.render(u),
+                ))
+        else:
+            for u in csv_reader:
+                print(AwsSESTools.mail_header(u['name'], u['mail']))
 
 if __name__ == '__main__':
     #worker_1('worker_1.csv', dry_run=False)
@@ -1095,4 +1115,5 @@ if __name__ == '__main__':
     #reminder_190817(dry_run=False)
     #reminder_190818(dry_run=False)
     #reminder_190818_sponsor(dry_run=False)
+    #after_coscup(dry_run=False)
     pass
