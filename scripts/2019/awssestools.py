@@ -966,6 +966,26 @@ def reminder_baby(dry_run=True):
                 print(AwsSESTools.mail_header(u['name'], u['mail']))
 
 
+def after_baby(dry_run=True):
+    template = TPLENV.get_template('./baby_after.html')
+
+    with open('./baby_user.csv', 'r+') as files:
+        csv_reader = csv.DictReader(files)
+        _n = 0
+        for u in csv_reader:
+            print('>>>', _n, u['mail'])
+            _n += 1
+            if not dry_run:
+                print(AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+                    source=AwsSESTools.mail_header(u'COSCUP 行政組', 'secretary@coscup.org'),
+                    to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+                    subject=u'[COSCUP2019] 托育服務問卷調查',
+                    body=template.render(u),
+                ))
+            else:
+                print(AwsSESTools.mail_header(u['name'], u['mail']))
+
+
 def reminder_190817(dry_run=True):
     template = TPLENV.get_template('./190817_notice.html')
     data = {}
@@ -1116,4 +1136,5 @@ if __name__ == '__main__':
     #reminder_190818(dry_run=False)
     #reminder_190818_sponsor(dry_run=False)
     #after_coscup(dry_run=False)
+    #after_baby(dry_run=False)
     pass
