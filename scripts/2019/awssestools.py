@@ -20,6 +20,7 @@ from uuid import uuid4
 import setting
 
 import boto3
+import requests
 from jinja2 import Environment
 from jinja2 import FileSystemLoader
 
@@ -306,9 +307,9 @@ class AwsSESTools(object):
         img.add_header('Content-Disposition', 'attachment; filename=%s.png' % kwargs['token'])
         msg_all.attach(img)
 
-        return self.client.send_raw_email(
-                RawMessage={'Data': msg_all.as_string()})
-        #return msg_all.as_string()
+        #return self.client.send_raw_email(
+        #        RawMessage={'Data': msg_all.as_string()})
+        return msg_all.as_string()
 
     def send_attach_attendee(self, **kwargs):
         ''' send attachment for attendee
@@ -856,13 +857,15 @@ def reminder_workers(path, temp, title, dry_run=True):
             _n += 1
             if not dry_run:
                 print(u['mail'])
-                print(AwsSESTools(setting.AWSID, setting.AWSKEY).send_attach_worker(
+                body = AwsSESTools(setting.AWSID, setting.AWSKEY).send_attach_worker(
                     source=AwsSESTools.mail_header(u'COSCUP 行政組', 'secretary@coscup.org'),
                     to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
                     subject=title,
                     body=template.render(**u),
                     token=u['token'],
-                ))
+                )
+                queue_sender(body)
+                return
             else:
                 if not Path('./qrcode/worker/%s.png' % u['token']).is_file():
                     raise Exception('no png file', u['token'])
@@ -1122,6 +1125,11 @@ def after_speak(dry_run=True):
         else:
             for u in csv_reader:
                 print(AwsSESTools.mail_header(u['name'], u['mail']))
+
+
+def queue_sender(body):
+    requests.post('%s/exchange/coscup/secretary.1' % setting.QUEUEURL, data={'body': body})
+
 
 if __name__ == '__main__':
     #worker_1('worker_1.csv', dry_run=False)
