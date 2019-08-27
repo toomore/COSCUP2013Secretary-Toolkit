@@ -53,7 +53,7 @@ var consumerCmd = &cobra.Command{
 					quit <- struct{}{}
 				case t := <-secretaryQueue:
 					limit <- struct{}{}
-					log.Println(t)
+					log.Println(t.MessageId)
 					go sender(t, limit)
 				}
 			}

@@ -17,11 +17,9 @@ package cmd
 
 import (
 	"fmt"
-	"log"
 
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
 )
 
 // webCmd represents the web command
@@ -46,7 +44,6 @@ var webCmd = &cobra.Command{
 			body := c.PostForm("body")
 			exchange := c.Param("exchange")
 			key := c.Param("key")
-			log.Println(viper.GetStringMapString("ses"))
 			if _, ok := mq.Exchange[exchange]; ok {
 				mq.Exchange[exchange].Publish(key, []byte(body))
 			}
