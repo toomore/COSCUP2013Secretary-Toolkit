@@ -20,6 +20,7 @@ import (
 	"mail_sender/queue"
 	"os"
 
+	"github.com/aws/aws-sdk-go/service/ses"
 	"github.com/spf13/cobra"
 
 	"github.com/spf13/viper"
@@ -28,6 +29,7 @@ import (
 var (
 	cfgFile string
 	mq      *queue.MQ
+	svc     *ses.SES
 )
 
 // rootCmd represents the base command when called without any subcommands

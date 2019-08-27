@@ -18,59 +18,61 @@ package cmd
 import (
 	"fmt"
 	"log"
+	"os"
+	"os/signal"
+	"syscall"
 
-	"github.com/gin-gonic/gin"
 	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
 )
 
-// webCmd represents the web command
-var webCmd = &cobra.Command{
-	Use:   "web",
-	Short: "a web to recive queue requests",
-	Long:  `To recive queue requests and send to RabbitMQ.`,
+// consumerCmd represents the consumer command
+var consumerCmd = &cobra.Command{
+	Use:   "consumer",
+	Short: "consumer for worker",
+	Long:  `Create a consumer for worker`,
 	PreRun: func(cmd *cobra.Command, args []string) {
 		initMQ()
+		initSES()
 	},
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("web called")
+		fmt.Println("consumer called")
+		secretaryQueue := mq.GetConsumer("secretary")
 
-		r := gin.Default()
-		r.GET("/ping", func(c *gin.Context) {
-			c.JSON(200, gin.H{
-				"message": "pong",
-			})
-		})
+		quit := make(chan struct{}, 1)
+		limit := make(chan struct{}, 14)
 
-		r.POST("/exchange/:exchange/:key", func(c *gin.Context) {
-			body := c.PostForm("body")
-			exchange := c.Param("exchange")
-			key := c.Param("key")
-			log.Println(viper.GetStringMapString("ses"))
-			if _, ok := mq.Exchange[exchange]; ok {
-				mq.Exchange[exchange].Publish(key, []byte(body))
+		// --- signal
+		sigs := make(chan os.Signal, 1)
+		signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
+
+		go func() {
+			for {
+				select {
+				case sig := <-sigs:
+					log.Println("sig:", sig)
+					quit <- struct{}{}
+				case t := <-secretaryQueue:
+					limit <- struct{}{}
+					log.Println(t)
+					go sender(t, limit)
+				}
 			}
-
-			c.JSON(200, gin.H{
-				"exchange": exchange,
-				"body":     body,
-			})
-		})
-
-		r.Run("127.0.0.1:7700") // listen and serve on 0.0.0.0:8080
+		}()
+		<-quit
+		log.Printf("quit: %+v", mq)
 	},
 }
 
 func init() {
-	rootCmd.AddCommand(webCmd)
+	rootCmd.AddCommand(consumerCmd)
 
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	// webCmd.PersistentFlags().String("foo", "", "A help for foo")
+	// consumerCmd.PersistentFlags().String("foo", "", "A help for foo")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// webCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	// consumerCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
