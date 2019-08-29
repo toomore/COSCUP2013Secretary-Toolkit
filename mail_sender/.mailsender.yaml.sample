@@ -1,0 +1,16 @@
+ses:
+    region: us-east-1
+    id: 
+    secret: 
+rabbitmq:
+    url: amqp://guest:guest@127.0.0.1:5673/
+    exchanges:
+        - coscup
+    queues:
+        - secretary
+    consumers:
+        - secretary
+    secretary:
+        name: secretary
+        bind: coscup
+        route: secretary.1
