@@ -39,7 +39,11 @@ var consumerCmd = &cobra.Command{
 		secretaryQueue := mq.GetConsumer("secretary")
 
 		quit := make(chan struct{}, 1)
-		limit := make(chan struct{}, 14)
+
+		quota := getSendQuota()
+		log.Println("[info]", "MaxSendRate", *quota.MaxSendRate)
+		maxRate := int(*quota.MaxSendRate)
+		limit := make(chan struct{}, maxRate)
 
 		// --- signal
 		sigs := make(chan os.Signal, 1)
@@ -54,7 +58,7 @@ var consumerCmd = &cobra.Command{
 				case t := <-secretaryQueue:
 					limit <- struct{}{}
 					log.Println(t.MessageId)
-					go sender(t, limit)
+					go sender(t, limit, maxRate)
 				}
 			}
 		}()

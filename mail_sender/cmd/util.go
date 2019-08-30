@@ -38,7 +38,15 @@ func initSES() {
 	))
 }
 
-func sender(t amqp.Delivery, limit chan struct{}) {
+func getSendQuota() *ses.GetSendQuotaOutput {
+	result, err := svc.GetSendQuota(&ses.GetSendQuotaInput{})
+	if err != nil {
+		log.Println("[ERR]", err)
+	}
+	return result
+}
+
+func sender(t amqp.Delivery, limit chan struct{}, retry int) {
 	raw := &ses.RawMessage{}
 	raw.SetData(t.Body)
 	log.Println(raw.Validate())
@@ -46,7 +54,7 @@ func sender(t amqp.Delivery, limit chan struct{}) {
 	input := &ses.SendRawEmailInput{}
 	input.RawMessage = raw
 
-	for i := 0; i < 7; i++ {
+	for i := 0; i < retry; i++ {
 		output, err := svc.SendRawEmail(input)
 		if err == nil {
 			log.Println("[OK]", i, output.String(), err)
