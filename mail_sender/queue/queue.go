@@ -165,7 +165,13 @@ func (m *MQ) GetConsumer(name string) <-chan amqp.Delivery {
 // New a MQ struct
 // ex: amqp://guest:guest@127.0.0.1:5673/
 func New(url string) *MQ {
-	conn, err := amqp.Dial(url)
+	conn, err := amqp.DialConfig(url, amqp.Config{
+		Properties: amqp.Table{
+			"product": "mail_sender",
+			"version": "🎈",
+		},
+		Heartbeat: 10 * time.Second,
+	})
 	for {
 		if err != nil {
 			log.Println("[ERROR] RabbitMQ conn fail", err)

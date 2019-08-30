@@ -44,6 +44,7 @@ var consumerCmd = &cobra.Command{
 		log.Println("[info]", "MaxSendRate", *quota.MaxSendRate)
 		maxRate := int(*quota.MaxSendRate)
 		limit := make(chan struct{}, maxRate)
+		mq.Channel.Qos(maxRate, 0, false)
 
 		// --- signal
 		sigs := make(chan os.Signal, 1)
