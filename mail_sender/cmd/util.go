@@ -59,6 +59,7 @@ func sender(t amqp.Delivery, limit chan struct{}, retry int) {
 		if err == nil {
 			log.Println("[OK]", i, output.String(), err)
 			t.Ack(false)
+			<-limit
 			return
 		}
 		log.Println("[FAIL]", i, output.String(), err)
