@@ -23,7 +23,56 @@ import (
 	"syscall"
 
 	"github.com/spf13/cobra"
+	"github.com/streadway/amqp"
 )
+
+func consumerCmdRun(cmd *cobra.Command, args []string) {
+	initMQ()
+	fmt.Println("consumer called")
+	secretaryQueue := mq.GetConsumer("secretary")
+
+	quit := make(chan struct{}, 1)
+
+	quota := getSendQuota()
+	log.Println("[info]", "MaxSendRate", *quota.MaxSendRate)
+	maxRate := int(*quota.MaxSendRate)
+	limit := make(chan struct{}, maxRate)
+	mq.Channel.Qos(maxRate, 0, false)
+
+	// --- signal
+	sigs := make(chan os.Signal, 1)
+	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM, syscall.SIGKILL)
+
+	// --- Notify Close
+	notifyClose := mq.Conn.NotifyClose(make(chan *amqp.Error))
+	var restart bool
+
+	go func() {
+		for {
+			select {
+			case sig := <-sigs:
+				log.Println("sig:", sig)
+				quit <- struct{}{}
+				return
+			case n := <-notifyClose:
+				log.Println("sig.close:", n)
+				restart = true
+				quit <- struct{}{}
+				return
+			case t := <-secretaryQueue:
+				limit <- struct{}{}
+				log.Println(t.MessageId)
+				go sender(t, limit, maxRate)
+			}
+		}
+	}()
+	<-quit
+	log.Printf("quit: %+v", mq)
+	if restart == true {
+		log.Println("Prepare restart ...")
+		consumerCmdRun(cmd, args)
+	}
+}
 
 // consumerCmd represents the consumer command
 var consumerCmd = &cobra.Command{
@@ -31,41 +80,9 @@ var consumerCmd = &cobra.Command{
 	Short: "consumer for worker",
 	Long:  `Create a consumer for worker`,
 	PreRun: func(cmd *cobra.Command, args []string) {
-		initMQ()
 		initSES()
 	},
-	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("consumer called")
-		secretaryQueue := mq.GetConsumer("secretary")
-
-		quit := make(chan struct{}, 1)
-
-		quota := getSendQuota()
-		log.Println("[info]", "MaxSendRate", *quota.MaxSendRate)
-		maxRate := int(*quota.MaxSendRate)
-		limit := make(chan struct{}, maxRate)
-		mq.Channel.Qos(maxRate, 0, false)
-
-		// --- signal
-		sigs := make(chan os.Signal, 1)
-		signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
-
-		go func() {
-			for {
-				select {
-				case sig := <-sigs:
-					log.Println("sig:", sig)
-					quit <- struct{}{}
-				case t := <-secretaryQueue:
-					limit <- struct{}{}
-					log.Println(t.MessageId)
-					go sender(t, limit, maxRate)
-				}
-			}
-		}()
-		<-quit
-		log.Printf("quit: %+v", mq)
-	},
+	Run: consumerCmdRun,
 }
 
 func init() {

@@ -49,20 +49,24 @@ func getSendQuota() *ses.GetSendQuotaOutput {
 func sender(t amqp.Delivery, limit chan struct{}, retry int) {
 	raw := &ses.RawMessage{}
 	raw.SetData(t.Body)
-	log.Println(raw.Validate())
+	if err := raw.Validate(); err != nil {
+		log.Println("[sender.Validate]", err)
+		t.Ack(false)
+		<-limit
+		return
+	}
 
-	input := &ses.SendRawEmailInput{}
-	input.RawMessage = raw
+	input := &ses.SendRawEmailInput{RawMessage: raw}
 
 	for i := 0; i < retry; i++ {
 		output, err := svc.SendRawEmail(input)
 		if err == nil {
-			log.Println("[OK]", i, output.String(), err)
+			log.Println("[sender.OK]", i, t.MessageId, output.String(), err)
 			t.Ack(false)
 			<-limit
 			return
 		}
-		log.Println("[FAIL]", i, output.String(), err)
+		log.Println("[sender.FAIL]", i, t.MessageId, output.String(), err)
 	}
 	t.Nack(false, false)
 	<-limit
