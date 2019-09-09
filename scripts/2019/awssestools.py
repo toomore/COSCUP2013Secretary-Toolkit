@@ -137,6 +137,7 @@ class AwsSESTools(object):
         msg_all['From'] = kwargs['source']
         msg_all['To'] = kwargs['to_addresses']
         msg_all['Subject'] = kwargs['subject']
+        msg_all['X-Github'] = 'toomore/COSCUP2013Secretary-Toolkit'
 
         msg_all.attach(MIMEText(kwargs['body'], 'html', 'utf-8'))
 
@@ -1189,6 +1190,29 @@ def after_coscup_review_2(dry_run=True):
                 print(AwsSESTools.mail_header(users[mail]['name'], mail))
 
 
+def after_coscup_review_staff(dry_run=True):
+    template = TPLENV.get_template('./after_coscup_review_staff.html')
+
+    users = {}
+    with open('./works_form.csv', 'r+') as files:
+        csv_reader = csv.DictReader(files)
+
+        _n = 0
+        for u in csv_reader:
+            print(_n, u['mail'])
+            _n += 1
+            if not dry_run:
+                raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+                    source=AwsSESTools.mail_header(u'COSCUP 行政組', 'secretary@coscup.org'),
+                    to_addresses=AwsSESTools.mail_header(u['nickname'], u['mail']),
+                    subject=u'[COSCUP2019] 檢討會 9/21 night | TeSA 青島學堂',
+                    body=template.render(name=u['nickname']),
+                )
+                queue_sender(raw)
+            else:
+                print(AwsSESTools.mail_header(u['nickname'], u['mail']))
+
+
 def queue_sender(body):
     requests.post('%s/exchange/coscup/secretary.1' % setting.QUEUEURL, data={'body': body})
 
@@ -1255,4 +1279,5 @@ if __name__ == '__main__':
     #after_speak(dry_run=False)
     #after_coscup_review(dry_run=False)
     #after_coscup_review_2(dry_run=False)
+    #after_coscup_review_staff(dry_run=False)
     pass
