@@ -60,20 +60,10 @@ var webCmd = &cobra.Command{
 			})
 		})
 
-		r.Run("127.0.0.1:7700") // listen and serve on 0.0.0.0:8080
+		r.Run("127.0.0.1:7700")
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(webCmd)
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// webCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// webCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
