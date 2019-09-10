@@ -1193,7 +1193,6 @@ def after_coscup_review_2(dry_run=True):
 def after_coscup_review_staff(dry_run=True):
     template = TPLENV.get_template('./after_coscup_review_staff.html')
 
-    users = {}
     with open('./works_form.csv', 'r+') as files:
         csv_reader = csv.DictReader(files)
 
@@ -1211,6 +1210,32 @@ def after_coscup_review_staff(dry_run=True):
                 queue_sender(raw)
             else:
                 print(AwsSESTools.mail_header(u['nickname'], u['mail']))
+
+
+def after_coscup_osc_tokyo(dry_run=True):
+    template = TPLENV.get_template('./after_coscup_osc_tokyo.html')
+
+    users = {}
+    with open('./attendee_epaper.csv', 'r+') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users[u['mail']] = u['name']
+
+        _n = 0
+        for mail in users:
+            print(_n, mail)
+            _n += 1
+            if not dry_run:
+                raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+                    source=AwsSESTools.mail_header(u'COSCUP Attendee', 'attendee@coscup.org'),
+                    to_addresses=AwsSESTools.mail_header(users[mail], mail),
+                    subject=u'[COSCUP2019+1] 來去上海、來去東京！COSCon 與 OSC Tokyo「COSCUP 特別軌」徵稿開始！',
+                    body=template.render(name=users[mail]),
+                )
+                queue_sender(raw)
+            else:
+                print(AwsSESTools.mail_header(users[mail], mail))
 
 
 def queue_sender(body):
@@ -1280,4 +1305,5 @@ if __name__ == '__main__':
     #after_coscup_review(dry_run=False)
     #after_coscup_review_2(dry_run=False)
     #after_coscup_review_staff(dry_run=False)
+    #after_coscup_osc_tokyo(dry_run=False)
     pass
