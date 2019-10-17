@@ -29,9 +29,18 @@ class GSuite(object):
     # ----- Groups ----- #
     # https://developers.google.com/admin-sdk/directory/v1/reference/groups
     # https://googleapis.github.io/google-api-python-client/docs/dyn/admin_directory_v1.groups.html
-    def groups_list(self):
+    def groups_list(self, page_token=None):
         ''' Groups.list '''
-        return self.service.groups().list(customer='my_customer', orderBy='email').execute()
+        return self.service.groups().list(customer='my_customer', orderBy='email', pageToken=page_token).execute()
+
+    def groups_list_loop(self, page_token=None):
+        groups = self.groups_list(page_token=page_token)
+        for group in groups['groups']:
+            yield group
+
+        if 'nextPageToken' in groups:
+            for group in self.groups_list_loop(page_token=groups['nextPageToken']):
+                yield group
 
     def groups_insert(self, email, description=None, name=None):
         ''' Groups.insert '''
