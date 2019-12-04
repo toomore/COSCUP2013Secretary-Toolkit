@@ -1222,6 +1222,8 @@ def after_coscup_osc_tokyo(dry_run=True):
         for u in csv_reader:
             users[u['mail']] = u['name']
 
+        users = {'toomore0929@gmail.com': 'Toomore'}
+
         _n = 0
         for mail in users:
             print(_n, mail)
@@ -1230,7 +1232,35 @@ def after_coscup_osc_tokyo(dry_run=True):
                 raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
                     source=AwsSESTools.mail_header(u'COSCUP Attendee', 'attendee@coscup.org'),
                     to_addresses=AwsSESTools.mail_header(users[mail], mail),
-                    subject=u'[COSCUP2019+1] 來去上海、來去東京！COSCon 與 OSC Tokyo「COSCUP 特別軌」徵稿開始！',
+                    subject=u'[COSCUP2019+1] 來去上海、來去東京！COSCon 與 OSC Tokyo「COSCUP 特別軌」徵稿開始！|',
+                    body=template.render(name=users[mail]),
+                )
+                queue_sender(raw)
+                return
+            else:
+                print(AwsSESTools.mail_header(users[mail], mail))
+
+def coscup_taigi(dry_run=True):
+    template = TPLENV.get_template('./coscup_taigi.html')
+
+    users = {}
+    with open('./attendee_epaper.csv', 'r+') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users[u['mail']] = u['name']
+
+        #users = {'toomore0929@gmail.com': 'Toomore'}
+
+        _n = 0
+        for mail in users:
+            print(_n, mail)
+            _n += 1
+            if not dry_run:
+                raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+                    source=AwsSESTools.mail_header(u'COSCUP Attendee', 'attendee@coscup.org'),
+                    to_addresses=AwsSESTools.mail_header(users[mail], mail),
+                    subject=u'[COSCUP2019 Taigi] 來用台語講開源 2019/12/21 即刻報名 |',
                     body=template.render(name=users[mail]),
                 )
                 queue_sender(raw)
@@ -1306,4 +1336,5 @@ if __name__ == '__main__':
     #after_coscup_review_2(dry_run=False)
     #after_coscup_review_staff(dry_run=False)
     #after_coscup_osc_tokyo(dry_run=False)
+    coscup_taigi(dry_run=False)
     pass
