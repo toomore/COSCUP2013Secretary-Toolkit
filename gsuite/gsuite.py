@@ -34,6 +34,7 @@ class GSuite(object):
         return self.service.groups().list(customer='my_customer', orderBy='email', pageToken=page_token).execute()
 
     def groups_list_loop(self, page_token=None):
+        ''' Groups.list.loop '''
         groups = self.groups_list(page_token=page_token)
         for group in groups['groups']:
             yield group
@@ -56,9 +57,19 @@ class GSuite(object):
     # ----- Members ----- #
     # https://developers.google.com/admin-sdk/directory/v1/reference/members
     # https://googleapis.github.io/google-api-python-client/docs/dyn/admin_directory_v1.members.html
-    def members_list(self, group_key):
+    def members_list(self, group_key, page_token=None):
         ''' members.list '''
-        return self.service.members().list(groupKey=group_key).execute()
+        return self.service.members().list(groupKey=group_key, pageToken=page_token).execute()
+
+    def members_list_loop(self, group_key):
+        ''' members.list.loop '''
+        members = self.members_list(group_key)
+        for member in members.get('members', []):
+            yield member
+
+        if 'nextPageToken' in members:
+            for member in self.members_list(group_key, page_token=members['nextPageToken']).get('members', []):
+                yield member
 
     def members_insert(self, group_key, email, role='MEMBER', delivery_settings='ALL_MAIL'):
         ''' members.insert '''
