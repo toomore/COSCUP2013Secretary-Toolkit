@@ -424,6 +424,34 @@ class AwsSESTools(object):
                 RawMessage={'Data': msg_all.as_string()})
         #return msg_all.as_string()
 
+    def send_attach_taigi(self, **kwargs):
+        ''' send attachment for taigi
+
+        :param str source: from
+        :param str to_addresses: to
+        :param str subject: subject
+        :param str body: body
+        :param str token: token
+
+        '''
+        msg_all = MIMEMultipart()
+        msg_all['From'] = kwargs['source']
+        msg_all['To'] = kwargs['to_addresses']
+        msg_all['Subject'] = kwargs['subject']
+
+        msg_all.attach(MIMEText(kwargs['body'], 'html', 'utf-8'))
+
+        #image
+        with open('./taigi_qrcode/%s.png' % kwargs['token'], 'rb') as i:
+            img = MIMEImage(i.read())
+
+        img.add_header('Content-Disposition', 'attachment; filename=%s.png' % kwargs['token'])
+        msg_all.attach(img)
+
+        #return self.client.send_raw_email(
+        #        RawMessage={'Data': msg_all.as_string()})
+        return msg_all.as_string()
+
 
 def worker_1(path, dry_run=True):
     '''
@@ -1267,6 +1295,33 @@ def coscup_taigi(dry_run=True):
             else:
                 print(AwsSESTools.mail_header(users[mail], mail))
 
+def coscup_taigi_notice(dry_run=True):
+    template = TPLENV.get_template('./coscup_taigi_qrcode.html')
+
+    users = []
+    with open('./taigi_attendees_mail.csv', 'r+') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['id'], u['token'])
+        _n += 1
+
+        #if dry_run:
+        #    u['mail'] = 'toomore0929@gmail.com'
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_attach_taigi(
+            source=AwsSESTools.mail_header(u'COSCUP Attendee', 'attendee@coscup.org'),
+            to_addresses=AwsSESTools.mail_header(u['nickname'], u['mail']),
+            subject=u'COSCUP「來台講」 + QRCode 報到、行前通知：明仔載，愛來！ (%s)' % u['id'],
+            body=template.render(name=u['nickname']),
+            token=u['token'],
+        )
+        queue_sender(raw)
+
 
 def queue_sender(body):
     requests.post('%s/exchange/coscup/secretary.1' % setting.QUEUEURL, data={'body': body})
@@ -1336,5 +1391,6 @@ if __name__ == '__main__':
     #after_coscup_review_2(dry_run=False)
     #after_coscup_review_staff(dry_run=False)
     #after_coscup_osc_tokyo(dry_run=False)
-    coscup_taigi(dry_run=False)
+    #coscup_taigi(dry_run=False)
+    #coscup_taigi_notice(dry_run=True)
     pass
