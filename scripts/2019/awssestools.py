@@ -1322,6 +1322,32 @@ def coscup_taigi_notice(dry_run=True):
         )
         queue_sender(raw)
 
+def coscup_taigi_after(dry_run=True):
+    template = TPLENV.get_template('./coscup_taigi_after.html')
+
+    users = []
+    with open('./taigi_attendees_mail.csv', 'r+') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['id'], u['mail'])
+        _n += 1
+
+        #if dry_run:
+        #    u['mail'] = 'toomore0929@gmail.com'
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(u'COSCUP Attendee', 'attendee@coscup.org'),
+            to_addresses=AwsSESTools.mail_header(u['nickname'], u['mail']),
+            subject=u'COSCUP「來台講」 會後問卷 (%s)' % u['id'],
+            body=template.render(name=u['nickname']),
+        )
+        queue_sender(raw)
+
 
 def queue_sender(body):
     requests.post('%s/exchange/coscup/secretary.1' % setting.QUEUEURL, data={'body': body})
@@ -1393,4 +1419,5 @@ if __name__ == '__main__':
     #after_coscup_osc_tokyo(dry_run=False)
     #coscup_taigi(dry_run=False)
     #coscup_taigi_notice(dry_run=True)
+    #coscup_taigi_after(dry_run=True)
     pass
