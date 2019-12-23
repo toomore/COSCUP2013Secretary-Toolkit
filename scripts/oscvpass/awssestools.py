@@ -99,6 +99,9 @@ def process_csv(path):
     with open(path, 'r+') as files:
         csv_reader = csv.DictReader(files)
         for r in csv_reader:
+            if r['send'] != '':
+                continue
+
             if r['status'] == '拒絕':
                 data['deny'].append(r)
             elif r['status'] == '補件':
@@ -142,11 +145,40 @@ def send(data, case, dry_run=True):
     if 'deny' in case:
         template = TPLENV.get_template('./deny.html')
         for r in data['deny']:
+            print('deny', r['mail'])
             body = template.render(**r)
             raw = make_raw_email(
                 nickname=r['nickname'],
                 mail=r['mail'],
-                subject=u'[OSCVPass] Result: Deny',
+                subject=u'[OSCVPass] Result: Deny (%s)' % r['nickname'],
+                body=body,
+                dry_run=dry_run,
+            )
+            SENDER.client.send_raw_email(RawMessage={'Data': raw})
+
+    if 'insufficient_for' in case:
+        template = TPLENV.get_template('./insufficient_for.html')
+        for r in data['insufficient_for']:
+            print('insufficient_for', r['mail'])
+            body = template.render(**r)
+            raw = make_raw_email(
+                nickname=r['nickname'],
+                mail=r['mail'],
+                subject=u'[OSCVPass] Result: Insufficient (%s)' % r['nickname'],
+                body=body,
+                dry_run=dry_run,
+            )
+            SENDER.client.send_raw_email(RawMessage={'Data': raw})
+
+    if 'pass' in case:
+        template = TPLENV.get_template('./pass.html')
+        for r in data['pass']:
+            print('pass', r['mail'])
+            body = template.render(**r)
+            raw = make_raw_email(
+                nickname=r['nickname'],
+                mail=r['mail'],
+                subject=u'[OSCVPass] Result: Pass (%s)' % r['nickname'],
                 body=body,
                 dry_run=dry_run,
             )
@@ -154,11 +186,11 @@ def send(data, case, dry_run=True):
 
 
 if __name__ == '__main__':
-    #from pprint import pprint
-    data = process_csv('./oscvpass_191217.csv')
-    #for case in data:
-    #    print(case, len(data[case]))
+    from pprint import pprint
+    data = process_csv('./oscvpass_191223.csv')
+    for case in data:
+        print(case, len(data[case]))
 
     #pprint(data['deny'])
-    send(data=data, case=('deny', ))
+    send(data=data, case=('deny', 'insufficient_for', 'pass'), dry_run=True)
     pass
