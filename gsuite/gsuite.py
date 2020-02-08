@@ -67,8 +67,9 @@ class GSuite(object):
         for member in members.get('members', []):
             yield member
 
-        if 'nextPageToken' in members:
-            for member in self.members_list(group_key, page_token=members['nextPageToken']).get('members', []):
+        while 'nextPageToken' in members:
+            members = self.members_list(group_key, page_token=members['nextPageToken'])
+            for member in members.get('members', []):
                 yield member
 
     def members_insert(self, group_key, email, role='MEMBER', delivery_settings='ALL_MAIL'):
