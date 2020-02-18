@@ -26,6 +26,9 @@ class GSuite(object):
     def users_list(self):
         return self.service.users().list(customer='my_customer', orderBy='email').execute()
 
+    def users_get(self, user_key):
+        return self.service.users().get(userKey=user_key).execute()
+
     # ----- Groups ----- #
     # https://developers.google.com/admin-sdk/directory/v1/reference/groups
     # https://googleapis.github.io/google-api-python-client/docs/dyn/admin_directory_v1.groups.html
