@@ -1,0 +1,478 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>COSCUP</title>
+    <style>
+      /* -------------------------------------
+          GLOBAL RESETS
+      ------------------------------------- */
+      img {
+        border: none;
+        -ms-interpolation-mode: bicubic;
+        max-width: 100%; }
+
+      body {
+        background-color: #ffffff;
+        font-family: sans-serif;
+        -webkit-font-smoothing: antialiased;
+        font-size: 14px;
+        line-height: 1.4;
+        margin: 0;
+        padding: 0;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%; }
+
+      table {
+        border-collapse: separate;
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+        width: 100%; }
+        table td {
+          font-family: sans-serif;
+          font-size: 14px;
+          vertical-align: top; }
+
+      /* -------------------------------------
+          BODY & CONTAINER
+      ------------------------------------- */
+
+      .body {
+        background-color: #ffffff;
+        width: 100%; }
+
+      /* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */
+      .container {
+        display: block;
+        margin: 0 auto !important;
+        /* makes it centered */
+        max-width: 580px;
+        padding: 10px; }
+
+      /* This should also be a block element, so that it will fill 100% of the .container */
+      .content {
+        box-sizing: border-box;
+        display: block;
+        margin: 0 auto;
+        max-width: 580px;
+        padding: 10px;
+        background-color: #3D9238; }
+
+      /* -------------------------------------
+          HEADER, FOOTER, MAIN
+      ------------------------------------- */
+      .main {
+        background: #fff;
+        border-radius: 3px;
+        width: 100%; }
+
+      .wrapper {
+        box-sizing: border-box;
+        padding: 20px; }
+
+      .footer {
+        clear: both;
+        padding-top: 10px;
+        text-align: center;
+        width: 100%; }
+        .footer td,
+        .footer p,
+        .footer span,
+        .footer a {
+          color: #ffffff;
+          font-size: 12px;
+          text-align: center; }
+
+      /* -------------------------------------
+          TYPOGRAPHY
+      ------------------------------------- */
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: #000000;
+        font-family: sans-serif;
+        font-weight: 400;
+        line-height: 1.4;
+        margin: 0;
+        margin-bottom: 30px; }
+
+      h1 {
+        font-size: 35px;
+        font-weight: 300;
+        text-align: center;
+        text-transform: capitalize; }
+
+      p,
+      ul,
+      ol {
+        font-family: sans-serif;
+        font-size: 14px;
+        font-weight: normal;
+        margin: 0;
+        margin-bottom: 15px; }
+        p li,
+        ul li,
+        ol li {
+          list-style-position: inside;
+          margin-left: 5px; }
+
+      a {
+        color: #3498db;
+        text-decoration: underline; }
+
+      /* -------------------------------------
+          BUTTONS
+      ------------------------------------- */
+      .btn {
+        box-sizing: border-box;
+        width: 100%; }
+        .btn > tbody > tr > td {
+          padding-bottom: 15px; }
+        .btn table {
+          width: auto; }
+        .btn table td {
+          background-color: #ffffff;
+          border-radius: 5px;
+          text-align: center; }
+        .btn a {
+          background-color: #ffffff;
+          border: solid 1px #3498db;
+          border-radius: 5px;
+          box-sizing: border-box;
+          color: #3498db;
+          cursor: pointer;
+          display: inline-block;
+          font-size: 14px;
+          font-weight: bold;
+          margin: 0;
+          padding: 12px 25px;
+          text-decoration: none;
+          text-transform: capitalize; }
+
+      .btn-primary table td {
+        background-color: #3498db; }
+
+      .btn-primary a {
+        background-color: #3498db;
+        border-color: #3498db;
+        color: #ffffff; }
+
+      /* -------------------------------------
+          OTHER STYLES THAT MIGHT BE USEFUL
+      ------------------------------------- */
+      .last {
+        margin-bottom: 0; }
+
+      .first {
+        margin-top: 0; }
+
+      .align-center {
+        text-align: center; }
+
+      .align-right {
+        text-align: right; }
+
+      .align-left {
+        text-align: left; }
+
+      .clear {
+        clear: both; }
+
+      .mt0 {
+        margin-top: 0; }
+
+      .mb0 {
+        margin-bottom: 0; }
+
+      .preheader {
+        color: transparent;
+        display: none;
+        height: 0;
+        max-height: 0;
+        max-width: 0;
+        opacity: 0;
+        overflow: hidden;
+        mso-hide: all;
+        visibility: hidden;
+        width: 0; }
+
+      .powered-by a {
+        text-decoration: none; }
+
+      hr {
+        border: 0;
+        border-bottom: 1px solid #f6f6f6;
+        margin: 20px 0; }
+
+      /* -------------------------------------
+          RESPONSIVE AND MOBILE FRIENDLY STYLES
+      ------------------------------------- */
+      @media only screen and (max-width: 580px) {
+        table[class=body] h1 {
+          font-size: 28px !important;
+          margin-bottom: 10px !important; }
+        table[class=body] p,
+        table[class=body] ul,
+        table[class=body] ol,
+        table[class=body] td,
+        table[class=body] span,
+        table[class=body] a {
+          font-size: 16px !important; }
+        table[class=body] .wrapper,
+        table[class=body] .article {
+          padding: 10px !important; }
+        table[class=body] .content {
+          padding: 0 !important; }
+        table[class=body] .container {
+          padding: 0 !important;
+          width: 100% !important; }
+        table[class=body] .main {
+          border-left-width: 0 !important;
+          border-radius: 0 !important;
+          border-right-width: 0 !important; }
+        table[class=body] .btn table {
+          width: 100% !important; }
+        table[class=body] .btn a {
+          width: 100% !important; }
+        table[class=body] .img-responsive {
+          height: auto !important;
+          max-width: 100% !important;
+          width: auto !important; }}
+
+      /* -------------------------------------
+          PRESERVE THESE STYLES IN THE HEAD
+      ------------------------------------- */
+      @media all {
+        .ExternalClass {
+          width: 100%; }
+        .ExternalClass,
+        .ExternalClass p,
+        .ExternalClass span,
+        .ExternalClass font,
+        .ExternalClass td,
+        .ExternalClass div {
+          line-height: 100%; }
+        .apple-link a {
+          color: inherit !important;
+          font-family: inherit !important;
+          font-size: inherit !important;
+          font-weight: inherit !important;
+          line-height: inherit !important;
+          text-decoration: none !important; }
+        .btn-primary table td:hover {
+          background-color: #34495e !important; }
+        .btn-primary a:hover {
+          background-color: #34495e !important;
+          border-color: #34495e !important; } }
+
+      .quote {
+        color: #334433;
+        font-style: italic;
+        font-size: small;
+      }
+      h2 {
+        font-weight: bold;
+        font-family: "Arial";
+        border-bottom: 1px #3D9238 dashed;
+        padding-left: 1px;
+        margin-top: 30px;
+        margin-bottom: 12px;
+      }
+      h3 {
+        margin-bottom: 5px;
+        margin-top: 20px;
+        color: #3D9238;
+        font-weight: bold;
+      }
+      ol li,
+      ul li {
+        list-style-position: outside;
+        margin-left: 0px;
+        line-height: 2;
+      }
+      span.note {
+        border-radius: 2px;
+        padding: 3px;
+        font-weight: bold;
+        color: #ffffff;
+        font-size: 8pt;
+      }
+      span.first {
+        background-color: #2962FF;
+      }
+      span.second {
+        background-color: #FF6F00;
+      }
+      span.ef {
+        background-color: #7B1FA2;
+      }
+      span.sf {
+        background-color: #9C27B0;
+      }
+      span.local {
+        background-color: #009688;
+      }
+      .tips {
+        font-family: "Courier New";
+        background-color: #fafafa;
+        padding: 6px;
+        border-radius: 3px;
+        border: 1px #81d4fa solid;
+        font-size: 12px;
+        color: #01579b;
+      }
+      .tips-green {
+        color: #2E7D32;
+        border: 1px #43A047 solid;
+      }
+      pre {
+        font-size: small;
+        line-height: 12px;
+        color: #607D8B;
+        text-align: right;
+      }
+      p small,
+      li small {
+        color: #898989;
+      }
+      .btn-tips{
+        font-size: x-small;
+        color: #6E8E6C;
+        text-align: center;
+      }
+      .content {
+        border-radius: 3px;
+      }
+      .inen {
+        font-size: small;
+        color: #606060;
+      }
+    </style>
+  </head>
+  <body class="">
+    <table border="0" cellpadding="0" cellspacing="0" class="body">
+      <tr>
+        <td>&nbsp;</td>
+        <td class="container">
+          <div class="content">
+
+            <!-- START CENTERED WHITE CONTAINER -->
+            <span class="preheader">!!!</span>
+            <table class="main">
+
+              <!-- START MAIN CONTENT AREA -->
+              <tr>
+                <td class="wrapper">
+                  <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td>
+                        <p class="align-right" style="margin-bottom:0px;"><a href="https://coscup.org/"><img width="135" src="https://secretary.coscup.org/s3/img/coscup_logo_tw_270.png" alt="COSCUP Logo" title="COSCUP Logo"></a></p>
+                        <p>Hi {{name}},</p>
+                        <p>您曾經參與過 COSCUP2019，但因為接下來的 COSCUP2020 活動些許的與以往不同，所以我們特別寄送這份訊息說明。只會發送這份訊息一次，如果想要知道 COSCUP 最新狀況，建議訂閱我們的活動電子報，再次感謝！</p>
+                        <p class="inen">You had participated in COSCUP 2019, but some differences from past, so we send this letter to you to introduce the new way in COSCUP 2020. And the message only send once, if want to receive more updates, recommend to subscribe our news letter. Thanks.</p>
+                        <h2>重要知悉 / Recap</h2>
+                        <p>今年的 COSCUP2020 重點為：</p>
+                        <ul>
+                          <li>進場方式是<strong>「不用報名」</strong>+<strong>「健康聲明表」</strong></li>
+                          <li>訂閱 COSCUP 活動電子報避免忘記來</li>
+                          <li>前夜派對 7/31 晚上，自由參加</li>
+                        </ul>
+                        <p class="inen">COSCUP2020 Highlights:</p>
+                        <ul>
+                          <li class="inen"><strong>No Registration</strong> + <strong>Health Declaration Card</strong> are the way to join COSCUP2020.</li>
+                          <li class="inen">You could subscribe the COSCUP news paper for reminding you to fill out the form or for informing more activities.</li>
+                          <li class="inen">Welcome Party on 2020-07-31</li>
+                        </ul>
+                        <h2>「不用報名」+「健康聲明表」</h2>
+                        <p>今年 COSCUP2020 首次嘗試不用報名、自由入場的方式進行。但因為疫情的關係，需要在活動日 2020-08-01 出示「健康聲明表」才可以進場。</p>
+                        <p>「健康聲明表」開放填寫的時間為：2020-07-20 ~ </p>
+                        <p>如果怕忘記填寫時間，可以訂閱 COSCUP 的活動電子報，我們會在合適的時間點提醒你！</p>
+                        <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
+                          <tbody>
+                            <tr>
+                              <td align="center">
+                                <table border="0" cellpadding="0" cellspacing="0">
+                                  <tbody>
+                                    <tr>
+                                      <td> <a href="https://secretary.coscup.org/subscribe/coscup" target="_blank">訂閱活動電子報</a> </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <p>別忘了，今年的進場方式是「不用報名」+「健康聲明表」。對了，還有 <strong>COSCUP 前夜派對</strong>，我們預計在 2020-07-31 舉行，詳細的活動地點與時間預計會在 2020-07-04 公告！</p>
+                        <h2>相關連結</h2>
+                        <ul>
+                          <li>議程 <a href="https://coscup.org/2020/zh-TW/agenda">https://coscup.org/2020/zh-TW/agenda</a></li>
+                          <li>志工 <a href="https://volunteer.coscup.org/">https://volunteer.coscup.org/</a></li>
+                        </ul>
+                        <h2>No Registration + HDC</h2>
+                        <p class="inen">In this year COSCUP 2020, registrations are not required. Because of COVID-19, you have to fill out the form of Health Declaration Card before the day of 2020-08-01, and show it on the two days at COSCUP 2020.</p>
+                        <p class="inen">We will open the form of Health Declaration Card for fill out on 2020-07-20(12 days before the conference) ~</p>
+                        <p class="inen">You could subscribe the COSCUP news letter for reminding you to fill out the form or for informing more activities.</p>
+                        <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
+                          <tbody>
+                            <tr>
+                              <td align="center">
+                                <table border="0" cellpadding="0" cellspacing="0">
+                                  <tbody>
+                                    <tr>
+                                      <td> <a href="https://secretary.coscup.org/subscribe/coscup" target="_blank">Subscribe</a> </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <p class="inen">Don’t forget, <strong>No Registration</strong> + <strong>Health Declaration Card</strong> are the way to join COSCUP 2020.</p>
+                        <p class="inen">By the way, <strong>COSCUP Welcome Party</strong> will on 2020-07-31, the more details will be announced on 2020-07-04.</p>
+                        <h2>Links</h2>
+                        <ul>
+                          <li class="inen">Agenda <a href="https://coscup.org/2020/en/agenda">https://coscup.org/2020/en/agenda</a></li>
+                          <li class="inen">Volunteers <a href="https://volunteer.coscup.org/">https://volunteer.coscup.org/</a></li>
+                        </ul>
+                        <p class="btn-tips" style="margin-bottom: 0;">如果有任何問題，可以直接回覆此封信件，感謝協助！</p>
+                        <p class="btn-tips">If you have any questions, please reply this letter.</p>
+                        <p class="align-center"><small style="color:#999999;">Send by Secretary | 行政組</small></p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            <!-- END MAIN CONTENT AREA -->
+            </table>
+
+            <!-- START FOOTER -->
+            <div class="footer">
+              <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td class="content-block">
+                    <span class="apple-link" style="display: inline-block;height: 24px;">
+                      <a href="https://www.facebook.com/coscup/"><img width="24px" src="https://secretary.coscup.org/s3/icon/facebook-square-brands.png"></a>
+                      <a href="https://t.me/coscupchat"><img width="24px" src="https://secretary.coscup.org/s3/icon/telegram-brands.png"></a>
+                      <a href="https://twitter.com/coscup"><img width="24px" src="https://secretary.coscup.org/s3/icon/twitter-square-brands.png"></a>
+                      <a href="https://blog.coscup.org/"><img width="24px" src="https://secretary.coscup.org/s3/icon/blogger-brands.png"></a>
+                      <a href="https://www.flickr.com/photos/coscup/"><img width="24px" src="https://secretary.coscup.org/s3/icon/flickr-brands.png"></a>
+                      <a href="https://www.youtube.com/user/thecoscup"><img width="24px" src="https://secretary.coscup.org/s3/icon/youtube-square-brands.png"></a>
+                    </span>
+                    <br>
+                    <span class="apple-link" style="display: inline-block;height: 15px;">COSCUP</span>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <!-- END FOOTER -->
+
+          <!-- END CENTERED WHITE CONTAINER -->
+          </div>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+  </body>
+</html>
