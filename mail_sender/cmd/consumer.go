@@ -68,7 +68,7 @@ func consumerCmdRun(cmd *cobra.Command, args []string) {
 			case t := <-secretaryQueue:
 				limit <- struct{}{}
 				log.Println(t.MessageId)
-				go sender(t, limit, maxRate)
+				go sender(t, limit, maxRate*2)
 			}
 		}
 	}()
