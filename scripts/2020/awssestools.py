@@ -507,6 +507,36 @@ def oscvpass(dry_run=True):
 
         queue_sender(raw)
 
+def personal_donation(dry_run=True):
+    template = TPLENV.get_template('./personal_donations.html')
+
+    users = []
+    with open('./coscup_paper_subscribers_20200706_042514.csv', 'r+') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        #if dry_run:
+        #    u['mail'] = 'toomore0929@gmail.com'
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(u'COSCUP Secretary', 'secretary@coscup.org'),
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject=u'[COSCUP] 個人贊助方案 / Personal Donations',
+            body=template.render(name=u['name'], admin_link=u['admin_link']),
+        )
+
+        queue_sender(raw)
+
+        #if dry_run and _n == 1:
+        #    return
+
 def queue_sender(body):
     requests.post('%s/exchange/coscup/secretary.1' % setting.QUEUEURL, data={'body': body})
 
@@ -514,4 +544,5 @@ def queue_sender(body):
 if __name__ == '__main__':
     #coscup_2020to2019(dry_run=True)
     #oscvpass(dry_run=True)
+    #personal_donation(dry_run=True)
     pass
