@@ -591,6 +591,33 @@ def playground(dry_run=True):
         #if dry_run and _n == 1:
         #    return
 
+def send_tv55ovz9_oscvpass_promote():
+    template = TPLENV.get_template('./oscvpass_promote.html')
+
+    users = []
+    with open('./coscup_paper_subscribers_tv55ovz9_20200716_150627.csv', 'r+') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        #if dry_run:
+        #    u['mail'] = 'toomore0929@gmail.com'
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(u'COSCUP Secretary', 'secretary@coscup.org'),
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject=u'OSCVPass 使用說明，VIP 室與氮氣咖啡 / OSCVPass, VIP Room and nitro cold brew(NCB) coffee',
+            body=template.render(**u),
+        )
+
+        queue_sender(raw)
+
 def queue_sender(body):
     requests.post('%s/exchange/coscup/secretary.1' % setting.QUEUEURL, data={'body': body})
 
@@ -601,4 +628,5 @@ if __name__ == '__main__':
     #personal_donation(dry_run=True)
     #test_base()
     #playground()
+    #send_tv55ovz9_oscvpass_promote()
     pass
