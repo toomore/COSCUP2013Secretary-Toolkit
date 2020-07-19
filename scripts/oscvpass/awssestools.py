@@ -202,14 +202,52 @@ def send_request_attendee(path, dry_run=True):
             )
             SENDER.client.send_raw_email(RawMessage={'Data': raw})
 
+def send_coscup_lpi(rows, dry_run=True):
+    template = TPLENV.get_template('./lpi_token.html')
+    _n = 1
+    for u in rows:
+        print(_n, u)
+        _n += 1
+
+        body = template.render(**u)
+        raw = make_raw_email(
+            nickname=u['name'],
+            mail=u['mail'],
+            subject=u'[OSCVPass] [提醒] 登記索取 LPI Exam 折扣券 (%s)' % u['name'],
+            body=body,
+            dry_run=dry_run,
+        )
+        SENDER.client.send_raw_email(RawMessage={'Data': raw})
+
+        if dry_run:
+            return
+
+def pickup_unique(data, cases):
+    maillist = []
+    for case in cases:
+        for row in data[case]:
+            row['mail'] = ','.join(row['mail'].split(' '))
+            row['mail'] = ','.join(row['mail'].split('/'))
+            row['mail'] = [m.strip() for m in row['mail'].split(',') if m][0]
+            maillist.append({'name': row['name'], 'mail': row['mail']})
+            print(row['name'], row['mail'])
+
+    return maillist
 
 if __name__ == '__main__':
     from pprint import pprint
-    data = process_csv('./oscvpass_200705_2.csv', _all=False)
-    for case in data:
-        print(case, len(data[case]))
+    #data = process_csv('./oscvpass_200719.csv', _all=False)
+    #for case in data:
+    #    print(case, len(data[case]))
 
     #pprint(data['deny'])
     #send(data=data, case=('deny', 'insufficient_for', 'pass'), dry_run=False)
     #send_request_attendee('/run/shm/hash_b0466044.csv', dry_run=True)
+
+    # ----- send get token ----- #
+    #data = process_csv('./oscvpass_200719.csv', _all=True)
+    #maillist = pickup_unique(data=data, cases=('pass', ))
+    #print(maillist)
+    #send_coscup_lpi(rows=maillist, dry_run=False)
+
     pass
