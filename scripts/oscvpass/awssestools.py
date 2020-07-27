@@ -155,6 +155,9 @@ def send(data, case, dry_run=True):
                 body=body,
                 dry_run=dry_run,
             )
+            if dry_run:
+                continue
+
             SENDER.client.send_raw_email(RawMessage={'Data': raw})
 
     if 'insufficient_for' in case:
@@ -169,6 +172,9 @@ def send(data, case, dry_run=True):
                 body=body,
                 dry_run=dry_run,
             )
+            if dry_run:
+                continue
+
             SENDER.client.send_raw_email(RawMessage={'Data': raw})
 
     if 'pass' in case:
@@ -183,6 +189,9 @@ def send(data, case, dry_run=True):
                 body=body,
                 dry_run=dry_run,
             )
+            if dry_run:
+                continue
+
             SENDER.client.send_raw_email(RawMessage={'Data': raw})
 
 def send_request_attendee(path, dry_run=True):
@@ -235,8 +244,8 @@ def pickup_unique(data, cases):
     return maillist
 
 if __name__ == '__main__':
-    from pprint import pprint
-    #data = process_csv('./oscvpass_200719.csv', _all=False)
+    #from pprint import pprint
+    #data = process_csv('./oscvpass_200726.csv', _all=False)
     #for case in data:
     #    print(case, len(data[case]))
 
@@ -245,9 +254,9 @@ if __name__ == '__main__':
     #send_request_attendee('/run/shm/hash_b0466044.csv', dry_run=True)
 
     # ----- send get token ----- #
-    #data = process_csv('./oscvpass_200719.csv', _all=True)
-    #maillist = pickup_unique(data=data, cases=('pass', ))
-    #print(maillist)
+    data = process_csv('./oscvpass_200726.csv', _all=True)
+    maillist = pickup_unique(data=data, cases=('pass', ))
+    print(maillist, len(maillist))
     #send_coscup_lpi(rows=maillist, dry_run=False)
 
     pass
