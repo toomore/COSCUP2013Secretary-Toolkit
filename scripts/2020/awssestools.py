@@ -618,6 +618,34 @@ def send_tv55ovz9_oscvpass_promote():
 
         queue_sender(raw)
 
+def send_u6b01dck_volunteer_tasks(dry_run=True):
+    template = TPLENV.get_template('./coscup_volunteer_tasks.html')
+    if dry_run:
+        path = './coscup_paper_subscribers_u6b01dck_test.csv'
+    else:
+        path = './coscup_paper_subscribers_u6b01dck_20200727_161208.csv'
+
+    users = []
+    with open(path, 'r+') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(u'COSCUP Secretary', 'secretary@coscup.org'),
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject=u'轉職變志工一起來解任務 Volunteer Tasks!',
+            body=template.render(**u),
+        )
+
+        queue_sender(raw)
+
 def queue_sender(body):
     requests.post('%s/exchange/coscup/secretary.1' % setting.QUEUEURL, data={'body': body})
 
@@ -629,4 +657,5 @@ if __name__ == '__main__':
     #test_base()
     #playground()
     #send_tv55ovz9_oscvpass_promote()
+    #send_u6b01dck_volunteer_tasks(dry_run=True)
     pass
