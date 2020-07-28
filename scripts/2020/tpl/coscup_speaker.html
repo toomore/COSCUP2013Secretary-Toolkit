@@ -366,22 +366,27 @@
                   <table border="0" cellpadding="0" cellspacing="0">
                     <tr>
                       <td>
-                        <p class="align-right" style="margin-bottom:12px;"><a href="https://coscup.org/?utm_source=subscribe&utm_medium=email&utm_campaign=coscup_guide&utm_term=img&utm_content=go_website"><img width="135" src="https://secretary.coscup.org/s3/img/coscup_logo_tw_270.png" alt="COSCUP Logo" title="COSCUP Logo"></a></p>
+                        <p class="align-right" style="margin-bottom:12px;"><a href="https://coscup.org/?utm_source=speaker&utm_medium=email&utm_campaign=reminder&utm_term=img&utm_content=go_website"><img width="135" src="https://secretary.coscup.org/s3/img/coscup_logo_tw_270.png" alt="COSCUP Logo" title="COSCUP Logo"></a></p>
                         <p><small>(English below / 下半部有英文版)</small></p>
                         <p>Hi {{name}},</p>
                         <p>如果你是講者，這邊有幾個小提醒：</p>
                         <ul>
                           <li>前夜派對：您將獲得一張酒券，可兌換一杯飲品，請尋找您的社群議程協調人進行領取。現場燈光昏暗，建議事先約好聯繫方式唷。</li>
-                          <li>大會紀念品：請點擊連結提前安裝 OPass，內建講者點數 1000 點，可至大會服務台兌換紀念品，數量有限，早到早選喔。遠距講者可將信件中的 QRcode 提供給社群議程協調人或任何會到現場的朋友協助代領。</li>
+                          <li>大會紀念品：<a href="https://dl.opass.app/?link=https%3A%2F%2Fopass.app%2Fopen%2F%3Fevent_id%3DCOSCUP_2020%26token%3D{{token}}&apn=app.opass.ccip&amv=40&isi=1436417025&ibi=app.opass.ccip">請點擊連結提前安裝 OPass</a>，內建講者點數 1000 點，可至大會服務台兌換紀念品，數量有限，早到早選喔。遠距講者可將信件中的 QRcode 提供給社群議程協調人或任何會到現場的朋友協助代領。</li>
                           <li>現場設備：投影機為 HDMI，請自備轉接頭，或詢問您的社群議程協調人。如您有 live demo 或需播放影片，建議您自備網路或做好離線備案。</li>
                           <li>講者報到：請隨時與您的社群議程協調人聯繫，並建議您在議程開始的前 10~15 分鐘至您的教室預作準備。</li>
+                          <ul>
+                              {% for tu in topic_users %}
+                              <li>{{tu.name}} / {{tu.mail}}</li>
+                              {% endfor %}
+                          </ul>
                           <li>遠距議程：請參考<a href="https://docs.google.com/document/d/10AJG4GNVuUPpDSpt6LCWyhegCEKUfZ1WoA-eHxdSaW8">本文件最後一節「其他提醒事項」</a></li>
                           <li>健康聲明：再次提醒～別忘了填寫您的健康聲明書與配戴口罩。</li>
                         </ul>
                         <p class="btn-tips" style="margin-bottom: 0; margin-top: 30px;">如果有任何問題，可以直接回覆此封信件，感謝協助！</p>
                         <p class="btn-tips" style="margin-bottom: 10px;">If you have any questions, please reply this letter.</p>
                         <p class="align-center">
-                          <a href="https://coscup.org/2020/zh-TW/sponsor?utm_source=subscribe&amp;utm_medium=email&amp;utm_campaign=coscup_guide&amp;utm_term=footer_sponsor_logo&amp;utm_content=go_sponsor"><img alt="all sponsor logos" style="border:1px solid #ededed;border-radius:5px;" src="https://secretary.coscup.org/s3/img/2020_all_sponsor_log.jpg"></a>
+                          <a href="https://coscup.org/2020/zh-TW/sponsor?utm_source=speaker&amp;utm_medium=email&amp;utm_campaign=reminder&amp;utm_term=footer_sponsor_logo&amp;utm_content=go_sponsor"><img alt="all sponsor logos" style="border:1px solid #ededed;border-radius:5px;" src="https://secretary.coscup.org/s3/img/2020_all_sponsor_log.jpg"></a>
                           <br><small>Sponsors</small>
                         </p>
                         <hr style="border:1px solid #80BD7C;">
@@ -389,15 +394,20 @@
                         <p>If you’re speaker, here are some tips:</p>
                         <ul>
                           <li>Party: You’ll get a voucher from your track coordinator, please contact them in advance in case there’s any difficulty to find them in crowds of people.</li>
-                          <li>Souvenirs: Please install Opass app in advance, the built-in 1000 speaker points, you can exchange souvenirs at the COSCUP booth, the quantity is limited, please exchange them as early as possible. The remote speaker can provide the QRcode in the letter to the community coordinator or any friend who will be there to help get your souvenir.</li>
+                          <li>Souvenirs: <a href="https://dl.opass.app/?link=https%3A%2F%2Fopass.app%2Fopen%2F%3Fevent_id%3DCOSCUP_2020%26token%3D{{token}}&apn=app.opass.ccip&amv=40&isi=1436417025&ibi=app.opass.ccip">Please install Opass app</a> in advance, the built-in 1000 speaker points, you can exchange souvenirs at the COSCUP booth, the quantity is limited, please exchange them as early as possible. The remote speaker can provide the QRcode in the letter to the community coordinator or any friend who will be there to help get your souvenir.</li>
                           <li>Equipment: The projector is HDMI, please bring your own adapter, or ask your community coordinator. If you have a live demo or need to play a video, due to the network is unstable, we highly recommend preparing your own network or make an offline backup.</li>
                           <li>Speaker check-in: Please feel free to contact your community coordinator, and it is recommended that you make preparations in your classroom 10-15 minutes before the agenda starts.</li>
+                          <ul>
+                              {% for tu in topic_users %}
+                              <li>{{tu.name}} / {{tu.mail}}</li>
+                              {% endfor %}
+                          </ul>
                           <li>Remote speaker notice: Please check this <a href="https://docs.google.com/document/d/10AJG4GNVuUPpDSpt6LCWyhegCEKUfZ1WoA-eHxdSaW8">document</a>.</li>
                         </ul>
                         <p class="btn-tips" style="margin-bottom: 0; margin-top: 30px;">如果有任何問題，可以直接回覆此封信件，感謝協助！</p>
                         <p class="btn-tips" style="margin-bottom: 10px;">If you have any questions, please reply this letter.</p>
                         <p class="align-center">
-                          <a href="https://coscup.org/2020/en/sponsor?utm_source=subscribe&amp;utm_medium=email&amp;utm_campaign=coscup_guide&amp;utm_term=footer_sponsor_logo_en&amp;utm_content=go_sponsor"><img alt="all sponsor logos" style="border:1px solid #ededed;border-radius:5px;" src="https://secretary.coscup.org/s3/img/2020_all_sponsor_log.jpg"></a>
+                          <a href="https://coscup.org/2020/en/sponsor?utm_source=speaker&amp;utm_medium=email&amp;utm_campaign=reminder&amp;utm_term=footer_sponsor_logo_en&amp;utm_content=go_sponsor"><img alt="all sponsor logos" style="border:1px solid #ededed;border-radius:5px;" src="https://secretary.coscup.org/s3/img/2020_all_sponsor_log.jpg"></a>
                           <br><small>Sponsors</small>
                         </p>
                         <p class="align-center"><small style="color:#999999;">Send by Program | 議程組</small></p>
@@ -418,7 +428,7 @@
                       <a href="https://www.facebook.com/coscup/"><img width="24" alt="coscup's facebook" src="https://secretary.coscup.org/s3/icon/facebook-square-brands.png"></a>
                       <a href="https://t.me/coscupchat"><img width="24" alt="coscup's telegram" src="https://secretary.coscup.org/s3/icon/telegram-brands.png"></a>
                       <a href="https://twitter.com/coscup"><img width="24" alt="coscup's twitter" src="https://secretary.coscup.org/s3/icon/twitter-square-brands.png"></a>
-                      <a href="https://blog.coscup.org/?utm_source=oscvpass&utm_medium=email&utm_campaign=coscup_guide&utm_term=footer_icon&utm_content=go_website"><img width="24" alt="coscup's blog" src="https://secretary.coscup.org/s3/icon/blogger-brands.png"></a>
+                      <a href="https://blog.coscup.org/?utm_source=oscvpass&utm_medium=email&utm_campaign=reminder&utm_term=footer_icon&utm_content=go_website"><img width="24" alt="coscup's blog" src="https://secretary.coscup.org/s3/icon/blogger-brands.png"></a>
                       <a href="https://www.flickr.com/photos/coscup/"><img width="24" alt="coscup's flickr" src="https://secretary.coscup.org/s3/icon/flickr-brands.png"></a>
                       <a href="https://www.youtube.com/user/thecoscup"><img width="24" alt="coscup's youtube" src="https://secretary.coscup.org/s3/icon/youtube-square-brands.png"></a>
                     </span>

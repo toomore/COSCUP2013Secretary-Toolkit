@@ -646,6 +646,46 @@ def send_u6b01dck_volunteer_tasks(dry_run=True):
 
         queue_sender(raw)
 
+def send_speakers(dry_run=True):
+    topic = {}
+    with open('./speaker_topic.csv', 'r+') as files:
+        csv_reader = csv.DictReader(files)
+        for raw in csv_reader:
+            topic[raw['topic']] = []
+            topic[raw['topic']].append({'name': raw['name1'].strip(), 'mail': raw['mail1'].strip()})
+            if raw['name2']:
+                topic[raw['topic']].append({'name': raw['name2'].strip(), 'mail': raw['mail2'].strip()})
+
+    print(topic)
+
+    speakers = []
+    with open('./speakers.csv', 'r+') as files:
+        csv_reader = csv.DictReader(files)
+        for raw in csv_reader:
+            speakers.append(raw)
+
+    template = TPLENV.get_template('./coscup_speaker.html')
+    _n = 0
+    for u in speakers:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        u['topic_users'] = topic[u['topic']]
+
+        if dry_run:
+            u['mail'] = 'toomore0929@gmail.com'
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(u'COSCUP Program', 'program@coscup.org'),
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject=u'Speaker Reminder / 講者行前通知信',
+            body=template.render(**u),
+        )
+
+        queue_sender(raw)
+        if _n == 1:
+            return
+
 def queue_sender(body):
     requests.post('%s/exchange/coscup/secretary.1' % setting.QUEUEURL, data={'body': body})
 
@@ -658,4 +698,5 @@ if __name__ == '__main__':
     #playground()
     #send_tv55ovz9_oscvpass_promote()
     #send_u6b01dck_volunteer_tasks(dry_run=True)
+    send_speakers()
     pass
