@@ -141,8 +141,14 @@ class AwsSESTools(object):
 
         msg_all.attach(MIMEText(kwargs['body'], 'html', 'utf-8'))
 
-        #return self.client.send_raw_email(
-        #        RawMessage={'Data': msg_all.as_string()})
+        #image
+        if 'image_path' in kwargs and kwargs['image_path']:
+            with open(kwargs['image_path'], 'rb') as i:
+                img = MIMEImage(i.read())
+
+            img.add_header('Content-Disposition', 'attachment; filename=%s' % kwargs['image_filename'])
+            msg_all.attach(img)
+
         return msg_all.as_string()
 
     def send_raw_email_with_ics(self, **kwargs):
@@ -672,19 +678,16 @@ def send_speakers(dry_run=True):
 
         u['topic_users'] = topic[u['topic']]
 
-        if dry_run:
-            u['mail'] = 'toomore0929@gmail.com'
-
         raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
             source=AwsSESTools.mail_header(u'COSCUP Program', 'program@coscup.org'),
             to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
             subject=u'Speaker Reminder / 講者行前通知信',
             body=template.render(**u),
+            image_path='./qrcode/program/%s.png' % u['token'],
+            image_filename='%s.png' % u['token'],
         )
 
         queue_sender(raw)
-        if _n == 1:
-            return
 
 def queue_sender(body):
     requests.post('%s/exchange/coscup/secretary.1' % setting.QUEUEURL, data={'body': body})
@@ -698,5 +701,5 @@ if __name__ == '__main__':
     #playground()
     #send_tv55ovz9_oscvpass_promote()
     #send_u6b01dck_volunteer_tasks(dry_run=True)
-    send_speakers()
+    #send_speakers()
     pass
