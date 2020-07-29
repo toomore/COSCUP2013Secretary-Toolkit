@@ -716,6 +716,34 @@ def send_oscvpass_passed(dry_run=True):
         queue_sender(raw)
 
 
+def send_znx7ngnl_attendee_reminder(dry_run=True):
+    template = TPLENV.get_template('./coscup_2020_guide.html')
+    if dry_run:
+        path = './coscup_paper_subscribers_znx7ngnl_test.csv'
+    else:
+        path = './coscup_paper_subscribers_znx7ngnl_20200729_102852.csv'
+
+    users = []
+    with open(path, 'r+') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(u'COSCUP Secretary', 'secretary@coscup.org'),
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject=u'行前引導通知信 / Attendee Reminder',
+            body=template.render(**u),
+        )
+
+        queue_sender(raw)
+
 if __name__ == '__main__':
     #coscup_2020to2019(dry_run=True)
     #oscvpass(dry_run=True)
@@ -726,4 +754,5 @@ if __name__ == '__main__':
     #send_u6b01dck_volunteer_tasks(dry_run=True)
     #send_speakers()
     #send_oscvpass_passed(dry_run=True)
+    #send_znx7ngnl_attendee_reminder(dry_run=False)
     pass
