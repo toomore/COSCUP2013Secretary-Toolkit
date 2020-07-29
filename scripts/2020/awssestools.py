@@ -672,7 +672,7 @@ def send_speakers(dry_run=True):
         for raw in csv_reader:
             speakers.append(raw)
 
-    template = TPLENV.get_template('./coscup_speaker.html')
+    template = TPLENV.get_template('./coscup_speaker_update.html')
     _n = 0
     for u in speakers:
         print(_n, u['name'], u['mail'])
@@ -683,7 +683,7 @@ def send_speakers(dry_run=True):
         raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
             source=AwsSESTools.mail_header(u'COSCUP Program', 'program@coscup.org'),
             to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
-            subject=u'Speaker Reminder / 講者行前通知信',
+            subject=u'[--patch] 講者行前通知信 / Speaker Reminder',
             body=template.render(**u),
             image_path='./qrcode/program/%s.png' % u['token'],
             image_filename='%s.png' % u['token'],
