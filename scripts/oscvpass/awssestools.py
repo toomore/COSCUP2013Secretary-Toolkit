@@ -4,6 +4,7 @@ import csv
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.utils import formataddr
+from uuid import uuid4
 
 import setting
 
@@ -243,20 +244,30 @@ def pickup_unique(data, cases):
 
     return maillist
 
+def add_uuid_export_csv(datas, path):
+    with open(path, 'w+') as files:
+        csv_writer = csv.DictWriter(files, fieldnames=('name', 'mail', 'uuid'))
+        csv_writer.writeheader()
+        for data in datas:
+            data['uuid'] = ('%0.8x' % uuid4().fields[0]).upper()
+            csv_writer.writerow(data)
+
 if __name__ == '__main__':
     #from pprint import pprint
-    #data = process_csv('./oscvpass_200726.csv', _all=False)
-    #for case in data:
-    #    print(case, len(data[case]))
+    data = process_csv('./oscvpass_200729.csv', _all=False)
+    for case in data:
+        print(case, len(data[case]))
 
     #pprint(data['deny'])
     #send(data=data, case=('deny', 'insufficient_for', 'pass'), dry_run=False)
     #send_request_attendee('/run/shm/hash_b0466044.csv', dry_run=True)
 
     # ----- send get token ----- #
-    data = process_csv('./oscvpass_200726.csv', _all=True)
+    data = process_csv('./oscvpass_200729.csv', _all=True)
     maillist = pickup_unique(data=data, cases=('pass', ))
     print(maillist, len(maillist))
     #send_coscup_lpi(rows=maillist, dry_run=False)
 
+    # ----- export uuid csv ----- #
+    add_uuid_export_csv(maillist, './oscvpass_200729_uni_uuid.csv')
     pass
