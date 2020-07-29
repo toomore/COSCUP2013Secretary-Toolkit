@@ -27,6 +27,8 @@ from jinja2 import FileSystemLoader
 
 TPLENV = Environment(loader=FileSystemLoader('./tpl'))
 
+def queue_sender(body):
+    requests.post('%s/exchange/coscup/secretary.1' % setting.QUEUEURL, data={'body': body})
 
 def rand_str(l=6):
     return ''.join(sample(string.ascii_lowercase+string.digits, l))
@@ -689,8 +691,29 @@ def send_speakers(dry_run=True):
 
         queue_sender(raw)
 
-def queue_sender(body):
-    requests.post('%s/exchange/coscup/secretary.1' % setting.QUEUEURL, data={'body': body})
+def send_oscvpass_passed(dry_run=True):
+    template = TPLENV.get_template('./oscvpass_passed.html')
+
+    users = []
+    with open('./oscvpass_200729_uni_uuid.csv', 'r+') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(u'COSCUP Secretary', 'secretary@coscup.org'),
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject=u'[COSCUP + OSCVPass] VIP 室與氮氣咖啡兌換券 / VIP Room and nitro cold brew(NCB) coffee ticket',
+            body=template.render(**u),
+        )
+
+        queue_sender(raw)
 
 
 if __name__ == '__main__':
@@ -702,4 +725,5 @@ if __name__ == '__main__':
     #send_tv55ovz9_oscvpass_promote()
     #send_u6b01dck_volunteer_tasks(dry_run=True)
     #send_speakers()
+    #send_oscvpass_passed(dry_run=True)
     pass
