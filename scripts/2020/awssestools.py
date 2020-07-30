@@ -138,6 +138,9 @@ class AwsSESTools(object):
         msg_all = MIMEMultipart()
         msg_all['From'] = kwargs['source']
         msg_all['To'] = kwargs['to_addresses']
+        if 'cc_addresses' in kwargs:
+            msg_all['Cc'] = kwargs['cc_addresses']
+
         msg_all['Subject'] = kwargs['subject']
         msg_all['X-Github'] = 'toomore/COSCUP2013Secretary-Toolkit'
 
@@ -744,6 +747,44 @@ def send_znx7ngnl_attendee_reminder(dry_run=True):
 
         queue_sender(raw)
 
+def send_sponsor(dry_run=True):
+    from pprint import pprint
+    datas = {'0': [], '1': [], '2': [], '3': []}
+    with open('./sponsor_lists.csv', 'r+') as files:
+        for row in csv.DictReader(files):
+            row['users'] = [{'name': row['name1'].strip(), 'mail': row['mail1'].strip()}, ]
+            if row['name2'] and row['mail2']:
+                row['users'].append({'name': row['name2'].strip(), 'mail': row['mail2'].strip()})
+
+            datas[row['case']].append(row)
+
+    _n = 0
+    for case in ('3', '2', '1', '0'):
+        template = TPLENV.get_template('./sponsor_case_%s.html' % case)
+        for row in datas[case]:
+            for u in row['users']:
+                print(_n, u['name'], u['mail'])
+                _n += 1
+
+                if dry_run:
+                    u['mail'] = 'toomore0929@gmail.com'
+
+                subject = u'行前引導通知信 / Sponsor Reminder'
+                if dry_run:
+                    subject = '%s - %s.%s.c%s' % (subject, row['company'], _n, case)
+                else:
+                    subject = '%s [%s]' % (subject, row['company'])
+
+                raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+                    source=AwsSESTools.mail_header(u'COSCUP Sponsorship', 'sponsorship@coscup.org'),
+                    to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+                    cc_addresses=AwsSESTools.mail_header('COSCUP Sponsorship', 'sponsorship@coscup.org'),
+                    subject=subject,
+                    body=template.render(**row, **u),
+                )
+
+                queue_sender(raw)
+
 if __name__ == '__main__':
     #coscup_2020to2019(dry_run=True)
     #oscvpass(dry_run=True)
@@ -755,4 +796,5 @@ if __name__ == '__main__':
     #send_speakers()
     #send_oscvpass_passed(dry_run=True)
     #send_znx7ngnl_attendee_reminder(dry_run=False)
+    #send_sponsor(dry_run=False)
     pass
