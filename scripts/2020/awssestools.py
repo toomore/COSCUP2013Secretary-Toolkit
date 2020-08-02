@@ -813,6 +813,34 @@ def send_glass_79i5hmpy(dry_run=True):
 
         queue_sender(raw)
 
+def send_after_nht9o3m3(dry_run=True):
+    template = TPLENV.get_template('./after_coscup.html')
+    if dry_run:
+        path = './coscup_paper_subscribers_nht9o3m3_test.csv'
+    else:
+        path = './coscup_paper_subscribers_nht9o3m3_20200802_152036.csv'
+
+    users = []
+    with open(path, 'r+') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(u'COSCUP Secretary', 'secretary@coscup.org'),
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject=u'[COSCUP2020] 會後問卷 / Survey',
+            body=template.render(**u),
+        )
+
+        queue_sender(raw)
+
 if __name__ == '__main__':
     #coscup_2020to2019(dry_run=True)
     #oscvpass(dry_run=True)
@@ -826,4 +854,5 @@ if __name__ == '__main__':
     #send_znx7ngnl_attendee_reminder(dry_run=False)
     #send_sponsor(dry_run=False)
     #send_glass_79i5hmpy(dry_run=False)
+    #send_after_nht9o3m3(dry_run=False)
     pass
