@@ -232,6 +232,26 @@ def send_coscup_lpi(rows, dry_run=True):
         if dry_run:
             return
 
+def send_mopcon_token(rows, dry_run=True):
+    template = TPLENV.get_template('./mopcon_token.html')
+    _n = 1
+    for u in rows:
+        print(_n, u)
+        _n += 1
+
+        body = template.render(**u)
+        raw = make_raw_email(
+            nickname=u['name'],
+            mail=u['mail'],
+            subject=u'[OSCVPass] MOPCON2020 開源貢獻票 優惠券 (%s)' % u['name'],
+            body=body,
+            dry_run=dry_run,
+        )
+        SENDER.client.send_raw_email(RawMessage={'Data': raw})
+
+        if dry_run:
+            return
+
 def pickup_unique(data, cases):
     maillist = []
     for case in cases:
@@ -252,6 +272,20 @@ def add_uuid_export_csv(datas, path):
             data['uuid'] = ('%0.8x' % uuid4().fields[0]).upper()
             csv_writer.writerow(data)
 
+def merge_mopcon_token(datas):
+    with open('./mopcon_2020_token.csv', 'r+') as files:
+        tokens = list(csv.DictReader(files))
+
+    _n = 0
+    for user in datas:
+        tokens[_n].update(user)
+        _n += 1
+
+    with open('./mopcon_2020_token_mails.csv', 'w+') as files:
+        csv_writer = csv.DictWriter(files, fieldnames=list(tokens[0].keys()), quoting=csv.QUOTE_NONNUMERIC)
+        csv_writer.writeheader()
+        csv_writer.writerows(tokens)
+
 if __name__ == '__main__':
     #from pprint import pprint
     data = process_csv('./oscvpass_200729.csv', _all=False)
@@ -263,11 +297,23 @@ if __name__ == '__main__':
     #send_request_attendee('/run/shm/hash_b0466044.csv', dry_run=True)
 
     # ----- send get token ----- #
-    data = process_csv('./oscvpass_200729.csv', _all=True)
-    maillist = pickup_unique(data=data, cases=('pass', ))
-    print(maillist, len(maillist))
+    #data = process_csv('./oscvpass_200915.csv', _all=True)
+    #maillist = pickup_unique(data=data, cases=('pass', ))
+    #print(maillist, len(maillist))
+    #merge_mopcon_token(maillist)
     #send_coscup_lpi(rows=maillist, dry_run=False)
 
     # ----- export uuid csv ----- #
-    add_uuid_export_csv(maillist, './oscvpass_200729_uni_uuid.csv')
+    #add_uuid_export_csv(maillist, './oscvpass_200729_uni_uuid.csv')
+
+    # ----- send mopcon token ----- #
+    #with open('./mopcon_2020_token_mails.csv', 'r+') as files:
+    #    rows = []
+    #    for user in csv.DictReader(files):
+    #        if not user['mail']:
+    #            continue
+    #        rows.append(user)
+
+    #    send_mopcon_token(rows=rows, dry_run=False)
+
     pass
