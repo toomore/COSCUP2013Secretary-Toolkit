@@ -239,6 +239,9 @@ def send_mopcon_token(rows, dry_run=True):
         print(_n, u)
         _n += 1
 
+        if dry_run:
+            u['mail'] = setting.TESTMAIL
+
         body = template.render(**u)
         raw = make_raw_email(
             nickname=u['name'],
@@ -288,9 +291,9 @@ def merge_mopcon_token(datas):
 
 if __name__ == '__main__':
     #from pprint import pprint
-    data = process_csv('./oscvpass_200729.csv', _all=False)
-    for case in data:
-        print(case, len(data[case]))
+    #data = process_csv('./oscvpass_200729.csv', _all=False)
+    #for case in data:
+    #    print(case, len(data[case]))
 
     #pprint(data['deny'])
     #send(data=data, case=('deny', 'insufficient_for', 'pass'), dry_run=False)
@@ -307,13 +310,13 @@ if __name__ == '__main__':
     #add_uuid_export_csv(maillist, './oscvpass_200729_uni_uuid.csv')
 
     # ----- send mopcon token ----- #
-    #with open('./mopcon_2020_token_mails.csv', 'r+') as files:
-    #    rows = []
-    #    for user in csv.DictReader(files):
-    #        if not user['mail']:
-    #            continue
-    #        rows.append(user)
+    with open('./mopcon_2020_token_mails_200921.csv', 'r+') as files:
+        rows = []
+        for user in csv.DictReader(files):
+            if not user['mail']:
+                continue
+            rows.append(user)
 
-    #    send_mopcon_token(rows=rows, dry_run=False)
+        send_mopcon_token(rows=rows, dry_run=False)
 
     pass
