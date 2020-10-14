@@ -255,6 +255,29 @@ def send_mopcon_token(rows, dry_run=True):
         if dry_run:
             return
 
+def send_g0v_token(rows, dry_run=True):
+    template = TPLENV.get_template('./g0v_summit_token.html')
+    _n = 1
+    for u in rows:
+        print(_n, u)
+        _n += 1
+
+        if dry_run:
+            u['mail'] = setting.TESTMAIL
+
+        body = template.render(**u)
+        raw = make_raw_email(
+            nickname=u['name'],
+            mail=u['mail'],
+            subject=u'[OSCVPass] g0v Summit 2020 開源貢獻票 優惠券 (%s)' % u['name'],
+            body=body,
+            dry_run=dry_run,
+        )
+        SENDER.client.send_raw_email(RawMessage={'Data': raw})
+
+        if dry_run:
+            return
+
 def pickup_unique(data, cases):
     maillist = []
     for case in cases:
@@ -275,8 +298,8 @@ def add_uuid_export_csv(datas, path):
             data['uuid'] = ('%0.8x' % uuid4().fields[0]).upper()
             csv_writer.writerow(data)
 
-def merge_mopcon_token(datas):
-    with open('./mopcon_2020_token.csv', 'r+') as files:
+def merge_token(datas, token_path, out_path):
+    with open(token_path, 'r+') as files:
         tokens = list(csv.DictReader(files))
 
     _n = 0
@@ -284,10 +307,32 @@ def merge_mopcon_token(datas):
         tokens[_n].update(user)
         _n += 1
 
-    with open('./mopcon_2020_token_mails.csv', 'w+') as files:
+    with open(out_path, 'w+') as files:
         csv_writer = csv.DictWriter(files, fieldnames=list(tokens[0].keys()), quoting=csv.QUOTE_NONNUMERIC)
         csv_writer.writeheader()
         csv_writer.writerows(tokens)
+
+def update_token(datas, org_path, out_path):
+    with open(org_path, 'r+') as files:
+        mails = list(csv.DictReader(files))
+
+    added = {i['mail'] for i in mails}
+    for data in datas:
+        if data['mail'] in added:
+            continue
+
+        for mail in mails:
+            if not mail['mail']:
+                mail['name'] = data['name']
+                mail['mail'] = data['mail']
+                break
+
+    with open(out_path, 'w+') as files:
+        csv_writer = csv.DictWriter(files, fieldnames=mails[0].keys(), quoting=csv.QUOTE_NONNUMERIC)
+        csv_writer.writeheader()
+        csv_writer.writerows(mails)
+
+    print(mails)
 
 if __name__ == '__main__':
     #from pprint import pprint
@@ -303,20 +348,47 @@ if __name__ == '__main__':
     #data = process_csv('./oscvpass_200915.csv', _all=True)
     #maillist = pickup_unique(data=data, cases=('pass', ))
     #print(maillist, len(maillist))
-    #merge_mopcon_token(maillist)
+    #merge_token(
+    #        datas=maillist, token_path='./mopcon_2020_token.csv', out_path='./mopcon_2020_token_mails.csv')
     #send_coscup_lpi(rows=maillist, dry_run=False)
 
     # ----- export uuid csv ----- #
     #add_uuid_export_csv(maillist, './oscvpass_200729_uni_uuid.csv')
 
     # ----- send mopcon token ----- #
-    with open('./mopcon_2020_token_mails_200921.csv', 'r+') as files:
-        rows = []
-        for user in csv.DictReader(files):
-            if not user['mail']:
-                continue
-            rows.append(user)
+    #with open('./mopcon_2020_token_mails_200921.csv', 'r+') as files:
+    #    rows = []
+    #    for user in csv.DictReader(files):
+    #        if not user['mail']:
+    #            continue
+    #        rows.append(user)
 
-        send_mopcon_token(rows=rows, dry_run=False)
+    #    send_mopcon_token(rows=rows, dry_run=False)
+
+    # ----- g0v Summit ----- #
+    #data = process_csv('./oscvpass_200930.csv', _all=True)
+    #maillist = pickup_unique(data=data, cases=('pass', ))
+    #print(maillist, len(maillist))
+    #merge_token(
+    #        datas=maillist, token_path='./g0v_summit_token.csv', out_path='./g0v_summit_token_mails.csv')
+
+    # ----- send g0v token ----- #
+    #with open('./g0v_summit_token_mails.csv', 'r+') as files:
+    #    rows = []
+    #    for user in csv.DictReader(files):
+    #        if not user['mail']:
+    #            continue
+    #        rows.append(user)
+
+    #    send_g0v_token(rows=rows, dry_run=False)
+
+    # ----- update token ----- #
+    #data = process_csv('./oscvpass_201014.csv', _all=True)
+    #maillist = pickup_unique(data=data, cases=('pass', ))
+    #print(maillist, len(maillist))
+
+    #update_token(datas=maillist,
+    #        org_path='./g0v_summit_token_mails_org.csv',
+    #        out_path='./g0v_summit_token_mails_201014.csv')
 
     pass
