@@ -147,6 +147,9 @@ def send(data, case, dry_run=True):
     if 'deny' in case:
         template = TPLENV.get_template('./deny.html')
         for r in data['deny']:
+            if r['mail'] in setting.BLOCK:
+                continue
+
             print('deny', r['mail'])
             body = template.render(**r)
             raw = make_raw_email(
@@ -164,6 +167,9 @@ def send(data, case, dry_run=True):
     if 'insufficient_for' in case:
         template = TPLENV.get_template('./insufficient_for.html')
         for r in data['insufficient_for']:
+            if r['mail'] in setting.BLOCK:
+                continue
+
             print('insufficient_for', r['mail'])
             body = template.render(**r)
             raw = make_raw_email(
@@ -181,6 +187,9 @@ def send(data, case, dry_run=True):
     if 'pass' in case:
         template = TPLENV.get_template('./pass.html')
         for r in data['pass']:
+            if r['mail'] in setting.BLOCK:
+                continue
+
             print('pass', r['mail'])
             body = template.render(**r)
             raw = make_raw_email(
@@ -236,6 +245,9 @@ def send_mopcon_token(rows, dry_run=True):
     template = TPLENV.get_template('./mopcon_token.html')
     _n = 1
     for u in rows:
+        if u['mail'] in setting.BLOCK:
+            continue
+
         print(_n, u)
         _n += 1
 
@@ -246,7 +258,7 @@ def send_mopcon_token(rows, dry_run=True):
         raw = make_raw_email(
             nickname=u['name'],
             mail=u['mail'],
-            subject=u'[OSCVPass] MOPCON2020 開源貢獻票 優惠券 (%s)' % u['name'],
+            subject=u'[OSCVPass][提醒] MOPCON2020 開源貢獻票 優惠券 (%s)' % u['name'],
             body=body,
             dry_run=dry_run,
         )
@@ -259,6 +271,9 @@ def send_g0v_token(rows, dry_run=True):
     template = TPLENV.get_template('./g0v_summit_token.html')
     _n = 1
     for u in rows:
+        if u['mail'] in setting.BLOCK:
+            continue
+
         print(_n, u)
         _n += 1
 
@@ -269,7 +284,7 @@ def send_g0v_token(rows, dry_run=True):
         raw = make_raw_email(
             nickname=u['name'],
             mail=u['mail'],
-            subject=u'[OSCVPass] g0v Summit 2020 開源貢獻票 優惠券 (%s)' % u['name'],
+            subject=u'[OSCVPass][提醒] g0v Summit 2020 開源貢獻票 優惠券 (%s)' % u['name'],
             body=body,
             dry_run=dry_run,
         )
@@ -336,7 +351,7 @@ def update_token(datas, org_path, out_path):
 
 if __name__ == '__main__':
     #from pprint import pprint
-    #data = process_csv('./oscvpass_200729.csv', _all=False)
+    #data = process_csv('./oscvpass_201014_1.csv', _all=False)
     #for case in data:
     #    print(case, len(data[case]))
 
@@ -356,7 +371,7 @@ if __name__ == '__main__':
     #add_uuid_export_csv(maillist, './oscvpass_200729_uni_uuid.csv')
 
     # ----- send mopcon token ----- #
-    #with open('./mopcon_2020_token_mails_200921.csv', 'r+') as files:
+    #with open('./mopcon_2020_token_mails_201014.csv', 'r+') as files:
     #    rows = []
     #    for user in csv.DictReader(files):
     #        if not user['mail']:
@@ -373,7 +388,7 @@ if __name__ == '__main__':
     #        datas=maillist, token_path='./g0v_summit_token.csv', out_path='./g0v_summit_token_mails.csv')
 
     # ----- send g0v token ----- #
-    #with open('./g0v_summit_token_mails.csv', 'r+') as files:
+    #with open('./g0v_summit_token_mails_201014.csv', 'r+') as files:
     #    rows = []
     #    for user in csv.DictReader(files):
     #        if not user['mail']:
