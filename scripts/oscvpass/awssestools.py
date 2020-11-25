@@ -351,7 +351,7 @@ def update_token(datas, org_path, out_path):
 
 if __name__ == '__main__':
     #from pprint import pprint
-    #data = process_csv('./oscvpass_201021.csv', _all=False)
+    #data = process_csv('./oscvpass_201124.csv', _all=False)
     #for case in data:
     #    print(case, len(data[case]))
 
@@ -388,7 +388,7 @@ if __name__ == '__main__':
     #        datas=maillist, token_path='./g0v_summit_token.csv', out_path='./g0v_summit_token_mails.csv')
 
     # ----- send g0v token ----- #
-    #with open('./g0v_summit_token_mails_201021_min.csv', 'r+') as files:
+    #with open('./g0v_summit_token_mails_201124_min.csv', 'r+') as files:
     #    rows = []
     #    for user in csv.DictReader(files):
     #        if not user['mail']:
@@ -398,12 +398,12 @@ if __name__ == '__main__':
     #    send_g0v_token(rows=rows, dry_run=False)
 
     # ----- update token ----- #
-    #data = process_csv('./oscvpass_201021.csv', _all=True)
+    #data = process_csv('./oscvpass_201124.csv', _all=True)
     #maillist = pickup_unique(data=data, cases=('pass', ))
     #print(maillist, len(maillist))
 
     #update_token(datas=maillist,
-    #        org_path='./mopcon_2020_token_mails_201014.csv',
-    #        out_path='./mopcon_2020_token_mails_201021.csv')
+    #        org_path='./g0v_summit_token_mails_201021.csv',
+    #        out_path='./g0v_summit_token_mails_201124.csv')
 
     pass
