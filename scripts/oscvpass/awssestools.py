@@ -349,6 +349,33 @@ def update_token(datas, org_path, out_path):
 
     print(mails)
 
+def send_expired(path, dry_run=True):
+    ''' Send expired '''
+    template = TPLENV.get_template('./expired.html')
+    _n = 1
+
+    with open(path) as files:
+        for u in csv.DictReader(files):
+            print(_n, u)
+            _n += 1
+
+            body = template.render(**u)
+
+            if dry_run:
+                u['mail'] = setting.TESTMAIL
+
+            raw = make_raw_email(
+                nickname=u['nickname'],
+                mail=u['mail'],
+                subject=u'[OSCVPass] [提醒] 即將到期！ (%s)' % u['nickname'],
+                body=body,
+                dry_run=dry_run,
+            )
+            SENDER.client.send_raw_email(RawMessage={'Data': raw})
+
+            if dry_run:
+                return
+
 if __name__ == '__main__':
     #from pprint import pprint
     #data = process_csv('./oscvpass_201124.csv', _all=False)
@@ -405,5 +432,7 @@ if __name__ == '__main__':
     #update_token(datas=maillist,
     #        org_path='./g0v_summit_token_mails_201021.csv',
     #        out_path='./g0v_summit_token_mails_201124.csv')
+
+    #send_expired(path='./expired_20201223.csv', dry_run=False)
 
     pass
