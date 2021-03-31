@@ -468,7 +468,7 @@ def send_coscup_hire_thsn2r5b(dry_run=True):
     if dry_run:
         path = './coscup_paper_subscribers_thsn2r5b_test.csv'
     else:
-        path = './coscup_paper_subscribers_thsn2r5b_20200802_152036.csv'
+        path = './coscup_paper_subscribers_thsn2r5b_20210320_081206.csv'
 
     users = []
     with open(path, 'r+') as files:
@@ -492,5 +492,5 @@ def send_coscup_hire_thsn2r5b(dry_run=True):
         queue_sender(raw)
 
 if __name__ == '__main__':
-    send_coscup_hire_thsn2r5b(dry_run=False)
+    #send_coscup_hire_thsn2r5b(dry_run=False)
     pass
