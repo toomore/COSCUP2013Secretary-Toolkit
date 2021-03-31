@@ -293,6 +293,32 @@ def send_g0v_token(rows, dry_run=True):
         if dry_run:
             return
 
+def send_sitcon_token(rows, dry_run=True):
+    template = TPLENV.get_template('./sitcon_2021_token.html')
+    _n = 1
+    for u in rows:
+        if u['mail'] in setting.BLOCK:
+            continue
+
+        print(_n, u)
+        _n += 1
+
+        if dry_run:
+            u['mail'] = setting.TESTMAIL
+
+        body = template.render(**u)
+        raw = make_raw_email(
+            nickname=u['name'],
+            mail=u['mail'],
+            subject=u'[OSCVPass][提醒] SITCON 2021 開源貢獻票 優惠券 (%s)' % u['name'],
+            body=body,
+            dry_run=dry_run,
+        )
+        SENDER.client.send_raw_email(RawMessage={'Data': raw})
+
+        if dry_run:
+            return
+
 def pickup_unique(data, cases):
     maillist = []
     for case in cases:
@@ -312,6 +338,17 @@ def add_uuid_export_csv(datas, path):
         for data in datas:
             data['uuid'] = ('%0.8x' % uuid4().fields[0]).upper()
             csv_writer.writerow(data)
+
+def gen_token(nums, out_path):
+    tokens = set()
+    while len(tokens) < nums:
+        tokens.add(('%0.8x' % uuid4().fields[0]).upper())
+
+    with open(out_path, 'w+') as files:
+        csv_writer = csv.writer(files, csv.QUOTE_ALL)
+        csv_writer.writerow(('token', ))
+        for token in tokens:
+            csv_writer.writerow((token, ))
 
 def merge_token(datas, token_path, out_path):
     with open(token_path, 'r+') as files:
@@ -378,9 +415,11 @@ def send_expired(path, dry_run=True):
 
 if __name__ == '__main__':
     #from pprint import pprint
-    #data = process_csv('./oscvpass_201124.csv', _all=False)
+    #data = process_csv('./oscvpass_210303.csv', _all=False)
     #for case in data:
     #    print(case, len(data[case]))
+    #    for row in data[case]:
+    #        print(row['name'], row['c_01'])
 
     #pprint(data['deny'])
     #send(data=data, case=('deny', 'insufficient_for', 'pass'), dry_run=False)
@@ -434,5 +473,23 @@ if __name__ == '__main__':
     #        out_path='./g0v_summit_token_mails_201124.csv')
 
     #send_expired(path='./expired_20201223.csv', dry_run=False)
+
+    # ----- Gen tokens ----- #
+    #gen_token(nums=250, out_path="sitcon_2021_token.csv")
+    #data = process_csv('./oscvpass_210303.csv', _all=True)
+    #maillist = pickup_unique(data=data, cases=('pass', ))
+    #print(maillist, len(maillist))
+    #merge_token(
+    #        datas=maillist, token_path='./sitcon_2021_token.csv', out_path='./sitcon_2021_token_mails.csv')
+
+    # ----- send SITCON2021 token ----- #
+    #with open('./sitcon_2021_token_mails_fixed.csv', 'r+') as files:
+    #    rows = []
+    #    for user in csv.DictReader(files):
+    #        if not user['mail']:
+    #            continue
+    #        rows.append(user)
+
+    #    send_sitcon_token(rows=rows, dry_run=False)
 
     pass
