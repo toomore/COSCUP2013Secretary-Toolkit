@@ -8,6 +8,7 @@ from uuid import uuid4
 
 import setting
 
+import arrow
 import boto3
 import requests
 from jinja2 import Environment
@@ -109,6 +110,9 @@ def process_csv(path, _all=False):
             elif r['status'] == '補件':
                 data['insufficient_for'].append(r)
             elif r['status'] == '通過':
+                if r['start_date']:
+                    r['expiration_date'] = arrow.get(r['start_date']).shift(years=1).format('YYYY-MM-DD')
+
                 data['pass'].append(r)
 
     _fields = {
@@ -310,7 +314,7 @@ def send_sitcon_token(rows, dry_run=True):
         raw = make_raw_email(
             nickname=u['name'],
             mail=u['mail'],
-            subject=u'[OSCVPass][提醒] SITCON 2021 開源貢獻票 優惠券 (%s)' % u['name'],
+            subject=u'[OSCVPass][最後提醒][手刀行動] SITCON 2021 開源貢獻票 優惠券 (%s)' % u['name'],
             body=body,
             dry_run=dry_run,
         )
@@ -414,8 +418,9 @@ def send_expired(path, dry_run=True):
                 return
 
 if __name__ == '__main__':
+    # ----- send Pass/deny ----- #
     #from pprint import pprint
-    #data = process_csv('./oscvpass_210303.csv', _all=False)
+    #data = process_csv('./oscvpass_210416_only_w_date.csv', _all=False)
     #for case in data:
     #    print(case, len(data[case]))
     #    for row in data[case]:
@@ -464,13 +469,13 @@ if __name__ == '__main__':
     #    send_g0v_token(rows=rows, dry_run=False)
 
     # ----- update token ----- #
-    #data = process_csv('./oscvpass_201124.csv', _all=True)
+    #data = process_csv('./oscvpass_210416_only_w_date.csv', _all=True)
     #maillist = pickup_unique(data=data, cases=('pass', ))
     #print(maillist, len(maillist))
 
     #update_token(datas=maillist,
-    #        org_path='./g0v_summit_token_mails_201021.csv',
-    #        out_path='./g0v_summit_token_mails_201124.csv')
+    #        org_path='./sitcon_2021_token_mails_fixed.csv',
+    #        out_path='./sitcon_2021_token_mails_append_210416.csv')
 
     #send_expired(path='./expired_20201223.csv', dry_run=False)
 
@@ -483,7 +488,7 @@ if __name__ == '__main__':
     #        datas=maillist, token_path='./sitcon_2021_token.csv', out_path='./sitcon_2021_token_mails.csv')
 
     # ----- send SITCON2021 token ----- #
-    #with open('./sitcon_2021_token_mails_fixed.csv', 'r+') as files:
+    #with open('./sitcon_2021_token_mails_append_210416.csv', 'r+') as files:
     #    rows = []
     #    for user in csv.DictReader(files):
     #        if not user['mail']:
