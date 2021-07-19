@@ -519,7 +519,36 @@ def send_coscup_cfp_g8up8qe5(dry_run=True):
 
         queue_sender(raw)
 
+def send_coscup_online_4vw2swwa(dry_run=True):
+    template = TPLENV.get_template('./coscup_go_online.html')
+    if dry_run:
+        path = './coscup_paper_subscribers_4vw2swwa_test.csv'
+    else:
+        path = './coscup_paper_subscribers_4vw2swwa_20210613_080727.csv'
+
+    users = []
+    with open(path, 'r+') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(u'COSCUP Secretary', 'secretary@coscup.org'),
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject=u'[COSCUP x RubyConfTW 2021] 轉為全線上活動！We will be an entirely Virtual Event',
+            body=template.render(**u),
+        )
+
+        queue_sender(raw)
+
 if __name__ == '__main__':
     #send_coscup_hire_thsn2r5b(dry_run=False)
     #send_coscup_cfp_g8up8qe5(dry_run=False)
+    #send_coscup_online_4vw2swwa(dry_run=False)
     pass
