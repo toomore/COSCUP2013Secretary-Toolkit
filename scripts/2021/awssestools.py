@@ -547,8 +547,37 @@ def send_coscup_online_4vw2swwa(dry_run=True):
 
         queue_sender(raw)
 
+def send_coscup_production_info(dry_run=True):
+    template = TPLENV.get_template('./coscup_product_info.html')
+    if dry_run:
+        path = './coscup_product_210726_test.csv'
+    else:
+        path = './coscup_product_210726.csv'
+
+    users = []
+    with open(path, 'r+') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(u'COSCUP Secretary', 'secretary@coscup.org'),
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject=u'[COSCUP x RubyConfTW 2021] Please forward this info to your all speakers / 請協助轉交通知講者 StreamYard YouTube 邀請連結 [%(title)s] [%(date)s %(time)s(+0800)]' % u,
+            body=template.render(**u),
+        )
+
+        queue_sender(raw)
+
 if __name__ == '__main__':
     #send_coscup_hire_thsn2r5b(dry_run=False)
     #send_coscup_cfp_g8up8qe5(dry_run=False)
     #send_coscup_online_4vw2swwa(dry_run=False)
+    #send_coscup_production_info(dry_run=False)
     pass
