@@ -1,0 +1,553 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>COSCUP</title>
+    <style>
+      /* -------------------------------------
+          GLOBAL RESETS
+      ------------------------------------- */
+      img {
+        border: none;
+        -ms-interpolation-mode: bicubic;
+        max-width: 100%; }
+
+      body {
+        background-color: #ffffff;
+        font-family: sans-serif;
+        -webkit-font-smoothing: antialiased;
+        font-size: 14px;
+        line-height: 1.4;
+        margin: 0;
+        padding: 0;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%; }
+
+      table {
+        border-collapse: separate;
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+        width: 100%; }
+        table td {
+          font-family: sans-serif;
+          font-size: 14px;
+          vertical-align: top; }
+
+      /* -------------------------------------
+          BODY & CONTAINER
+      ------------------------------------- */
+
+      .body {
+        background-color: #ffffff;
+        width: 100%; }
+
+      /* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */
+      .container {
+        display: block;
+        margin: 0 auto !important;
+        /* makes it centered */
+        max-width: 580px;
+        padding: 10px; }
+
+      /* This should also be a block element, so that it will fill 100% of the .container */
+      .content {
+        box-sizing: border-box;
+        display: block;
+        margin: 0 auto;
+        max-width: 580px;
+        padding: 10px;
+        background-color: #3D9238; }
+
+      /* -------------------------------------
+          HEADER, FOOTER, MAIN
+      ------------------------------------- */
+      .main {
+        background: #fff;
+        border-radius: 3px;
+        width: 100%; }
+
+      .wrapper {
+        box-sizing: border-box;
+        padding: 20px; }
+
+      .footer {
+        clear: both;
+        padding-top: 10px;
+        text-align: center;
+        width: 100%; }
+        .footer td,
+        .footer p,
+        .footer span,
+        .footer a {
+          color: #ffffff;
+          font-size: 12px;
+          text-align: center; }
+
+      /* -------------------------------------
+          TYPOGRAPHY
+      ------------------------------------- */
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: #000000;
+        font-family: sans-serif;
+        font-weight: 400;
+        line-height: 1.4;
+        margin: 0;
+        margin-bottom: 30px; }
+
+      h1 {
+        font-size: 35px;
+        font-weight: 300;
+        text-align: center;
+        text-transform: capitalize; }
+
+      p,
+      ul,
+      ol {
+        font-family: sans-serif;
+        font-size: 14px;
+        font-weight: normal;
+        margin: 0;
+        margin-bottom: 15px; }
+        p li,
+        ul li,
+        ol li {
+          list-style-position: inside;
+          margin-left: 5px; }
+
+      a {
+        color: #3498db;
+        text-decoration: underline; }
+
+      /* -------------------------------------
+          BUTTONS
+      ------------------------------------- */
+      .btn {
+        box-sizing: border-box;
+        width: 100%; }
+        .btn > tbody > tr > td {
+          padding-bottom: 15px; }
+        .btn table {
+          width: auto; }
+        .btn table td {
+          background-color: #ffffff;
+          border-radius: 5px;
+          text-align: center; }
+        .btn a {
+          background-color: #ffffff;
+          border: solid 1px #3498db;
+          border-radius: 5px;
+          box-sizing: border-box;
+          color: #3498db;
+          cursor: pointer;
+          display: inline-block;
+          font-size: 14px;
+          font-weight: bold;
+          margin: 0;
+          padding: 12px 25px;
+          text-decoration: none;
+          text-transform: capitalize; }
+
+      .btn-primary table td {
+        background-color: #3498db; }
+
+      .btn-primary a {
+        background-color: #3498db;
+        border-color: #3498db;
+        color: #ffffff; }
+
+      /* -------------------------------------
+          OTHER STYLES THAT MIGHT BE USEFUL
+      ------------------------------------- */
+      .last {
+        margin-bottom: 0; }
+
+      .first {
+        margin-top: 0; }
+
+      .align-center {
+        text-align: center; }
+
+      .align-right {
+        text-align: right; }
+
+      .align-left {
+        text-align: left; }
+
+      .clear {
+        clear: both; }
+
+      .mt0 {
+        margin-top: 0; }
+
+      .mb0 {
+        margin-bottom: 0; }
+
+      .preheader {
+        color: transparent;
+        display: none;
+        height: 0;
+        max-height: 0;
+        max-width: 0;
+        opacity: 0;
+        overflow: hidden;
+        mso-hide: all;
+        visibility: hidden;
+        width: 0; }
+
+      .powered-by a {
+        text-decoration: none; }
+
+      hr {
+        border: 0;
+        border-bottom: 1px solid #f6f6f6;
+        margin: 20px 0; }
+
+      /* -------------------------------------
+          RESPONSIVE AND MOBILE FRIENDLY STYLES
+      ------------------------------------- */
+      @media only screen and (max-width: 580px) {
+        table[class=body] h1 {
+          font-size: 28px !important;
+          margin-bottom: 10px !important; }
+        table[class=body] p,
+        table[class=body] ul,
+        table[class=body] ol,
+        table[class=body] td,
+        table[class=body] span,
+        table[class=body] a {
+          font-size: 16px !important; }
+        table[class=body] .wrapper,
+        table[class=body] .article {
+          padding: 10px !important; }
+        table[class=body] .content {
+          padding: 0 !important; }
+        table[class=body] .container {
+          padding: 0 !important;
+          width: 100% !important; }
+        table[class=body] .main {
+          border-left-width: 0 !important;
+          border-radius: 0 !important;
+          border-right-width: 0 !important; }
+        table[class=body] .btn table {
+          width: 100% !important; }
+        table[class=body] .btn a {
+          width: 100% !important; }
+        table[class=body] .img-responsive {
+          height: auto !important;
+          max-width: 100% !important;
+          width: auto !important; }}
+
+      /* -------------------------------------
+          PRESERVE THESE STYLES IN THE HEAD
+      ------------------------------------- */
+      @media all {
+        .ExternalClass {
+          width: 100%; }
+        .ExternalClass,
+        .ExternalClass p,
+        .ExternalClass span,
+        .ExternalClass font,
+        .ExternalClass td,
+        .ExternalClass div {
+          line-height: 100%; }
+        .apple-link a {
+          color: inherit !important;
+          font-family: inherit !important;
+          font-size: inherit !important;
+          font-weight: inherit !important;
+          line-height: inherit !important;
+          text-decoration: none !important; }
+        .btn-primary table td:hover {
+          background-color: #34495e !important; }
+        .btn-primary a:hover {
+          background-color: #34495e !important;
+          border-color: #34495e !important; } }
+
+      .quote {
+        color: #334433;
+        font-style: italic;
+        font-size: small;
+      }
+      h2 {
+        font-weight: bold;
+        font-family: "Arial";
+        border-bottom: 1px #3D9238 dashed;
+        padding-left: 1px;
+        margin-top: 30px;
+        margin-bottom: 12px;
+      }
+      h3 {
+        margin-bottom: 5px;
+        margin-top: 20px;
+        color: #3D9238;
+        font-weight: bold;
+      }
+      ol li,
+      ul li {
+        list-style-position: outside;
+        margin-left: 0px;
+        line-height: 2;
+      }
+      span.note {
+        border-radius: 2px;
+        padding: 3px;
+        font-weight: bold;
+        color: #ffffff;
+        font-size: 8pt;
+      }
+      span.first {
+        background-color: #2962FF;
+      }
+      span.second {
+        background-color: #FF6F00;
+      }
+      span.ef {
+        background-color: #7B1FA2;
+      }
+      span.sf {
+        background-color: #9C27B0;
+      }
+      span.local {
+        background-color: #009688;
+      }
+      .tips {
+        font-family: "Courier New";
+        background-color: #fafafa;
+        padding: 6px;
+        border-radius: 3px;
+        border: 1px #81d4fa solid;
+        font-size: 12px;
+        color: #01579b;
+      }
+      .tips-green {
+        color: #2E7D32;
+        border: 1px #43A047 solid;
+      }
+      pre {
+        font-size: small;
+        line-height: 12px;
+        color: #607D8B;
+        text-align: right;
+      }
+      p small,
+      li small {
+        color: #898989;
+      }
+      .btn-tips{
+        font-size: x-small;
+        color: #6E8E6C;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body class="">
+    <table border="0" cellpadding="0" cellspacing="0" class="body">
+      <tr>
+        <td>&nbsp;</td>
+        <td class="container">
+          <div class="content">
+
+            <!-- START CENTERED WHITE CONTAINER -->
+            <span class="preheader">今年變線上！</span>
+            <table class="main">
+
+              <!-- START MAIN CONTENT AREA -->
+              <tr>
+                <td class="wrapper">
+                  <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td>
+                        <p class="align-right"><a href="https://coscup.org/?utm_source=subscribe&utm_medium=email&utm_campaign=fif8n32y_online&utm_term=img&utm_content=go_website"><img width="135" src="https://secretary.coscup.org/s3/img/coscup_logo_tw_270.png" alt="COSCUP Logo" title="COSCUP Logo"></a></p>
+                        <p class="align-center"><a href="https://coscup.org/"><img style="border-radius:3px;" alt="COSUCP2021 Banner" src="https://secretary.coscup.org/s3/img/coscup2021_banner.png"></a></p>
+                        <p><small>(English below / 下半部有英文版)</small></p>
+                        <p>Hi {{name}},</p>
+                        <p>COSCUP x RubyConfTW 2021 即將在 07/31 - 08/01 線上舉辦！</p>
+                        <p>在即將到來的活動有幾件事情需要事先準備的，在此一一說明，讓當日的活動可以順利進行。</p>
+                        <h2>活動前</h2>
+                        <h3>議程表</h3>
+                        <p>還沒看這次有哪些議題的，可以先看看已公告的<a href="https://coscup.org/2021/zh-TW/session">議程表</a>，每一軌的的議程表上方將會在議程開始時出現 YouTube 轉播。讓妳有隨意逛教室、逛議程的感受。</p>
+                        <h4>講者須知</h4>
+                        <p>如果您是講者，在活動前應該會收到關於 StreamYard 的連結邀請，如果沒有收到，請聯絡您的社群負責人或是議程主持人。</p>
+                        <h3>線上會場大廳</h3>
+                        <p>由於目前此刻，我們的線上會場還在加緊趕工敲敲打打中，建議連回到 COSCUP 官網首頁，由首頁上的指引進入。</p>
+                        <p>我們這次會使用 Gather.Town 平台登入，在活動開始期間，可以先閱讀<a href="https://docs.google.com/presentation/d/1mvj_T2kV9HSMdOCRl9S6jlERbeO1T80gNCVhBvgaOkE/edit?usp=sharing">操作手冊</a>！</p>
+                        <h4>活動入口連結</h4>
+                        <ul>
+                        	<li>活動大廳：<a href="https://gather.town/app/yq99YWKCypHdDs0X/COSCUP%20Entrance">連結</a></li>
+                        	<li>攤位區 01：<a href="https://gather.town/app/9JO8kCSwIqbd57jM/COSCUP%20Booth%201">連結</a></li>
+                        	<li>攤位區 02：<a href="https://gather.town/app/PDC6hcsUH7aeEY21/COSCUP%20Booth%202">連結</a></li>
+                        	<li>BoF：<a href="https://gather.town/app/QlEUxf8HqOasulhB/COSCUP%20Party%201">連結</a></li>
+                        	<li>前夜派對（Welcome Party！）：<a href="https://gather.town/app/QlEUxf8HqOasulhB/COSCUP%20Party%201">連結</a></li>
+                        </ul>
+                        <h3>個人贊助</h3>
+                        <p>感謝各方好友支持 COSCUP！每贊助一筆 2500 元，可獲得 COSCUP 2021 獨家贈品一份。或是其他金額小額捐款/香油錢（無贈品）。<a href="https://ocf.neticrm.tw/civicrm/contribute/transact?reset=1&amp;id=49">個人贊助由此去！</a></p>
+                        <h2>活動前一天 7/30</h2>
+                        <h3>前夜派對</h3>
+                        <p>依照往年，活動前一天的晚上我們會舉行「前夜派對」！這個活動不論隔天是否要參加 COSCUP、只要你有空，都可以來這裡和好友、社群夥伴喝一杯，有可能會遇到心目中期待已久的大神講者！</p>
+                        <p>（喝一杯這件事可能要啟動邊緣運算（Edge computing），建議各位可以備足點心、零食或是啤酒在電腦前和大家喝一杯！線上飲み会！）</p>
+                        <p>如何前往「<a href="https://gather.town/app/QlEUxf8HqOasulhB/COSCUP%20Party%201">前夜派對</a>」會場，請從「<a href="https://gather.town/app/yq99YWKCypHdDs0X/COSCUP%20Entrance">會場大廳</a>」地圖、位於右上方的入口處進入（Party Entrance）。</p>
+                        <h2>活動日 7/31 - 8/01</h2>
+                        <p>如果你一早起來不知道下一步該如何開始，可以先連到 COSCUP 官網，看看有無最新消息發布！接著可以開始逛「<a href="https://coscup.org/2021/zh-TW/session">議程表</a>」。</p>
+                        <p>這次的活動因為轉為線上，我們沒有現場的攝影紀錄組協助，但如果你在活動期間發現不錯的畫面，在分享的時候也請幫忙加上 <code>#COSCUP</code> <code>#COSCUP2021</code> <code>#COSCUPxRubyConfTW2021</code> 的標籤，感謝！</p>
+                        <h3>大會主議程軌</h3>
+                        <p>大會主議程會在 08:45 開始，最後一場主議程是 16:10 - 17:10。</p>
+                        <h3>社群議程軌</h3>
+                        <p>各社群議程軌會在 10:00 開始，於每日的 16:00 結束。社群議程結束後請記得再回到「大會主議程軌」！</p>
+                        <h3>大會攤位區</h3>
+                        <p>這次活動我們還是有把攤位區的場地搬到線上喔！不論是贊助商攤位或是社群攤位，歡迎在活動期間到攤位區去逛逛，當然也有大地遊戲可以闖關！</p>
+                        <p>入口處在請從「<a href="https://gather.town/app/yq99YWKCypHdDs0X/COSCUP%20Entrance">會場大廳</a>」地圖、位於左上方的入口處<a href="https://gather.town/app/9JO8kCSwIqbd57jM/COSCUP%20Booth%201">進入（Booth Entrance）</a></p>
+                        <h3>[工商服務] 來聽贊助商徵才！</h3>
+                        <p>議程聽完來聽徵才囉</p>
+                        <p>7/31、8/1 12:10 - 13:00＠Gather Town Hiring Room.</p>
+                        <p>其他溫馨提醒：進入房間請關閉麥克風。</p>
+                        <p>如果房間人多被卡住，請按 G，透明自由穿梭入房間。</p>
+                        <h3>逛攤位！獲得限量 2021 獨家贈品！</h3>
+                        <p>疫情讓我們的活動變得艱難，但是該有的傳統不能少！</p>
+                        <p>收集贊助商攤位/社群攤位的通關密語， Summit 正確答案，大會會將贈品點數存放在登錄的 email address 裏，然後在 <strong>COSCUP2022</strong> 實體活動時、帶著 Opass app 來找我們領。</p>
+                        <ul>
+                        	<li>注意：除了「天瓏書局」沒有參與攤位大地遊戲，其他 20 個攤位（贊助商 / 社群）都有通關密語要收歐。</li>
+                        	<li>注意 2：你沒有看錯，贈品在 <strong>COSCUP2022</strong> 實體活動發送。</li>
+                        </ul>
+                        <h3>徵文活動</h3>
+                        <p>今年首次舉辦的徵文活動，邀請各位參與者寫下聽議程或是參與大會的心得發布在網路上，只要回報文章連結並且符合徵文規範，就可以獲得去年限量製作的開源酒杯或是線材包喔！</p>
+                        <p>徵文細節詳見：<a href="https://volunteer.coscup.org/tasks/2021">志工任務系統</a></p>
+                        <h3>Bof</h3>
+                        <p>Bof 的時間會在 7/31 17:30 開始，歡迎使用 <a href="https://hackmd.io/MMwKq3JQSR-ky5R34vRU9g">BoF 揪團文件</a>。活動場地會使用「<a href="https://gather.town/app/QlEUxf8HqOasulhB/COSCUP%20Party%201">前夜派對</a>」的地圖，入口處在請從「<a href="https://gather.town/app/yq99YWKCypHdDs0X/COSCUP%20Entrance">會場大廳</a>」地圖、位於右上方的入口處進入（Party Entrance）。</p>
+                        <h3>閃電秀 / Lightning Talk</h3>
+                        <p>今年的閃電秀將於 08/01 16:10 - 17:10 在 RB105 議程軌開講。</p>
+                        <p>每個人 5 分鐘，時間一到就插播一隻可愛的貓貓給大家看 🤡，歡迎將您想曝光的 Projects、Idea 或小議題在這裡跟大家分享吧！</p>
+                        <p>表單徵收截止時間: 08/01 12:05 <a href="https://forms.gle/NimAiRhm4UGzygdT9">https://forms.gle/NimAiRhm4UGzygdT9</a></p>
+                        <h2>活動後</h2>
+                        <h3>活動問卷</h3>
+                        <p>這一次首次舉辦全線上的活動需要你的回饋建議！（目前問卷尚未完成，完成後回另行公告。）</p>
+                        <h3>訂閱電子報</h3>
+                        <p>COSCUP 的<a href="https://secretary.coscup.org/subscribe/coscup">活動電子報</a>，如果還沒訂閱的，也訂起來！將不會錯過每一次的活動！</p>
+                        <h3>加入志工團隊</h3>
+                        <p>這次因為疫情關係，COSCUP 團隊在改變舉辦方式後，重新招募志工夥伴，很感謝大家能夠因應變化而調整。</p>
+                        <p>如果你還沒加入到「<a href="https://volunteer.coscup.org/">志工服務平台</a>」，也歡迎到平台上登錄（<a href="https://volunteer.coscup.org/oauth2callback">登入</a>即可），當我們準備開始籌備 <strong>COSCUP2022</strong> 時，你將會收到我們啟動的通知！</p>
+                        <p class="align-center"><a href="https://coscup.org/"><img style="border-radius:3px;" alt="COSUCP2021 Sponsor" src="https://secretary.coscup.org/s3/img/2021_all_sponsor_log.png"></a></p>
+                        <hr>	
+                        <p class="align-center"><a href="https://coscup.org/"><img style="border-radius:3px;" alt="COSUCP2021 Banner" src="https://secretary.coscup.org/s3/img/coscup2021_banner.png"></a></p>
+                        <p>Hi {{name}},</p>
+                        <p>COSCUP x RubyConfTW 2021 is going to be held online from 07/31 - 08/01!</p>
+                        <p>We’ve got a few surprises up our sleeve this year, so read on for the full details. </p>
+                        <h2>Before the Conference</h2>
+                        <h3>Agenda</h3>
+                        <p>If you haven&#39;t seen what topics are on the agenda yet, you can check out the <a href="https://coscup.org/2021/en/session">announced agenda</a> first. The YouTube broadcast will appear at the top of the agenda for each track. This will give you the feeling of walking through the classroom and listening to talks at your leisure.</p>
+                        <h3>If You Are A Speaker...</h3>
+                        <p>If you are a speaker, you should have received an invitation to the StreamYard before the event. But if not, please contact your community leader or program host.</p>
+                        <h3>Virtual Conference Hall</h3>
+                        <p>As we are still working on the online venue, we suggest you go to the official COSCUP homepage and enter by following the instructions on the homepage.</p>
+                        <p>We&#39;ll be using the Gather Town for the venue, so read the <a href="https://docs.google.com/presentation/d/1QEWkMIWQqho2Rc1f470to8xcgXwRJKDH0infCdkX91Q/edit?usp=sharing">manual</a> before the event starts! </p>
+                        <p>Links to the Event Entrance</p>
+                        <ul>
+                          <li>Conference Hall：<a href="https://gather.town/app/yq99YWKCypHdDs0X/COSCUP%20Entrance">Link</a></li>
+                          <li>Booth 01：<a href="https://gather.town/app/9JO8kCSwIqbd57jM/COSCUP%20Booth%201">Link</a></li>
+                          <li>Booth 02：<a href="https://gather.town/app/PDC6hcsUH7aeEY21/COSCUP%20Booth%202">Link</a></li>
+                          <li>BoF / Welcome Party!：<a href="https://gather.town/app/QlEUxf8HqOasulhB/COSCUP%20Party%201">Link</a></li>
+                        </ul>
+                        <h3>Be a Personal Sponsor</h3>
+                        <p>Thank you for your support of COSCUP! COSCUP is held by the volunteers of Open Source Communities in Taiwan. We rely on sponsorship and individual supporters like you to run COSCUP annually. Small donations are welcome.</p>
+                        <p>For every $2,500TWD sponsorship, you will receive the <strong>COSCUP 2021</strong> exclusive gift. <a href="https://ocf.neticrm.tw/civicrm/contribute/transact?reset=1&amp;id=49">Click here to donate now</a>!</p>
+                        <h2>Jul 30 - The Day Before the Event</h2>
+                        <h3>Welcome Party</h3>
+                        <p>As tradition goes, we will hold a &quot;Welcome Party&quot; the night before the event! No matter if you are attending COSCUP or not, as long as you are free, you can come to have a drink with your friends and community partners. Who knows - you may even meet the speaker you have been waiting for!</p>
+                        <p>(The drink may require activating edge computing, so we suggest you bring enough snacks or beers to have a drink with everyone in front of the computer! Online drinking sesssion! 線上飲み会! Virtual kanpai!)</p>
+                        <p>Please enter through the &quot;Party Entrance&quot; located at the top right of the &quot;<a href="https://gather.town/app/yq99YWKCypHdDs0X/COSCUP%20Entrance">Conference Hall</a>&quot; map to arrive at the &quot;<a href="https://gather.town/app/QlEUxf8HqOasulhB/COSCUP%20Party%201">Welcome Party</a>&quot; venue.</p>
+                        <h2>Jul 31 - Aug 1</h2>
+                        <p>Get comfy, let’s have some fun! </p>
+                        <p>Go to the COSCUP official website to see if there is any news released. Then you can start browsing the &quot;<a href="https://coscup.org/2021/en/session">Agenda</a>&quot;.</p>
+                        <p>This year, we do not have the on-site photography team because we switched to online. We want YOU to be our photographers and share your favourite moments or great images during the two days event. Use <code>#COSCUP</code> <code>#COSCUP2021</code> <code>#COSCUPxRubyConfTW2021</code> to spread the word!</p>
+                        <h3>Main Track</h3>
+                        <p>The main track will start at 8:45 and the last talk from the main track will be 16:10 - 17:10.</p>
+                        <h3>Community Track</h3>
+                        <p>Each community track will start at 10:00 and end at 16:00 each day. Please remember to return to the Main Track after the end of Community Track.</p>
+                        <h3>Visit the Booth! (Get a limited COSCUP 2021 exclusive gift)</h3>
+                        <p>The epidemic has made our event difficult, but we can&#39;t lose the tradition! We have moved the booth online. Whether it&#39;s a sponsor booth or a community booth, you&#39;re welcome to visit them during the event. And of course, there will also be games to play!</p>
+                        <p>Collect the passwords of the sponsor booths/community booths. Submit the correct answers, and we will store the giveaway points in the registered email address. Then, you can bring the OPass app to us to claim the exclusive gift during the <strong>COSCUP 2022</strong> event.</p>
+                        <p>Note:</p>
+                        <ul>
+                          <li>Except for &quot;<a href="https://www.tenlong.com.tw/">Tenlong Computer Bookstore</a>&quot;, which is not participating in the game, all other 20 booths (sponsors/communities) will have passwords to collect.</li>
+                          <li>You read it right, the gift will be given out at the <strong>COSCUP 2022</strong> physical event.</li>
+                        </ul>
+                        <p>The entrance is located at the <a href="https://gather.town/app/9JO8kCSwIqbd57jM/COSCUP%20Booth%201">Booth Entrance</a> on the top left side of the <a href="https://gather.town/app/yq99YWKCypHdDs0X/COSCUP%20Entrance">Conference Hall</a>. </p>
+                        <h3>Career Opportunities</h3>
+                        <p>Come to learn new job opportunities from the top tech companies! </p>
+                        <p>Jul 31 &amp; Aug 1: 12:10 - 13:00 ＠ Gather Town Hiring Room.</p>
+                        <p>Attention: Please turn off your microphone when entering the room.</p>
+                        <p>If you are stuck in a crowded room, please press “G” to enter the room freely and transparently.</p>
+                        <h3>Feedback Contest</h3>
+                        <p>This year we will launch the first feedback contest! We ask you to post your experiences of listening to the agenda or attending the conference. If you send us the link to your post and meet the criteria, you will be awarded a limited edition “Open Source Beer Glasses” or “Open Source Cable Organizer Bag”!</p>
+                        <p>For details of the contest, please refer to: <a href="https://volunteer.coscup.org/tasks/2021">Volunteer Tasks</a></p>
+                        <h3>BoF</h3>
+                        <p>The BoF will start on Jul 31 at 17:30. Feel free to use the <a href="https://hackmd.io/MMwKq3JQSR-ky5R34vRU9g">BoF Initiation Doc</a>. The venue will be at the &quot;<a href="https://gather.town/app/QlEUxf8HqOasulhB/COSCUP%20Party%201">Welcome Party</a>&quot; place. Please enter through the &quot;Party Entrance&quot; located at the top right of the &quot;<a href="https://gather.town/app/yq99YWKCypHdDs0X/COSCUP%20Entrance">Conference Hall</a>&quot; map.</p>
+                        <h3>Lightning Talk</h3>
+                        <p>This year&#39;s Lightning Talk will be held on Aug 1 from 16:10 - 17:10 on the RB105 Main Track.</p>
+                        <p>Each person will have 5 minutes and a cute cat will be shown to everyone when the time is up 🤡. Feel free to share your projects, ideas or small topics here!</p>
+                        <p>Deadline for submission: Aug 1 12:05. Click <a href="https://forms.gle/NimAiRhm4UGzygdT9">here</a> to submit. </p>
+                        <h2>After the Conference</h2>
+                        <h3>Fill Out the Survey</h3>
+                        <p>This is our first time to hold an online conference and we need your feedback! (We will send you the survey link after the conference).</p>
+                        <h3>Subscribe to the Newsletter</h3>
+                        <p>If you haven&#39;t subscribed to COSCUP&#39;s event newsletter, do so! You won&#39;t miss a single event!</p>
+                        <h3>Join the Volunteer Team</h3>
+                        <p>Due to the epidemic, the COSCUP team is recruiting new volunteers for different tasks.</p>
+                        <p>If you haven&#39;t joined the “<a href="https://volunteer.coscup.org/">COSCUP Volunteer</a>&quot; yet, you are welcome to register in (just <a href="https://volunteer.coscup.org/oauth2callback">log in</a>) and you will be notified when we are ready to start preparing for <strong>COSCUP 2022</strong>!</p>
+                        <p class="align-center"><a href="https://coscup.org/"><img style="border-radius:3px;" alt="COSUCP2021 Sponsor" src="https://secretary.coscup.org/s3/img/2021_all_sponsor_log.png"></a></p>
+                        <p class="btn-tips" style="margin-bottom: 0; margin-top: 30px;">如果有任何問題，可以直接回覆此封信件，感謝協助！</p>
+                        <p class="btn-tips" style="margin-bottom: 10px;">If you have any questions, please reply this letter.</p>
+                        <p class="btn-tips" style="margin-bottom: 0;">
+                          {% if admin_link %} 
+                          <a href="https://secretary.coscup.org/subscriber/code/{{admin_link}}">管理電子報訂閱</a> | <a href="https://secretary.coscup.org/subscriber/code/{{admin_link}}">manage your subscriptions</a>
+                          {% else %}
+                          <a href="https://secretary.coscup.org/subscribe/coscup">訂閱電子報訂閱</a> | <a href="https://secretary.coscup.org/subscribe/coscup">Subscribe</a>
+                          {%endif%}
+                        </p>
+                        <p class="align-center"><small style="color:#999999;">Send by Secretary | 行政組</small></p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            <!-- END MAIN CONTENT AREA -->
+            </table>
+
+            <!-- START FOOTER -->
+            <div class="footer">
+              <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td class="content-block">
+                    <span class="apple-link" style="display: inline-block;height: 24px;">
+                      <a href="https://www.facebook.com/coscup/"><img width="24" alt="coscup's facebook" src="https://secretary.coscup.org/s3/icon/facebook-square-brands.png"></a>
+                      <a href="https://t.me/coscupchat"><img width="24" alt="coscup's telegram" src="https://secretary.coscup.org/s3/icon/telegram-brands.png"></a>
+                      <a href="https://twitter.com/coscup"><img width="24" alt="coscup's twitter" src="https://secretary.coscup.org/s3/icon/twitter-square-brands.png"></a>
+                      <a href="https://blog.coscup.org/?utm_source=oscvpass&utm_medium=email&utm_campaign=oscvpass_passed&utm_term=footer_icon&utm_content=go_website"><img width="24" alt="coscup's blog" src="https://secretary.coscup.org/s3/icon/blogger-brands.png"></a>
+                      <a href="https://www.flickr.com/photos/coscup/"><img width="24" alt="coscup's flickr" src="https://secretary.coscup.org/s3/icon/flickr-brands.png"></a>
+                      <a href="https://www.youtube.com/user/thecoscup"><img width="24" alt="coscup's youtube" src="https://secretary.coscup.org/s3/icon/youtube-square-brands.png"></a>
+                    </span>
+                    <br>
+                    <span class="apple-link" style="display: inline-block;height: 15px;">COSCUP</span>
+                  </td>
+                  {%if openhash%}
+                  <td class="content-block">
+                      <img src="https://secretary.coscup.org/r/{{ucode}}/{{openhash}}?{{args}}"
+                           border=0 width="1" height="3" alt="">
+                  </td>
+                  {% endif %}
+                </tr>
+              </table>
+            </div>
+            <!-- END FOOTER -->
+
+          <!-- END CENTERED WHITE CONTAINER -->
+          </div>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+  </body>
+</html>
