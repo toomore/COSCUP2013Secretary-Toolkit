@@ -575,9 +575,69 @@ def send_coscup_production_info(dry_run=True):
 
         queue_sender(raw)
 
+def send_coscup_start_fif8n32y(dry_run=True):
+    template = TPLENV.get_template('./coscup_before_info.html')
+    if dry_run:
+        path = './coscup_paper_subscribers_fif8n32y_test.csv'
+    else:
+        path = './coscup_paper_subscribers_fif8n32y_20210726_114030_append.csv'
+
+    users = []
+    with open(path, 'r+') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(u'COSCUP Attendee', 'attendee@coscup.org'),
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject=u'[COSCUP x RubyConfTW 2021] 行前通知信 / It’s that time of year… All the fun at COSCUP x RubyConfTW 2021',
+            body=template.render(**u),
+        )
+
+        queue_sender(raw)
+
+def send_coscup_sponsor(dry_run=True):
+    template = TPLENV.get_template('./coscup_to_sponsor.html')
+    if dry_run:
+        path = './2021_sponsor_test.csv'
+    else:
+        path = './2021_sponsor.csv'
+
+    users = []
+    with open(path, 'r+') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            u['name'] = u['name'].strip()
+            u['mail'] = u['mail'].lower().strip()
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(u'COSCUP Sponsorship', 'sponsorship@coscup.org'),
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject=u'[COSCUP x RubyConfTW 2021] 贊助商行前通知信 / It’s that time of year… All the fun at COSCUP x RubyConfTW 2021',
+            body=template.render(**u),
+        )
+
+        queue_sender(raw)
+
 if __name__ == '__main__':
     #send_coscup_hire_thsn2r5b(dry_run=False)
     #send_coscup_cfp_g8up8qe5(dry_run=False)
     #send_coscup_online_4vw2swwa(dry_run=False)
     #send_coscup_production_info(dry_run=False)
+    #send_coscup_start_fif8n32y(dry_run=False)
+    #send_coscup_sponsor(dry_run=False)
     pass
