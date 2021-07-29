@@ -1,0 +1,478 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>COSCUP</title>
+    <style>
+      /* -------------------------------------
+          GLOBAL RESETS
+      ------------------------------------- */
+      img {
+        border: none;
+        -ms-interpolation-mode: bicubic;
+        max-width: 100%; }
+
+      body {
+        background-color: #ffffff;
+        font-family: sans-serif;
+        -webkit-font-smoothing: antialiased;
+        font-size: 14px;
+        line-height: 1.4;
+        margin: 0;
+        padding: 0;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%; }
+
+      table {
+        border-collapse: separate;
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+        width: 100%; }
+        table td {
+          font-family: sans-serif;
+          font-size: 14px;
+          vertical-align: top; }
+
+      /* -------------------------------------
+          BODY & CONTAINER
+      ------------------------------------- */
+
+      .body {
+        background-color: #ffffff;
+        width: 100%; }
+
+      /* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */
+      .container {
+        display: block;
+        margin: 0 auto !important;
+        /* makes it centered */
+        max-width: 580px;
+        padding: 10px; }
+
+      /* This should also be a block element, so that it will fill 100% of the .container */
+      .content {
+        box-sizing: border-box;
+        display: block;
+        margin: 0 auto;
+        max-width: 580px;
+        padding: 10px;
+        background-color: #3D9238; }
+
+      /* -------------------------------------
+          HEADER, FOOTER, MAIN
+      ------------------------------------- */
+      .main {
+        background: #fff;
+        border-radius: 3px;
+        width: 100%; }
+
+      .wrapper {
+        box-sizing: border-box;
+        padding: 20px; }
+
+      .footer {
+        clear: both;
+        padding-top: 10px;
+        text-align: center;
+        width: 100%; }
+        .footer td,
+        .footer p,
+        .footer span,
+        .footer a {
+          color: #ffffff;
+          font-size: 12px;
+          text-align: center; }
+
+      /* -------------------------------------
+          TYPOGRAPHY
+      ------------------------------------- */
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: #000000;
+        font-family: sans-serif;
+        font-weight: 400;
+        line-height: 1.4;
+        margin: 0;
+        margin-bottom: 30px; }
+
+      h1 {
+        font-size: 35px;
+        font-weight: 300;
+        text-align: center;
+        text-transform: capitalize; }
+
+      p,
+      ul,
+      ol {
+        font-family: sans-serif;
+        font-size: 14px;
+        font-weight: normal;
+        margin: 0;
+        margin-bottom: 15px; }
+        p li,
+        ul li,
+        ol li {
+          list-style-position: inside;
+          margin-left: 5px; }
+
+      a {
+        color: #3498db;
+        text-decoration: underline; }
+
+      /* -------------------------------------
+          BUTTONS
+      ------------------------------------- */
+      .btn {
+        box-sizing: border-box;
+        width: 100%; }
+        .btn > tbody > tr > td {
+          padding-bottom: 15px; }
+        .btn table {
+          width: auto; }
+        .btn table td {
+          background-color: #ffffff;
+          border-radius: 5px;
+          text-align: center; }
+        .btn a {
+          background-color: #ffffff;
+          border: solid 1px #3498db;
+          border-radius: 5px;
+          box-sizing: border-box;
+          color: #3498db;
+          cursor: pointer;
+          display: inline-block;
+          font-size: 14px;
+          font-weight: bold;
+          margin: 0;
+          padding: 12px 25px;
+          text-decoration: none;
+          text-transform: capitalize; }
+
+      .btn-primary table td {
+        background-color: #3498db; }
+
+      .btn-primary a {
+        background-color: #3498db;
+        border-color: #3498db;
+        color: #ffffff; }
+
+      /* -------------------------------------
+          OTHER STYLES THAT MIGHT BE USEFUL
+      ------------------------------------- */
+      .last {
+        margin-bottom: 0; }
+
+      .first {
+        margin-top: 0; }
+
+      .align-center {
+        text-align: center; }
+
+      .align-right {
+        text-align: right; }
+
+      .align-left {
+        text-align: left; }
+
+      .clear {
+        clear: both; }
+
+      .mt0 {
+        margin-top: 0; }
+
+      .mb0 {
+        margin-bottom: 0; }
+
+      .preheader {
+        color: transparent;
+        display: none;
+        height: 0;
+        max-height: 0;
+        max-width: 0;
+        opacity: 0;
+        overflow: hidden;
+        mso-hide: all;
+        visibility: hidden;
+        width: 0; }
+
+      .powered-by a {
+        text-decoration: none; }
+
+      hr {
+        border: 0;
+        border-bottom: 1px solid #f6f6f6;
+        margin: 20px 0; }
+
+      /* -------------------------------------
+          RESPONSIVE AND MOBILE FRIENDLY STYLES
+      ------------------------------------- */
+      @media only screen and (max-width: 580px) {
+        table[class=body] h1 {
+          font-size: 28px !important;
+          margin-bottom: 10px !important; }
+        table[class=body] p,
+        table[class=body] ul,
+        table[class=body] ol,
+        table[class=body] td,
+        table[class=body] span,
+        table[class=body] a {
+          font-size: 16px !important; }
+        table[class=body] .wrapper,
+        table[class=body] .article {
+          padding: 10px !important; }
+        table[class=body] .content {
+          padding: 0 !important; }
+        table[class=body] .container {
+          padding: 0 !important;
+          width: 100% !important; }
+        table[class=body] .main {
+          border-left-width: 0 !important;
+          border-radius: 0 !important;
+          border-right-width: 0 !important; }
+        table[class=body] .btn table {
+          width: 100% !important; }
+        table[class=body] .btn a {
+          width: 100% !important; }
+        table[class=body] .img-responsive {
+          height: auto !important;
+          max-width: 100% !important;
+          width: auto !important; }}
+
+      /* -------------------------------------
+          PRESERVE THESE STYLES IN THE HEAD
+      ------------------------------------- */
+      @media all {
+        .ExternalClass {
+          width: 100%; }
+        .ExternalClass,
+        .ExternalClass p,
+        .ExternalClass span,
+        .ExternalClass font,
+        .ExternalClass td,
+        .ExternalClass div {
+          line-height: 100%; }
+        .apple-link a {
+          color: inherit !important;
+          font-family: inherit !important;
+          font-size: inherit !important;
+          font-weight: inherit !important;
+          line-height: inherit !important;
+          text-decoration: none !important; }
+        .btn-primary table td:hover {
+          background-color: #34495e !important; }
+        .btn-primary a:hover {
+          background-color: #34495e !important;
+          border-color: #34495e !important; } }
+
+      .quote {
+        color: #334433;
+        font-style: italic;
+        font-size: small;
+      }
+      h2 {
+        font-weight: bold;
+        font-family: "Arial";
+        border-bottom: 1px #3D9238 dashed;
+        padding-left: 1px;
+        margin-top: 30px;
+        margin-bottom: 12px;
+      }
+      h3 {
+        margin-bottom: 5px;
+        margin-top: 20px;
+        color: #3D9238;
+        font-weight: bold;
+      }
+      ol li,
+      ul li {
+        list-style-position: outside;
+        margin-left: 0px;
+        line-height: 2;
+      }
+      span.note {
+        border-radius: 2px;
+        padding: 3px;
+        font-weight: bold;
+        color: #ffffff;
+        font-size: 8pt;
+      }
+      span.first {
+        background-color: #2962FF;
+      }
+      span.second {
+        background-color: #FF6F00;
+      }
+      span.ef {
+        background-color: #7B1FA2;
+      }
+      span.sf {
+        background-color: #9C27B0;
+      }
+      span.local {
+        background-color: #009688;
+      }
+      .tips {
+        font-family: "Courier New";
+        background-color: #fafafa;
+        padding: 6px;
+        border-radius: 3px;
+        border: 1px #81d4fa solid;
+        font-size: 12px;
+        color: #01579b;
+      }
+      .tips-green {
+        color: #2E7D32;
+        border: 1px #43A047 solid;
+      }
+      pre {
+        font-size: small;
+        line-height: 12px;
+        color: #607D8B;
+        text-align: right;
+      }
+      p small,
+      li small {
+        color: #898989;
+      }
+      .btn-tips{
+        font-size: x-small;
+        color: #6E8E6C;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body class="">
+    <table border="0" cellpadding="0" cellspacing="0" class="body">
+      <tr>
+        <td>&nbsp;</td>
+        <td class="container">
+          <div class="content">
+
+            <!-- START CENTERED WHITE CONTAINER -->
+            <span class="preheader">上線喝一杯！</span>
+            <table class="main">
+
+              <!-- START MAIN CONTENT AREA -->
+              <tr>
+                <td class="wrapper">
+                  <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td>
+                        <p class="align-right"><a href="https://coscup.org/?utm_source=subscribe&utm_medium=email&utm_campaign=fif8n32y_online&utm_term=img&utm_content=go_website"><img width="135" src="https://secretary.coscup.org/s3/img/coscup_logo_tw_270.png" alt="COSCUP Logo" title="COSCUP Logo"></a></p>
+                        <p class="align-center"><a href="https://blog.coscup.org/2021/07/2021open-source-and-winewelcome-party.html"><img style="border-radius:3px;" alt="COSUCP2021 Welcome Party" src="https://secretary.coscup.org/s3/img/2021_party_banner.png"></a></p>
+                        <p>Hi {{name}},</p>
+                        <p style="text-align: center;"><small>This year, the Welcome Party will be held on Gather Town, please feel free to join us!</small></p>
+                        <p style="text-align: center;">不用報名，自由參加。</p>
+                        <p style="text-align: center;">訂好餐點，一起參加。</p>
+                        <p style="text-align: center;">網路暢通，線上參加。</p>
+                        <p style="text-align: center;">今年就直接上來吧，<strong>預先訂好外送</strong>，一起在線上喝一杯！</p>
+                        <p style="text-align: center;">場地開放時間： <strong>2021-07-30 17:30-22:00 (UTC+8)</strong></p>
+                        <p style="text-align: center;">場地連結：<a href="https://gather.town/app/QlEUxf8HqOasulhB/COSCUP%20Party%201">Party 1</a> | <a href="https://gather.town/app/Xl84SRA2cqUMSDNt/COSCUP%20Party%202">Party 2</a></p>
+                        <p>依照往年，活動前一天的晚上我們會舉行「前夜派對」！這個活動不論隔天是否要參加 COSCUP、只要你有空，都可以來這裡和好友、社群夥伴喝一杯，有可能會遇到心目中期待已久的大神講者！</p>
+                        <p>（建議各位可以備足點心、零食或是啤酒在電腦前和大家喝一杯！線上飲み会！）</p>
+                        <p><small>As tradition goes, we will hold a "Welcome Party" the night before the event! No matter if you are attending COSCUP or not, as long as you are free, you can come to have a drink with your friends and community partners. Who knows - you may even meet the speaker you have been waiting for!</small></p>
+                        <p><small>（we suggest you bring enough snacks or beers to have a drink with everyone in front of the computer! Online drinking sesssion! 線上飲み会! Virtual kanpai!）</small></p>
+                        <p><small>(Translate by Marketing Team - <a href="https://volunteer.coscup.org/user/244f4492">Hai-Ching Chang 海淨</a> 🎉)</small></p>
+                        <h2>其他補充資訊 / More about virtual venues</h2>
+                        <p>今年我們有兩個部分轉移到線上，活動場地（攤位、Party、BoF）轉到 Gather Town。而議程的部分則移至到 YouTube 串流直播。</p>
+                        <p>關於議程 YouTube 串流直播可以參考以下播放清單。（<a href="https://www.youtube.com/playlist?list=PLqfib4St70XPwnlDHUJerK5c7SQKsgWhS">Day1</a>, <a href="https://www.youtube.com/playlist?list=PLqfib4St70XOsknW4ywpfoF3ZTE29tZHU">Day2</a>）</p>
+                        <p><small>This year, we have two parts go online, the virtual venues(booths, party, BoF) are in Gather Town, and the conference is on YouTube channel.</small></p>
+                        <p><small>About the online conference streaming, you can view all Live! here.（<a href="https://www.youtube.com/playlist?list=PLqfib4St70XPwnlDHUJerK5c7SQKsgWhS">Day1</a>, <a href="https://www.youtube.com/playlist?list=PLqfib4St70XOsknW4ywpfoF3ZTE29tZHU">Day2</a>）</small></p>
+                        <h2>All virtual venue’s opening hours</h2>
+                        <table cellpadding="0" border="0" style="margin-bottom: 12px;">
+                          <thead>
+                            <tr style="background-color: #f4f4f4;">
+                              <th style="padding: 5px;">Opening Hours</th>
+                              <th>7/30</th>
+                              <th>7/31</th>
+                              <th>8/01</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td style="padding: 5px; text-align: center; vertical-align: middle; background-color: rgb(241, 255, 241)">
+                                入口區<br>
+                                <a href="https://gather.town/app/yq99YWKCypHdDs0X/COSCUP%20Entrance">ENTRANCE</a>
+                              </td>
+                              <td style="text-align: center; vertical-align: middle; color:royalblue">24H</td>
+                              <td style="text-align: center; vertical-align: middle; color:royalblue">24H</td>
+                              <td style="text-align: center; vertical-align: middle; color:royalblue">24H</td>
+                            </tr>
+                            <tr>
+                              <td style="padding: 5px; text-align: center; vertical-align: middle; background-color: rgb(233, 249, 255);">
+                                攤位區<br>
+                                <a href="https://gather.town/app/9JO8kCSwIqbd57jM/COSCUP%20Booth%201">Booth 1</a> / <a href="https://gather.town/app/9JO8kCSwIqbd57jM/COSCUP%20Booth%201">Booth 2</a>
+                              </td>
+                              <td style="text-align: center; vertical-align: middle;"><small style="color: red;">CLOSED</small></td>
+                              <td style="text-align: center; vertical-align: middle;">10:00<br>18:00</td>
+                              <td style="text-align: center; vertical-align: middle;">10:00<br>18:00</td>
+                            </tr>
+                            <tr>
+                              <td style="padding: 5px; text-align: center; vertical-align: middle; background-color: rgb(244, 239, 255);">
+                                Party | BoF<br>
+                                <a href="https://gather.town/app/QlEUxf8HqOasulhB/COSCUP%20Party%201">Party 1</a> / <a href="https://gather.town/app/Xl84SRA2cqUMSDNt/COSCUP%20Party%202">Party 2</a>
+                              </td>
+                              <td style="text-align: center; vertical-align: middle;">17:30<br>22:00</td>
+                              <td style="text-align: center; vertical-align: middle;">17:30<br>22:00</td>
+                              <td style="text-align: center; vertical-align: middle;"><small style="color: red;">CLOSED</small></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <p>關於虛擬場地開放的時間可以參考這份「<a href="https://blog.coscup.org/2021/07/all-virtual-venues-opening-hours.html">開放時間公告</a>」</p>
+                        <p><small>About the virtual venue’s opening hours, you can read this <a href="https://blog.coscup.org/2021/07/all-virtual-venues-opening-hours.html">announcement</a>.</small></p>
+                        <p class="btn-tips" style="margin-bottom: 0; margin-top: 30px;">如果有任何問題，可以直接回覆此封信件，感謝協助！</p>
+                        <p class="btn-tips" style="margin-bottom: 10px;">If you have any questions, please reply this letter.</p>
+                        <p class="btn-tips" style="margin-bottom: 0;">
+                          {% if admin_link %} 
+                          <a href="https://secretary.coscup.org/subscriber/code/{{admin_link}}">管理電子報訂閱</a> | <a href="https://secretary.coscup.org/subscriber/code/{{admin_link}}">manage your subscriptions</a>
+                          {% else %}
+                          <a href="https://secretary.coscup.org/subscribe/coscup">訂閱電子報訂閱</a> | <a href="https://secretary.coscup.org/subscribe/coscup">Subscribe</a>
+                          {%endif%}
+                        </p>
+                        <p class="align-center"><small style="color:#999999;">Send by Secretary | 行政組</small></p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            <!-- END MAIN CONTENT AREA -->
+            </table>
+
+            <!-- START FOOTER -->
+            <div class="footer">
+              <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td class="content-block">
+                    <span class="apple-link" style="display: inline-block;height: 24px;">
+                      <a href="https://www.facebook.com/coscup/"><img width="24" alt="coscup's facebook" src="https://secretary.coscup.org/s3/icon/facebook-square-brands.png"></a>
+                      <a href="https://t.me/coscupchat"><img width="24" alt="coscup's telegram" src="https://secretary.coscup.org/s3/icon/telegram-brands.png"></a>
+                      <a href="https://twitter.com/coscup"><img width="24" alt="coscup's twitter" src="https://secretary.coscup.org/s3/icon/twitter-square-brands.png"></a>
+                      <a href="https://blog.coscup.org/?utm_source=oscvpass&utm_medium=email&utm_campaign=oscvpass_passed&utm_term=footer_icon&utm_content=go_website"><img width="24" alt="coscup's blog" src="https://secretary.coscup.org/s3/icon/blogger-brands.png"></a>
+                      <a href="https://www.flickr.com/photos/coscup/"><img width="24" alt="coscup's flickr" src="https://secretary.coscup.org/s3/icon/flickr-brands.png"></a>
+                      <a href="https://www.youtube.com/user/thecoscup"><img width="24" alt="coscup's youtube" src="https://secretary.coscup.org/s3/icon/youtube-square-brands.png"></a>
+                    </span>
+                    <br>
+                    <span class="apple-link" style="display: inline-block;height: 15px;">COSCUP</span>
+                  </td>
+                  {%if openhash%}
+                  <td class="content-block">
+                      <img src="https://secretary.coscup.org/r/{{ucode}}/{{openhash}}?{{args}}"
+                           border=0 width="1" height="3" alt="">
+                  </td>
+                  {% endif %}
+                </tr>
+              </table>
+            </div>
+            <!-- END FOOTER -->
+
+          <!-- END CENTERED WHITE CONTAINER -->
+          </div>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+  </body>
+</html>
