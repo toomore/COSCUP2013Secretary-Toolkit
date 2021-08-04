@@ -603,6 +603,34 @@ def send_coscup_start_fif8n32y(dry_run=True):
 
         queue_sender(raw)
 
+def send_coscup_party_twz66e3b(dry_run=True):
+    template = TPLENV.get_template('./coscup_welcome_party.html')
+    if dry_run:
+        path = './coscup_paper_subscribers_twz66e3b_test.csv'
+    else:
+        path = './coscup_paper_subscribers_twz66e3b_20210729_100939_append.csv'
+
+    users = []
+    with open(path, 'r+') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(u'COSCUP Attendee', 'attendee@coscup.org'),
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject=u"[COSCUP x RubyConfTW 2021] 前夜派對！ Let's Party online, Welcome Party 2021-07-30 17:30-22:00",
+            body=template.render(**u),
+        )
+
+        queue_sender(raw)
+
 def send_coscup_sponsor(dry_run=True):
     template = TPLENV.get_template('./coscup_to_sponsor.html')
     if dry_run:
@@ -640,4 +668,5 @@ if __name__ == '__main__':
     #send_coscup_production_info(dry_run=False)
     #send_coscup_start_fif8n32y(dry_run=False)
     #send_coscup_sponsor(dry_run=False)
+    #send_coscup_party_twz66e3b(dry_run=False)
     pass
