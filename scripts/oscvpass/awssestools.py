@@ -323,6 +323,58 @@ def send_sitcon_token(rows, dry_run=True):
         if dry_run:
             return
 
+def send_pycon_token(rows, dry_run=True):
+    template = TPLENV.get_template('./pycon_2021_token.html')
+    _n = 1
+    for u in rows:
+        if u['mail'] in setting.BLOCK:
+            continue
+
+        print(_n, u)
+        _n += 1
+
+        if dry_run:
+            u['mail'] = setting.TESTMAIL
+
+        body = template.render(**u)
+        raw = make_raw_email(
+            nickname=u['name'],
+            mail=u['mail'],
+            subject=u'[OSCVPass] 最後售票 PyCon Taiwan 2021 開源貢獻票 優惠券 (%s)' % u['name'],
+            body=body,
+            dry_run=dry_run,
+        )
+        SENDER.client.send_raw_email(RawMessage={'Data': raw})
+
+        if dry_run:
+            return
+
+def send_coscup_check(rows, dry_run=True):
+    template = TPLENV.get_template('./coscup_2021.html')
+    _n = 1
+    for u in rows:
+        if u['mail'] in setting.BLOCK:
+            continue
+
+        print(_n, u)
+        _n += 1
+
+        if dry_run:
+            u['mail'] = setting.TESTMAIL
+
+        body = template.render(**u)
+        raw = make_raw_email(
+            nickname=u['name'],
+            mail=u['mail'],
+            subject=u'[OSCVPass] COSCUP x RubyConfTW 2021 開源貢獻回饋調查 (%s)' % u['name'],
+            body=body,
+            dry_run=dry_run,
+        )
+        SENDER.client.send_raw_email(RawMessage={'Data': raw})
+
+        if dry_run:
+            return
+
 def pickup_unique(data, cases):
     maillist = []
     for case in cases:
@@ -420,7 +472,7 @@ def send_expired(path, dry_run=True):
 if __name__ == '__main__':
     # ----- send Pass/deny ----- #
     #from pprint import pprint
-    #data = process_csv('./oscvpass_210416_only_w_date.csv', _all=False)
+    #data = process_csv('./oscvpass_210806_only_w_date.csv', _all=False)
     #for case in data:
     #    print(case, len(data[case]))
     #    for row in data[case]:
@@ -431,15 +483,13 @@ if __name__ == '__main__':
     #send_request_attendee('/run/shm/hash_b0466044.csv', dry_run=True)
 
     # ----- send get token ----- #
-    #data = process_csv('./oscvpass_200915.csv', _all=True)
+    #data = process_csv('./oscvpass_210714_only_w_date.csv', _all=True)
     #maillist = pickup_unique(data=data, cases=('pass', ))
-    #print(maillist, len(maillist))
-    #merge_token(
     #        datas=maillist, token_path='./mopcon_2020_token.csv', out_path='./mopcon_2020_token_mails.csv')
     #send_coscup_lpi(rows=maillist, dry_run=False)
 
     # ----- export uuid csv ----- #
-    #add_uuid_export_csv(maillist, './oscvpass_200729_uni_uuid.csv')
+    #add_uuid_export_csv(maillist, './pycon2021_tokens.csv')
 
     # ----- send mopcon token ----- #
     #with open('./mopcon_2020_token_mails_201021_min.csv', 'r+') as files:
@@ -469,23 +519,25 @@ if __name__ == '__main__':
     #    send_g0v_token(rows=rows, dry_run=False)
 
     # ----- update token ----- #
-    #data = process_csv('./oscvpass_210416_only_w_date.csv', _all=True)
+    #data = process_csv('./oscvpass_210806_only_w_date.csv', _all=True)
     #maillist = pickup_unique(data=data, cases=('pass', ))
     #print(maillist, len(maillist))
 
     #update_token(datas=maillist,
-    #        org_path='./sitcon_2021_token_mails_fixed.csv',
-    #        out_path='./sitcon_2021_token_mails_append_210416.csv')
+    #        org_path='./pycon2021_tokens_mails.csv',
+    #        out_path='./pycon2021_tokens_mails_210806.csv')
 
     #send_expired(path='./expired_20201223.csv', dry_run=False)
 
     # ----- Gen tokens ----- #
-    #gen_token(nums=250, out_path="sitcon_2021_token.csv")
-    #data = process_csv('./oscvpass_210303.csv', _all=True)
+    #gen_token(nums=250, out_path="./pycon2021_tokens.csv")
+    #data = process_csv('./oscvpass_210714_only_w_date.csv', _all=True)
     #maillist = pickup_unique(data=data, cases=('pass', ))
     #print(maillist, len(maillist))
     #merge_token(
-    #        datas=maillist, token_path='./sitcon_2021_token.csv', out_path='./sitcon_2021_token_mails.csv')
+    #        datas=maillist,
+    #        token_path='./pycon2021_tokens.csv',
+    #        out_path='./pycon2021_tokens_mails.csv')
 
     # ----- send SITCON2021 token ----- #
     #with open('./sitcon_2021_token_mails_append_210416.csv', 'r+') as files:
@@ -497,4 +549,23 @@ if __name__ == '__main__':
 
     #    send_sitcon_token(rows=rows, dry_run=False)
 
+    # ----- send PyConTaiwan2021 token ----- #
+    #with open('./pycon2021_tokens_mails_210806.csv', 'r+') as files:
+    #    rows = []
+    #    for user in csv.DictReader(files):
+    #        if not user['mail']:
+    #            continue
+    #        rows.append(user)
+
+    #    send_pycon_token(rows=rows, dry_run=False)
+
+    # ----- send COSCUP2021 check ----- #
+    #with open('./oscvpass-check_yker8xb2.csv', 'r+') as files:
+    #    rows = []
+    #    for user in csv.DictReader(files):
+    #        rows.append(user)
+
+    #    send_coscup_check(rows=rows, dry_run=False)
+
     pass
+
