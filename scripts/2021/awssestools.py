@@ -689,6 +689,34 @@ def send_coscup_sponsor(dry_run=True):
 
         queue_sender(raw)
 
+def send_coscup_sitcon(dry_run=True):
+    template = TPLENV.get_template('./coscup_sitcon.html')
+    if dry_run:
+        path = './coscup_paper_subscribers_h32a3hb7_test.csv'
+    else:
+        path = './coscup_paper_subscribers_h32a3hb7_20210830_153500_append.csv'
+
+    users = []
+    with open(path, 'r+') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(u'COSCUP Attendee', 'attendee@coscup.org'),
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject=u"[COSCUP] 9/4 SITCON 擺攤與近期活動 | %s" % hex(_n)[2:],
+            body=template.render(**u),
+        )
+
+        queue_sender(raw)
+
 if __name__ == '__main__':
     #send_coscup_hire_thsn2r5b(dry_run=False)
     #send_coscup_cfp_g8up8qe5(dry_run=False)
@@ -697,5 +725,6 @@ if __name__ == '__main__':
     #send_coscup_start_fif8n32y(dry_run=False)
     #send_coscup_sponsor(dry_run=False)
     #send_coscup_party_twz66e3b(dry_run=False)
-    send_coscup_after_coscup_7xjzjlqt(dry_run=False)
+    #send_coscup_after_coscup_7xjzjlqt(dry_run=True)
+    #send_coscup_sitcon(dry_run=True)
     pass
