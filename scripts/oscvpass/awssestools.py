@@ -262,7 +262,7 @@ def send_mopcon_token(rows, dry_run=True):
         raw = make_raw_email(
             nickname=u['name'],
             mail=u['mail'],
-            subject=u'[OSCVPass][提醒] MOPCON2020 開源貢獻票 優惠券 (%s)' % u['name'],
+            subject=u'[OSCVPass] MOPCON2021 開源貢獻票 優惠券 (%s)' % u['name'],
             body=body,
             dry_run=dry_run,
         )
@@ -492,14 +492,14 @@ if __name__ == '__main__':
     #add_uuid_export_csv(maillist, './pycon2021_tokens.csv')
 
     # ----- send mopcon token ----- #
-    #with open('./mopcon_2020_token_mails_201021_min.csv', 'r+') as files:
+    #with open('./mopcon_2021_tokens_mails_210902.csv', 'r+') as files:
     #    rows = []
     #    for user in csv.DictReader(files):
     #        if not user['mail']:
     #            continue
     #        rows.append(user)
 
-    #    send_mopcon_token(rows=rows, dry_run=False)
+    #    send_mopcon_token(rows=rows, dry_run=True)
 
     # ----- g0v Summit ----- #
     #data = process_csv('./oscvpass_200930.csv', _all=True)
@@ -524,20 +524,21 @@ if __name__ == '__main__':
     #print(maillist, len(maillist))
 
     #update_token(datas=maillist,
-    #        org_path='./pycon2021_tokens_mails.csv',
-    #        out_path='./pycon2021_tokens_mails_210806.csv')
+    #        org_path='./mopcon_2021_tokens.csv',
+    #        out_path='./mopcon_2021_tokens_mails_210902.csv')
 
     #send_expired(path='./expired_20201223.csv', dry_run=False)
 
     # ----- Gen tokens ----- #
-    #gen_token(nums=250, out_path="./pycon2021_tokens.csv")
+    #gen_token(nums=250, out_path="./mopcon_2021_tokens.csv")
     #data = process_csv('./oscvpass_210714_only_w_date.csv', _all=True)
+    #data = {'pass': []}
     #maillist = pickup_unique(data=data, cases=('pass', ))
     #print(maillist, len(maillist))
     #merge_token(
     #        datas=maillist,
-    #        token_path='./pycon2021_tokens.csv',
-    #        out_path='./pycon2021_tokens_mails.csv')
+    #        token_path='./mopcon_2021_token.csv',
+    #        out_path='./mopcon_2021_tokens_mails.csv')
 
     # ----- send SITCON2021 token ----- #
     #with open('./sitcon_2021_token_mails_append_210416.csv', 'r+') as files:
