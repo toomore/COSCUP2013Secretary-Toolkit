@@ -469,6 +469,33 @@ def send_expired(path, dry_run=True):
             if dry_run:
                 return
 
+def send_workshop(path, dry_run=True):
+    ''' send workshop '''
+    template = TPLENV.get_template('./2022_workshop.html')
+    _n = 1
+
+    with open(path) as files:
+        for u in csv.DictReader(files):
+            print(_n, u)
+            _n += 1
+
+            body = template.render(**u)
+
+            if dry_run:
+                u['mail'] = setting.TESTMAIL
+
+            raw = make_raw_email(
+                nickname=u['nickname'].strip(),
+                mail=u['mail'].strip().lower(),
+                subject='[OSCVPass] WorkShop 活動',
+                body=body,
+                dry_run=dry_run,
+            )
+            print(SENDER.client.send_raw_email(RawMessage={'Data': raw}))
+
+            if dry_run:
+                return
+
 if __name__ == '__main__':
     # ----- send Pass/deny ----- #
     #from pprint import pprint
@@ -567,6 +594,9 @@ if __name__ == '__main__':
     #        rows.append(user)
 
     #    send_coscup_check(rows=rows, dry_run=False)
+
+    # ----- send 2022 workshop ----- #
+    #send_workshop('./oscvpass_all_users_220502.csv', dry_run=False)
 
     pass
 
