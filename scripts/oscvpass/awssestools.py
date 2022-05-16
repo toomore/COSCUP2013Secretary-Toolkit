@@ -75,7 +75,7 @@ class AwsSESTools(object):
         #        RawMessage={'Data': msg_all.as_string()})
         return msg_all.as_string()
 
-MAIL_SOURCE = AwsSESTools.mail_header(u'OSCVPass', 'oscvpass@ocf.tw')
+MAIL_SOURCE = AwsSESTools.mail_header(u'OSCVPass 開源貢獻者快速通關', 'oscvpass@ocf.tw')
 SENDER = AwsSESTools(setting.AWSID, setting.AWSKEY)
 
 def make_raw_email(nickname, mail, subject, body, dry_run=True):
@@ -452,6 +452,14 @@ def send_expired(path, dry_run=True):
             print(_n, u)
             _n += 1
 
+            _date = arrow.get(u['date'])
+            u['date'] = _date.format('YYYY-MM-DD')
+
+            if _date >= arrow.now():
+                u['say_expired'] = '即將'
+            else:
+                u['say_expired'] = '已'
+
             body = template.render(**u)
 
             if dry_run:
@@ -460,7 +468,7 @@ def send_expired(path, dry_run=True):
             raw = make_raw_email(
                 nickname=u['nickname'],
                 mail=u['mail'],
-                subject=u'[OSCVPass] [提醒] 即將到期！ (%s)' % u['nickname'],
+                subject=f"[OSCVPass] [提醒] {u['say_expired']}到期！({u['nickname']})",
                 body=body,
                 dry_run=dry_run,
             )
@@ -487,7 +495,7 @@ def send_workshop(path, dry_run=True):
             raw = make_raw_email(
                 nickname=u['nickname'].strip(),
                 mail=u['mail'].strip().lower(),
-                subject='[OSCVPass] WorkShop 活動',
+                subject='[OSCVPass] WorkShop 活動：將與 OSCVPass 合作社群：SITCON、COSCUP x g0v jothon，分別舉辦兩場次開源貢獻，截止日期 2022/5/15',
                 body=body,
                 dry_run=dry_run,
             )
@@ -499,14 +507,14 @@ def send_workshop(path, dry_run=True):
 if __name__ == '__main__':
     # ----- send Pass/deny ----- #
     #from pprint import pprint
-    #data = process_csv('./oscvpass_210806_only_w_date.csv', _all=False)
+    #data = process_csv('./oscvpass_220512.csv', _all=False)
     #for case in data:
     #    print(case, len(data[case]))
     #    for row in data[case]:
     #        print(row['name'], row['c_01'])
 
     #pprint(data['deny'])
-    #send(data=data, case=('deny', 'insufficient_for', 'pass'), dry_run=False)
+    #send(data=data, case=('deny', 'insufficient_for', 'pass'), dry_run=True)
     #send_request_attendee('/run/shm/hash_b0466044.csv', dry_run=True)
 
     # ----- send get token ----- #
@@ -554,10 +562,10 @@ if __name__ == '__main__':
     #        org_path='./mopcon_2021_tokens.csv',
     #        out_path='./mopcon_2021_tokens_mails_210902.csv')
 
-    #send_expired(path='./expired_20201223.csv', dry_run=False)
+    #send_expired(path='./oscvpass_expired_220512.csv', dry_run=True)
 
     # ----- Gen tokens ----- #
-    #gen_token(nums=250, out_path="./mopcon_2021_tokens.csv")
+    #gen_token(nums=300, out_path="./sitcon_2022_tokens.csv")
     #data = process_csv('./oscvpass_210714_only_w_date.csv', _all=True)
     #data = {'pass': []}
     #maillist = pickup_unique(data=data, cases=('pass', ))
@@ -596,7 +604,7 @@ if __name__ == '__main__':
     #    send_coscup_check(rows=rows, dry_run=False)
 
     # ----- send 2022 workshop ----- #
-    #send_workshop('./oscvpass_all_users_220502.csv', dry_run=False)
+    #send_workshop('./oscvpass_all_users_220502.csv', dry_run=True)
 
     pass
 
