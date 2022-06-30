@@ -298,7 +298,7 @@ def send_g0v_token(rows, dry_run=True):
             return
 
 def send_sitcon_token(rows, dry_run=True):
-    template = TPLENV.get_template('./sitcon_2021_token.html')
+    template = TPLENV.get_template('./sitcon_2022_token.html')
     _n = 1
     for u in rows:
         if u['mail'] in setting.BLOCK:
@@ -314,7 +314,7 @@ def send_sitcon_token(rows, dry_run=True):
         raw = make_raw_email(
             nickname=u['name'],
             mail=u['mail'],
-            subject=u'[OSCVPass][最後提醒][手刀行動] SITCON 2021 開源貢獻票 優惠券 (%s)' % u['name'],
+            subject=u'[OSCVPass][手刀行動] SITCON 2022 開源貢獻票 優惠券 (%s)' % u['name'],
             body=body,
             dry_run=dry_run,
         )
@@ -429,6 +429,8 @@ def update_token(datas, org_path, out_path):
         if data['mail'] in added:
             continue
 
+        added.add(data['mail'])
+
         for mail in mails:
             if not mail['mail']:
                 mail['name'] = data['name']
@@ -507,7 +509,7 @@ def send_workshop(path, dry_run=True):
 if __name__ == '__main__':
     # ----- send Pass/deny ----- #
     #from pprint import pprint
-    #data = process_csv('./oscvpass_220512.csv', _all=False)
+    #data = process_csv('./oscvpass_220622.csv', _all=False)
     #for case in data:
     #    print(case, len(data[case]))
     #    for row in data[case]:
@@ -554,13 +556,13 @@ if __name__ == '__main__':
     #    send_g0v_token(rows=rows, dry_run=False)
 
     # ----- update token ----- #
-    #data = process_csv('./oscvpass_210806_only_w_date.csv', _all=True)
+    #data = process_csv('./oscvpass_220622_only_w_date.csv', _all=True)
     #maillist = pickup_unique(data=data, cases=('pass', ))
     #print(maillist, len(maillist))
 
     #update_token(datas=maillist,
-    #        org_path='./mopcon_2021_tokens.csv',
-    #        out_path='./mopcon_2021_tokens_mails_210902.csv')
+    #        org_path='./sitcon_2022_tokens.csv',
+    #        out_path='./sitcon_2022_tokens_mails_220622.csv')
 
     #send_expired(path='./oscvpass_expired_220512.csv', dry_run=True)
 
@@ -575,15 +577,15 @@ if __name__ == '__main__':
     #        token_path='./mopcon_2021_token.csv',
     #        out_path='./mopcon_2021_tokens_mails.csv')
 
-    # ----- send SITCON2021 token ----- #
-    #with open('./sitcon_2021_token_mails_append_210416.csv', 'r+') as files:
+    # ----- send SITCON2022 token ----- #
+    #with open('./sitcon_2022_tokens_mails_220622.csv', 'r+') as files:
     #    rows = []
     #    for user in csv.DictReader(files):
     #        if not user['mail']:
     #            continue
     #        rows.append(user)
 
-    #    send_sitcon_token(rows=rows, dry_run=False)
+    #    send_sitcon_token(rows=rows, dry_run=True)
 
     # ----- send PyConTaiwan2021 token ----- #
     #with open('./pycon2021_tokens_mails_210806.csv', 'r+') as files:
