@@ -133,6 +133,7 @@ class AwsSESTools(object):
         :param str to_addresses: to
         :param str subject: subject
         :param str body: body
+        :param str text_body: text_body
 
         '''
         msg_all = MIMEMultipart('mixed')
@@ -150,7 +151,12 @@ class AwsSESTools(object):
             msg_all['List-Unsubscribe'] = kwargs['list_unsubscribe']
 
         body_mine = MIMEMultipart('alternative')
+
+        if 'text_body' in kwargs and kwargs['text_body']:
+            body_mine.attach(MIMEText(kwargs['text_body'], 'plain', 'utf-8'))
+
         body_mine.attach(MIMEText(kwargs['body'], 'html', 'utf-8'))
+
         msg_all.attach(body_mine)
 
         #image
@@ -499,6 +505,39 @@ def send_coscup_start(dry_run=True):
 
         queue_sender(raw)
 
+def send_coscup_220710(dry_run=True):
+    template = TPLENV.get_template('./coscup_220710.html')
+    template_md = TPLENV.get_template('./coscup_220710.md')
+
+    if dry_run:
+        path = './coscup_paper_subscribers_t4wr56ui_tester.csv'
+    else:
+        path = './coscup_paper_subscribers_t4wr56ui_20220710_033728.csv'
+
+    users = []
+    with open(path, 'r+') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header('COSCUP Attendee', 'attendee@coscup.org'),
+            list_unsubscribe='<mailto:attendee+unsubscribeme@coscup.org>',
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject="COSCUP x KCD Taiwan 2022 Changelog v22.07.10. [%s]" % hex(_n)[2:],
+            body=template.render(**u),
+            text_body=template_md.render(**u),
+        )
+
+        queue_sender(raw)
+
 if __name__ == '__main__':
     #send_coscup_start(dry_run=True)
+    send_coscup_220710(dry_run=True)
     pass
