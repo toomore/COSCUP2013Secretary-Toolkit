@@ -60,7 +60,7 @@ var webCmd = &cobra.Command{
 			})
 		})
 
-		r.Run("127.0.0.1:7700")
+		r.Run("10.0.4.147:7700")
 	},
 }
 
