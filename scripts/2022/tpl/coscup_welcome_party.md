@@ -81,7 +81,7 @@ Join the Party, have fun with the speakers and your beloved FLOSS community memb
 Every year, Stack Overflow publishes a Developer Survey for people to get to know the Stack Overflow community. As Asia's largest open source conference, we're doing this survey to give you a glimpse of COSCUP attendees! We will collect no personally identifiable information. The purpose of this survey is to understand the demographics of the COSCUP audience.
 We'll release the survey results during the COSCUP, and the survey will be open for completion after the conference. You don't need to register for COSCUP x KCD Taiwan 2022. But please fill out this survey to help us learn more about the open source demographics in Taiwan!
 
-- Start the attendee survey: [https://coscup.org/2022-survey/](Start%20the%20attendee%20survey:%20https://coscup.org/2022-survey/)
+- Start the attendee survey: [https://coscup.org/2022-survey/](https://coscup.org/2022-survey/)
 
 ## Personal Donation
 
