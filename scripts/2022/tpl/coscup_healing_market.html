@@ -1,0 +1,936 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>COSCUP</title>
+    <style>
+      /* -------------------------------------
+          GLOBAL RESETS
+      ------------------------------------- */
+      img {
+        border: none;
+        -ms-interpolation-mode: bicubic;
+        max-width: 100%; }
+
+      body {
+        background-color: #ffffff;
+        font-family: sans-serif;
+        -webkit-font-smoothing: antialiased;
+        font-size: 14px;
+        line-height: 1.4;
+        margin: 0;
+        padding: 0;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%; }
+
+      table {
+        border-collapse: separate;
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+        width: 100%; }
+        table td {
+          font-family: sans-serif;
+          font-size: 14px;
+          vertical-align: top; }
+
+      /* -------------------------------------
+          BODY & CONTAINER
+      ------------------------------------- */
+
+      .body {
+        background-color: #ffffff;
+        width: 100%; }
+
+      /* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */
+      .container {
+        display: block;
+        margin: 0 auto !important;
+        /* makes it centered */
+        max-width: 580px;
+        padding: 10px; }
+
+      /* This should also be a block element, so that it will fill 100% of the .container */
+      .content {
+        box-sizing: border-box;
+        display: block;
+        margin: 0 auto;
+        max-width: 580px;
+        padding: 10px;
+        background-color: #3D9238; }
+
+      /* -------------------------------------
+          HEADER, FOOTER, MAIN
+      ------------------------------------- */
+      .main {
+        background: #fff;
+        border-radius: 3px;
+        width: 100%; }
+
+      .wrapper {
+        box-sizing: border-box;
+        padding: 20px; }
+
+      .footer {
+        clear: both;
+        padding-top: 10px;
+        text-align: center;
+        width: 100%; }
+        .footer td,
+        .footer p,
+        .footer span,
+        .footer a {
+          color: #ffffff;
+          font-size: 12px;
+          text-align: center; }
+
+      /* -------------------------------------
+          TYPOGRAPHY
+      ------------------------------------- */
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: #000000;
+        font-family: sans-serif;
+        font-weight: 400;
+        line-height: 1.4;
+        margin: 0;
+        margin-bottom: 30px; }
+
+      h1 {
+        font-size: 35px;
+        font-weight: 300;
+        text-align: center;
+        text-transform: capitalize; }
+
+      p,
+      ul,
+      ol {
+        font-family: sans-serif;
+        font-size: 14px;
+        font-weight: normal;
+        margin: 0;
+        margin-bottom: 15px; }
+        p li,
+        ul li,
+        ol li {
+          list-style-position: inside;
+          margin-left: 5px; }
+
+      a {
+        color: #3498db;
+        text-decoration: underline; }
+
+      /* -------------------------------------
+          BUTTONS
+      ------------------------------------- */
+      .btn {
+        box-sizing: border-box;
+        width: 100%; }
+        .btn > tbody > tr > td {
+          padding-bottom: 15px; }
+        .btn table {
+          width: auto; }
+        .btn table td {
+          background-color: #ffffff;
+          border-radius: 5px;
+          text-align: center; }
+        .btn a {
+          background-color: #ffffff;
+          border: solid 1px #3498db;
+          border-radius: 5px;
+          box-sizing: border-box;
+          color: #3498db;
+          cursor: pointer;
+          display: inline-block;
+          font-size: 14px;
+          font-weight: bold;
+          margin: 0;
+          padding: 12px 25px;
+          text-decoration: none;
+          text-transform: capitalize; }
+
+      .btn-primary table td {
+        background-color: #3498db; }
+
+      .btn-primary a {
+        background-color: #3498db;
+        border-color: #3498db;
+        color: #ffffff; }
+
+      /* -------------------------------------
+          OTHER STYLES THAT MIGHT BE USEFUL
+      ------------------------------------- */
+      .last {
+        margin-bottom: 0; }
+
+      .first {
+        margin-top: 0; }
+
+      .align-center {
+        text-align: center; }
+
+      .align-right {
+        text-align: right; }
+
+      .align-left {
+        text-align: left; }
+
+      .clear {
+        clear: both; }
+
+      .mt0 {
+        margin-top: 0; }
+
+      .mb0 {
+        margin-bottom: 0; }
+
+      .preheader {
+        color: transparent;
+        display: none;
+        height: 0;
+        max-height: 0;
+        max-width: 0;
+        opacity: 0;
+        overflow: hidden;
+        mso-hide: all;
+        visibility: hidden;
+        width: 0; }
+
+      .powered-by a {
+        text-decoration: none; }
+
+      hr {
+        border: 0;
+        border-bottom: 1px solid #f6f6f6;
+        margin: 20px 0; }
+
+      /* -------------------------------------
+          RESPONSIVE AND MOBILE FRIENDLY STYLES
+      ------------------------------------- */
+      @media only screen and (max-width: 580px) {
+        table[class=body] h1 {
+          font-size: 28px !important;
+          margin-bottom: 10px !important; }
+        table[class=body] p,
+        table[class=body] ul,
+        table[class=body] ol,
+        table[class=body] td,
+        table[class=body] span,
+        table[class=body] a {
+          font-size: 16px !important; }
+        table[class=body] .wrapper,
+        table[class=body] .article {
+          padding: 10px !important; }
+        table[class=body] .content {
+          padding: 0 !important; }
+        table[class=body] .container {
+          padding: 0 !important;
+          width: 100% !important; }
+        table[class=body] .main {
+          border-left-width: 0 !important;
+          border-radius: 0 !important;
+          border-right-width: 0 !important; }
+        table[class=body] .btn table {
+          width: 100% !important; }
+        table[class=body] .btn a {
+          width: 100% !important; }
+        table[class=body] .img-responsive {
+          height: auto !important;
+          max-width: 100% !important;
+          width: auto !important; }}
+
+      /* -------------------------------------
+          PRESERVE THESE STYLES IN THE HEAD
+      ------------------------------------- */
+      @media all {
+        .ExternalClass {
+          width: 100%; }
+        .ExternalClass,
+        .ExternalClass p,
+        .ExternalClass span,
+        .ExternalClass font,
+        .ExternalClass td,
+        .ExternalClass div {
+          line-height: 100%; }
+        .apple-link a {
+          color: inherit !important;
+          font-family: inherit !important;
+          font-size: inherit !important;
+          font-weight: inherit !important;
+          line-height: inherit !important;
+          text-decoration: none !important; }
+        .btn-primary table td:hover {
+          background-color: #34495e !important; }
+        .btn-primary a:hover {
+          background-color: #34495e !important;
+          border-color: #34495e !important; } }
+
+      .quote {
+        color: #334433;
+        font-style: italic;
+        font-size: small;
+      }
+      h2 {
+        font-weight: bold;
+        font-family: "Arial";
+        border-bottom: 1px #3D9238 dashed;
+        padding-left: 1px;
+        margin-top: 30px;
+        margin-bottom: 12px;
+      }
+      h3 {
+        margin-bottom: 5px;
+        margin-top: 20px;
+        color: #3D9238;
+        font-weight: bold;
+      }
+      ol li,
+      ul li {
+        list-style-position: outside;
+        margin-left: 0px;
+        line-height: 2;
+      }
+      span.note {
+        border-radius: 2px;
+        padding: 3px;
+        font-weight: bold;
+        color: #ffffff;
+        font-size: 8pt;
+      }
+      span.first {
+        background-color: #2962FF;
+      }
+      span.second {
+        background-color: #FF6F00;
+      }
+      span.ef {
+        background-color: #7B1FA2;
+      }
+      span.sf {
+        background-color: #9C27B0;
+      }
+      span.local {
+        background-color: #009688;
+      }
+      .tips {
+        background-color: #fafafa;
+        padding: 6px;
+        border-radius: 3px;
+        font-size: 12px;
+      }
+      .tips-green {
+        color: #2E7D32;
+        border: 1px #43A047 solid;
+      }
+      .tips-blue {
+        color: #114c80;
+        border: 1px #c5ccdb solid;
+      }
+      pre {
+        font-size: small;
+        line-height: 12px;
+        color: #607D8B;
+        text-align: right;
+      }
+      p small,
+      li small {
+        color: #898989;
+      }
+      .btn-tips{
+        font-size: x-small;
+        color: #6E8E6C;
+        text-align: center;
+      }
+      .table {
+        border:#ffffff 1px solid;
+        border-collapse: collapse;
+        border-spacing: 0;
+        margin-bottom: 5px;
+      }
+      .table td, .table th {
+        border: 1px #dbdbdb solid;
+        border-right: 0px;
+        border-left: 0px;
+        padding: .3em;
+      }
+      table.zh tbody td {
+        font-size: 12px;
+      }
+      table.en tbody td {
+        font-size: 12px;
+      }
+      .table .yoga {
+        background-color: hsl(0, 100%, 96%) ;
+      }
+      .table .meditation {
+        background-color:  hsl(240, 70%, 96%) ;
+      }
+      .table .massage {
+        background-color:  hsl(76, 52%, 96%) ;
+      }
+      .child {
+        color: hsl(239, 100%, 50%);
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body class="">
+    <table border="0" cellpadding="0" cellspacing="0" class="body">
+      <tr>
+        <td>&nbsp;</td>
+        <td class="container">
+          <div class="content">
+
+            <!-- START CENTERED WHITE CONTAINER -->
+            <span class="preheader">和我們來喝一杯！</span>
+            <table class="main">
+
+              <!-- START MAIN CONTENT AREA -->
+              <tr>
+                <td class="wrapper">
+                  <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td>
+                        <p class="align-center"><a href="https://coscup.org/"><img src="https://secretary.coscup.org/s3/img/2022_coscup_kcd_logo.png" alt="COSCUP x KCD Taiwan 2022 Logo" title="COSCUP x KCD Taiwan 2022 Logo"></a></p>
+                        <p>Hi {{name}},</p>
+                        <p><small><i>[English version below]</i></small></p>
+                        <p>今年的 COSCUP x KCD 2022 Taiwan 嘗試推出新的會眾服務，希望在繁忙的平日還抽空在假日來參與活動時、能夠療癒一下心靈與身體的負擔，「<strong>療癒市集</strong>」希望能夠為你帶來不一樣的體驗！</p>
+                        <p>由於部分課程需要<strong>預先報名</strong>，如果你有意參與課程，請直接回信報名，並等候志工收件處理，感謝！</p>
+                        <p>以下是相關的課程簡介。</p>
+                        <h2>紅酒瑜伽</h2>
+                        <p class="align-center">
+                          <img src="https://secretary.coscup.org/s3/img/2022_yoga_1600.jpg" alt="Yoga" title="Yoga" style="border-radius: 4px; border-color:#ffffff;">
+                        </p>
+                        <p>都市生活步調快，上班壓力大，周末總想找些紓壓的活動幫自己充飽電，用更好的狀態去迎接下個挑戰。而說到現在最新穎，時尚的選擇那就不能不提風靡歐美的「紅酒瑜珈」。現在不用出國，在 COSCUP 也可以體驗這種身心靈保養的運動。</p>
+                        <p>課程中，老師也會指引學員在不同階段品嘗手中的葡萄酒，感受這支紅酒在不同醒酒階段的各種風味，細細品嚐它的層次與韻味。酒精也同時能夠增加血液循環，讓身體發熱，達到肌肉暖身，類似熱瑜珈的運動效果！</p>
+                        <h3>紅酒瑜珈是什麼？</h3>
+                        <p>於 2017 年誕生於紐約，紅酒瑜珈是把紅酒帶進瑜珈練習的一種課程。在瑜珈練習的過程中，學員們手上各有一杯紅酒。老師帶領著學員練習瑜珈姿勢，並加入酒杯動作來增加難度與運動量。比如說，手握紅酒杯進行戰士三式（Warrior III），為了不讓液體撒出來，其實比起沒有道具輔助的瑜珈需要多一點肌耐力，所以可以達到更大的脂肪燃燒跟運動效果。</p>
+                        <h3>課程須知</h3>
+                        <ol>
+                          <li>每一課程時長為一個小時，費用 $470元/人，每一堂最多 12 人。</li>
+                          <li>講座內容包含：活動包含約 45 分鐘的紅酒瑜珈活動，及約 15 分鐘的講解，課程會提供酒杯，若損壞葡萄酒杯，則每只費用 $250。</li>
+                          <li>需自備：瑜伽墊、水壺、毛巾等個人用品。</li>
+                        </ol>
+                        <div class="tips tips-blue">
+                          ★ 由於課程需要預先報名，如果你有意參與此課程，請參閱<strong>課程時間表</strong>並直接回信報名、等候志工收件處理，感謝！
+                        </div>
+                        <h2>冥想正念</h2>
+                        <p class="align-center">
+                          <img src="https://secretary.coscup.org/s3/img/2022_meditation_1600.jpg" alt="meditation" title="meditation" style="border-radius: 4px; border-color:#ffffff;">
+                        </p>
+                        <p>我們都渴望獲得內心的平靜，尤其在現在這個快速、忙碌更迭的時代，在這個無時無刻都在面對比較、落後焦慮的世代。透過冥想與正念，你會更加理解你自己，你也會更加理解你的周遭一切，而點滴的時光之間，再次放下自我，又擁抱自我。</p>
+                        <h3>課程須知</h3>
+                        <ol>
+                          <li>每一課程時長為一個小時，費用 $350元/人，每一堂最多 10 人（未滿 5 人不開課）。</li>
+                          <li>講座內容包含：冥想正念概念介紹、正念心理學概述、正念實作。</li>
+                          <li>需自備：水、坐墊 / 瑜伽墊（若沒有自己舒服也沒關係），穿著自己舒適的衣服。</li>
+                        </ol>
+                        <div class="tips tips-blue">
+                          ★ 由於課程需要預先報名，如果你有意參與此課程，請參閱<strong>課程時間表</strong>並直接回信報名、等候志工收件處理，感謝！
+                        </div>
+                        <h2>按摩小站</h2>
+                        <p class="align-center">
+                          <img src="https://secretary.coscup.org/s3/img/2022_massage_1600.jpg" alt="massage" title="massage" style="border-radius: 4px; border-color:#ffffff;">
+                        </p>
+                        <p>你有肩頸酸痛問題嗎？平日累積的疲勞可以到按摩小站來放鬆休息，現場會有２位按摩師到場駐點，隨到隨按！</p>
+                        <h3>小站須知</h3>
+                        <ol>
+                          <li>按摩採座椅式，計費單位為每 10 分鐘 $100 元計算。</li>
+                          <li>盡量單次不要超過 30 分鐘，按太久也不好！</li>
+                          <li>按摩後建議飲用溫開水，台科大有飲水機，建議攜帶水瓶。</li>
+                        </ol>
+                        <h2>課程時間一覽表</h2>
+                        <table class="table zh">
+                          <thead>
+                            <tr>
+                              <th style="text-align: right;">
+                                日期
+                              </th>
+                              <th colspan="3" style="text-align: center;background-color: hsl(48, 100%, 96%); border-right: 1px #dbdbdb solid;">
+                                2022-07-30
+                              </th>
+                              <th colspan="3" style="text-align: center;background-color: hsl(48, 100%, 96%);">
+                                2022-07-31
+                              </th>
+                            </tr>
+                            <tr>
+                              <th style="text-align: right;">
+                                教室
+                              </th>
+                              <th style="text-align: center;background-color: hsl(0, 0%, 96%);">
+                                TR 513
+                              </th>
+                              <th style="text-align: center;background-color: hsl(0, 0%, 96%);">
+                                TR 514
+                              </th>
+                              <th style="text-align: center;background-color: hsl(0, 0%, 96%);border-right: 1px #dbdbdb solid;">
+                                TR 515
+                              </th>
+                              <th style="text-align: center;background-color: hsl(0, 0%, 96%);">
+                                TR 513
+                              </th>
+                              <th style="text-align: center;background-color: hsl(0, 0%, 96%);">
+                                TR 514
+                              </th>
+                              <th style="text-align: center;background-color: hsl(0, 0%, 96%);">
+                                TR 515
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td style="text-align: center;">
+                                10:00 - 11:00
+                              </td>
+                              <td style="text-align: center;">
+                                
+                              </td>
+                              <td class="meditation" style="text-align: center;">
+                                冥想正念
+                              </td>
+                              <td class="massage" style="text-align: center;">
+                                按摩小站
+                              </td>
+                              <td style="text-align: center;">
+                                
+                              </td>
+                              <td class="child" style="text-align: center;">
+                                ㊡
+                              </td>
+                              <td class="massage" style="text-align: center;">
+                                按摩小站
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="text-align: center;">
+                                11:00 - 12:00
+                              </td>
+                              <td class="yoga" style="text-align: center;">
+                                紅酒瑜珈
+                              </td>
+                              <td class="meditation" style="text-align: center;">
+                                冥想正念
+                              </td>
+                              <td class="massage" style="text-align: center;">
+                                按摩小站
+                              </td>
+                              <td class="yoga" style="text-align: center;">
+                                紅酒瑜珈
+                              </td>
+                              <td class="child" style="text-align: center;">
+                                ㊡
+                              </td>
+                              <td class="massage" style="text-align: center;">
+                                按摩小站
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="text-align: center;">
+                                12:00 - 13:00
+                              </td>
+                              <td class="child" style="text-align: center;">
+                                ㊡
+                              </td>
+                              <td class="child" style="text-align: center;">
+                                ㊡
+                              </td>
+                              <td class="massage" style="text-align: center;">
+                                按摩小站
+                              </td>
+                              <td class="child" style="text-align: center;">
+                                ㊡
+                              </td>
+                              <td class="child" style="text-align: center;">
+                                ㊡
+                              </td>
+                              <td class="massage" style="text-align: center;">
+                                按摩小站
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="text-align: center;">
+                                13:00 - 14:00
+                              </td>
+                              <td class="child" style="text-align: center;">
+                                ㊡
+                              </td>
+                              <td class="child" style="text-align: center;">
+                                ㊡
+                              </td>
+                              <td class="massage" style="text-align: center;">
+                                按摩小站
+                              </td>
+                              <td class="meditation" style="text-align: center;">
+                                冥想正念
+                              </td>
+                              <td class="child" style="text-align: center;">
+                                ㊡
+                              </td>
+                              <td class="massage" style="text-align: center;">
+                                按摩小站
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="text-align: center;">
+                                14:00 - 15:00
+                              </td>
+                              <td class="yoga" style="text-align: center;">
+                                紅酒瑜珈
+                              </td>
+                              <td class="child" style="text-align: center;">
+                                ㊡
+                              </td>
+                              <td class="massage" style="text-align: center;">
+                                按摩小站
+                              </td>
+                              <td class="yoga" style="text-align: center;">
+                                紅酒瑜珈
+                              </td>
+                              <td class="child" style="text-align: center;">
+                                ㊡
+                              </td>
+                              <td class="massage" style="text-align: center;">
+                                按摩小站
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="text-align: center;">
+                                15:00 - 16:00
+                              </td>
+                              <td style="text-align: center;">
+                                
+                              </td>
+                              <td class="child" style="text-align: center;">
+                                ㊡
+                              </td>
+                              <td class="massage" style="text-align: center;">
+                                按摩小站
+                              </td>
+                              <td style="text-align: center;">
+                                
+                              </td>
+                              <td class="meditation" style="text-align: center;">
+                                冥想正念
+                              </td>
+                              <td class="massage" style="text-align: center;">
+                                按摩小站
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <p><small><span class="child">㊡</span>：較合適提供給親子休息時間。</small></p>
+                        <h3>親子休息時間</h3>
+                        <p class="align-center">
+                          <img src="https://secretary.coscup.org/s3/img/2022_child_1600.jpg" alt="Parents and children" title="Parents and children" style="border-radius: 4px; border-color:#ffffff;">
+                        </p>
+                        <p>由於今年疫情對於小朋友相對嚴峻，因此我們取消了往年的<strong>遊樂園</strong>服務，但如果在 COSCUP 二天的活動中、以上的課程時段為空檔時<small>（標記為 <span class="child">㊡</span> 時段）</small>，我們開放讓你與小朋友可以前往休息，歡迎多加利用！<small>（過往的<a href="https://kids.coscup.org/">遊樂園回憶</a>）</small></p>
+                        <h2>氮氣咖啡</h2>
+                        <p class="align-center">
+                          <img src="https://secretary.coscup.org/s3/img/2022_nitrocoffee_1600.jpg" alt="Nitro Coffee" title="Nitro Coffee" style="border-radius: 4px; border-color:#ffffff;">
+                        </p>
+                        <p>今年我們有請到廣受好評的行動咖啡車，超人氣的氮氣咖啡與氮氣紅茶也升級提供罐裝包裝，方便購買後能安心的攜帶、在會場中不怕意外發生。由於老闆小小咖啡車存量不多，喜愛氮氣品項飲品的，請及早前往購買。</p>
+                        <p>咖啡車會停泊在 TR 1 樓廣場，如你有 OSCVPass 的資格，請記得先到「<strong>志工服務台</strong>」<strong>TR-309</strong> 兌換一張氮氣咖啡回饋券後再到咖啡車領取。</p>
+                        <h2>行李寄放</h2>
+                        <p class="align-center">
+                          <img src="https://secretary.coscup.org/s3/img/2022_luggage_1600.jpg" alt="Luggage Deposit" title="Luggage Deposit" style="border-radius: 4px; border-color:#ffffff;">
+                        </p>
+                        <p>如果你當天活動不方便攜帶著自備物品，COSCUP 有「<strong>行李寄放</strong>」服務，位在 <strong>TR-517</strong>，位在課程教室隔壁，很近很方便，歡迎多多利用。</p>
+                        <p>由於第一次嘗試提供課程服務，歡迎直接回信給予我們意見與建議，或是有其他的提案也可以讓我們試試！</p>
+                        <hr style="border: 3px solid rgb(214, 244, 210); border-radius: 3px;">
+                        <p>Hi {{name}},</p>
+                        <p>This year, COSCUP will bring you a new service called &quot;<strong>Healing Market</strong>&quot;. We hope to heal your mind and body when you work hard in your life.</p>
+                        <p>Those services partially need to register, if you are interested in &quot;Yoga Wine&quot; and &quot;Meditations&quot;, <strong>please directly reply to us to register</strong>.</p>
+                        <h2>Yoga Wine</h2>
+                        <p class="align-center">
+                          <img src="https://secretary.coscup.org/s3/img/2022_yoga_1600.jpg" alt="Yoga" title="Yoga" style="border-radius: 4px; border-color:#ffffff;">
+                        </p>
+                        <p>In this class, the instructors lead students through poses while also telling you facts about wine.</p>
+                        <h3>What is Yoga Wine</h3>
+                        <p>&quot;Wine brings people together, yoga brings you to yourself&quot; says Eli Walker, the class’s creator, who devised the concept in 2017, but now you can experience it at COSCUP.</p>
+                        <h3>Notes</h3>
+                        <ol>
+                          <li>One hour per class, <strong>NTD$470</strong> per person, each class of up to 12 people.</li>
+                          <li>This class will include 15 mins about introducing yuga wine, 45 mins about the activities. We will offer the wine glass in class, and it is valued <strong>NTD$250</strong>.</li>
+                          <li>Bring to the class: Yoga mat, bottle of water, small towel.</li>
+                        </ol>
+                        <div class="tips tips-blue">
+                          ★ This service need to register, if you are interested in please directly reply to us to register.
+                        </div>
+                        <h2>Meditations</h2>
+                        <p class="align-center">
+                          <img src="https://secretary.coscup.org/s3/img/2022_meditation_1600.jpg" alt="meditation" title="meditation" style="border-radius: 4px; border-color:#ffffff;">
+                        </p>
+                        <p>We all yearn for peace in mind, especially in the fast generation. We always compete with others or feel anxious about running behind someone.</p>
+                        <p>Through meditation and mindfulness, know yourself more than ever, comprehend around you more than before. In the river of time, release yourself again and pull yourself back again.</p>
+                        <h3>Notes</h3>
+                        <ol>
+                          <li>One hour per class, <strong>NTD$350</strong> per person, each class of up to 10 people and not less than 5 people.</li>
+                          <li>In this class, you will learn more about what meditation is, mindfulness in the psychological process, and how to put them into practice.</li>
+                          <li>Bring to the class: Yoga mat, bottle of water and come in comfortable clothes.</li>
+                        </ol>
+                        <div class="tips tips-blue">
+                          ★ This service need to register, if you are interested in please directly reply to us to register.
+                        </div>
+                        <h2>Massage Station</h2>
+                        <p class="align-center">
+                          <img src="https://secretary.coscup.org/s3/img/2022_massage_1600.jpg" alt="massage" title="massage" style="border-radius: 4px; border-color:#ffffff;">
+                        </p>
+                        <p>We have two massage therapists to serve. If your body or muscles are so tense and painful, we encourage you to take 20 mins to enjoy the services to ease pain and tension.</p>
+                        <h3>Note</h3>
+                        <ol>
+                          <li>The processing on chair massage, $100 in 10 mins, $200 in 20 mins and so on.</li>
+                          <li>But not longer than <strong>30 mins</strong> at one time, may not be healthy for you~</li>
+                          <li>It&#39;s beneficial to drink water after your massage.</li>
+                        </ol>
+                        <h2>All Classes Table</h2>
+                        <table class="table en">
+                          <thead>
+                            <tr>
+                              <th style="text-align: right;">
+                                Date
+                              </th>
+                              <th colspan="3" style="text-align: center;background-color: hsl(48, 100%, 96%); border-right: 1px #dbdbdb solid;">
+                                2022-07-30
+                              </th>
+                              <th colspan="3" style="text-align: center;background-color: hsl(48, 100%, 96%);">
+                                2022-07-31
+                              </th>
+                            </tr>
+                            <tr>
+                              <th style="text-align: right;">
+                                Rooms
+                              </th>
+                              <th style="text-align: center;background-color: hsl(0, 0%, 96%);">
+                                TR 513
+                              </th>
+                              <th style="text-align: center;background-color: hsl(0, 0%, 96%);">
+                                TR 514
+                              </th>
+                              <th style="text-align: center;background-color: hsl(0, 0%, 96%);border-right: 1px #dbdbdb solid;">
+                                TR 515
+                              </th>
+                              <th style="text-align: center;background-color: hsl(0, 0%, 96%);">
+                                TR 513
+                              </th>
+                              <th style="text-align: center;background-color: hsl(0, 0%, 96%);">
+                                TR 514
+                              </th>
+                              <th style="text-align: center;background-color: hsl(0, 0%, 96%);">
+                                TR 515
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td style="text-align: center;">
+                                10:00 - 11:00
+                              </td>
+                              <td style="text-align: center;">
+                                
+                              </td>
+                              <td class="meditation" style="text-align: center;">
+                                Meditations
+                              </td>
+                              <td class="massage" style="text-align: center;">
+                                Massage.
+                              </td>
+                              <td style="text-align: center;">
+                                
+                              </td>
+                              <td class="child" style="text-align: center;">
+                                ㊡
+                              </td>
+                              <td class="massage" style="text-align: center;">
+                                Massage.
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="text-align: center;">
+                                11:00 - 12:00
+                              </td>
+                              <td class="yoga" style="text-align: center;">
+                                Yoga Wine
+                              </td>
+                              <td class="meditation" style="text-align: center;">
+                                Meditations
+                              </td>
+                              <td class="massage" style="text-align: center;">
+                                Massage.
+                              </td>
+                              <td class="yoga" style="text-align: center;">
+                                Yoga Wine
+                              </td>
+                              <td class="child" style="text-align: center;">
+                                ㊡
+                              </td>
+                              <td class="massage" style="text-align: center;">
+                                Massage.
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="text-align: center;">
+                                12:00 - 13:00
+                              </td>
+                              <td class="child" style="text-align: center;">
+                                ㊡
+                              </td>
+                              <td class="child" style="text-align: center;">
+                                ㊡
+                              </td>
+                              <td class="massage" style="text-align: center;">
+                                Massage.
+                              </td>
+                              <td class="child" style="text-align: center;">
+                                ㊡
+                              </td>
+                              <td class="child" style="text-align: center;">
+                                ㊡
+                              </td>
+                              <td class="massage" style="text-align: center;">
+                                Massage.
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="text-align: center;">
+                                13:00 - 14:00
+                              </td>
+                              <td class="child" style="text-align: center;">
+                                ㊡
+                              </td>
+                              <td class="child" style="text-align: center;">
+                                ㊡
+                              </td>
+                              <td class="massage" style="text-align: center;">
+                                Massage.
+                              </td>
+                              <td class="meditation" style="text-align: center;">
+                                Meditations
+                              </td>
+                              <td class="child" style="text-align: center;">
+                                ㊡
+                              </td>
+                              <td class="massage" style="text-align: center;">
+                                Massage.
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="text-align: center;">
+                                14:00 - 15:00
+                              </td>
+                              <td class="yoga" style="text-align: center;">
+                                Yoga Wine
+                              </td>
+                              <td class="child" style="text-align: center;">
+                                ㊡
+                              </td>
+                              <td class="massage" style="text-align: center;">
+                                Massage.
+                              </td>
+                              <td class="yoga" style="text-align: center;">
+                                Yoga Wine
+                              </td>
+                              <td class="child" style="text-align: center;">
+                                ㊡
+                              </td>
+                              <td class="massage" style="text-align: center;">
+                                Massage.
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="text-align: center;">
+                                15:00 - 16:00
+                              </td>
+                              <td style="text-align: center;">
+                                
+                              </td>
+                              <td class="child" style="text-align: center;">
+                                ㊡
+                              </td>
+                              <td class="massage" style="text-align: center;">
+                                Massage.
+                              </td>
+                              <td style="text-align: center;">
+                                
+                              </td>
+                              <td class="meditation" style="text-align: center;">
+                                Meditations
+                              </td>
+                              <td class="massage" style="text-align: center;">
+                                Massage.
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <p><small><span class="child">㊡</span>：Suitable for parents and children's breakroom.</small></p>
+                        <h3>Parents and Children&#39;s Breakroom</h3>
+                        <p class="align-center">
+                          <img src="https://secretary.coscup.org/s3/img/2022_child_1600.jpg" alt="Parents and children" title="Parents and children" style="border-radius: 4px; border-color:#ffffff;">
+                        </p>
+                        <p>Although we canceled the COSCUP Kids services this year, but if <strong>TR-313</strong>, TR-314 are vacated in mark <span class="child">㊡</span>, you can free to use for break with your children.</p>
+                        <p>If you have any questions or suggestions, please don&#39;t hesitate to let us know, thank you.</p>
+                        <h2>Nitro Coffee</h2>
+                        <p class="align-center">
+                          <img src="https://secretary.coscup.org/s3/img/2022_nitrocoffee_1600.jpg" alt="Nitro Coffee" title="Nitro Coffee" style="border-radius: 4px; border-color:#ffffff;">
+                        </p>
+                        <p>We invited the nitro coffee car back again for the well-known nitro coffee and nitro red tea. This year, they also upgraded the cup of coffee to bottles for you to carry around the conference to prevent it from overflowing by accident.</p>
+                        <p>The nitro coffee car will be parked at TR 1F. If you have the credentials of <strong>OSCVPass</strong>, please go to the Volunteer desk（TR-309） first to get the free ticket for a cup of nitro coffee per day.</p>
+                        <h2>Luggage Deposit</h2>
+                        <p class="align-center">
+                          <img src="https://secretary.coscup.org/s3/img/2022_luggage_1600.jpg" alt="Luggage Deposit" title="Luggage Deposit" style="border-radius: 4px; border-color:#ffffff;">
+                        </p>
+                        <p>If you bring more luggage to COSCUP, you can deposit them to the <strong>TR-517</strong>. This service is free to use and also near to the Healing Market.</p>
+                        <p class="btn-tips" style="margin-bottom: 0; margin-top: 30px;">如果有任何問題，可以直接回覆此封信件，感謝協助！</p>
+                        <p class="btn-tips" style="margin-bottom: 10px;">If you have any questions, please reply to this letter.</p>
+                        <p class="btn-tips" style="margin-bottom: 0;">
+                          {% if admin_link %}
+                          <a href="https://secretary.coscup.org/subscriber/code/{{admin_link}}">管理電子報訂閱</a> | <a href="https://secretary.coscup.org/subscriber/code/{{admin_link}}">manage your subscriptions</a>
+                          {% else %}
+                          <a href="https://secretary.coscup.org/subscribe/coscup">訂閱電子報訂閱</a> | <a href="https://secretary.coscup.org/subscribe/coscup">Subscribe</a>
+                          {%endif%}
+                        </p>
+                        <p class="align-center"><small style="color:#999999;">COSCUP x KCD Taiwan 2022</small></p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            <!-- END MAIN CONTENT AREA -->
+            </table>
+
+            <!-- START FOOTER -->
+            <div class="footer">
+              <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td class="content-block">
+                    <span class="apple-link" style="display: inline-block;height: 24px;">
+                      <a href="https://www.facebook.com/coscup/"><img width="24" alt="coscup's facebook" src="https://secretary.coscup.org/s3/icon/facebook-square-brands.png"></a>
+                      <a href="https://t.me/coscupchat"><img width="24" alt="coscup's telegram" src="https://secretary.coscup.org/s3/icon/telegram-brands.png"></a>
+                      <a href="https://twitter.com/coscup"><img width="24" alt="coscup's twitter" src="https://secretary.coscup.org/s3/icon/twitter-square-brands.png"></a>
+                      <a href="https://blog.coscup.org/"><img width="24" alt="coscup's blog" src="https://secretary.coscup.org/s3/icon/blogger-brands.png"></a>
+                      <a href="https://www.flickr.com/photos/coscup/"><img width="24" alt="coscup's flickr" src="https://secretary.coscup.org/s3/icon/flickr-brands.png"></a>
+                      <a href="https://www.youtube.com/user/thecoscup"><img width="24" alt="coscup's youtube" src="https://secretary.coscup.org/s3/icon/youtube-square-brands.png"></a>
+                    </span>
+                    <br>
+                    <span class="apple-link" style="display: inline-block;height: 15px;">COSCUP</span>
+                  </td>
+                  {%if openhash%}
+                  <td class="content-block">
+                      <img src="https://secretary.coscup.org/r/{{ucode}}/{{openhash}}?{{args}}"
+                           border=0 width="1" height="3" alt="">
+                  </td>
+                  {% endif %}
+                </tr>
+              </table>
+            </div>
+            <!-- END FOOTER -->
+
+          <!-- END CENTERED WHITE CONTAINER -->
+          </div>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+  </body>
+</html>
