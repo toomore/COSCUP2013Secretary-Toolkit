@@ -1,6 +1,6 @@
 # 會眾新服務「療癒市集」結合紅酒瑜伽、冥想正念、按摩小站、氮氣咖啡 | COSCUP x KCD 2022 Taiwan
 
-# Introducing the Healing Market on COSCUP x KCD 2022 Taiwan
+[English version below]
 
 Hi {{name}},
 今年的 COSCUP x KCD 2022 Taiwan 嘗試推出新的會眾服務，希望在繁忙的平日還抽空在假日來參與活動時、能夠療癒一下心靈與身體的負擔，「**療癒市集**」希望能夠為你帶來不一樣的體驗！
@@ -67,9 +67,18 @@ Hi {{name}},
 
 ## 行李寄放
 
-如果你當天活動不方便攜帶著自備物品，COSCUP 有「**行李寄放**」服務，位在 **TR-517**，位在課程教室隔壁，很近很方便，歡迎多多利用
+如果你當天活動不方便攜帶著自備物品，COSCUP 有「**行李寄放**」服務，位在 **TR-517**，位在課程教室隔壁，很近很方便，歡迎多多利用。
 由於第一次嘗試提供課程服務，歡迎直接回信給予我們意見與建議，或是有其他的提案也可以讓我們試試！
+
+## 合作夥伴
+
+- 「紅酒瑜伽」合作夥伴為「[尋酒師葡萄酒](https://www.taninswine.com/)」
+- 「冥想正念」合作夥伴為「[陳湘妤心理師](https://www.facebook.com/HYCtherapy)」
+- 「按摩小站」合作夥伴為「[伊甸基金會北區按摩中心](https://www.eden.org.tw/branches_detail.php?detailId=JCUyNzUjIQ==&rePageUrl=L2JyYW5jaGVzLnBocD8mcGFnZT0xOQ==)」
+- 「氮氣咖啡」合作夥伴為「[三輪行動咖啡氣泡飲](https://www.facebook.com/TrN2co2)」
+
 ----
+# Introducing the Healing Market on COSCUP x KCD 2022 Taiwan
 
 Hi {{name}},
 This year, COSCUP will bring you a new service called "**Healing Market**". We hope to heal your mind and body when you work hard in your life.
@@ -137,4 +146,10 @@ The nitro coffee car will be parked at TR 1F. If you have the credentials of **O
 
 If you bring more luggage to COSCUP, you can deposit them to the **TR-517**. This service is free to use and also near to the Healing Market.
 
-## If you have any questions or suggestions, please don't hesitate to let us know, thank you
+## Partners
+
+- “Yoga Wine”：[尋酒師葡萄酒 / Tanins Wine Collection](https://www.taninswine.com/)
+- “Meditations”：[陳湘妤心理師 / HYCtherapy](https://www.facebook.com/HYCtherapy)
+- “Massage Station”：[伊甸基金會 / Eden Social Welfare Foundation](https://www.eden.org.tw/branches_detail.php?detailId=JCUyNzUjIQ==&rePageUrl=L2JyYW5jaGVzLnBocD8mcGFnZT0xOQ==)
+- “Nitro Coffee”：[三輪行動咖啡氣泡飲 / Three Wheel Nitro Coffee](https://www.facebook.com/TrN2co2)
+If you have any questions or suggestions, please don't hesitate to let us know, thank you.
