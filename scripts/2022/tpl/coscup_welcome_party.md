@@ -21,6 +21,7 @@ Hi {{name}},
 - 低消為 NTD$200 元
 - **不用報名，自由參加**
 - 贊助商請找贊助組領取酒券。
+- 「前夜派對」[線上資訊](https://blog.coscup.org/2022/07/2022open-source-and-winewelcome-party.html)，可以分享給好友一同前往！
 {% if admin_link %}{% else %}
 - 如果你怕忘記參加活動，可以訂閱 [COSCUP 活動電子報](https://secretary.coscup.org/subscribe/coscup)，不錯過最新活動訊息！
 {%endif%}
@@ -64,6 +65,7 @@ Join the Party, have fun with the speakers and your beloved FLOSS community memb
 - Please have your dinner before the party, we only prepare party appetizers.
 - The minimum order is NTD$200.
 - **Please feel free to join Welcome Party, no matter what you come to COSCUP x KCD Taiwan 2022 or not.**
+- You can share the Welcome Party info. for your friends at [here](https://blog.coscup.org/2022/07/2022open-source-and-winewelcome-party.html).
 - If you are the sponsor, please contact the **Sponsorship Team** for the free beer ticket.
 {% if admin_link %}{% else %}
 - [Subscribe the COSCUP newspaper](https://secretary.coscup.org/subscribe/coscup) to receive important reminders and exciting activities.
