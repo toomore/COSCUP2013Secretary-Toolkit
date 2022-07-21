@@ -5,7 +5,7 @@
 Hi {{name}},
 今年的 COSCUP x KCD 2022 Taiwan 嘗試推出新的會眾服務，希望在繁忙的平日還抽空在假日來參與活動時、能夠療癒一下心靈與身體的負擔，「**療癒市集**」希望能夠為你帶來不一樣的體驗！
 由於部分課程需要**預先報名**，如果你有意參與課程，請直接回信報名，並等候志工收件處理，感謝！
-以下是相關的課程簡介。
+以下是相關的課程簡介。如要分享「療癒市集」內容，可以參考[這篇文章](https://blog.coscup.org/2022/07/introducing-healing-market-with-yoga.html)。
 
 ## 紅酒瑜伽
 
@@ -83,6 +83,7 @@ Hi {{name}},
 Hi {{name}},
 This year, COSCUP will bring you a new service called "**Healing Market**". We hope to heal your mind and body when you work hard in your life.
 Those services partially need to register, if you are interested in "Yoga Wine" and "Meditations", **please directly reply to us to register**.
+If you want to share the Healing Market to your friends, please refer to [this article](https://blog.coscup.org/2022/07/introducing-healing-market-with-yoga.html).
 
 ## Yoga Wine
 
@@ -152,4 +153,5 @@ If you bring more luggage to COSCUP, you can deposit them to the **TR-517**. Thi
 - “Meditations”：[陳湘妤心理師 / HYCtherapy](https://www.facebook.com/HYCtherapy)
 - “Massage Station”：[伊甸基金會 / Eden Social Welfare Foundation](https://www.eden.org.tw/branches_detail.php?detailId=JCUyNzUjIQ==&rePageUrl=L2JyYW5jaGVzLnBocD8mcGFnZT0xOQ==)
 - “Nitro Coffee”：[三輪行動咖啡氣泡飲 / Three Wheel Nitro Coffee](https://www.facebook.com/TrN2co2)
+
 If you have any questions or suggestions, please don't hesitate to let us know, thank you.
