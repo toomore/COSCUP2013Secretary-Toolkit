@@ -660,9 +660,44 @@ def send_coscup_healing_market(dry_run=True):
         queue_sender(raw)
 
 
+def send_coscup_2021_gather(dry_run=True):
+    template = TPLENV.get_template('./coscup_2021_gather.html')
+    template_md = TPLENV.get_template('./coscup_2021_gather.md')
+
+    if dry_run:
+        path = './coscup_2021_gather_test.csv'
+    else:
+        path = './coscup_2021_gather_fixed.csv'
+
+    users = []
+    with open(path, 'r+') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['mail'])
+        _n += 1
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(
+                'COSCUP Attendee', 'attendee@coscup.org'),
+            list_unsubscribe='<mailto:attendee+unsubscribeme@coscup.org>',
+            to_addresses=AwsSESTools.mail_header(u['mail'], u['mail']),
+            subject="COSCUP 2021 大地遊戲贈品兌換連結 | COSCUP x KCD Taiwan 2022",
+            body=template.render(**u),
+            text_body=template_md.render(**u),
+        )
+
+        queue_sender(raw)
+
+
 if __name__ == '__main__':
     # send_coscup_start(dry_run=True)
     # send_coscup_220710(dry_run=True)
     # send_coscup_welcome_party(dry_run=True)
     # send_coscup_healing_market(dry_run=True)
+    # send_coscup_2021_gather(dry_run=False)
     pass
