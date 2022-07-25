@@ -10,7 +10,7 @@ COSCUP x KCD Taiwan 2022 即將在 2022/07/30, 2022/07/31 舉辦。由於您有 
 
 - 兌換氮氣咖啡請先到 TR-309 志工服務台領取兌換券，之後再到 TR 1 樓廣場咖啡車兌換。
 - 形象照現場預約也是到 TR-309 志工服務台登記。
-- 兌換時請出示此郵件核對：**{{oscvpass\_code}}**
+- 兌換時請出示此郵件核對：**{{oscvpass_code}}**
 再次感謝你對開放原始碼的貢獻與繼續參與 COSCUP！
 
 ## 參與者大調查問卷
@@ -31,7 +31,7 @@ Because of you have the certificate of OSCVPass, on the two days at COSCUP, you 
 
 - Nitro coffee, 1 cup per day. Please go to the volunteer desk at TR-309 first to get the free ticket to exchange.
 - Professional portrait. Please pre-register the schedule for shutting.
-- Please show on this mail for volunteer to check: **{{oscvpass\_code}}**
+- Please show on this mail for volunteer to check: **{{oscvpass_code}}**
 Thank you again for contributing to open source and participating in COSCUP.
 
 ## Attendee Survey
