@@ -1,0 +1,519 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>COSCUP</title>
+    <style>
+      /* -------------------------------------
+          GLOBAL RESETS
+      ------------------------------------- */
+      img {
+        border: none;
+        -ms-interpolation-mode: bicubic;
+        max-width: 100%; }
+
+      body {
+        background-color: #ffffff;
+        font-family: sans-serif;
+        -webkit-font-smoothing: antialiased;
+        font-size: 14px;
+        line-height: 1.4;
+        margin: 0;
+        padding: 0;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%; }
+
+      table {
+        border-collapse: separate;
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+        width: 100%; }
+        table td {
+          font-family: sans-serif;
+          font-size: 14px;
+          vertical-align: top; }
+
+      /* -------------------------------------
+          BODY & CONTAINER
+      ------------------------------------- */
+
+      .body {
+        background-color: #ffffff;
+        width: 100%; }
+
+      /* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */
+      .container {
+        display: block;
+        margin: 0 auto !important;
+        /* makes it centered */
+        max-width: 580px;
+        padding: 10px; }
+
+      /* This should also be a block element, so that it will fill 100% of the .container */
+      .content {
+        box-sizing: border-box;
+        display: block;
+        margin: 0 auto;
+        max-width: 580px;
+        padding: 10px;
+        background-color: #3D9238; }
+
+      /* -------------------------------------
+          HEADER, FOOTER, MAIN
+      ------------------------------------- */
+      .main {
+        background: #fff;
+        border-radius: 3px;
+        width: 100%; }
+
+      .wrapper {
+        box-sizing: border-box;
+        padding: 20px; }
+
+      .footer {
+        clear: both;
+        padding-top: 10px;
+        text-align: center;
+        width: 100%; }
+        .footer td,
+        .footer p,
+        .footer span,
+        .footer a {
+          color: #ffffff;
+          font-size: 12px;
+          text-align: center; }
+
+      /* -------------------------------------
+          TYPOGRAPHY
+      ------------------------------------- */
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: #000000;
+        font-family: sans-serif;
+        font-weight: 400;
+        line-height: 1.4;
+        margin: 0;
+        margin-bottom: 30px; }
+
+      h1 {
+        font-size: 35px;
+        font-weight: 300;
+        text-align: center;
+        text-transform: capitalize; }
+
+      p,
+      ul,
+      ol {
+        font-family: sans-serif;
+        font-size: 14px;
+        font-weight: normal;
+        margin: 0;
+        margin-bottom: 15px; }
+        p li,
+        ul li,
+        ol li {
+          list-style-position: inside;
+          margin-left: 5px; }
+
+      a {
+        color: #3498db;
+        text-decoration: underline; }
+
+      /* -------------------------------------
+          BUTTONS
+      ------------------------------------- */
+      .btn {
+        box-sizing: border-box;
+        width: 100%; }
+        .btn > tbody > tr > td {
+          padding-bottom: 15px; }
+        .btn table {
+          width: auto; }
+        .btn table td {
+          background-color: #ffffff;
+          border-radius: 5px;
+          text-align: center; }
+        .btn a {
+          background-color: #ffffff;
+          border: solid 1px #3498db;
+          border-radius: 5px;
+          box-sizing: border-box;
+          color: #3498db;
+          cursor: pointer;
+          display: inline-block;
+          font-size: 14px;
+          font-weight: bold;
+          margin: 0;
+          padding: 12px 25px;
+          text-decoration: none;
+          text-transform: capitalize; }
+
+      .btn-primary table td {
+        background-color: #3498db; }
+
+      .btn-primary a {
+        background-color: #3498db;
+        border-color: #3498db;
+        color: #ffffff; }
+
+      /* -------------------------------------
+          OTHER STYLES THAT MIGHT BE USEFUL
+      ------------------------------------- */
+      .last {
+        margin-bottom: 0; }
+
+      .first {
+        margin-top: 0; }
+
+      .align-center {
+        text-align: center; }
+
+      .align-right {
+        text-align: right; }
+
+      .align-left {
+        text-align: left; }
+
+      .clear {
+        clear: both; }
+
+      .mt0 {
+        margin-top: 0; }
+
+      .mb0 {
+        margin-bottom: 0; }
+
+      .preheader {
+        color: transparent;
+        display: none;
+        height: 0;
+        max-height: 0;
+        max-width: 0;
+        opacity: 0;
+        overflow: hidden;
+        mso-hide: all;
+        visibility: hidden;
+        width: 0; }
+
+      .powered-by a {
+        text-decoration: none; }
+
+      hr {
+        border: 0;
+        border-bottom: 1px solid #f6f6f6;
+        margin: 20px 0; }
+
+      /* -------------------------------------
+          RESPONSIVE AND MOBILE FRIENDLY STYLES
+      ------------------------------------- */
+      @media only screen and (max-width: 580px) {
+        table[class=body] h1 {
+          font-size: 28px !important;
+          margin-bottom: 10px !important; }
+        table[class=body] p,
+        table[class=body] ul,
+        table[class=body] ol,
+        table[class=body] td,
+        table[class=body] span,
+        table[class=body] a {
+          font-size: 16px !important; }
+        table[class=body] .wrapper,
+        table[class=body] .article {
+          padding: 10px !important; }
+        table[class=body] .content {
+          padding: 0 !important; }
+        table[class=body] .container {
+          padding: 0 !important;
+          width: 100% !important; }
+        table[class=body] .main {
+          border-left-width: 0 !important;
+          border-radius: 0 !important;
+          border-right-width: 0 !important; }
+        table[class=body] .btn table {
+          width: 100% !important; }
+        table[class=body] .btn a {
+          width: 100% !important; }
+        table[class=body] .img-responsive {
+          height: auto !important;
+          max-width: 100% !important;
+          width: auto !important; }}
+
+      /* -------------------------------------
+          PRESERVE THESE STYLES IN THE HEAD
+      ------------------------------------- */
+      @media all {
+        .ExternalClass {
+          width: 100%; }
+        .ExternalClass,
+        .ExternalClass p,
+        .ExternalClass span,
+        .ExternalClass font,
+        .ExternalClass td,
+        .ExternalClass div {
+          line-height: 100%; }
+        .apple-link a {
+          color: inherit !important;
+          font-family: inherit !important;
+          font-size: inherit !important;
+          font-weight: inherit !important;
+          line-height: inherit !important;
+          text-decoration: none !important; }
+        .btn-primary table td:hover {
+          background-color: #34495e !important; }
+        .btn-primary a:hover {
+          background-color: #34495e !important;
+          border-color: #34495e !important; } }
+
+      .quote {
+        color: #334433;
+        font-style: italic;
+        font-size: small;
+      }
+      h2 {
+        font-weight: bold;
+        font-family: "Arial";
+        border-bottom: 1px #3D9238 dashed;
+        padding-left: 1px;
+        margin-top: 30px;
+        margin-bottom: 12px;
+      }
+      h3 {
+        margin-bottom: 5px;
+        margin-top: 20px;
+        color: #3D9238;
+        font-weight: bold;
+      }
+      ol li,
+      ul li {
+        list-style-position: outside;
+        margin-left: 0px;
+        line-height: 2;
+      }
+      span.note {
+        border-radius: 2px;
+        padding: 3px;
+        font-weight: bold;
+        color: #ffffff;
+        font-size: 8pt;
+      }
+      span.first {
+        background-color: #2962FF;
+      }
+      span.second {
+        background-color: #FF6F00;
+      }
+      span.ef {
+        background-color: #7B1FA2;
+      }
+      span.sf {
+        background-color: #9C27B0;
+      }
+      span.local {
+        background-color: #009688;
+      }
+      .tips {
+        background-color: #fafafa;
+        padding: 6px;
+        border-radius: 3px;
+        border: 1px #81d4fa solid;
+        font-size: 12px;
+        color: #01579b;
+      }
+      .tips-green {
+        color: #2E7D32;
+        border: 1px #43A047 solid;
+      }
+      pre {
+        font-size: small;
+        line-height: 12px;
+        color: #607D8B;
+        text-align: right;
+      }
+      p small,
+      li small {
+        color: #898989;
+      }
+      .btn-tips{
+        font-size: x-small;
+        color: #6E8E6C;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body class="">
+    <table border="0" cellpadding="0" cellspacing="0" class="body">
+      <tr>
+        <td>&nbsp;</td>
+        <td class="container">
+          <div class="content">
+
+            <!-- START CENTERED WHITE CONTAINER -->
+            <span class="preheader">重要資訊</span>
+            <table class="main">
+
+              <!-- START MAIN CONTENT AREA -->
+              <tr>
+                <td class="wrapper">
+                  <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td>
+                        <p class="align-center"><a href="https://coscup.org/"><img src="https://secretary.coscup.org/s3/img/2022_coscup_kcd_logo.png" alt="COSCUP x KCD Taiwan 2022 Logo" title="COSCUP x KCD Taiwan 2022 Logo"></a></p>
+                        <p>Hi {{name}},</p>
+                        <p><small><i>[English version below]</i></small></p>
+                        <p>COSCUP x KCD 2022 即將到來！這邊有一個簡單的引導手冊，讓你不錯過 COSCUP 每個小細節。</p>
+                        <p>此封信提供各位講者今年大會概要資訊供參考。實際演說細流請參閱您所屬議程軌負責人寄發之通知並以其資訊為準。更完整的大會資訊請參考大會網站 <a href="https://coscup.org/2022/">COSCUP x KCD Taiwan 2022</a>。</p>
+                        <h2>主要資訊</h2>
+                        <ul>
+                          <li>大會活動時間為 2022-07-30 - 2022-07-31</li>
+                          <li>地點在台灣科技大學（<a href="https://coscup.org/2022/zh-TW/map">台北市大安區基隆路四段43號</a>）</li>
+                        </ul>
+                        <h2>活動前</h2>
+                        <ul>
+                          <li><a href="https://blog.coscup.org/2022/07/2022open-source-and-winewelcome-party.html">前夜派對</a>：低消兩百元，歡迎大家自由入場！</li>
+                          <li><a href="https://coscup.org/2022/zh-TW/session">議程表</a>：確認自己的議程時間，排出最想聽的議程的最佳解！</li>
+                          <li>歡迎報名 <a href="https://blog.coscup.org/2022/07/coscup-bof.html">BoF 小聚</a>，讓志同道合的朋友可以找到您！</li>
+                          <li>大會紀念品：<a href="{{url}}">請點擊連結提前安裝 OPass</a>，內建講者點數，可至大會服務台兌換紀念品，數量有限，早到早選喔。</li>
+                          <li>請再次詳閱<a href="https://docs.google.com/document/d/1-NeDVTmnXFcs3CN61ZDWCKj_zdhNzyenFjA8YNxCY6A/edit">講者指南內容</a>，確保您已經掌握所有講者應知道的資訊，做好演講相關準備資訊。</li>
+                        </ul>
+                        <h2>抵達會場</h2>
+                        <ul>
+                          <li>大會當日參考政府防疫規定，保持社交距離並配戴口罩！</li>
+                          <li>我們有提供「紅色頸繩」，給不方便被拍照、攝影的您。如有需求，請在報到處拿取，並全程佩戴在明顯之處供相關人員識別。</li>
+                          <li>有厚重行李，可以到 TR-517 使用寄放行李服務。</li>
+                        </ul>
+                        <h2>大會期間</h2>
+                        <ul>
+                          <li>講者報到：請隨時與您的社群議程協調人聯繫，並建議您在議程開始的前 10~15 分鐘至您的教室預作準備。</li>
+                          <li>逛逛贊助商攤位、社群攤位、使用 OPass app，秀出 QRcode 讓攤位人員掃描取得點數，並到大會攤位(TR 3F)兌換贈品，數量有限！</li>
+                          <li>逛逛<a href="https://volunteer.coscup.org/tasks/2022">志工任務</a>、<a href="https://blog.coscup.org/2022/07/introducing-healing-market-with-yoga.html">會眾新服務：療癒市集</a>、蒐集獎勵，或到志工服務台報名 COSCUP 2023 的志工！</li>
+                          <li>到 BoF 會議室門口尋找屬於您的聚會，與同好暢談彼此在相同主題上的新發現</li>
+                        </ul>
+                        <h2>我迷路了</h2>
+                        <p>以下為會場與商店的座標位置，透過地圖軟體可以方便指引位置。（頁面將前往 wiki maps，請依畫面四個地圖服務圖示選擇使用）</p>
+                        <ul>
+                          <li>研揚大樓 TR：<a href="https://geohack.toolforge.org/geohack.php?params=25_00_53.3_N_121_32_34.4_E_type:city_region:TW&amp;pagename=Taiwan">25.0148, 121.5429</a></li>
+                          <li>視聽館 AU：<a href="https://geohack.toolforge.org/geohack.php?params=25_00_50.4_N_121_32_30.1_E_type:city_region:TW&amp;pagename=Taiwan">25.0140, 121.5417</a></li>
+                          <li>綜合教學大樓 RB：<a href="https://geohack.toolforge.org/geohack.php?params=25_00_51.1_N_121_32_29.4_E_type:city_region:TW&amp;pagename=Taiwan">25.0142, 121.5415</a></li>
+                          <li>學生餐廳、便利商店：<a href="https://geohack.toolforge.org/geohack.php?params=25_00_50.4_N_121_32_33.4_E_type:city_region:TW&amp;pagename=Taiwan">25.0140, 121.5426</a></li>
+                        </ul>
+                        <h2>參與者大調查問卷</h2>
+                        <p>每年 Stack Overflow 都會發表 Developer Survey，讓大家了解 Stack Overflow 社群參與者的組成。身為亞洲最大開源年會，我們也要來大調查，讓大家可以一窺 COSCUP 的與會者樣貌！ 本次調查目的為了解 COSCUP 受眾的群體狀況，不會蒐集任何足以辨識個人的資料，請放心填寫。</p>
+                        <p>統計結果預計於年會進行中公開，並持續開放填寫，在年會結束後完成最後統計並公開。 你不需要報名才能參與 COSCUP x KCD Taiwan 2022，但如果能幫我們完成問卷、協助瞭解 Open Source 在台灣的現況，我們會很感激的！</p>
+                        <ul>
+                        	<li>開始填寫參與者大調查問卷：<a href="https://coscup.org/2022-survey/">https://coscup.org/2022-survey/</a></li>
+                        </ul>
+                        <h2>個人贊助</h2>
+                        <p>我們也歡迎你來贊助我們，今年的個人贊助會有一份大禮包，詳細的贊助內容可以參考<a href="https://ocf.neticrm.tw/civicrm/contribute/transact?reset=1&amp;id=51">個人贊助頁面</a>。</p>
+                        <p class="align-center">
+                          <a href="https://coscup.org/2022/zh-TW/sponsor">
+                            <img src="https://secretary.coscup.org/s3/img/2022_sponsors_logo.png" alt="COSCUP x KCD Taiwan 2022 Sponsors Logo" title="COSCUP x KCD Taiwan 2022 Sponsors Logo">
+                          </a>
+                        </p>
+                        <hr style="border: 3px solid rgb(214, 244, 210); border-radius: 3px;">
+                        <p>Hi {{name}},</p>
+                        <p>COSCUP x KCD 2022 is coming soon! This is a simple guide for you to catch up on all the details.</p>
+                        <h2>Main Info</h2>
+                        <ul>
+                          <li>Time: July 30th - 31st, 2022</li>
+                          <li>Location: National Taiwan University of Science and Technology (<a href="https://coscup.org/2022/en/map">NO.43,Sec.4, Keelung Rd., Da’an District,Taipei City</a>)</li>
+                        </ul>
+                        <h2>Before COSCUP</h2>
+                        <ul>
+                          <li><a href="https://blog.coscup.org/2022/07/2022open-source-and-winewelcome-party.html">Welcome Party</a>：Feel free to join us! (minimum order 200 NT$ per person)</li>
+                          <li><a href="https://coscup.org/2022/en/session">Session</a>：Check the time of your own talk and other talks of your interest to arrange your schedule in advance.</li>
+                          <li>Join or host your own <a href="https://blog.coscup.org/2022/07/coscup-bof.html">BoFs and hacking room</a> to meet new friends!</li>
+                          <li>Souvenirs: <a href="{{url}}">Please install Opass app</a>. You can exchange souvenirs at the COSCUP booth with built-in speaker points. Remember to exchange them as early as possible due to limited stock. </li>
+                          <li>Please read <a href="https://docs.google.com/document/d/1-NeDVTmnXFcs3CN61ZDWCKj_zdhNzyenFjA8YNxCY6A/edit">speakers’ guidelines</a> before you come to the session to make sure that you knew all information you should have known for better preparation.</li>
+                        </ul>
+                        <h2>Arriving venue</h2>
+                        <ul>
+                          <li>Please abide by current epidemic prevention regulations issued by our government, keep a social distance and wear a face mask all the time！</li>
+                          <li>We are providing “red lanyard” for those who do not wish to be photographed or filmed while attending the conference. Please obtain it at the check-in desk and wear it on the neck during the conference.</li>
+                          <li>Please come to room TR-517 for temporary luggage check in.</li>
+                        </ul>
+                        <h2>During the Conference</h2>
+                        <ul>
+                          <li>Speckers check-in：Please keep in touch with your community coordinator at anytime. We suggest you arrive at the assigned conference room 10 -15 minutes prior to the time of your session for preparation.</li>
+                          <li>Visit our sponsor and community booths, you can exchange limited souvenirs at the COSCUP booth (TR 3F)with scanned points in OPass app. Remember to install the Opass app and let the booth volunteers scan the QRcode for points earning~ </li>
+                          <li>Collect rewarding points form <a href="https://volunteer.coscup.org/tasks/2022">Volunteer Mission</a>、<a href="https://blog.coscup.org/2022/07/introducing-healing-market-with-yoga.html">Healing Market</a> and other interesting sections</li>
+                          <li>Come to the Volunteer Desk to sign up for COSCUP 2023 volunteer！</li>
+                          <li>Visit BoF for your interested meetings and talk about your new discoveries and interests with other people of the same interests.</li>
+                        </ul>
+                        <h2>If you are lost</h2>
+                        <p>Click the links below to get the precise map location of each building. (The link leads to a wikimaps page.)</p>
+                        <ul>
+                          <li>研揚大樓 TR：<a href="https://geohack.toolforge.org/geohack.php?params=25_00_53.3_N_121_32_34.4_E_type:city_region:TW&amp;pagename=Taiwan">25.0148, 121.5429</a></li>
+                          <li>視聽館 AU：<a href="https://geohack.toolforge.org/geohack.php?params=25_00_50.4_N_121_32_30.1_E_type:city_region:TW&amp;pagename=Taiwan">25.0140, 121.5417</a></li>
+                          <li>綜合教學大樓 RB：<a href="https://geohack.toolforge.org/geohack.php?params=25_00_51.1_N_121_32_29.4_E_type:city_region:TW&amp;pagename=Taiwan">25.0142, 121.5415</a></li>
+                          <li>學生餐廳、便利商店 / Student canteen and convenient store：<a href="https://geohack.toolforge.org/geohack.php?params=25_00_50.4_N_121_32_33.4_E_type:city_region:TW&amp;pagename=Taiwan">25.0140, 121.5426</a></li>
+                        </ul>
+                        <h2>Attendee Survey</h2>
+                        <p>Every year, Stack Overflow publishes a Developer Survey for people to get to know the Stack Overflow community. As Asia&#39;s largest open source conference, we&#39;re doing this survey to give you a glimpse of COSCUP attendees! We will collect no personally identifiable information. The purpose of this survey is to understand the demographics of the COSCUP audience. </p>
+                        <p>We&#39;ll release the survey results during the COSCUP, and the survey will be open for completion after the conference. You don&#39;t need to register for COSCUP x KCD Taiwan 2022. But please fill out this survey to help us learn more about the open source demographics in Taiwan!</p>
+                        <ul>
+                        	<li>Start the attendee survey: <a href="https://coscup.org/2022-survey/">https://coscup.org/2022-survey/</a></li>
+                        </ul>
+                        <h2>Personal Donation</h2>
+                        <p>We rely on sponsorship and individual supporters like you to grow and sustain COSCUP annually. When you donate NT$2,500, you will receive our special gift for your valuable support. We will also list your name on the COSCUP website indicating your support. </p>
+                        <p>For more details about Personal Donations, please read <a href="https://ocf.neticrm.tw/civicrm/contribute/transact?reset=1&amp;id=51">here</a>. </p>
+                        <p class="align-center">
+                          <a href="https://coscup.org/2022/en/sponsor">
+                            <img src="https://secretary.coscup.org/s3/img/2022_sponsors_logo.png" alt="COSCUP x KCD Taiwan 2022 Sponsors Logo" title="COSCUP x KCD Taiwan 2022 Sponsors Logo">
+                          </a>
+                        </p>
+                        <p class="btn-tips" style="margin-bottom: 0; margin-top: 30px;">如果有任何問題，可以直接回覆此封信件，感謝協助！</p>
+                        <p class="btn-tips" style="margin-bottom: 10px;">If you have any questions, please reply to this letter.</p>
+                        <p class="btn-tips" style="margin-bottom: 0;">
+                          {% if admin_link %}
+                          <a href="https://secretary.coscup.org/subscriber/code/{{admin_link}}">管理電子報訂閱</a> | <a href="https://secretary.coscup.org/subscriber/code/{{admin_link}}">manage your subscriptions</a>
+                          {% else %}
+                          <a href="https://secretary.coscup.org/subscribe/coscup">訂閱電子報訂閱</a> | <a href="https://secretary.coscup.org/subscribe/coscup">Subscribe</a>
+                          {%endif%}
+                        </p>
+                        <p class="align-center"><small style="color:#999999;">COSCUP x KCD Taiwan 2022</small></p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            <!-- END MAIN CONTENT AREA -->
+            </table>
+
+            <!-- START FOOTER -->
+            <div class="footer">
+              <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td class="content-block">
+                    <span class="apple-link" style="display: inline-block;height: 24px;">
+                      <a href="https://www.facebook.com/coscup/"><img width="24" alt="coscup's facebook" src="https://secretary.coscup.org/s3/icon/facebook-square-brands.png"></a>
+                      <a href="https://t.me/coscupchat"><img width="24" alt="coscup's telegram" src="https://secretary.coscup.org/s3/icon/telegram-brands.png"></a>
+                      <a href="https://twitter.com/coscup"><img width="24" alt="coscup's twitter" src="https://secretary.coscup.org/s3/icon/twitter-square-brands.png"></a>
+                      <a href="https://blog.coscup.org/"><img width="24" alt="coscup's blog" src="https://secretary.coscup.org/s3/icon/blogger-brands.png"></a>
+                      <a href="https://www.flickr.com/photos/coscup/"><img width="24" alt="coscup's flickr" src="https://secretary.coscup.org/s3/icon/flickr-brands.png"></a>
+                      <a href="https://www.youtube.com/user/thecoscup"><img width="24" alt="coscup's youtube" src="https://secretary.coscup.org/s3/icon/youtube-square-brands.png"></a>
+                    </span>
+                    <br>
+                    <span class="apple-link" style="display: inline-block;height: 15px;">COSCUP</span>
+                  </td>
+                  {%if openhash%}
+                  <td class="content-block">
+                      <img src="https://secretary.coscup.org/r/{{ucode}}/{{openhash}}?{{args}}"
+                           border=0 width="1" height="3" alt="">
+                  </td>
+                  {% endif %}
+                </tr>
+              </table>
+            </div>
+            <!-- END FOOTER -->
+
+          <!-- END CENTERED WHITE CONTAINER -->
+          </div>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+  </body>
+</html>
