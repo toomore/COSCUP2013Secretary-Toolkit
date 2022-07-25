@@ -582,7 +582,7 @@ def send_coscup_welcome_party(dry_run=True):
     if dry_run:
         path = './coscup_paper_subscribers_ikc3i6j1_test.csv'
     else:
-        path = './coscup_paper_subscribers_ikc3i6j1_20220719_061409.csv'
+        path = './coscup_paper_subscribers_ikc3i6j1_20220721_034736.csv'
 
     users = []
     with open(path, 'r+') as files:
@@ -626,8 +626,43 @@ def send_coscup_welcome_party(dry_run=True):
         queue_sender(raw)
 
 
+def send_coscup_healing_market(dry_run=True):
+    template = TPLENV.get_template('./coscup_healing_market.html')
+    template_md = TPLENV.get_template('./coscup_healing_market.md')
+
+    if dry_run:
+        path = './coscup_paper_subscribers_mvn0ogc3_test.csv'
+    else:
+        path = './coscup_paper_subscribers_mvn0ogc3_diff_speakers.csv'
+
+    users = []
+    with open(path, 'r+') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(
+                'COSCUP Attendee', 'attendee@coscup.org'),
+            list_unsubscribe='<mailto:attendee+unsubscribeme@coscup.org>',
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject=f"會眾新服務「療癒市集」結合紅酒瑜伽、冥想正念、按摩小站、氮氣咖啡 | Introducing the Healing Market with Yoga Wine, Meditations, Massage Station, Nitro Coffee at COSCUP x KCD Taiwan 2022 [{hex(_n)[2:]}]",
+            body=template.render(**u),
+            text_body=template_md.render(**u),
+        )
+
+        queue_sender(raw)
+
+
 if __name__ == '__main__':
     # send_coscup_start(dry_run=True)
     # send_coscup_220710(dry_run=True)
-    send_coscup_welcome_party(dry_run=True)
+    # send_coscup_welcome_party(dry_run=True)
+    # send_coscup_healing_market(dry_run=True)
     pass

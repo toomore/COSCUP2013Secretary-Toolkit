@@ -96,7 +96,7 @@ In this class, the instructors lead students through poses while also telling yo
 ### Notes
 
 1. One hour per class, **NTD$470** per person, each class of up to 12 people.
-2. This class will include 15 mins about introducing yuga wine, 45 mins about the activities. We will offer the wine glass in class, and it is valued **NTD$250**.
+2. This class will include 15 mins about introducing yuga wine, 45 mins about the activities. In the event that a wine glass is **broken** during your practice, we kindly charge a **NTD$250** fee.
 3. Bring to the class: Yoga mat, bottle of water, small towel.
 
 ## Meditations
