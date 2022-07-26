@@ -701,7 +701,7 @@ def send_coscup_speaker(dry_run=True):
     if dry_run:
         path = './coscup_2022_speakers_test.csv'
     else:
-        path = './coscup_2022_speakers.csv'
+        path = './coscup_2022_speakers_fixed.csv'
 
     users = []
     with open(path, 'r+') as files:
@@ -754,7 +754,7 @@ def send_coscup_oscvpass(dry_run=True):
                 'COSCUP Attendee', 'attendee@coscup.org'),
             list_unsubscribe='<mailto:attendee+unsubscribeme@coscup.org>',
             to_addresses=AwsSESTools.mail_header(u['mail'], u['mail']),
-            subject="[OSCVPass] COSCUP 回饋說明 | COSCUP x KCD Taiwan 2023",
+            subject="[OSCVPass] COSCUP 回饋說明 | COSCUP x KCD Taiwan 2022",
             body=template.render(**u),
             text_body=template_md.render(**u),
         )
@@ -767,7 +767,7 @@ if __name__ == '__main__':
     # send_coscup_220710(dry_run=True)
     # send_coscup_welcome_party(dry_run=True)
     # send_coscup_healing_market(dry_run=True)
-    # send_coscup_2021_gather(dry_run=False)
+    # send_coscup_2021_gather(dry_run=True)
     # send_coscup_speaker(dry_run=True)
     # send_coscup_oscvpass(dry_run=True)
     pass
