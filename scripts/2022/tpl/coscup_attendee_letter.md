@@ -39,7 +39,7 @@ COSCUP x KCD Taiwan 2022 即將在 07/30 - 07/31 於臺灣科技大學舉辦！
 ## 大會期間
 
 - [報名閃電秀](https://blog.coscup.org/2022/07/coscup-lightning-talk-20.html)，今年的閃電⚡️只有３分鐘，想來挑戰看看嗎！
-- 逛逛贊助商攤位(TR-309、TR-312)、社群攤位(TR 2F 走廊、TR-309、TR-312)、使用 [OPass](https://coscup.org/2022-survey/) app，秀出 QRcode 讓攤位人員掃描取得點數，並到大會攤位(TR 3F)兌換贈品，數量有限！
+- 逛逛[贊助商攤位](https://coscup.org/2022/zh-TW/sponsor)(TR-309、TR-312)、社群攤位(TR 2F 走廊、TR-309、TR-312)、使用 [OPass](https://coscup.org/2022-survey/) app，秀出 QRcode 讓攤位人員掃描取得點數，並到大會攤位(TR 3F)兌換贈品，數量有限！
 - 逛逛[志工任務](https://volunteer.coscup.org/tasks/2022)、蒐集獎勵，或到志工服務台(TR-309)報名 **COSCUP 2023** 的志工！
 - 到 BoF 會議室(TR-413-2) 門口尋找屬於您的聚會，與同好暢談彼此在相同主題上的新發現。
 - **TR 1F** 有小餐車，也可以來這裡點杯氮氣咖啡。
@@ -92,7 +92,7 @@ This mail also has [the online version](https://blog.coscup.org/2022/07/attendee
 ## During the Conference
 
 - [Register the Lightning talk](https://blog.coscup.org/2022/07/coscup-lightning-talk-20.html)and this year the lightning talk is only in 3 mins!! ⚡️
-- Visit sponsors(TR-309、TR-312) and community booths(TR 2F、TR-309、TR-312) to collect points using the [OPass](https://coscup.org/2022-survey/) app. Show your QR code from OPass app to collect points. Redeem your points for gifts at the COSCUP Shop(TR 3F). These gifts are limited quantities and when they're gone, they're gone!
+- Visit [sponsors](https://coscup.org/2022/en/sponsor)(TR-309、TR-312) and community booths(TR 2F、TR-309、TR-312) to collect points using the [OPass](https://coscup.org/2022-survey/) app. Show your QR code from OPass app to collect points. Redeem your points for gifts at the COSCUP Shop(TR 3F). These gifts are limited quantities and when they're gone, they're gone!
 - Visit “[Volunteer Tasks](https://volunteer.coscup.org/tasks/2022)” and collect rewards. Or come to the Volunteer Desk(TR-309) to register as a volunteer of COSCUP 2023!
 - Go to BoF meeting rooms(TR-413-2) to find your gathering. Share new findings with fellow FLOSS folks.
 - There will be a small dining car(TR 1F). You can order a cup of nitro cold brew(NCB) coffee by private chefs.
