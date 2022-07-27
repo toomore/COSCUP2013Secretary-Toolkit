@@ -23,6 +23,7 @@ COSCUP x KCD Taiwan 2022 即將在 07/30 - 07/31 於臺灣科技大學舉辦！
 
 - 查詢前往會場[台科大](https://coscup.org/2022/zh-TW/map)的最佳路徑
 - 查看[會場地圖](https://coscup.org/2022/zh-TW/venue)，會議廳、教室不迷路！
+- 如果你感到身體不適，請待在家裡透過[線上的方式](https://www.youtube.com/c/coscup)參與我們！
 
 ## 抵達會場
 
@@ -77,6 +78,7 @@ This mail also has [the online version](https://blog.coscup.org/2022/07/attendee
 
 - Find out the [best route](https://coscup.org/2022/en/map) to the venue (National Taiwan University of Science and Technology)
 - Check out the [venue map](https://coscup.org/2022/en/venue), so you won’t get lost！
+- If you are feeling unwell, please stay at home and join us [Online](https://www.youtube.com/c/coscup)！
 
 ## Arriving at the Venue
 
