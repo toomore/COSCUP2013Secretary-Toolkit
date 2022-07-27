@@ -16,7 +16,7 @@ COSCUP x KCD Taiwan 2022 即將在 07/30 - 07/31 於臺灣科技大學舉辦！
 - [前夜派對](https://blog.coscup.org/2022/07/2022open-source-and-winewelcome-party.html)：自由入場、喝一杯、聊開源。（2022-07-29 18:30）
 - [議程表](https://coscup.org/2022/zh-TW/session)：排出最想聽的議程的最佳解。
 - 協助完成「[參與者大調查](https://coscup.org/2022-survey/)」幫助我們調查臺灣的開源生態！
-- 預先登記[參加 BoF 小聚](https://blog.coscup.org/2022/07/coscup-bof.html)，讓志同道合的朋友可以找到您
+- 預先登記[參加 BoF/hacking room 小聚](https://blog.coscup.org/2022/07/coscup-bof.html)，讓志同道合的朋友可以找到您
 - [療癒市集](https://blog.coscup.org/2022/07/introducing-healing-market-with-yoga.html)：紅酒瑜伽、冥想正念、按摩小站、氮氣咖啡，療癒一下心靈與身體的負擔。（部分需預約詳細請看[活動說明](https://blog.coscup.org/2022/07/introducing-healing-market-with-yoga.html)）
 
 ## 出發前
@@ -38,10 +38,11 @@ COSCUP x KCD Taiwan 2022 即將在 07/30 - 07/31 於臺灣科技大學舉辦！
 
 ## 大會期間
 
+- 今年有超過 60 場英日文議程，歡迎邀請你的外籍朋友一起來參加！
 - [報名閃電秀](https://blog.coscup.org/2022/07/coscup-lightning-talk-20.html)，今年的閃電⚡️只有３分鐘，想來挑戰看看嗎！
 - 逛逛[贊助商攤位](https://coscup.org/2022/zh-TW/sponsor)(TR-309、TR-312)、社群攤位(TR 2F 走廊、TR-309、TR-312)、使用 [OPass](https://coscup.org/2022-survey/) app，秀出 QRcode 讓攤位人員掃描取得點數，並到大會攤位(TR 3F)兌換贈品，數量有限！
 - 逛逛[志工任務](https://volunteer.coscup.org/tasks/2022)、蒐集獎勵，或到志工服務台(TR-309)報名 **COSCUP 2023** 的志工！
-- 到 BoF 會議室(TR-413-2) 門口尋找屬於您的聚會，與同好暢談彼此在相同主題上的新發現。
+- 除了聽議程，也可以到 [BoF](https://docs.google.com/document/d/1Ac9VZQJXvpPoAcGJ7sZ-6mZSZp22T6ygN1X3-iH5DZ0/edit) (TR-413-2) 或 [hacking room](https://docs.google.com/document/d/1Ac9VZQJXvpPoAcGJ7sZ-6mZSZp22T6ygN1X3-iH5DZ0/edit)(TR-510)尋找屬於您的聚會，與同好暢談彼此在相同主題上的新發現。
 - **TR 1F** 有小餐車，也可以來這裡點杯氮氣咖啡。
 - 逛到肌肉痠痛，你可以前往[按摩小站](https://blog.coscup.org/2022/07/introducing-healing-market-with-yoga.html)(TR-515) 放鬆一下、舒緩酸痛！
 
@@ -69,7 +70,7 @@ This mail also has [the online version](https://blog.coscup.org/2022/07/attendee
 - [7/29 Welcome Party](https://blog.coscup.org/2022/07/2022open-source-and-winewelcome-party.html): Free entry. Drink a beer and have fun with FLOSS folks!
 - [Agenda](https://coscup.org/2022/en/session): Arrange your favorite sessions
 - [Fill out this survey](https://coscup.org/2022-survey) to help us learn more about the open source demographics in Taiwan.
-- [Pre-register BoF meet-up](https://blog.coscup.org/2022/07/coscup-bof.html): So your community can find you!
+- [Pre-register BoF/hacking room meet-up](https://blog.coscup.org/2022/07/coscup-bof.html): So your community can find you!
 - [Healing Market](https://blog.coscup.org/2022/07/introducing-healing-market-with-yoga.html): Hope to heal your mind and body when you work hard in your life
 
 ## Before Departure
@@ -91,10 +92,11 @@ This mail also has [the online version](https://blog.coscup.org/2022/07/attendee
 
 ## During the Conference
 
+- We have ~60 talks in English or Japanese this year, check it out on the [schedule](https://coscup.org/2022/en/session) or [OPass](https://opass.app/) app.
 - [Register the Lightning talk](https://blog.coscup.org/2022/07/coscup-lightning-talk-20.html)and this year the lightning talk is only in 3 mins!! ⚡️
 - Visit [sponsors](https://coscup.org/2022/en/sponsor)(TR-309、TR-312) and community booths(TR 2F、TR-309、TR-312) to collect points using the [OPass](https://coscup.org/2022-survey/) app. Show your QR code from OPass app to collect points. Redeem your points for gifts at the COSCUP Shop(TR 3F). These gifts are limited quantities and when they're gone, they're gone!
 - Visit “[Volunteer Tasks](https://volunteer.coscup.org/tasks/2022)” and collect rewards. Or come to the Volunteer Desk(TR-309) to register as a volunteer of COSCUP 2023!
-- Go to BoF meeting rooms(TR-413-2) to find your gathering. Share new findings with fellow FLOSS folks.
+- Go to [BoF/hacking room](https://docs.google.com/document/d/1Ac9VZQJXvpPoAcGJ7sZ-6mZSZp22T6ygN1X3-iH5DZ0/edit)(TR-413-2, TR-510) to find your gathering. Share new findings with fellow FLOSS folks.
 - There will be a small dining car(TR 1F). You can order a cup of nitro cold brew(NCB) coffee by private chefs.
 - My body is so tired, I need to relax more! You could head to [Massage Station](https://blog.coscup.org/2022/07/introducing-healing-market-with-yoga.html)(TR-515) to relax.
 
