@@ -796,6 +796,40 @@ def send_coscup_attendee(dry_run=True):
         queue_sender(raw)
 
 
+def send_coscup_coc(dry_run=True):
+    template = TPLENV.get_template('./coscup_coc.html')
+    template_md = TPLENV.get_template('./coscup_coc.md')
+
+    if dry_run:
+        path = './coscup_volunteer_20220803_141724_test.csv'
+    else:
+        path = './coscup_volunteer_20220803_141724.csv'
+
+    users = []
+    with open(path, 'r+') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(
+                'COSCUP 社群守則 關懷小組', 'coc@coscup.org'),
+            list_unsubscribe='<mailto:coc+unsubscribeme@coscup.org>',
+            to_addresses=AwsSESTools.mail_header(u['mail'], u['mail']),
+            subject="COSCUP 社群守則 COC 關懷調查",
+            body=template.render(**u),
+            text_body=template_md.render(**u),
+        )
+
+        queue_sender(raw)
+
+
 if __name__ == '__main__':
     # send_coscup_start(dry_run=True)
     # send_coscup_220710(dry_run=True)
@@ -805,4 +839,5 @@ if __name__ == '__main__':
     # send_coscup_speaker(dry_run=True)
     # send_coscup_oscvpass(dry_run=True)
     # send_coscup_attendee(dry_run=True)
+    # send_coscup_coc(dry_run=True)
     pass
