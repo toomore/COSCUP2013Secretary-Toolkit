@@ -265,7 +265,7 @@ def send_mopcon_token(rows, dry_run=True):
         raw = make_raw_email(
             nickname=u['name'],
             mail=u['mail'],
-            subject=u'[OSCVPass] MOPCON2021 開源貢獻票 優惠券 (%s)' % u['name'],
+            subject=u'[OSCVPass] MOPCON2022 開源貢獻票 免費券 (%s)' % u['name'],
             body=body,
             dry_run=dry_run,
         )
@@ -382,9 +382,12 @@ def pickup_unique(data, cases):
     maillist = []
     for case in cases:
         for row in data[case]:
+            if row['mail'].strip() == '':
+                row['mail'] = row['mail2']
+
             row['mail'] = ','.join(row['mail'].split(' '))
             row['mail'] = ','.join(row['mail'].split('/'))
-            row['mail'] = [m.strip() for m in row['mail'].split(',') if m][0]
+            row['mail'] = [m.strip() for m in row['mail'].split(',') if m][0].lower()
             maillist.append({'name': row['name'], 'mail': row['mail']})
             print(row['name'], row['mail'])
 
@@ -523,7 +526,7 @@ def send_workshop(path, dry_run=True):
 if __name__ == '__main__':
     # ----- send Pass/deny ----- #
     #from pprint import pprint
-    #data = process_csv('./oscvpass_220811.csv', _all=False)
+    #data = process_csv('./oscvpass_short_220901.csv', _all=False)
     #for case in data:
     #    print(case, len(data[case]))
     #    for row in data[case]:
@@ -543,7 +546,7 @@ if __name__ == '__main__':
     #add_uuid_export_csv(maillist, './pycon2021_tokens.csv')
 
     # ----- send mopcon token ----- #
-    #with open('./mopcon_2021_tokens_mails_210902.csv', 'r+') as files:
+    #with open('./mopcon_2022_tokens_mails.csv', 'r+') as files:
     #    rows = []
     #    for user in csv.DictReader(files):
     #        if not user['mail']:
@@ -570,13 +573,13 @@ if __name__ == '__main__':
     #    send_g0v_token(rows=rows, dry_run=False)
 
     ## ----- update token ----- #
-    #data = process_csv('./oscvpass_220725_1_only_valid.csv', _all=True)
+    #data = process_csv('./oscvpass_220901.csv', _all=True)
     #maillist = pickup_unique(data=data, cases=('pass', ))
     #print(maillist, len(maillist))
 
     #update_token(datas=maillist,
-    #        org_path='./pycon_2022_tokens_mails_220724.csv',
-    #        out_path='./pycon_2022_tokens_mails_220725.csv')
+    #        org_path='./mopcon_2022_tokens.csv',
+    #        out_path='./mopcon_2022_tokens_mails.csv')
 
     #send_expired(path='./oscvpass_expired_220512.csv', dry_run=True)
 
