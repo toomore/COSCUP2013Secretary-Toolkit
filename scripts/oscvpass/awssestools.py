@@ -265,7 +265,7 @@ def send_mopcon_token(rows, dry_run=True):
         raw = make_raw_email(
             nickname=u['name'],
             mail=u['mail'],
-            subject=u'[OSCVPass] MOPCON2022 開源貢獻票 免費券 (%s)' % u['name'],
+            subject=u'[OSCVPass][提醒] MOPCON2022 開源貢獻票 免費券 (%s)' % u['name'],
             body=body,
             dry_run=dry_run,
         )
@@ -352,6 +352,32 @@ def send_pycon_token(rows, dry_run=True):
         if dry_run:
             return
 
+def send_lv_token(rows, dry_run=True):
+    template = TPLENV.get_template('./lv_2022_token.html')
+    _n = 1
+    for u in rows:
+        if u['mail'] in setting.BLOCK:
+            continue
+
+        print(_n, u)
+        _n += 1
+
+        if dry_run:
+            u['mail'] = setting.TESTMAIL
+
+        body = template.render(**u)
+        raw = make_raw_email(
+            nickname=u['name'],
+            mail=u['mail'],
+            subject=u'[OSCVPass] Laravel x Vue Conf Taiwan 2022 優惠券 (%s)' % u['name'],
+            body=body,
+            dry_run=dry_run,
+        )
+        SENDER.client.send_raw_email(RawMessage={'Data': raw})
+
+        if dry_run:
+            return
+
 def send_coscup_check(rows, dry_run=True):
     template = TPLENV.get_template('./coscup_2021.html')
     _n = 1
@@ -380,6 +406,7 @@ def send_coscup_check(rows, dry_run=True):
 
 def pickup_unique(data, cases):
     maillist = []
+    unique = set()
     for case in cases:
         for row in data[case]:
             if row['mail'].strip() == '':
@@ -388,7 +415,13 @@ def pickup_unique(data, cases):
             row['mail'] = ','.join(row['mail'].split(' '))
             row['mail'] = ','.join(row['mail'].split('/'))
             row['mail'] = [m.strip() for m in row['mail'].split(',') if m][0].lower()
+
+            if row['mail'] in unique or '@' not in row['mail']:
+                continue
+
             maillist.append({'name': row['name'], 'mail': row['mail']})
+            unique.add(row['mail'])
+
             print(row['name'], row['mail'])
 
     return maillist
@@ -526,14 +559,14 @@ def send_workshop(path, dry_run=True):
 if __name__ == '__main__':
     # ----- send Pass/deny ----- #
     #from pprint import pprint
-    #data = process_csv('./oscvpass_short_220901.csv', _all=False)
+    #data = process_csv('./oscvpass_221101.csv', _all=False)
     #for case in data:
     #    print(case, len(data[case]))
     #    for row in data[case]:
     #        print(row['name'], row['c_01'], row['mail'], row['mail2'])
 
     #pprint(data['deny'])
-    #send(data=data, case=('deny', 'insufficient_for', 'pass'), dry_run=True)
+    #send(data=data, case=('deny', 'insufficient_for', 'pass'), dry_run=False)
     #send_request_attendee('/run/shm/hash_b0466044.csv', dry_run=True)
 
     # ----- send get token ----- #
@@ -546,14 +579,14 @@ if __name__ == '__main__':
     #add_uuid_export_csv(maillist, './pycon2021_tokens.csv')
 
     # ----- send mopcon token ----- #
-    #with open('./mopcon_2022_tokens_mails.csv', 'r+') as files:
+    #with open('./mopcon_2022_tokens_mails_221007.csv', 'r+') as files:
     #    rows = []
     #    for user in csv.DictReader(files):
     #        if not user['mail']:
     #            continue
     #        rows.append(user)
 
-    #    send_mopcon_token(rows=rows, dry_run=True)
+    #    send_mopcon_token(rows=rows, dry_run=False)
 
     # ----- g0v Summit ----- #
     #data = process_csv('./oscvpass_200930.csv', _all=True)
@@ -573,26 +606,26 @@ if __name__ == '__main__':
     #    send_g0v_token(rows=rows, dry_run=False)
 
     ## ----- update token ----- #
-    #data = process_csv('./oscvpass_220901.csv', _all=True)
+    #data = process_csv('./oscvpass_short_221007.csv', _all=True)
     #maillist = pickup_unique(data=data, cases=('pass', ))
     #print(maillist, len(maillist))
 
     #update_token(datas=maillist,
-    #        org_path='./mopcon_2022_tokens.csv',
-    #        out_path='./mopcon_2022_tokens_mails.csv')
+    #        org_path='./mopcon_2022_tokens_mails.csv',
+    #        out_path='./mopcon_2022_tokens_mails_221007.csv')
 
     #send_expired(path='./oscvpass_expired_220512.csv', dry_run=True)
 
     # ----- Gen tokens ----- #
     #gen_token(nums=300, out_path="./mopcon_2022_tokens.csv")
-    #data = process_csv('./oscvpass_210714_only_w_date.csv', _all=True)
+    #data = process_csv('./oscvpass_221101_w.csv', _all=True)
     #data = {'pass': []}
     #maillist = pickup_unique(data=data, cases=('pass', ))
     #print(maillist, len(maillist))
     #merge_token(
     #        datas=maillist,
-    #        token_path='./mopcon_2021_token.csv',
-    #        out_path='./mopcon_2021_tokens_mails.csv')
+    #        token_path='./lv_taiwan_2022_token.csv',
+    #        out_path='./lv_taiwan_2022_tokens_mails.csv')
 
     # ----- send SITCON2022 token ----- #
     #with open('./sitcon_2022_tokens_mails_220725_append.csv', 'r+') as files:
@@ -613,6 +646,16 @@ if __name__ == '__main__':
     #        rows.append(user)
 
     #    send_pycon_token(rows=rows, dry_run=True)
+
+    # ----- send Laravel x Vue Taiwan 2022 token ----- #
+    #with open('./lv_taiwan_2022_tokens_mails.csv', 'r+') as files:
+    #    rows = []
+    #    for user in csv.DictReader(files):
+    #        if not user['mail']:
+    #            continue
+    #        rows.append(user)
+
+    #    send_lv_token(rows=rows, dry_run=True)
 
     # ----- send COSCUP2021 check ----- #
     #with open('./oscvpass-check_yker8xb2.csv', 'r+') as files:
