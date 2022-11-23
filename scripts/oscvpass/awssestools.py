@@ -369,7 +369,7 @@ def send_lv_token(rows, dry_run=True):
         raw = make_raw_email(
             nickname=u['name'],
             mail=u['mail'],
-            subject=u'[OSCVPass] Laravel x Vue Conf Taiwan 2022 優惠券 (%s)' % u['name'],
+            subject=u'[提醒] [OSCVPass] Laravel x Vue Conf Taiwan 2022 優惠券 (%s)' % u['name'],
             body=body,
             dry_run=dry_run,
         )
@@ -559,7 +559,7 @@ def send_workshop(path, dry_run=True):
 if __name__ == '__main__':
     # ----- send Pass/deny ----- #
     #from pprint import pprint
-    #data = process_csv('./oscvpass_221101.csv', _all=False)
+    #data = process_csv('./oscvpass_221123.csv', _all=False)
     #for case in data:
     #    print(case, len(data[case]))
     #    for row in data[case]:
@@ -655,7 +655,7 @@ if __name__ == '__main__':
     #            continue
     #        rows.append(user)
 
-    #    send_lv_token(rows=rows, dry_run=True)
+    #    send_lv_token(rows=rows, dry_run=False)
 
     # ----- send COSCUP2021 check ----- #
     #with open('./oscvpass-check_yker8xb2.csv', 'r+') as files:
