@@ -556,6 +556,85 @@ def send_workshop(path, dry_run=True):
         if dry_run:
             return
 
+def send_2022_report(path, dry_run=True):
+    ''' send 2022 report '''
+    template = TPLENV.get_template('./2022_year_end.html')
+
+
+    datas = []
+    with open(path) as files:
+        for u in csv.DictReader(files):
+            datas.append(u)
+
+    _n = 1
+    for u in datas:
+        body = template.render(**u)
+
+        if dry_run:
+            u['mail'] = setting.TESTMAIL
+
+        raw = make_raw_email(
+            nickname=u['name'].strip(),
+            mail=u['mail'].strip().lower(),
+            subject='[OSCVPass] 2022 年度總結',
+            body=body,
+            dry_run=dry_run,
+        )
+        print(SENDER.client.send_raw_email(RawMessage={'Data': raw}))
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        if dry_run:
+            return
+
+def read_all_mails(path):
+    ''' Read all mails '''
+    data = process_csv(path, _all=True)
+    mails = {}
+    for case in data:
+        print(case, len(data[case]))
+        for row in data[case]:
+            print(row['name'], row['mail'], row['mail2'])
+
+            if row['mail2']:
+                _mail = format_mail(row['mail2'])
+                if _mail:
+                    if _mail not in mails:
+                        mails[_mail] = set()
+
+                    mails[_mail].add(row['name'].strip())
+
+            elif row['mail']:
+                _mail = format_mail(row['mail'])
+                if _mail:
+                    if _mail not in mails:
+                        mails[_mail] = set()
+
+                mails[_mail].add(row['name'].strip())
+
+    with open('./all_users_221215.csv', 'w+', encoding='UTF8') as files:
+        csv_writer = csv.DictWriter(files, fieldnames=('name', 'mail'))
+        csv_writer.writeheader()
+
+        for key, value in mails.items():
+            csv_writer.writerow({'name': ', '.join(value), 'mail': key})
+
+
+def format_mail(mail):
+    ''' format_mail '''
+    mail = mail.strip()
+
+    if ',' in mail:
+        mail = mail.split(',')[0].strip()
+
+    if ' ' in mail:
+        mail = mail.split(' ')[0].strip()
+
+    if '@' not in mail:
+        return ''
+
+    return mail
+
 if __name__ == '__main__':
     # ----- send Pass/deny ----- #
     #from pprint import pprint
@@ -667,6 +746,9 @@ if __name__ == '__main__':
 
     # ----- send 2022 workshop ----- #
     #send_workshop('./oscvpass_220811_valid.csv', dry_run=True)
+
+    #read_all_mails(path='./oscvpass_all_221215.csv')
+    #send_2022_report(path='all_users_221215.csv', dry_run=True)
 
     pass
 
