@@ -351,7 +351,7 @@
           <div class="content">
 
             <!-- START CENTERED WHITE CONTAINER -->
-            <span class="preheader">{{ ['期待你的加入！', '成為志工，有所作為！立即申請！','加入志工團隊，為開源貢獻！']|random|first}}</span>
+            <span class="preheader">{{ ['期待你的加入！', '成為志工，有所作為！立即申請！','加入志工團隊，為開源貢獻！']|random}}</span>
             <table class="main">
 
               <!-- START MAIN CONTENT AREA -->
@@ -394,7 +394,7 @@
                             '場務組：報到與防疫、餐飲、攤位、物流、機動。',
                             '行政組：志工服務、培訓，前夜派對、療癒市集。',
                             '擺攤組：協助至其他研討會實體攤位活動，持續推廣 <strong>COSCUP</strong>。',
-                            ] | random %}
+                            ] | shuffle_list %}
                           {% for content in teams %}
                           <li>{{ content }}</li>
                           {% endfor %}
@@ -410,7 +410,7 @@
                           <li>每一議程軌都是由各<strong>開源社群夥伴</strong>自審、自辦。</li>
                           <li>大約會有 1500 - 2000 人來參與的研討會。</li>
                         </ul>
-                        <p>{{ ['期待你的加入！', '成為志工，有所作為！立即申請！','加入志工團隊，為開源貢獻！'] | random | first}}</p>
+                        <p>{{ ['期待你的加入！', '成為志工，有所作為！立即申請！','加入志工團隊，為開源貢獻！'] | random}}</p>
                         <p class="btn-tips" style="margin-bottom: 0; margin-top: 30px;">如果有任何問題，可以直接回覆此封信件，感謝協助！</p>
                         <p class="btn-tips" style="margin-bottom: 10px;">If you have any questions, please reply to this letter.</p>
                         <p class="btn-tips" style="margin-bottom: 0;">

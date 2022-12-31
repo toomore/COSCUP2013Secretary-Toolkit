@@ -13,7 +13,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.utils import formataddr
 from pathlib import Path
-from random import sample
+from random import sample, shuffle
 from uuid import uuid4
 
 import boto3
@@ -507,7 +507,13 @@ class AwsSESTools(object):
         return msg_all.as_string()
 
 
+def shuffle_list(data):
+    ''' shuffle list '''
+    return shuffle(data)
+
+
 def send_coscup_start(dry_run=True):
+    TPLENV.filters['shuffle'] = shuffle_list
     template = TPLENV.get_template('./coscup_2023_inline.html')
     template_md = TPLENV.get_template('./coscup_2023.md')
 
