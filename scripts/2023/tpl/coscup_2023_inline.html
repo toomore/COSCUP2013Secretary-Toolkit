@@ -81,7 +81,7 @@ border-color: #34495e !important
           <div class="content" style="box-sizing:border-box;display:block;margin:0 auto;max-width:580px;padding:10px;background-color:#3D9238">
 
             <!-- START CENTERED WHITE CONTAINER -->
-            <span class="preheader" style="color:transparent;display:none;height:0;max-height:0;max-width:0;opacity:0;overflow:hidden;mso-hide:all;visibility:hidden;width:0" height="0" width="0">期待你的加入！</span>
+            <span class="preheader" style="color:transparent;display:none;height:0;max-height:0;max-width:0;opacity:0;overflow:hidden;mso-hide:all;visibility:hidden;width:0" height="0" width="0">{{ ['期待你的加入！', '成為志工，有所作為！立即申請！','加入志工團隊，為開源貢獻！']|random|first}}</span>
             <table class="main" style="border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;background:#fff;border-radius:3px;width:100%">
 
               <!-- START MAIN CONTENT AREA -->
@@ -94,7 +94,7 @@ border-color: #34495e !important
                         <p style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;margin-bottom:15px">Hi {{name}},</p>
                         <p class="align-center" style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;margin-bottom:15px;text-align:center"><a href="https://volunteer.coscup.org/" style="color:#3498db;text-decoration:underline"><img style="-ms-interpolation-mode:bicubic;max-width:100%;border-radius:8px;border:white 1px solid" src="https://volunteer.coscup.org/img/index_52304259196_3fed79054a_o_1600_390.png" alt="COSCUP Volunteer" title="COSCUP Volunteer"/></a></p>
                         <p style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;margin-bottom:15px">歡迎來到 2023 年！</p>
-                        <p style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;margin-bottom:15px">COSCUP 2023 籌備會議已在 2022 最後一週啟動了！大會活動預計 2023/07/29~30，地點在台灣科技大學。</p>
+                        <p style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;margin-bottom:15px">COSCUP 2023 籌備會議已在 2022 最後一週啟動了！大會活動預計 2023/07/29 - 30，地點在台灣科技大學。</p>
                         <p style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;margin-bottom:15px">若你剛好有空，可以考慮加入我們一起籌辦 2023 的活動喔！目前各組別已經開始接受申請加入，詳細的組別簡介可以到<a href="https://volunteer.coscup.org/project/2023/" style="color:#3498db;text-decoration:underline">組別列表</a>、點選感興趣的組別並提出申請。</p>
                         <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary" style="border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;box-sizing:border-box;width:100%">
                           <tbody>
@@ -113,16 +113,21 @@ border-color: #34495e !important
                         </table>
                         <h2 style="color:#000000;line-height:1.4;margin:0;font-weight:bold;font-family:&#34;Arial&#34;;border-bottom:1px #3D9238 dashed;padding-left:1px;margin-top:30px;margin-bottom:12px">組別關鍵字</h2>
                         <ul style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;margin-bottom:15px">
-                          <li style="list-style-position:outside;margin-left:0px;line-height:2">議程組：國際議程、大人物邀約、開源社群協調。</li>
-                          <li style="list-style-position:outside;margin-left:0px;line-height:2">紀錄組：形象照拍攝、大會活動紀錄。</li>
-                          <li style="list-style-position:outside;margin-left:0px;line-height:2">製播組：大會議程錄製與剪輯。</li>
-                          <li style="list-style-position:outside;margin-left:0px;line-height:2">行銷組：小啄導航員、主視覺設計、紀念品製作。</li>
-                          <li style="list-style-position:outside;margin-left:0px;line-height:2">資訊組：官網維護、內部工作系統建置。</li>
-                          <li style="list-style-position:outside;margin-left:0px;line-height:2">贊助組：贊助方案、贊助商關係維持。</li>
-                          <li style="list-style-position:outside;margin-left:0px;line-height:2">財務組：贊助商入款、費用出款、結算報告、協助建置大會財務系統。</li>
-                          <li style="list-style-position:outside;margin-left:0px;line-height:2">場務組：報到與防疫、餐飲、攤位、物流、機動。</li>
-                          <li style="list-style-position:outside;margin-left:0px;line-height:2">行政組：志工服務、培訓，前夜派對、療癒市集。</li>
-                          <li style="list-style-position:outside;margin-left:0px;line-height:2">擺攤組：協助至其他研討會實體攤位活動，持續推廣 <strong>COSCUP</strong>。</li>
+                          {% set teams = [
+                            '議程組：國際議程、大人物邀約、開源社群協調。',
+                            '紀錄組：形象照拍攝、大會活動紀錄。',
+                            '製播組：大會議程錄製與剪輯。',
+                            '行銷組：小啄導航員、主視覺設計、紀念品製作。',
+                            '資訊組：官網維護、內部工作系統建置。',
+                            '贊助組：贊助方案、贊助商關係維持。',
+                            '財務組：贊助商入款、費用出款、結算報告、協助建置大會財務系統。',
+                            '場務組：報到與防疫、餐飲、攤位、物流、機動。',
+                            '行政組：志工服務、培訓，前夜派對、療癒市集。',
+                            '擺攤組：協助至其他研討會實體攤位活動，持續推廣 <strong>COSCUP</strong>。',
+                            ] | random %}
+                          {% for content in teams %}
+                          <li style="list-style-position:outside;margin-left:0px;line-height:2">{{ content }}</li>
+                          {% endfor %}
                         </ul>
                         <h2 style="color:#000000;line-height:1.4;margin:0;font-weight:bold;font-family:&#34;Arial&#34;;border-bottom:1px #3D9238 dashed;padding-left:1px;margin-top:30px;margin-bottom:12px">COSCUP 是什麼？</h2>
                         <p style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;margin-bottom:15px">COSCUP 是 <strong>C</strong>onference for <strong>O</strong>pen <strong>S</strong>ource <strong>C</strong>oders, <strong>U</strong>sers, <strong>P</strong>romoters 的縮寫，是由台灣開放原始碼社群一起推動的年度研討會。</p>
@@ -135,7 +140,7 @@ border-color: #34495e !important
                           <li style="list-style-position:outside;margin-left:0px;line-height:2">每一議程軌都是由各<strong>開源社群夥伴</strong>自審、自辦。</li>
                           <li style="list-style-position:outside;margin-left:0px;line-height:2">大約會有 1500 - 2000 人來參與的研討會。</li>
                         </ul>
-                        <p style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;margin-bottom:15px">期待你的加入！</p>
+                        <p style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;margin-bottom:15px">{{ ['期待你的加入！', '成為志工，有所作為！立即申請！','加入志工團隊，為開源貢獻！'] | random | first}}</p>
                         <p class="btn-tips" style="font-family:sans-serif;font-weight:normal;margin:0;font-size:x-small;color:#6E8E6C;text-align:center;margin-bottom:0;margin-top:30px">如果有任何問題，可以直接回覆此封信件，感謝協助！</p>
                         <p class="btn-tips" style="font-family:sans-serif;font-weight:normal;margin:0;font-size:x-small;color:#6E8E6C;text-align:center;margin-bottom:10px">If you have any questions, please reply to this letter.</p>
                         <p class="btn-tips" style="font-family:sans-serif;font-weight:normal;margin:0;font-size:x-small;color:#6E8E6C;text-align:center;margin-bottom:0">
