@@ -13,7 +13,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.utils import formataddr
 from pathlib import Path
-from random import sample, shuffle
+from random import choice, sample, shuffle
 from uuid import uuid4
 
 import boto3
@@ -534,12 +534,18 @@ def send_coscup_start(dry_run=True):
         print(_n, u['name'], u['mail'])
         _n += 1
 
+        subject = choice([
+            'COSCUP 2023 志工夥伴招募中',
+            '開源人年會 2023 志工夥伴招募中',
+            '[COSCUP] 開源人年會 2023 呼朋引伴一起來籌備年會',
+        ])
+
         raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
             source=AwsSESTools.mail_header(
                 'COSCUP Attendee', 'attendee@coscup.org'),
             list_unsubscribe='<mailto:attendee+unsubscribeme@coscup.org>',
             to_addresses=AwsSESTools.mail_header(u['mail'], u['mail']),
-            subject="COSCUP 2023 志工夥伴招募中",
+            subject=subject,
             body=template.render(**u),
             text_body=template_md.render(**u),
         )
@@ -548,5 +554,5 @@ def send_coscup_start(dry_run=True):
 
 
 if __name__ == '__main__':
-    # send_coscup_start(dry_run=True)
+    send_coscup_start(dry_run=True)
     pass
