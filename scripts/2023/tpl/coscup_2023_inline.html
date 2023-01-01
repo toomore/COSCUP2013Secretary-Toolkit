@@ -124,8 +124,8 @@ border-color: #34495e !important
                             '場務組：報到與防疫、餐飲、攤位、物流、機動。',
                             '行政組：志工服務、培訓，前夜派對、療癒市集。',
                             '擺攤組：協助至其他研討會實體攤位活動，持續推廣 <strong>COSCUP</strong>。',
-                            ] | shuffle_list %}
-                          {% for content in teams %}
+                            ] %}
+                          {% for content in teams | shuffle_list %}
                           <li style="list-style-position:outside;margin-left:0px;line-height:2">{{ content }}</li>
                           {% endfor %}
                         </ul>
