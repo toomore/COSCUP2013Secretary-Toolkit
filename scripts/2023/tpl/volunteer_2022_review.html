@@ -1,0 +1,417 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>COSCUP Volunteer</title>
+    <style>
+      /* -------------------------------------
+          GLOBAL RESETS
+      ------------------------------------- */
+      img {
+        border: none;
+        -ms-interpolation-mode: bicubic;
+        max-width: 100%; }
+
+      body {
+        background-color: #ffffff;
+        font-family: sans-serif;
+        -webkit-font-smoothing: antialiased;
+        font-size: 14px;
+        line-height: 1.4;
+        margin: 0;
+        padding: 0;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%; }
+
+      table {
+        border-collapse: separate;
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+        width: 100%; }
+        table td {
+          font-family: sans-serif;
+          font-size: 14px;
+          vertical-align: top; }
+
+      /* -------------------------------------
+          BODY & CONTAINER
+      ------------------------------------- */
+
+      .body {
+        background-color: #ffffff;
+        width: 100%; }
+
+      /* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */
+      .container {
+        display: block;
+        margin: 0 auto !important;
+        /* makes it centered */
+        max-width: 580px;
+        padding: 10px; }
+
+      /* This should also be a block element, so that it will fill 100% of the .container */
+      .content {
+        box-sizing: border-box;
+        display: block;
+        margin: 0 auto;
+        max-width: 580px;
+        padding: 10px;
+        background-color: #57c257; }
+
+      /* -------------------------------------
+          HEADER, FOOTER, MAIN
+      ------------------------------------- */
+      .main {
+        background: #fff;
+        border-radius: 3px;
+        width: 100%; }
+
+      .wrapper {
+        box-sizing: border-box;
+        padding: 20px; }
+
+      .footer {
+        clear: both;
+        padding: 10px 0;
+        text-align: center;
+        width: 100%; }
+        .footer td,
+        .footer p,
+        .footer span,
+        .footer a {
+          color: #ffffff;
+          font-size: 12px;
+          text-align: center; }
+
+      /* -------------------------------------
+          TYPOGRAPHY
+      ------------------------------------- */
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: #000000;
+        font-family: sans-serif;
+        font-weight: 400;
+        line-height: 1.4;
+        margin: 0;
+        margin-bottom: 30px; }
+
+      h1 {
+        font-size: 35px;
+        font-weight: 300;
+        text-align: center;
+        text-transform: capitalize; }
+
+      p,
+      ul,
+      ol {
+        font-family: sans-serif;
+        font-size: 14px;
+        font-weight: normal;
+        margin: 0;
+        margin-bottom: 15px; }
+        p li,
+        ul li,
+        ol li {
+          list-style-position: inside;
+          margin-left: 5px; }
+
+      a {
+        color: #3498db;
+        text-decoration: underline; }
+
+      /* -------------------------------------
+          BUTTONS
+      ------------------------------------- */
+      .btn {
+        box-sizing: border-box;
+        width: 100%; }
+        .btn > tbody > tr > td {
+          padding-bottom: 15px; }
+        .btn table {
+          width: auto; }
+        .btn table td {
+          background-color: #ffffff;
+          border-radius: 5px;
+          text-align: center; }
+        .btn a {
+          background-color: #ffffff;
+          border: solid 1px #0a4cba;
+          border-radius: 5px;
+          box-sizing: border-box;
+          color: #0a4cba;
+          cursor: pointer;
+          display: inline-block;
+          font-size: 14px;
+          font-weight: bold;
+          margin: 0;
+          padding: 12px 25px;
+          text-decoration: none;
+          text-transform: capitalize; }
+
+      .btn-primary table td {
+        background-color: #3498db; }
+
+      .btn-primary a {
+        background-color: #047000;
+        border-color: #bdffbb;
+        color: #ffffff; }
+
+      /* -------------------------------------
+          OTHER STYLES THAT MIGHT BE USEFUL
+      ------------------------------------- */
+      .last {
+        margin-bottom: 0; }
+
+      .first {
+        margin-top: 0; }
+
+      .align-center {
+        text-align: center; }
+
+      .align-right {
+        text-align: right; }
+
+      .align-left {
+        text-align: left; }
+
+      .clear {
+        clear: both; }
+
+      .mt0 {
+        margin-top: 0; }
+
+      .mb0 {
+        margin-bottom: 0; }
+
+      .preheader {
+        color: transparent;
+        display: none;
+        height: 0;
+        max-height: 0;
+        max-width: 0;
+        opacity: 0;
+        overflow: hidden;
+        mso-hide: all;
+        visibility: hidden;
+        width: 0; }
+
+      .powered-by a {
+        text-decoration: none; }
+
+      hr {
+        border: 3px #e6ffe6 solid;
+        border-radius: 3px;
+        margin: 20px 0; }
+
+      /* -------------------------------------
+          RESPONSIVE AND MOBILE FRIENDLY STYLES
+      ------------------------------------- */
+      @media only screen and (max-width: 580px) {
+        table[class=body] h1 {
+          font-size: 28px !important;
+          margin-bottom: 10px !important; }
+        table[class=body] p,
+        table[class=body] ul,
+        table[class=body] ol,
+        table[class=body] td,
+        table[class=body] span,
+        table[class=body] a {
+          font-size: 16px !important; }
+        table[class=body] .wrapper,
+        table[class=body] .article {
+          padding: 10px !important; }
+        table[class=body] .content {
+          padding: 0 !important; }
+        table[class=body] .container {
+          padding: 0 !important;
+          width: 100% !important; }
+        table[class=body] .main {
+          border-left-width: 0 !important;
+          border-radius: 0 !important;
+          border-right-width: 0 !important; }
+        table[class=body] .btn table {
+          width: 100% !important; }
+        table[class=body] .btn a {
+          width: 100% !important; }
+        table[class=body] .img-responsive {
+          height: auto !important;
+          max-width: 100% !important;
+          width: auto !important; }}
+
+      /* -------------------------------------
+          PRESERVE THESE STYLES IN THE HEAD
+      ------------------------------------- */
+      @media all {
+        .ExternalClass {
+          width: 100%; }
+        .ExternalClass,
+        .ExternalClass p,
+        .ExternalClass span,
+        .ExternalClass font,
+        .ExternalClass td,
+        .ExternalClass div {
+          line-height: 100%; }
+        .apple-link a {
+          color: inherit !important;
+          font-family: inherit !important;
+          font-size: inherit !important;
+          font-weight: inherit !important;
+          line-height: inherit !important;
+          text-decoration: none !important; }
+        .btn-primary table td:hover {
+          background-color: #34495e !important; }
+        .btn-primary a:hover {
+          background-color: #34495e !important;
+          border-color: #34495e !important; } }
+
+      .quote {
+        color: #334433;
+        font-style: italic;
+        font-size: small;
+      }
+      h2 {
+        font-weight: bold;
+        font-family: "Arial";
+        border-bottom: 1px #243551 dashed;
+        padding-left: 1px;
+        margin-top: 30px;
+        margin-bottom: 12px;
+      }
+      h3 {
+        margin-bottom: 5px;
+        margin-top: 20px;
+        color: #103d88;
+        font-weight: bold;
+      }
+      ol li,
+      ul li {
+        list-style-position: outside;
+        margin-left: 0px;
+        line-height: 2;
+      }
+      .tips {
+        font-family: "Courier New";
+        background-color: #fafafa;
+        padding: 6px;
+        border-radius: 3px;
+        border: 1px #81d4fa solid;
+        font-size: 12px;
+        color: #01579b;
+      }
+      .tips-green {
+        color: #2E7D32;
+        border: 1px #43A047 solid;
+      }
+      pre {
+        font-size: small;
+        color: #607D8B;
+        border: 1px #cccccc dotted;
+        border-radius: 3px;
+        background-color: #eeeeee;
+        padding: 5px;
+      }
+      p small,
+      li small {
+        color: #898989;
+      }
+      p .red-strong {
+        font-weight: bold;
+        color: red;
+      }
+      h2 small {
+        font-size: small;
+        color: #898989;
+      }
+      h3 small {
+        font-size: small;
+        color: #898989;
+      }
+      .btn-tips{
+        font-size: x-small;
+        color: #6E8E6C;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body class="">
+    <table border="0" cellpadding="0" cellspacing="0" class="body">
+      <tr>
+        <td>&nbsp;</td>
+        <td class="container">
+          <div class="content">
+
+            <!-- START CENTERED WHITE CONTAINER -->
+            <span class="preheader">{{preheader}}</span>
+            <table class="main">
+
+              <!-- START MAIN CONTENT AREA -->
+              <tr>
+                <td class="wrapper">
+                  <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td>
+                        <p class="align-right" style="margin-bottom:0px;"><a href="https://volunteer.coscup.org/"><img width="32" src="https://volunteer.coscup.org/img/coscup_volunteer_og.png" alt="COSCUP Volunteer Logo" title="COSCUP Volunteer Logo"></a></p>
+                        <p>Hi {{name}},</p>
+                        <p>我們終於走到 2023 年了，在新年的一開始，想與你分享 COSCUP 志工服務平台的小小回顧！</p>
+                        <h2>平台誕生的時刻 2020</h2>
+                        <p>在 2022 年的時候，志工服務平台其實已經上線服務三年了，一開始是行政組為了要解決志工在登錄過程中、許多重複的操作因而自動化、平台化來管理志工團隊。</p>
+                        <p>在 2020 年的年初大約花了一個月的時間將平台建立起來，並建立最基本的功能後上線，讓 2020 年的籌備團隊開始使用。</p>
+                        <p>行政組在 2020 年還有一個服務也同步一起建立起來，是為了<a href="https://kids.coscup.org/">遊樂園</a>（小朋友活動）課程。因此我們其實還有一個平台，但因為近兩年疫情關係就暫時停滯。</p>
+                        <p>另外在 2020 年的活動、COSCUP 也首次嘗試活動不需要報名就可以參加，因此我們也就不會有參與會眾的聯絡方式、給予我們在大會前可以宣傳的管道。</p>
+                        <p>行政組在 2020 前負責在 <a href="https://coscup2019.kktix.cc/events/coscup2019regist">KKTIX</a> 上建立報名頁面與發送會眾行前通知信，但不用報名後，我們因應的方式是建立一個大會用的電子報訂閱頁面，建立想持續收到 COSCUP 活動訊息的訂閱平台。</p>
+                        <p>小結一下，行政組目前有三個服務平台，負責志工登錄的「<a href="https://volunteer.coscup.org/">志工服務平台</a>」。負責遊樂園預約課程的「<a href="https://kids.coscup.org/">COSCUP Kids</a>」與負責訂閱訊息的「<a href="https://secretary.coscup.org/subscribe/coscup">電子報訂閱系統</a>」。</p>
+                        <h2>2022 志工服務平台</h2>
+                        <p>由於志工登錄自動化已大部分完成了，行政組開始嘗試去解決其他組別繁瑣且還是手工的事務。我們希望是可以透過「<strong>流程改善</strong>」，並能整理出<strong>規則的流程後</strong>、協助轉移到志工平台上完成。</p>
+                        <h3>財務系統</h3>
+                        <p>在 2022 年的時候與財務組合作，將預算表與費用申請的流程在平台上實作完成。這裡要非常感謝財務組專業的協助，我們透過不斷的確認彼此的認知<a href="https://github.com/COSCUP/COSCUP-Volunteer/wiki/%E9%A0%90%E7%AE%97%E3%80%81%E7%B6%93%E8%B2%BB%E7%94%B3%E8%AB%8B%E6%B5%81%E7%A8%8B">完成財務流程的確認</a>，最後再不斷的修正表單介面的設計，終於在 2022 年上線推出服務給所有志工使用。</p>
+                        <p>完整的<a href="https://volunteer.coscup.org/docs/zh_TW/secretary_team/tasks/accounting_system/">財務流程</a>也初步擬定，在未來也會繼續逐步實作每一階段！</p>
+                        <h3>程式重構</h3>
+                        <p>志工平台由於一開始建構時是<strong>一人開發</strong>，開發的很快速因此很多方面都沒有考慮的很周到，在 2022 年的時候決定一定要朝著能夠達到基本能多人開源貢獻的標準，決定開發暫停、停下來先償還技術債的部分。</p>
+                        <p>首先先將 Lint 相關套件裝下去，autopep8、pylint。完成所有的 Python type hints，並用 mypy 檢驗其調整。使用 Pydantic 來處理結構化與資料驗證情境。</p>
+                        <p>使用 docker-compose 建立類似 Production 的開發環境，最後調查目前大家常用的開發 IDE 工具為 VSCode，而建立相對應的設定檔！最後建立 <a href="https://github.com/COSCUP/COSCUP-Volunteer/actions">Github actions</a> 在上線前檢驗或產生文件上傳到 S3。</p>
+                        <p>目前「志工服務平台」可以完全在 local 端開發！</p>
+                        <h3>API </h3>
+                        <p>在重構後，志工平台也完成 <a href="https://volunteer.coscup.org/api/docs">API</a> 的建置，評估後選定 FastAPI 來搭建。第一版實作基本功能，後續還會針對實際應用的情境來調整。</p>
+                        <p>主要是為了之後規劃「志工服務 App」來鋪路的，但也期盼看到更多的串接應用可能發生！</p>
+                        <h2>未來方向</h2>
+                        <p>志工平台目前也默默累積約 2,000 多位的志工夥伴，除了每半年的籌備期間（2月 - 8月）約需要 150 位志工外，也希望能夠多多激化或是挖掘其他更多有潛力的志工夥伴一起籌備活動！</p>
+                        <p>我們接下來也會開始一些嘗試，慢慢找尋可以讓志工夥伴在參與過後能有所收穫，或是協助各組的組員培訓，讓初次踏入 COSCUP 新手夥伴能瞭解<strong>開源貢獻</strong>與<strong>開源精神</strong>的範疇。</p>
+                        <p>平台也在找夥伴一起投入讓「志工平台」更好，如果對於<a href="https://volunteer.coscup.org/docs/zh_TW/secretary_team/overview/">行政組</a>或是「<a href="https://volunteer.coscup.org/docs/">志工服務平台</a>」有興趣，可以看看前述所提到的連結。</p>
+                        <h2>行政組招募</h2>
+                        <p>以上關於平台的回顧與介紹都只是行政組業務的一小塊部分。行政組依任務分出三個小組來分工：庶務組、開發組、招募組。各小組也持續朝著支持大會活動的方向發展，並找尋志同道合的夥伴一起努力。</p>
+                        <p>詳細的招募資訊可以參考「<a href="https://volunteer.coscup.org/docs/zh_TW/secretary_team/recruit/">簡介與招募</a>」，若覺得行政組好像很好玩，也想一起加入 2023 的籌備團隊，也非常歡迎！</p>
+                        <p>最後再次感謝 {{name}} 的支持與貢獻、投入開源社群的志工服務！2023 年也請多多指教！</p>
+                        <p class="align-center">👐🌟🐇</p>
+                        <p class="btn-tips" style="margin-bottom: 0; margin-top: 30px;">如果有任何問題，可以直接回覆此封信件，感謝協助！</p>
+                        <p class="btn-tips" style="margin-bottom: 10px;">If you have any questions, please reply to this letter.</p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            <!-- END MAIN CONTENT AREA -->
+            </table>
+
+            <!-- START FOOTER -->
+            <div class="footer">
+              <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td class="content-block">
+                    <span class="apple-link">COSCUP Volunteer 志工服務系統 | 行政組</span>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <!-- END FOOTER -->
+
+          <!-- END CENTERED WHITE CONTAINER -->
+          </div>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+  </body>
+</html>
