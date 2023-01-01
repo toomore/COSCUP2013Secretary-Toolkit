@@ -507,6 +507,52 @@ class AwsSESTools(object):
         return msg_all.as_string()
 
 
+def send_volunteer_2022_review(dry_run=True):
+    template = TPLENV.get_template('./volunteer_2022_review.html')
+    template_md = TPLENV.get_template('./volunteer_2022_review.md')
+
+    if dry_run:
+        path = './dump_all_users_test.csv'
+    else:
+        path = './dump_all_users_1672556080.csv'
+
+    users = []
+    with open(path, 'r+') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        subject = choice([
+            '志工服務平台 2022 回顧',
+            '2022 平台回顧分享 | 志工服務平台',
+            '2022 in review | COSCUP Volunteer'
+        ])
+
+        u['preheader'] = choice([
+            '回顧 2022 展望 2023',
+            '平台成長歷程',
+            '一起來貢獻開源社群',
+        ])
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(
+                'COSCUP 志工服務平台', 'volunteer@coscup.org'),
+            list_unsubscribe='<mailto:volunteer+unsubscribeme@coscup.org>',
+            to_addresses=AwsSESTools.mail_header(u['mail'], u['mail']),
+            subject=subject,
+            body=template.render(**u),
+            text_body=template_md.render(**u),
+        )
+
+        queue_sender(raw)
+
+
 def shuffle_list(data):
     ''' shuffle list '''
     return sample(data, len(data))
@@ -554,5 +600,6 @@ def send_coscup_start(dry_run=True):
 
 
 if __name__ == '__main__':
-    send_coscup_start(dry_run=True)
+    # send_volunteer_2022_review(dry_run=True)
+    # send_coscup_start(dry_run=True)
     pass
