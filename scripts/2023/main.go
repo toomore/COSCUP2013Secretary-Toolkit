@@ -1,3 +1,8 @@
+/*
+Those code is not original, all refer from
+
+	https://github.com/vanng822/go-premailer/blob/master/cmd/script/main.go
+*/
 package main
 
 import (
