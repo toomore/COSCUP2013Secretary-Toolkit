@@ -564,9 +564,9 @@ def send_coscup_start(dry_run=True):
     template_md = TPLENV.get_template('./coscup_2023.md')
 
     if dry_run:
-        path = './coscup_paper_subscribers_avcg8evi_test.csv'
+        path = './coscup_paper_subscribers_jv3pq4i8_test.csv'
     else:
-        path = './coscup_paper_subscribers_avcg8evi_20220727_160659.csv'
+        path = './coscup_paper_subscribers_jv3pq4i8_20230104_134021.csv'
 
     users = []
     with open(path, 'r+') as files:
@@ -581,9 +581,51 @@ def send_coscup_start(dry_run=True):
         _n += 1
 
         subject = choice([
-            'COSCUP 2023 志工夥伴招募中',
+            'COSCUP 2023 志工夥伴招募中 Welcome to join us',
             '開源人年會 2023 志工夥伴招募中',
-            '[COSCUP] 開源人年會 2023 呼朋引伴一起來籌備年會',
+            '[COSCUP] 開源人年會 2023 呼朋引伴一起來籌備年會 Volunteer with us',
+        ])
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(
+                'COSCUP Attendee', 'attendee@coscup.org'),
+            list_unsubscribe='<mailto:attendee+unsubscribeme@coscup.org>',
+            to_addresses=AwsSESTools.mail_header(u['mail'], u['mail']),
+            subject=subject,
+            body=template.render(**u),
+            text_body=template_md.render(**u),
+        )
+
+        queue_sender(raw)
+
+
+def send_coscup_230302(dry_run=True):
+    template = TPLENV.get_template('./volunteer_20230302_review_inline.html')
+    template_md = TPLENV.get_template('./volunteer_20230302_review.md')
+
+    if dry_run:
+        path = './coscup_paper_subscribers_vsoa655l_test.csv'
+    else:
+        path = './coscup_paper_subscribers_vsoa655l_20230302_033326.csv'
+
+    users = []
+    with open(path, 'r+') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        subject = choice([
+            'COSCUP 志工招募與大會籌備進度 2023.03.02',
+            '2023.03.02 開源人年會志工招募與大會籌備進度',
+            '[COSCUP] 開源人年會進度更新',
+            '[COSCUP] 開源人年會 議程軌 社群攤位 CfP 開跑',
+            '開源人年會開放申請 議程軌 社群攤位 與 徵稿',
         ])
 
         raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
@@ -602,4 +644,5 @@ def send_coscup_start(dry_run=True):
 if __name__ == '__main__':
     # send_volunteer_2022_review(dry_run=True)
     # send_coscup_start(dry_run=True)
+    send_coscup_230302(dry_run=True)
     pass
