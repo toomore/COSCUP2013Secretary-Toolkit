@@ -628,9 +628,18 @@ def send_coscup_230302(dry_run=True):
             '開源人年會開放申請 議程軌 社群攤位 與 徵稿',
         ])
 
+        u['preheader'] = choice([
+            '還有缺志工喔',
+            '南部活動告知你',
+            '想好今年要玩的攤位活動了嗎？',
+            '想好今年要做的紀念品或貼紙了嗎？',
+            '想好今年第一天晚上社群要去哪吃飯了嗎？',
+            '社群攤位也開始申請了！',
+        ])
+
         raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
             source=AwsSESTools.mail_header(
-                'COSCUP Attendee', 'attendee@coscup.org'),
+                'COSCUP 志工服務', 'volunteer@coscup.org'),
             list_unsubscribe='<mailto:attendee+unsubscribeme@coscup.org>',
             to_addresses=AwsSESTools.mail_header(u['mail'], u['mail']),
             subject=subject,
@@ -644,5 +653,5 @@ def send_coscup_230302(dry_run=True):
 if __name__ == '__main__':
     # send_volunteer_2022_review(dry_run=True)
     # send_coscup_start(dry_run=True)
-    send_coscup_230302(dry_run=True)
+    # send_coscup_230302(dry_run=True)
     pass
