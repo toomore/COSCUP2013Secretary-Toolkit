@@ -1,0 +1,472 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>COSCUP Volunteer</title>
+    <style>
+      /* -------------------------------------
+          GLOBAL RESETS
+      ------------------------------------- */
+      img {
+        border: none;
+        -ms-interpolation-mode: bicubic;
+        max-width: 100%; }
+
+      body {
+        background-color: #ffffff;
+        font-family: sans-serif;
+        -webkit-font-smoothing: antialiased;
+        font-size: 14px;
+        line-height: 1.4;
+        margin: 0;
+        padding: 0;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%; }
+
+      table {
+        border-collapse: separate;
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+        width: 100%; }
+        table td {
+          font-family: sans-serif;
+          font-size: 14px;
+          vertical-align: top; }
+
+      /* -------------------------------------
+          BODY & CONTAINER
+      ------------------------------------- */
+
+      .body {
+        background-color: #ffffff;
+        width: 100%; }
+
+      /* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */
+      .container {
+        display: block;
+        margin: 0 auto !important;
+        /* makes it centered */
+        max-width: 580px;
+        padding: 10px; }
+
+      /* This should also be a block element, so that it will fill 100% of the .container */
+      .content {
+        box-sizing: border-box;
+        display: block;
+        margin: 0 auto;
+        max-width: 580px;
+        padding: 10px;
+        background-color: #57c257; }
+
+      /* -------------------------------------
+          HEADER, FOOTER, MAIN
+      ------------------------------------- */
+      .main {
+        background: #fff;
+        border-radius: 3px;
+        width: 100%; }
+
+      .wrapper {
+        box-sizing: border-box;
+        padding: 20px; }
+
+      .footer {
+        clear: both;
+        padding: 10px 0;
+        text-align: center;
+        width: 100%; }
+        .footer td,
+        .footer p,
+        .footer span,
+        .footer a {
+          color: #ffffff;
+          font-size: 12px;
+          text-align: center; }
+
+      /* -------------------------------------
+          TYPOGRAPHY
+      ------------------------------------- */
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: #000000;
+        font-family: sans-serif;
+        font-weight: 400;
+        line-height: 1.4;
+        margin: 0;
+        margin-bottom: 30px; }
+
+      h1 {
+        font-size: 35px;
+        font-weight: 300;
+        text-align: center;
+        text-transform: capitalize; }
+
+      p,
+      ul,
+      ol {
+        font-family: sans-serif;
+        font-size: 14px;
+        font-weight: normal;
+        margin: 0;
+        margin-bottom: 15px; }
+        p li,
+        ul li,
+        ol li {
+          list-style-position: inside;
+          margin-left: 5px; }
+
+      a {
+        color: #3498db;
+        text-decoration: underline; }
+
+      /* -------------------------------------
+          BUTTONS
+      ------------------------------------- */
+      .btn {
+        box-sizing: border-box;
+        width: 100%; }
+        .btn > tbody > tr > td {
+          padding-bottom: 15px; }
+        .btn table {
+          width: auto; }
+        .btn table td {
+          background-color: #ffffff;
+          border-radius: 5px;
+          text-align: center; }
+        .btn a {
+          background-color: #ffffff;
+          border: solid 1px #0a4cba;
+          border-radius: 5px;
+          box-sizing: border-box;
+          color: #0a4cba;
+          cursor: pointer;
+          display: inline-block;
+          font-size: 14px;
+          font-weight: bold;
+          margin: 0;
+          padding: 12px 25px;
+          text-decoration: none;
+          text-transform: capitalize; }
+
+      .btn-primary table td {
+        background-color: #3498db; }
+
+      .btn-primary a {
+        background-color: #047000;
+        border-color: #bdffbb;
+        color: #ffffff; }
+
+      /* -------------------------------------
+          OTHER STYLES THAT MIGHT BE USEFUL
+      ------------------------------------- */
+      .last {
+        margin-bottom: 0; }
+
+      .first {
+        margin-top: 0; }
+
+      .align-center {
+        text-align: center; }
+
+      .align-right {
+        text-align: right; }
+
+      .align-left {
+        text-align: left; }
+
+      .clear {
+        clear: both; }
+
+      .mt0 {
+        margin-top: 0; }
+
+      .mb0 {
+        margin-bottom: 0; }
+
+      .preheader {
+        color: transparent;
+        display: none;
+        height: 0;
+        max-height: 0;
+        max-width: 0;
+        opacity: 0;
+        overflow: hidden;
+        mso-hide: all;
+        visibility: hidden;
+        width: 0; }
+
+      .powered-by a {
+        text-decoration: none; }
+
+      hr {
+        border: 3px #e6ffe6 solid;
+        border-radius: 3px;
+        margin: 20px 0; }
+
+      /* -------------------------------------
+          RESPONSIVE AND MOBILE FRIENDLY STYLES
+      ------------------------------------- */
+      @media only screen and (max-width: 580px) {
+        table[class=body] h1 {
+          font-size: 28px !important;
+          margin-bottom: 10px !important; }
+        table[class=body] p,
+        table[class=body] ul,
+        table[class=body] ol,
+        table[class=body] td,
+        table[class=body] span,
+        table[class=body] a {
+          font-size: 16px !important; }
+        table[class=body] .wrapper,
+        table[class=body] .article {
+          padding: 10px !important; }
+        table[class=body] .content {
+          padding: 0 !important; }
+        table[class=body] .container {
+          padding: 0 !important;
+          width: 100% !important; }
+        table[class=body] .main {
+          border-left-width: 0 !important;
+          border-radius: 0 !important;
+          border-right-width: 0 !important; }
+        table[class=body] .btn table {
+          width: 100% !important; }
+        table[class=body] .btn a {
+          width: 100% !important; }
+        table[class=body] .img-responsive {
+          height: auto !important;
+          max-width: 100% !important;
+          width: auto !important; }}
+
+      /* -------------------------------------
+          PRESERVE THESE STYLES IN THE HEAD
+      ------------------------------------- */
+      @media all {
+        .ExternalClass {
+          width: 100%; }
+        .ExternalClass,
+        .ExternalClass p,
+        .ExternalClass span,
+        .ExternalClass font,
+        .ExternalClass td,
+        .ExternalClass div {
+          line-height: 100%; }
+        .apple-link a {
+          color: inherit !important;
+          font-family: inherit !important;
+          font-size: inherit !important;
+          font-weight: inherit !important;
+          line-height: inherit !important;
+          text-decoration: none !important; }
+        .btn-primary table td:hover {
+          background-color: #34495e !important; }
+        .btn-primary a:hover {
+          background-color: #34495e !important;
+          border-color: #34495e !important; } }
+
+      .quote {
+        color: #334433;
+        font-style: italic;
+        font-size: small;
+      }
+      h2 {
+        font-weight: bold;
+        font-family: "Arial";
+        border-bottom: 1px #243551 dashed;
+        padding-left: 1px;
+        margin-top: 30px;
+        margin-bottom: 12px;
+      }
+      h3 {
+        margin-bottom: 5px;
+        margin-top: 20px;
+        color: #103d88;
+        font-weight: bold;
+      }
+      ol li,
+      ul li {
+        list-style-position: outside;
+        margin-left: 0px;
+        line-height: 2;
+      }
+      .tips {
+        font-family: "Courier New";
+        background-color: #fafafa;
+        padding: 6px;
+        border-radius: 3px;
+        border: 1px #81d4fa solid;
+        font-size: 12px;
+        color: #01579b;
+      }
+      .tips-green {
+        color: #2E7D32;
+        border: 1px #43A047 solid;
+      }
+      pre {
+        font-size: small;
+        color: #607D8B;
+        border: 1px #cccccc dotted;
+        border-radius: 3px;
+        background-color: #eeeeee;
+        padding: 5px;
+      }
+      p small,
+      li small {
+        color: #898989;
+      }
+      p .red-strong {
+        font-weight: bold;
+        color: red;
+      }
+      h2 small {
+        font-size: small;
+        color: #898989;
+      }
+      h3 small {
+        font-size: small;
+        color: #898989;
+      }
+      .btn-tips{
+        font-size: x-small;
+        color: #6E8E6C;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body class="">
+    <table border="0" cellpadding="0" cellspacing="0" class="body">
+      <tr>
+        <td>&nbsp;</td>
+        <td class="container">
+          <div class="content">
+
+            <!-- START CENTERED WHITE CONTAINER -->
+            <span class="preheader">{{preheader}}</span>
+            <table class="main">
+
+              <!-- START MAIN CONTENT AREA -->
+              <tr>
+                <td class="wrapper">
+                  <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td>
+                        <p class="align-right" style="margin-bottom:0px;"><a href="https://volunteer.coscup.org/"><img width="32" src="https://volunteer.coscup.org/img/coscup_volunteer_og.png" alt="COSCUP Volunteer Logo" title="COSCUP Volunteer Logo"></a></p>
+                        <p>Hi {{name}},</p>
+                        <p><small>[English below]</small></p>
+                        <p>帶給您近期 COSCUP 大會進度與志工平台更新訊息。</p>
+                        <h2>攤位組前往新加坡</h2>
+                        <p class="align-center">
+                          <a href="https://volunteer.coscup.org/img/undraw_Travel_booking_re_6umu.png">
+                            <img src="https://volunteer.coscup.org/img/undraw_Travel_booking_re_6umu.png"
+                                 alt="前往新加坡" title="前往新加坡">
+                          </a>
+                        </p>
+                        <p>COSCUP 攤位組即將前往新加坡參加 FOSSASIA Summit 2023，我們也順利申請到一個攤位到新加坡推廣 COSCUP！FOSSASIA 也是關注自由和開放原始碼技術盛會，FOSSASIA 活動時間在 4/13 - 4/15，如果你也想參與、可以透過<a href="https://eventyay.com/e/7cfe0771?code=coscup">這組連結</a>取得三折（70% off）的折扣優惠！</p>
+                        <p>另外我們也想與在新加坡工作的夥伴們見個面、吃個飯聚聚，如果您或是您有認識的朋友在新加坡工作，非常歡迎傳達這個吃飯的邀約，如有任何問題或是想要和攤位組吃飯聊天的，可以回信到攤位組的專用信箱：<a href="mailto:booth@coscup.org">booth@coscup.org</a>。</p>
+                        <h2>贊助 COSCUP 2023</h2>
+                        <p class="align-center">
+                          <a href="https://volunteer.coscup.org/img/undraw_Collaborators_re_hont.png">
+                            <img src="https://volunteer.coscup.org/img/undraw_Collaborators_re_hont.png"
+                                 alt="贊助 COSCUP" title="贊助 COSCUP">
+                          </a>
+                        </p>
+                        <p>今年的贊助方案還在準備中，但可以先參考 <a href="https://coscup.org/2022/zh-TW/sponsorship">2022</a> 年份的方案，如果您有意願贊助我們的話，可以先透過<a href="https://forms.gle/jKDMdSGoRfLqoe9h9">表單</a>登記意願，我們將在完成後第一時間寄達贊助方案給您！</p>
+                        <p>非常期待與您一同合作！</p>
+                        <h2>志工服務平台開發</h2>
+                        <p>志工服務平台<a href="https://github.com/COSCUP/COSCUP-Volunteer/releases/tag/23.03.20">最近一版</a>的更新，改進了在開發環境 docker compose 中可以實現 Live-reload，大幅度的增進開發過程的效率。歡迎來貢獻志工服務平台！</p>
+                        <h2>提醒事項</h2>
+                        <ol>
+                          <li><a href="https://blog.coscup.org/2023/02/coscup-2023-call-for-participation-now.html">徵求社群攤位</a>。</li>
+                          <li><a href="https://blog.coscup.org/2023/02/coscup-2023-early-bird-call-for-paper.html">徵求社群議程軌、議程投稿（CfP）</a>。</li>
+                          <li><a href="https://volunteer.coscup.org/">徵求志工</a>：需要您的熱情投入，快點加入我們吧！</li>
+                          <ul>
+                            <li>製播組：需要會操作 OBS 且活動二日能到場支援。或是於大會結束後協助影片轉檔、剪輯後製。</li>
+                            <li>紀錄組：大會活動紀錄，需自備攝影設備與作品輸出能力。</li>
+                            <li>場務組：與小組長合作完成大會場地庶務、餐飲等事項。</li>
+                          </ul>
+                        </ol>
+                        <p class="align-center">🌟</p>
+                        <hr style="border: 3px solid rgb(214, 244, 210); border-radius: 3px;">
+                        <p>Hi {{name}},</p>
+                        <p>Bringing you the latest updates on the progress of COSCUP and the volunteer platform.</p>
+                        <h2>Booth team heading to Singapore</h2>
+                        <p class="align-center">
+                          <a href="https://volunteer.coscup.org/img/undraw_Travel_booking_re_6umu.png">
+                            <img src="https://volunteer.coscup.org/img/undraw_Travel_booking_re_6umu.png"
+                                 alt="To Singapore" title="To Singapore">
+                          </a>
+                        </p>
+                        <p>The COSCUP booth team is going to Singapore for the FOSSASIA Summit 2023. We have also successfully applied for a booth to promote COSCUP in Singapore! FOSSASIA is also a big event focusing on free and open-source technology. The FOSSASIA event will take place from 4/13 to 4/15. If you would like to participate, you can get a 70% discount through <a href="https://eventyay.com/e/7cfe0771?code=coscup">this link</a>.</p>
+                        <p>Furthermore, we would like to meet up and have dinner with our friends who are working in Singapore. If you or your friends are working in Singapore, please feel free to pass on this dinner invitation. If you have any questions or would like to have dinner and chat with the booth team, you can reply to our dedicated email address: <a href="mailto:booth@coscup.org">booth@coscup.org</a>.</p>
+                        <h2>Call for Sponsor</h2>
+                        <p class="align-center">
+                          <a href="https://volunteer.coscup.org/img/undraw_Collaborators_re_hont.png">
+                            <img src="https://volunteer.coscup.org/img/undraw_Collaborators_re_hont.png"
+                                 alt="Sponsor COSCUP" title="Sponsor COSCUP">
+                          </a>
+                        </p>
+                        <p>This year&#39;s sponsorship plans are still being prepared, but you can refer to the <a href="https://coscup.org/2022/en/sponsorship">2022 plans</a> for now. If you are interested in sponsoring us, please register your interest through <a href="https://forms.gle/jKDMdSGoRfLqoe9h9">the form</a>, and we will send you the sponsorship plans as soon as they are completed. We are looking forward to working with you!</p>
+                        <h2>Volunteer Platform</h2>
+                        <p>Updates on the <a href="https://github.com/COSCUP/COSCUP-Volunteer/releases/tag/23.03.20">latest version</a> of the Volunteer Platform include improvements to Live-reload in the docker-compose development environment, which significantly enhances the efficiency of the development process. Contributions to the Volunteer Platform are welcome!</p>
+                        <h2>Reminder</h2>
+                        <ol>
+                          <li><a href="https://blog.coscup.org/2023/02/coscup-2023-call-for-participation-now.html">Call for Community Booth</a>. (~3/24)</li>
+                          <li><a href="https://blog.coscup.org/2023/02/coscup-2023-early-bird-call-for-paper.html">Call for Community Track and Call for Paper (CfP)</a>. (~3/30)</li>
+                          <li><a href="https://volunteer.coscup.org/">Call for Volunteers</a>: We need your enthusiasm. Come join us now!</li>
+                          <ul>
+                            <li>Streaming team: Need to be able to operate OBS and be present to support for both days of the event. Alternatively, they can help with video conversion, editing and post-production after the conference.</li>
+                            <li>Record team: Responsible for recording the event, they need to bring their own photography equipment and have the ability to output their works.</li>
+                            <li>Field team: Work with the team leaders to complete the venue&#39;s logistics, catering, and other matters.</li>
+                          </ul>
+                        </ol>
+                        <p class="align-center">🌟</p>
+                        <p class="btn-tips" style="margin-bottom: 0; margin-top: 30px;">如果有任何問題，可以直接回覆此封信件，感謝協助！</p>
+                        <p class="btn-tips" style="margin-bottom: 10px;">If you have any questions, please reply to this letter.</p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            <!-- END MAIN CONTENT AREA -->
+            </table>
+
+            <!-- START FOOTER -->
+            <div class="footer">
+              <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td class="content-block">
+                    <span class="apple-link" style="display: inline-block;height: 24px;">
+                      <a href="https://www.facebook.com/coscup/"><img width="24" alt="coscup's facebook" src="https://secretary.coscup.org/s3/icon/facebook-square-brands.png"></a>
+                      <a href="https://t.me/coscupchat"><img width="24" alt="coscup's telegram" src="https://secretary.coscup.org/s3/icon/telegram-brands.png"></a>
+                      <a href="https://twitter.com/coscup"><img width="24" alt="coscup's twitter" src="https://secretary.coscup.org/s3/icon/twitter-square-brands.png"></a>
+                      <a href="https://blog.coscup.org/"><img width="24" alt="coscup's blog" src="https://secretary.coscup.org/s3/icon/blogger-brands.png"></a>
+                      <a href="https://www.flickr.com/photos/coscup/"><img width="24" alt="coscup's flickr" src="https://secretary.coscup.org/s3/icon/flickr-brands.png"></a>
+                      <a href="https://www.youtube.com/user/thecoscup"><img width="24" alt="coscup's youtube" src="https://secretary.coscup.org/s3/icon/youtube-square-brands.png"></a>
+                    </span>
+                    <br>
+                    <span class="apple-link" style="display: inline-block;height: 15px;">COSCUP 行政組</span>
+                  </td>
+                  <td class="content-block">
+                    {%if openhash%}
+                      <img src="https://secretary.coscup.org/r/{{ucode}}/{{openhash}}?{{args}}"
+                           border=0 width="1" height="3" alt="">
+                    {% endif %}
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <!-- END FOOTER -->
+
+          <!-- END CENTERED WHITE CONTAINER -->
+
+          <!-- END CENTERED WHITE CONTAINER -->
+          </div>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+  </body>
+</html>
