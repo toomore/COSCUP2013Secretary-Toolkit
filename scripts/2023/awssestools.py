@@ -650,8 +650,58 @@ def send_coscup_230302(dry_run=True):
         queue_sender(raw)
 
 
+def send_230321(dry_run=True):
+    template = TPLENV.get_template('./volunteer_20230321_inline.html')
+    template_md = TPLENV.get_template('./volunteer_20230321.md')
+
+    if dry_run:
+        path = './coscup_paper_subscribers_gm9bq2lu_test.csv'
+    else:
+        path = './coscup_paper_subscribers_gm9bq2lu_20230302_033326.csv'
+
+    users = []
+    with open(path, 'r+') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        subject = choice([
+            'COSCUP 大會籌備與志工平台進度 2023.03.21 | Update on COSCUP and Volunteer',
+            '2023.03.02 開源人年會大會籌備與志工平台進度 | Update on COSCUP and Volunteer',
+            '[COSCUP] 擺攤組將前進新加坡 | The Booth Team Will Head to Singapore',
+            '[COSCUP] 開源人年會近期進度、贊助方案與前進新加坡 | Update on COSCUP, Sponsorship Plans and Heading to Singapore',
+            '開源人年會近期進度與贊助方案與前進新加坡 | Update on COSCUP, Sponsorship Plans and Heading to Singapore',
+        ])
+
+        u['preheader'] = choice([
+            '社群攤位與投稿申請了嗎？',
+            '將前往新加坡推廣 COSCUP',
+            '[English below] 社群攤位與投稿申請了嗎？',
+            '[English below] 將前往新加坡推廣 COSCUP',
+        ])
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(
+                'COSCUP 志工服務', 'volunteer@coscup.org'),
+            list_unsubscribe='<mailto:volunteer+unsubscribeme@coscup.org>',
+            to_addresses=AwsSESTools.mail_header(u['mail'], u['mail']),
+            subject=subject,
+            body=template.render(**u),
+            text_body=template_md.render(**u),
+        )
+
+        queue_sender(raw)
+
+
 if __name__ == '__main__':
     # send_volunteer_2022_review(dry_run=True)
     # send_coscup_start(dry_run=True)
     # send_coscup_230302(dry_run=True)
+    # send_230321(dry_run=True)
     pass
