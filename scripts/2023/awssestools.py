@@ -657,7 +657,7 @@ def send_230321(dry_run=True):
     if dry_run:
         path = './coscup_paper_subscribers_gm9bq2lu_test.csv'
     else:
-        path = './coscup_paper_subscribers_gm9bq2lu_20230302_033326.csv'
+        path = './coscup_paper_subscribers_gm9bq2lu_20230321_083012.csv'
 
     users = []
     with open(path, 'r+') as files:
@@ -672,23 +672,23 @@ def send_230321(dry_run=True):
         _n += 1
 
         subject = choice([
-            'COSCUP 大會籌備與志工平台進度 2023.03.21 | Update on COSCUP and Volunteer',
-            '2023.03.02 開源人年會大會籌備與志工平台進度 | Update on COSCUP and Volunteer',
+            'COSCUP 擺攤組將前進新加坡 2023.03.21 | Update on COSCUP, Volunteer and Head to Singapore',
+            '2023.03.02 擺攤組將前進新加坡 | Update on COSCUP, Volunteer and Head to Singapore',
             '[COSCUP] 擺攤組將前進新加坡 | The Booth Team Will Head to Singapore',
-            '[COSCUP] 開源人年會近期進度、贊助方案與前進新加坡 | Update on COSCUP, Sponsorship Plans and Heading to Singapore',
-            '開源人年會近期進度與贊助方案與前進新加坡 | Update on COSCUP, Sponsorship Plans and Heading to Singapore',
+            '[COSCUP] 前進新加坡 開源人年會近期進度、贊助方案 | Update on COSCUP, Sponsorship Plans and Heading to Singapore',
+            '前進新加坡 開源人年會近期進度與贊助方案 | Update on COSCUP, Sponsorship Plans and Heading to Singapore',
         ])
 
         u['preheader'] = choice([
-            '社群攤位與投稿申請了嗎？',
             '將前往新加坡推廣 COSCUP',
-            '[English below] 社群攤位與投稿申請了嗎？',
             '[English below] 將前往新加坡推廣 COSCUP',
         ])
 
+        u['subject'] = subject
+
         raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
             source=AwsSESTools.mail_header(
-                'COSCUP 志工服務', 'volunteer@coscup.org'),
+                'COSCUP Volunteer 志工服務', 'volunteer@coscup.org'),
             list_unsubscribe='<mailto:volunteer+unsubscribeme@coscup.org>',
             to_addresses=AwsSESTools.mail_header(u['mail'], u['mail']),
             subject=subject,
