@@ -698,6 +698,104 @@ def send_230321(dry_run=True):
 
         queue_sender(raw)
 
+def send_coscup_230302(dry_run=True):
+    template = TPLENV.get_template('./volunteer_20230302_review_inline.html')
+    template_md = TPLENV.get_template('./volunteer_20230302_review.md')
+
+    if dry_run:
+        path = './coscup_paper_subscribers_vsoa655l_test.csv'
+    else:
+        path = './coscup_paper_subscribers_vsoa655l_20230302_033326.csv'
+
+    users = []
+    with open(path, 'r+') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        subject = choice([
+            'COSCUP 志工招募與大會籌備進度 2023.03.02',
+            '2023.03.02 開源人年會志工招募與大會籌備進度',
+            '[COSCUP] 開源人年會進度更新',
+            '[COSCUP] 開源人年會 議程軌 社群攤位 CfP 開跑',
+            '開源人年會開放申請 議程軌 社群攤位 與 徵稿',
+        ])
+
+        u['preheader'] = choice([
+            '還有缺志工喔',
+            '南部活動告知你',
+            '想好今年要玩的攤位活動了嗎？',
+            '想好今年要做的紀念品或貼紙了嗎？',
+            '想好今年第一天晚上社群要去哪吃飯了嗎？',
+            '社群攤位也開始申請了！',
+        ])
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(
+                'COSCUP 志工服務', 'volunteer@coscup.org'),
+            list_unsubscribe='<mailto:attendee+unsubscribeme@coscup.org>',
+            to_addresses=AwsSESTools.mail_header(u['mail'], u['mail']),
+            subject=subject,
+            body=template.render(**u),
+            text_body=template_md.render(**u),
+        )
+
+        queue_sender(raw)
+
+
+def send_230427(dry_run=True):
+    template = TPLENV.get_template('./volunteer_20230427_inline.html')
+    template_md = TPLENV.get_template('./volunteer_20230427.md')
+
+    if dry_run:
+        path = './coscup_paper_subscribers_shvxr8j0_test.csv'
+    else:
+        path = './coscup_paper_subscribers_shvxr8j0_.csv'
+
+    users = []
+    with open(path, 'r+') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        subject = choice([
+            'COSCUP 個人贊助方案已公告與近期進度 2023.04.27 | Update on COSCUP, the personal sponsorship program has been announced',
+            '2023.04.27 個人贊助方案已公告與近期進度 | Update on COSCUP, the personal sponsorship program has been announced',
+            '[COSCUP] 協助贊助方案回饋 | Update on COSCUP, Sponsorship Plans and the feedback',
+            '協助贊助方案回饋與近期進度 | Update on COSCUP, Sponsorship Plans and the feedback',
+        ])
+
+        u['preheader'] = choice([
+            '一隻小琢帶回家',
+            '[English below] 帶回一隻小琢回家',
+        ])
+
+        u['subject'] = subject
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(
+                'COSCUP Volunteer 志工服務', 'volunteer@coscup.org'),
+            list_unsubscribe='<mailto:volunteer+unsubscribeme@coscup.org>',
+            to_addresses=AwsSESTools.mail_header(u['mail'], u['mail']),
+            subject=subject,
+            body=template.render(**u),
+            text_body=template_md.render(**u),
+        )
+
+        queue_sender(raw)
+
 
 if __name__ == '__main__':
     # send_volunteer_2022_review(dry_run=True)
