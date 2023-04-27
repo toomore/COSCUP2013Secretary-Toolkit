@@ -698,6 +698,7 @@ def send_230321(dry_run=True):
 
         queue_sender(raw)
 
+
 def send_coscup_230302(dry_run=True):
     template = TPLENV.get_template('./volunteer_20230302_review_inline.html')
     template_md = TPLENV.get_template('./volunteer_20230302_review.md')
@@ -756,7 +757,7 @@ def send_230427(dry_run=True):
     if dry_run:
         path = './coscup_paper_subscribers_shvxr8j0_test.csv'
     else:
-        path = './coscup_paper_subscribers_shvxr8j0_.csv'
+        path = './coscup_paper_subscribers_shvxr8j0_20230426_142145.csv'
 
     users = []
     with open(path, 'r+') as files:
@@ -802,4 +803,5 @@ if __name__ == '__main__':
     # send_coscup_start(dry_run=True)
     # send_coscup_230302(dry_run=True)
     # send_230321(dry_run=True)
+    # send_230427(dry_run=True)
     pass
