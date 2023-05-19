@@ -797,14 +797,15 @@ def send_230427(dry_run=True):
 
         queue_sender(raw)
 
+
 def send_230519(dry_run=True):
     template = TPLENV.get_template('./volunteer_20230519_inline.html')
     template_md = TPLENV.get_template('./volunteer_20230519.md')
 
     if dry_run:
-        path = './coscup_paper_subscribers_00000000_test.csv'
+        path = './coscup_paper_subscribers_axgu3h6j_test.csv'
     else:
-        path = './coscup_paper_subscribers_00000000_20230426_142145.csv'
+        path = './coscup_paper_subscribers_axgu3h6j_20230519_005909.csv'
 
     users = []
     with open(path, 'r+') as files:
@@ -820,7 +821,7 @@ def send_230519(dry_run=True):
 
         subject = choice([
             'COSCUP 社群徵稿即將截止與近期進度 2023.05.19 | Update on COSCUP, the CfP is ending soon on 5/23 AoE',
-            '2023.04.27 社群徵稿即將截止與近期進度 | Update on COSCUP, the CfP is ending soon on 5/23 AoE',
+            '2023.05.19 社群徵稿即將截止與近期進度 | Update on COSCUP, the CfP is ending soon on 5/23 AoE',
             '[COSCUP] 社群徵稿即將截止 5/23 AoE | Update on COSCUP, the CfP is ending soon on 5/23 AoE',
             '社群徵稿即將截止與近期進度 5/23 AoE | Update on COSCUP, the CfP is ending soon on 5/23 AoE',
         ])
