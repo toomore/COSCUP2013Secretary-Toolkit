@@ -327,7 +327,7 @@ def send_sitcon_token(rows, dry_run=True):
             return
 
 def send_pycon_token(rows, dry_run=True):
-    template = TPLENV.get_template('./pycon_2022_token.html')
+    template = TPLENV.get_template('./2023_coscup_pycon_hitcon.html')
     _n = 1
     for u in rows:
         if u['mail'] in setting.BLOCK:
@@ -343,7 +343,7 @@ def send_pycon_token(rows, dry_run=True):
         raw = make_raw_email(
             nickname=u['name'],
             mail=u['mail'],
-            subject=u'[OSCVPass] PyCon APAC 2022 社群貢獻票 優惠券 (%s)' % u['name'],
+            subject=u'[OSCVPass] PyConTW, HITCON, COSCUP (%s)' % u['name'],
             body=body,
             dry_run=dry_run,
         )
@@ -685,13 +685,13 @@ if __name__ == '__main__':
     #    send_g0v_token(rows=rows, dry_run=False)
 
     ## ----- update token ----- #
-    #data = process_csv('./oscvpass_short_221007.csv', _all=True)
+    #data = process_csv('./oscvpass_230615_only_w_date.csv', _all=True)
     #maillist = pickup_unique(data=data, cases=('pass', ))
     #print(maillist, len(maillist))
 
     #update_token(datas=maillist,
-    #        org_path='./mopcon_2022_tokens_mails.csv',
-    #        out_path='./mopcon_2022_tokens_mails_221007.csv')
+    #        org_path='./pycon_2023_tokens.csv',
+    #        out_path='./pycon_2023_tokens_mails_230615.csv')
 
     #send_expired(path='./oscvpass_expired_220512.csv', dry_run=True)
 
@@ -716,15 +716,16 @@ if __name__ == '__main__':
 
     #    send_sitcon_token(rows=rows, dry_run=True)
 
-    # ----- send PyConTaiwan2022 token ----- #
-    #with open('./pycon_2022_tokens_mails_220725_append.csv', 'r+') as files:
+    # ----- send PyConTaiwan2023 token ----- #
+    #with open('./pycon_2023_tokens_mails_230615.csv', 'r+') as files:
     #    rows = []
     #    for user in csv.DictReader(files):
     #        if not user['mail']:
     #            continue
+
     #        rows.append(user)
 
-    #    send_pycon_token(rows=rows, dry_run=True)
+    #    send_pycon_token(rows=rows, dry_run=False)
 
     # ----- send Laravel x Vue Taiwan 2022 token ----- #
     #with open('./lv_taiwan_2022_tokens_mails.csv', 'r+') as files:
