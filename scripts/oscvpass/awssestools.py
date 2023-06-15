@@ -638,14 +638,14 @@ def format_mail(mail):
 if __name__ == '__main__':
     # ----- send Pass/deny ----- #
     #from pprint import pprint
-    #data = process_csv('./oscvpass_221123.csv', _all=False)
+    #data = process_csv('./oscvpass_230615_pass.csv', _all=False)
     #for case in data:
     #    print(case, len(data[case]))
     #    for row in data[case]:
     #        print(row['name'], row['c_01'], row['mail'], row['mail2'])
 
     #pprint(data['deny'])
-    #send(data=data, case=('deny', 'insufficient_for', 'pass'), dry_run=False)
+    #send(data=data, case=('deny', 'insufficient_for', 'pass'), dry_run=True)
     #send_request_attendee('/run/shm/hash_b0466044.csv', dry_run=True)
 
     # ----- send get token ----- #
