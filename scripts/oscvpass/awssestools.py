@@ -353,7 +353,7 @@ def send_pycon_token(rows, dry_run=True):
             return
 
 def send_lv_token(rows, dry_run=True):
-    template = TPLENV.get_template('./lv_2022_token.html')
+    template = TPLENV.get_template('./lv_2023_token.html')
     _n = 1
     for u in rows:
         if u['mail'] in setting.BLOCK:
@@ -369,7 +369,7 @@ def send_lv_token(rows, dry_run=True):
         raw = make_raw_email(
             nickname=u['name'],
             mail=u['mail'],
-            subject=u'[提醒] [OSCVPass] Laravel x Vue Conf Taiwan 2022 優惠券 (%s)' % u['name'],
+            subject=u'[提醒] [OSCVPass] Laravel x Vue Conf Taiwan 2023 優惠券 (%s)' % u['name'],
             body=body,
             dry_run=dry_run,
         )
@@ -690,8 +690,8 @@ if __name__ == '__main__':
     #print(maillist, len(maillist))
 
     #update_token(datas=maillist,
-    #        org_path='./pycon_2023_tokens.csv',
-    #        out_path='./pycon_2023_tokens_mails_230615.csv')
+    #        org_path='./lv_taiwan_2023_token.csv',
+    #        out_path='./lv_taiwan_2023_token_mails_230615.csv')
 
     #send_expired(path='./oscvpass_expired_220512.csv', dry_run=True)
 
@@ -727,15 +727,15 @@ if __name__ == '__main__':
 
     #    send_pycon_token(rows=rows, dry_run=False)
 
-    # ----- send Laravel x Vue Taiwan 2022 token ----- #
-    #with open('./lv_taiwan_2022_tokens_mails.csv', 'r+') as files:
+    # ----- send Laravel x Vue Taiwan 2023 token ----- #
+    #with open('./lv_taiwan_2023_token_mails_230615.csv', 'r+') as files:
     #    rows = []
     #    for user in csv.DictReader(files):
     #        if not user['mail']:
     #            continue
     #        rows.append(user)
 
-    #    send_lv_token(rows=rows, dry_run=False)
+    #    send_lv_token(rows=rows, dry_run=True)
 
     # ----- send COSCUP2021 check ----- #
     #with open('./oscvpass-check_yker8xb2.csv', 'r+') as files:
