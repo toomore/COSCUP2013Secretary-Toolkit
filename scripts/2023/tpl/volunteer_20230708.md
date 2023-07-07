@@ -1,0 +1,41 @@
+# COSCUP 2023 即將開始
+
+Hi {{name}},
+COSCUP 2023 即將開始了，距離 7/29 剩下不到一個月的時間，地點依舊在**臺灣科技大學**。目前我們有些訊息可以提供給你預先準備，讓我們一步步邁向活動開幕日！
+另外還有一件事情，COSCUP 是**不用售票**、**自由入場**，而且是與一群**開源社群**舉辦的年度盛會，時間到、直接來就對，門也是 Open 的！
+
+## 各項預告
+
+1. [社群攤位已公告](https://blog.coscup.org/2023/06/coscup2023-booth.html?utm_source=newsletter&utm_medium=email&utm_campaign=advance_notice&utm_id=paper230708)：今年申請社群攤位爆滿，我們差點塞不下他們，也有海外攤位在疫情後首次來臺與我們交流！
+2. 前夜派對：7/28 晚上我們一同相約在[華山町餐酒館](https://www.google.com/maps/search/%E8%8F%AF%E5%B1%B1%E7%94%BA%E9%A4%90%E9%85%92%E9%A4%A8)相見，暢飲券在不久後開始販售，也是不用報名，直接來就對了，暢飲券可以幫我們折抵場地費，到時候也請多多購券支持！
+3. [一日志工](https://volunteer.coscup.org/tasks/2023?utm_source=newsletter&utm_medium=email&utm_campaign=advance_notice&utm_id=paper230708)：活動二日籌備團隊還需要幫手，如果你自帶志工魂，非常歡迎與我們一同籌辦 COSCUP 或藉此見習志工團隊的努力！
+4. 療癒市集：按摩小棧、冥想正念、紅酒瑜珈好評不斷，今年依舊提供現場會眾服務，詳細的報名方式也將在稍後公佈（或參考 [2022](https://blog.coscup.org/2022/07/introducing-healing-market-with-yoga.html?utm_source=newsletter&utm_medium=email&utm_campaign=advance_notice&utm_id=paper230708)），而今年我們也舉辦議程軌「[療癒講座](https://volunteer.coscup.org/schedule/2023/talks/5133e/%E7%A7%91%E6%8A%80%E9%A0%98%E5%9F%9F%E7%9A%84%E5%A4%9A%E5%85%83%E5%85%B1%E8%9E%8D+-+%E7%99%82%E7%99%92%E8%AC%9B%E5%BA%A7?utm_source=newsletter&utm_medium=email&utm_campaign=advance_notice&utm_id=paper230708)」募集了８個稿件分享關於科技領域的多元共融議題，歡迎聆聽！
+5. 親子工作坊：歡迎帶小朋友來動手做，提早認識開源領域，這次有三個課程「一日焊接工」、「海龜塗鴉機器人」、「掌上電玩遊戲自己做」（名稱暫定）報名資訊也將在稍後公告，歡迎小小朋友一同來 COSCUP！
+6. [開源星手村](https://openstartervillage.ocf.tw/?utm_source=newsletter&utm_medium=email&utm_campaign=advance_notice&utm_id=paper230708)：不是很瞭解開源精神、開放文化是什麼，沒關係！「療癒市集」邀請到開放文化基金會透過４場桌遊活動的方式引導進入開源領域！歡迎[組隊報名參與](https://forms.gle/YYaaiwBpeQu1MTYF9)（當作 Team building 也不錯！）
+7. [個人贊助](https://ocf.neticrm.tw/civicrm/contribute/transact?reset=1&id=69&utm_source=newsletter&utm_medium=email&utm_campaign=advance_notice&utm_id=paper230708)持續進行，感激再感激！
+8. 大會議程即將在 7/10 公告，再請稍等片刻，今年的大會議程表也有嶄新、貼心的小功能呈現！如果你有志工平台的帳號，我們也有一個[專屬給志工](https://volunteer.coscup.org/schedule/2023?utm_source=newsletter&utm_medium=email&utm_campaign=advance_notice&utm_id=paper230708)用的議程表，鼓勵活動當天也多多參與社群議程！
+9. 如果你有想要帶來 COSCUP 宣傳的開源專案、開源提案或是想在會場招募開源夥伴，我們今年會在每一樓層提供免費張貼的活動佈告欄，現在就可以開始製作傳單準備來張貼了！對了，社群貼紙也請記得帶了交換喔，還沒印，快下訂單吧！
+10. 最後提醒，由於今年相當多海外夥伴來臺參與年度盛會，如果對於國際交流感興趣，也歡迎在活動二日把握機會認識與交流！
+
+以上，就是目前可先偷偷告訴你、但還未公告的事項，也歡迎幫我們宣傳 COSCUP 給身邊的親朋好友，有２個方式可以持續關注我們：「[訂閱電子報](https://secretary.coscup.org/subscribe/coscup?utm_source=newsletter&utm_medium=email&utm_campaign=advance_notice&utm_id=paper230708)」或「[登錄志工平台](https://volunteer.coscup.org/?utm_source=newsletter&utm_medium=email&utm_campaign=advance_notice&utm_id=paper230708)」，到時會場見喔！
+
+---
+
+Hi {{name}},
+COSCUP 2023 is about to begin! With less than a month left until 7/29, the event will once again take place at **National Taiwan University of Science and Technology**. We have some information to provide you with in advance, so let's take each step together towards the opening day!
+In addition, there's something important to note about COSCUP. It's a **free** and **open** event, with **no tickets required** for entry. It's an annual gathering organized by open-source communities. So mark your calendars and come join us, as the doors are wide open!
+
+## Upcoming Announcements
+
+1. [Community Booths Announcement](https://blog.coscup.org/2023/06/coscup2023-booth.html?utm_source=newsletter&utm_medium=email&utm_campaign=advance_notice&utm_id=paper230708): This year, the applications for community booths were overwhelming, and we almost couldn't accommodate all of them. We are excited to announce that we have international booths joining us for the first time in Taiwan after the pandemic, allowing for cross-cultural exchange!
+2. Welcome Party: Let's gather together on the evening of 7/28 at the [Hua Shan Town Bar and Restaurant](https://www.google.com/maps/search/%E8%8F%AF%E5%B1%B1%E7%94%BA%E9%A4%90%E9%85%92%E9%A4%A8) for the pre-party celebration. Unlimited drink coupon will be available for purchase soon, and **no registration is required**. Simply show up and enjoy! The drink coupon can help offset the venue costs, so we appreciate your support in purchasing them!
+3. [One-Day Volunteers](https://volunteer.coscup.org/tasks/2023?utm_source=newsletter&utm_medium=email&utm_campaign=advance_notice&utm_id=paper230708): The two-day event organizing team still needs assistance, and if you have a **volunteering spirit**, we warmly welcome you to join us in coordinating COSCUP or use this opportunity to gain experience with our dedicated volunteer team!
+4. Healing Market: The popular massage station, mindfulness meditation, and red wine yoga received continuous praise, and this year we will once again provide on-site services for attendees. The detailed registration information will be announced later (or refer to [2022](https://blog.coscup.org/2022/07/introducing-healing-market-with-yoga.html?utm_source=newsletter&utm_medium=email&utm_campaign=advance_notice&utm_id=paper230708)). Additionally, we are introducing a new track called "[Healing Talks](https://volunteer.coscup.org/schedule/2023/talks/5133e/%E7%A7%91%E6%8A%80%E9%A0%98%E5%9F%9F%E7%9A%84%E5%A4%9A%E5%85%83%E5%85%B1%E8%9E%8D+-+%E7%99%82%E7%99%92%E8%AC%9B%E5%BA%A7?utm_source=newsletter&utm_medium=email&utm_campaign=advance_notice&utm_id=paper230708)" where we have received 8 submissions discussing diverse and inclusive topics related to technology. We welcome you to join us and listen!
+5. Parent-Child Workshops: We welcome you to bring your children to participate in hands-on activities and introduce them to the world of open-source early on. This time, we have three workshops: "One-Day Soldering Workshop," "Turtle Doodle Robot," and "DIY Handheld Gaming Console" (tentative names). The registration details for these workshops will be announced later. We encourage young children to join us at COSCUP!
+6. [Open Source Star Village](https://openstartervillage.ocf.tw/?utm_source=newsletter&utm_medium=email&utm_campaign=advance_notice&utm_id=paper230708): If you're not familiar with the concept of open-source spirit and open culture, don't worry! In the "Healing Market," the Open Culture Foundation will be hosting four tabletop gaming activities to guide you into the world of open source. You're welcome to form teams and [sign up to participate](https://forms.gle/YYaaiwBpeQu1MTYF9) (it's also a great team-building opportunity!)
+7. [Personal Sponsorship](https://ocf.neticrm.tw/civicrm/contribute/transact?reset=1&id=69&utm_source=newsletter&utm_medium=email&utm_campaign=advance_notice&utm_id=paper230708): We deeply appreciate and are grateful for your continued support and sponsorship!
+8. The COSCUP sessions will be announced on 7/10. Please wait for a moment longer. This year's conference schedule will feature new and user-friendly functionalities. If you have an account on the volunteer platform, we also have a dedicated schedule [for volunteers](https://volunteer.coscup.org/schedule/2023?utm_source=newsletter&utm_medium=email&utm_campaign=advance_notice&utm_id=paper230708), encouraging active participation in community sessions on the event day!
+9. If you have open-source projects, proposals, or are looking to recruit open-source collaborators at COSCUP, we will provide free bulletin boards on each floor for promoting your initiatives. You can start preparing flyers to post now! Also, don't forget to bring community stickers for exchange. If you haven't printed them yet, place your order soon!
+10. Lastly, we would like to remind you that this year we have many international partners joining us for this annual event. If you are interested in international exchange, we encourage you to seize the opportunity during the two-day event to meet and engage in conversations with them!
+
+Above are the sneak peeks of information that we can share with you before the official announcement. We also welcome you to help us promote COSCUP to your family and friends. There are two ways to stay updated: "[Subscribe to our newsletter](https://secretary.coscup.org/subscribe/coscup?utm_source=newsletter&utm_medium=email&utm_campaign=advance_notice&utm_id=paper230708)" or "[Join the volunteer platform](https://volunteer.coscup.org/?utm_source=newsletter&utm_medium=email&utm_campaign=advance_notice&utm_id=paper230708)." See you at COSCUP!
