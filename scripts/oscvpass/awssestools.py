@@ -696,7 +696,7 @@ if __name__ == '__main__':
     #send_expired(path='./oscvpass_expired_220512.csv', dry_run=True)
 
     # ----- Gen tokens ----- #
-    #gen_token(nums=300, out_path="./mopcon_2022_tokens.csv")
+    #gen_token(nums=300, out_path="./pycon_2023_tokens.csv")
     #data = process_csv('./oscvpass_221101_w.csv', _all=True)
     #data = {'pass': []}
     #maillist = pickup_unique(data=data, cases=('pass', ))
