@@ -894,6 +894,54 @@ def send_230708(dry_run=True):
 
         queue_sender(raw)
 
+def send_230720(dry_run=True):
+    ''' Send 230720 '''
+    template = TPLENV.get_template('./volunteer_20230720_inline.html')
+    template_md = TPLENV.get_template('./volunteer_20230720.md')
+
+    if dry_run:
+        path = './coscup_paper_subscribers_00000000_test.csv'
+    else:
+        path = './coscup_paper_subscribers_00000000_20230519_005909.csv'
+
+    users = []
+    with open(path, 'r+', encoding='UTF8') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        subject = choice([
+            'COSCUP 近期活動更新 2023.07.20 | Upcoming Announcements',
+            '2023.07.20 Bof 閃電秀 前夜派對 | Upcoming Announcements',
+            '[COSCUP] 近期活動更新 | Upcoming Announcements',
+            'COSCUP Bof 閃電秀 前夜派對 | Upcoming Announcements',
+        ])
+
+        u['preheader'] = choice([
+            'BoF 閃電秀',
+            '[English below] Bof, welcome party',
+        ])
+
+        u['subject'] = subject
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(
+                'COSCUP Volunteer 志工服務', 'volunteer@coscup.org'),
+            list_unsubscribe='<mailto:volunteer+unsubscribe230720@coscup.org>',
+            to_addresses=AwsSESTools.mail_header(u['mail'], u['mail']),
+            subject=subject,
+            body=template.render(**u),
+            text_body=template_md.render(**u),
+        )
+
+        queue_sender(raw)
+
 
 if __name__ == '__main__':
     # send_volunteer_2022_review(dry_run=True)
@@ -903,4 +951,5 @@ if __name__ == '__main__':
     # send_230427(dry_run=True)
     # send_230519(dry_run=True)
     # send_230708(dry_run=True)
+    # send_230720(dry_run=True)
     pass
