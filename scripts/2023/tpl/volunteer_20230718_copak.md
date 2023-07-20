@@ -1,6 +1,6 @@
 # 小啄送到家
 
-親愛的 {{last\_name}}{{first\_name}} 您好,
+親愛的 {{last_name}}{{first_name}} 您好,
 
 感謝您贊助 COSCUP 2023 ！
 
