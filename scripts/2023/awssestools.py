@@ -894,15 +894,16 @@ def send_230708(dry_run=True):
 
         queue_sender(raw)
 
+
 def send_230720(dry_run=True):
     ''' Send 230720 '''
     template = TPLENV.get_template('./volunteer_20230720_inline.html')
     template_md = TPLENV.get_template('./volunteer_20230720.md')
 
     if dry_run:
-        path = './coscup_paper_subscribers_00000000_test.csv'
+        path = './coscup_paper_subscribers_02tg71a3_test.csv'
     else:
-        path = './coscup_paper_subscribers_00000000_20230519_005909.csv'
+        path = './coscup_paper_subscribers_02tg71a3_20230720_005157.csv'
 
     users = []
     with open(path, 'r+', encoding='UTF8') as files:
