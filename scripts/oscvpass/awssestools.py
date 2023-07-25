@@ -343,7 +343,7 @@ def send_pycon_token(rows, dry_run=True):
         raw = make_raw_email(
             nickname=u['name'],
             mail=u['mail'],
-            subject=u'[OSCVPass] PyConTW, HITCON, COSCUP (%s)' % u['name'],
+            subject=u'[OSCVPass][提醒] PyConTW, HITCON, COSCUP (%s)' % u['name'],
             body=body,
             dry_run=dry_run,
         )
@@ -638,7 +638,7 @@ def format_mail(mail):
 if __name__ == '__main__':
     # ----- send Pass/deny ----- #
     #from pprint import pprint
-    #data = process_csv('./oscvpass_230615_pass.csv', _all=False)
+    #data = process_csv('./oscvpass_230725_sendpass.csv', _all=False)
     #for case in data:
     #    print(case, len(data[case]))
     #    for row in data[case]:
@@ -684,14 +684,14 @@ if __name__ == '__main__':
 
     #    send_g0v_token(rows=rows, dry_run=False)
 
-    ## ----- update token ----- #
-    #data = process_csv('./oscvpass_230615_only_w_date.csv', _all=True)
+    # ----- update token ----- #
+    #data = process_csv('./oscvpass_230725_sendpass.csv', _all=True)
     #maillist = pickup_unique(data=data, cases=('pass', ))
     #print(maillist, len(maillist))
 
     #update_token(datas=maillist,
-    #        org_path='./lv_taiwan_2023_token.csv',
-    #        out_path='./lv_taiwan_2023_token_mails_230615.csv')
+    #        org_path='./pycon_2023_tokens_mails_230615.csv',
+    #        out_path='./pycon_2023_tokens_mails_230725.csv')
 
     #send_expired(path='./oscvpass_expired_220512.csv', dry_run=True)
 
@@ -717,7 +717,7 @@ if __name__ == '__main__':
     #    send_sitcon_token(rows=rows, dry_run=True)
 
     # ----- send PyConTaiwan2023 token ----- #
-    #with open('./pycon_2023_tokens_mails_230615.csv', 'r+') as files:
+    #with open('./pycon_2023_tokens_mails_230725.csv', 'r+') as files:
     #    rows = []
     #    for user in csv.DictReader(files):
     #        if not user['mail']:
@@ -728,7 +728,7 @@ if __name__ == '__main__':
     #    send_pycon_token(rows=rows, dry_run=False)
 
     # ----- send Laravel x Vue Taiwan 2023 token ----- #
-    #with open('./lv_taiwan_2023_token_mails_230615.csv', 'r+') as files:
+    #with open('./lv_taiwan_2023_token_mails_230725.csv', 'r+') as files:
     #    rows = []
     #    for user in csv.DictReader(files):
     #        if not user['mail']:
