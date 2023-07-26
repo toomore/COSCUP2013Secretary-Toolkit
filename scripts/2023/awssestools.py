@@ -995,9 +995,9 @@ def send_230726_zh_tw(dry_run=True):
     template_md = TPLENV.get_template('./volunteer_20230726_zh-tw.md')
 
     if dry_run:
-        path = './coscup_paper_subscribers_00000000_test.csv'
+        path = './coscup_paper_subscribers_t25sqlbz_test.csv'
     else:
-        path = './coscup_paper_subscribers_00000000_20230720_005157.csv'
+        path = './coscup_paper_subscribers_t25sqlbz_20230726_162340.csv'
 
     users = []
     with open(path, 'r+', encoding='UTF8') as files:
@@ -1045,9 +1045,9 @@ def send_230726_en(dry_run=True):
     template_md = TPLENV.get_template('./volunteer_20230726_en.md')
 
     if dry_run:
-        path = './coscup_paper_subscribers_00000000_test.csv'
+        path = './coscup_paper_subscribers_t25sqlbe_test.csv'
     else:
-        path = './coscup_paper_subscribers_00000000_20230720_005157.csv'
+        path = './coscup_paper_subscribers_t25sqlbe_20230726_162446.csv'
 
     users = []
     with open(path, 'r+', encoding='UTF8') as files:
