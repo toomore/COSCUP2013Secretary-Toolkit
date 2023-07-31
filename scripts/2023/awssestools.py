@@ -1091,6 +1091,50 @@ def send_230726_en(dry_run=True):
 
         queue_sender(raw)
 
+def send_230731_copak(dry_run=True):
+    ''' Send 230731 copak '''
+    template = TPLENV.get_template('./volunteer_20230731_copak_inline.html')
+    template_md = TPLENV.get_template('./volunteer_20230731_copak.md')
+
+    if dry_run:
+        path = './20230731_copak_test.csv'
+    else:
+        path = './20230731_copak.csv'
+
+    users = []
+    with open(path, 'r+', encoding='UTF8') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['first_name'], u['mail'])
+        _n += 1
+
+        subject = choice([
+            f'[COSCUP] 小啄送到家的提醒信 - {u["last_name"]}{u["first_name"]}',
+        ])
+
+        u['preheader'] = choice([
+            '飛行計畫改變',
+        ])
+
+        u['subject'] = subject
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(
+                'COSCUP 總召組', 'coordinator@coscup.org'),
+            list_unsubscribe='<mailto:volunteer+unsubscribe230718copak@coscup.org>',
+            to_addresses=AwsSESTools.mail_header(
+                f"{u['last_name']}{u['first_name']}", u['mail']),
+            subject=subject,
+            body=template.render(**u),
+            text_body=template_md.render(**u),
+        )
+
+        queue_sender(raw)
 
 if __name__ == '__main__':
     # send_volunteer_2022_review(dry_run=True)
@@ -1104,4 +1148,5 @@ if __name__ == '__main__':
     # send_230718_copak(dry_run=True)
     # send_230726_zh_tw(dry_run=True)
     # send_230726_en(dry_run=True)
+    # send_230731_copak(dry_run=True)
     pass
