@@ -1091,6 +1091,7 @@ def send_230726_en(dry_run=True):
 
         queue_sender(raw)
 
+
 def send_230731_copak(dry_run=True):
     ''' Send 230731 copak '''
     template = TPLENV.get_template('./volunteer_20230731_copak_inline.html')
@@ -1135,6 +1136,7 @@ def send_230731_copak(dry_run=True):
         )
 
         queue_sender(raw)
+
 
 if __name__ == '__main__':
     # send_volunteer_2022_review(dry_run=True)
