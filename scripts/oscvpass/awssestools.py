@@ -343,7 +343,7 @@ def send_pycon_token(rows, dry_run=True):
         raw = make_raw_email(
             nickname=u['name'],
             mail=u['mail'],
-            subject=u'[OSCVPass][提醒] PyConTW, HITCON, COSCUP (%s)' % u['name'],
+            subject=u'[OSCVPass][提醒] PyConTW 2023 (%s)' % u['name'],
             body=body,
             dry_run=dry_run,
         )
@@ -369,7 +369,7 @@ def send_lv_token(rows, dry_run=True):
         raw = make_raw_email(
             nickname=u['name'],
             mail=u['mail'],
-            subject=u'[提醒] [OSCVPass] Laravel x Vue Conf Taiwan 2023 優惠券 (%s)' % u['name'],
+            subject=u'[再提醒] [OSCVPass] Laravel x Vue Conf Taiwan 2023 優惠券 (%s)' % u['name'],
             body=body,
             dry_run=dry_run,
         )
@@ -638,14 +638,14 @@ def format_mail(mail):
 if __name__ == '__main__':
     # ----- send Pass/deny ----- #
     #from pprint import pprint
-    #data = process_csv('./oscvpass_230725_sendpass.csv', _all=False)
+    #data = process_csv('./oscvpass_230807_sendpass.csv', _all=False)
     #for case in data:
     #    print(case, len(data[case]))
     #    for row in data[case]:
     #        print(row['name'], row['c_01'], row['mail'], row['mail2'])
 
     #pprint(data['deny'])
-    #send(data=data, case=('deny', 'insufficient_for', 'pass'), dry_run=True)
+    #send(data=data, case=('deny', 'insufficient_for', 'pass'), dry_run=False)
     #send_request_attendee('/run/shm/hash_b0466044.csv', dry_run=True)
 
     # ----- send get token ----- #
@@ -685,13 +685,13 @@ if __name__ == '__main__':
     #    send_g0v_token(rows=rows, dry_run=False)
 
     # ----- update token ----- #
-    #data = process_csv('./oscvpass_230725_sendpass.csv', _all=True)
+    #data = process_csv('./oscvpass_230807.csv', _all=True)
     #maillist = pickup_unique(data=data, cases=('pass', ))
     #print(maillist, len(maillist))
 
     #update_token(datas=maillist,
-    #        org_path='./pycon_2023_tokens_mails_230615.csv',
-    #        out_path='./pycon_2023_tokens_mails_230725.csv')
+    #        org_path='./lv_taiwan_2023_token_mails_230725.csv',
+    #        out_path='./lv_taiwan_2023_token_mails_230807.csv')
 
     #send_expired(path='./oscvpass_expired_220512.csv', dry_run=True)
 
@@ -717,7 +717,7 @@ if __name__ == '__main__':
     #    send_sitcon_token(rows=rows, dry_run=True)
 
     # ----- send PyConTaiwan2023 token ----- #
-    #with open('./pycon_2023_tokens_mails_230725.csv', 'r+') as files:
+    #with open('./pycon_2023_tokens_mails_230807.csv', 'r+') as files:
     #    rows = []
     #    for user in csv.DictReader(files):
     #        if not user['mail']:
@@ -725,10 +725,10 @@ if __name__ == '__main__':
 
     #        rows.append(user)
 
-    #    send_pycon_token(rows=rows, dry_run=False)
+    #    send_pycon_token(rows=rows, dry_run=True)
 
     # ----- send Laravel x Vue Taiwan 2023 token ----- #
-    #with open('./lv_taiwan_2023_token_mails_230725.csv', 'r+') as files:
+    #with open('./lv_taiwan_2023_token_mails_230807.csv', 'r+') as files:
     #    rows = []
     #    for user in csv.DictReader(files):
     #        if not user['mail']:
