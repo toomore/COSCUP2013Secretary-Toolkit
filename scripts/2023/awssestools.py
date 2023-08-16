@@ -1137,6 +1137,56 @@ def send_230731_copak(dry_run=True):
 
         queue_sender(raw)
 
+def send_230817(dry_run=True):
+    ''' Send 230817 '''
+    template = TPLENV.get_template('./volunteer_20230817_inline.html')
+    template_md = TPLENV.get_template('./volunteer_20230817.md')
+
+    if dry_run:
+        path = './coscup_paper_subscribers_00000000_test.csv'
+    else:
+        path = './coscup_paper_subscribers_00000000_20230727_005512.csv'
+
+    users = []
+    with open(path, 'r+', encoding='UTF8') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        subject = choice([
+            'COSCUP 2023 會後感謝 | Post-COSCUP 2023 Appreciation',
+            'COSCUP 2023 會後感謝 期待 2024 再相會 | Post-COSCUP 2023 Appreciation',
+            '2023 會後感謝 期待 2024 | Post-COSCUP 2023 Appreciation',
+            '2023 會後感謝 期待 2024 再相會 | Post-COSCUP 2023 Appreciation',
+        ])
+
+        u['preheader'] = choice([
+            '持續與我們交流',
+            '持續與我們交流開源提案',
+            '持續與我們交流未來合作提案',
+            '持續與我們交流未來合作項目',
+        ])
+
+        u['subject'] = subject
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(
+                'COSCUP Volunteer 志工服務', 'volunteer@coscup.org'),
+            list_unsubscribe='<mailto:volunteer+unsubscribe230817@coscup.org>',
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject=subject,
+            body=template.render(**u),
+            text_body=template_md.render(**u),
+        )
+
+        queue_sender(raw)
+
 
 if __name__ == '__main__':
     # send_volunteer_2022_review(dry_run=True)
@@ -1151,4 +1201,5 @@ if __name__ == '__main__':
     # send_230726_zh_tw(dry_run=True)
     # send_230726_en(dry_run=True)
     # send_230731_copak(dry_run=True)
+    # send_230817(dry_run=True)
     pass
