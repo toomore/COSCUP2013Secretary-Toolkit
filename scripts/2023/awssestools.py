@@ -1137,15 +1137,16 @@ def send_230731_copak(dry_run=True):
 
         queue_sender(raw)
 
+
 def send_230817(dry_run=True):
     ''' Send 230817 '''
     template = TPLENV.get_template('./volunteer_20230817_inline.html')
     template_md = TPLENV.get_template('./volunteer_20230817.md')
 
     if dry_run:
-        path = './coscup_paper_subscribers_00000000_test.csv'
+        path = './coscup_paper_subscribers_6m431c53_test.csv'
     else:
-        path = './coscup_paper_subscribers_00000000_20230727_005512.csv'
+        path = './coscup_paper_subscribers_6m431c53_20230817_005125.csv'
 
     users = []
     with open(path, 'r+', encoding='UTF8') as files:
