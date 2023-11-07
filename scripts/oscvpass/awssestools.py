@@ -265,7 +265,7 @@ def send_mopcon_token(rows, dry_run=True):
         raw = make_raw_email(
             nickname=u['name'],
             mail=u['mail'],
-            subject=u'[OSCVPass][提醒] MOPCON2022 開源貢獻票 免費券 (%s)' % u['name'],
+            subject=u'[OSCVPass][提醒] MOPCON2023 開源貢獻票 優惠票券 (%s)' % u['name'],
             body=body,
             dry_run=dry_run,
         )
@@ -638,7 +638,7 @@ def format_mail(mail):
 if __name__ == '__main__':
     # ----- send Pass/deny ----- #
     #from pprint import pprint
-    #data = process_csv('./oscvpass_230807_sendpass.csv', _all=False)
+    #data = process_csv('./oscvpass_231106_pass.csv', _all=False)
     #for case in data:
     #    print(case, len(data[case]))
     #    for row in data[case]:
@@ -658,7 +658,7 @@ if __name__ == '__main__':
     #add_uuid_export_csv(maillist, './pycon2021_tokens.csv')
 
     # ----- send mopcon token ----- #
-    #with open('./mopcon_2022_tokens_mails_221007.csv', 'r+') as files:
+    #with open('./mopcon_2023_tokens_mails.csv', 'r+') as files:
     #    rows = []
     #    for user in csv.DictReader(files):
     #        if not user['mail']:
@@ -697,14 +697,14 @@ if __name__ == '__main__':
 
     # ----- Gen tokens ----- #
     #gen_token(nums=300, out_path="./pycon_2023_tokens.csv")
-    #data = process_csv('./oscvpass_221101_w.csv', _all=True)
+    #data = process_csv('./oscvpass_231106_all.csv', _all=True)
     #data = {'pass': []}
     #maillist = pickup_unique(data=data, cases=('pass', ))
     #print(maillist, len(maillist))
     #merge_token(
     #        datas=maillist,
-    #        token_path='./lv_taiwan_2022_token.csv',
-    #        out_path='./lv_taiwan_2022_tokens_mails.csv')
+    #        token_path='./mopcon_2023_tokens.csv',
+    #        out_path='./mopcon_2023_tokens_mails.csv')
 
     # ----- send SITCON2022 token ----- #
     #with open('./sitcon_2022_tokens_mails_220725_append.csv', 'r+') as files:
