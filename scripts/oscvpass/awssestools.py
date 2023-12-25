@@ -580,12 +580,12 @@ def send_workshop(path, dry_run=True):
             return
 
 
-def send_2022_report(path, dry_run=True):
-    ''' send 2022 report '''
-    template = TPLENV.get_template('./2022_year_end.html')
+def send_2023_report(path, dry_run=True):
+    ''' send 2023 report '''
+    template = TPLENV.get_template('./2023_year_end.html')
 
     datas = []
-    with open(path) as files:
+    with open(path, encoding='UTF8') as files:
         for u in csv.DictReader(files):
             datas.append(u)
 
@@ -599,7 +599,7 @@ def send_2022_report(path, dry_run=True):
         raw = make_raw_email(
             nickname=u['name'].strip(),
             mail=u['mail'].strip().lower(),
-            subject='[OSCVPass] 2022 年度總結',
+            subject='[OSCVPass] 2023 年度總結與年末募款說明',
             body=body,
             dry_run=dry_run,
         )
@@ -774,6 +774,6 @@ if __name__ == '__main__':
     # send_workshop('./oscvpass_220811_valid.csv', dry_run=True)
 
     # read_all_mails(path='./oscvpass_all_221215.csv')
-    # send_2022_report(path='all_users_221215.csv', dry_run=True)
+    # send_2023_report(path='all_users_221215.csv', dry_run=True)
 
     pass
