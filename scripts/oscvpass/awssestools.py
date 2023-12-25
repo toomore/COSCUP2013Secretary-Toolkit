@@ -774,6 +774,6 @@ if __name__ == '__main__':
     # send_workshop('./oscvpass_220811_valid.csv', dry_run=True)
 
     # read_all_mails(path='./oscvpass_all_221215.csv')
-    # send_2023_report(path='all_users_221215.csv', dry_run=True)
+    # send_2023_report(path='2023_all_users_yearend.csv', dry_run=False)
 
     pass
