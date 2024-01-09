@@ -611,6 +611,37 @@ def send_2023_report(path, dry_run=True):
             return
 
 
+def send_2024_concom(path, dry_run=True):
+    ''' send 2024 concom '''
+    template = TPLENV.get_template('./2023_concom.html')
+
+    datas = []
+    with open(path, encoding='UTF8') as files:
+        for u in csv.DictReader(files):
+            datas.append(u)
+
+    _n = 1
+    for u in datas:
+        body = template.render(**u)
+
+        if dry_run:
+            u['mail'] = setting.TESTMAIL
+
+        raw = make_raw_email(
+            nickname=u['name'].strip(),
+            mail=u['mail'].strip().lower(),
+            subject='[OSCVPass] 2024 CONCOM 強勢回歸',
+            body=body,
+            dry_run=dry_run,
+        )
+        print(SENDER.client.send_raw_email(RawMessage={'Data': raw}))
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        if dry_run:
+            return
+
+
 def read_all_mails(path):
     ''' Read all mails '''
     data = process_csv(path, _all=True)
@@ -658,6 +689,16 @@ def format_mail(mail):
         return ''
 
     return mail
+
+def export_unique_lists(path:str):
+    ''' Export unique lists '''
+    data = process_csv(path, _all=True)
+    maillist = pickup_unique(data=data, cases=('pass', ))
+
+    with open(f'./mailling_list_{arrow.now().format('YYYYMMDD')}.csv', 'w+', encoding='UTF8') as files:
+        csv_writer = csv.DictWriter(fieldnames=('name', 'mail'))
+        csv_writer.writeheader()
+        csv_writer.writerows(maillist)
 
 
 if __name__ == '__main__':
