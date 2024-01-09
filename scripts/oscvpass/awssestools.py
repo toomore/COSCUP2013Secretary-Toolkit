@@ -310,7 +310,7 @@ def send_g0v_token(rows, dry_run=True):
 
 
 def send_sitcon_token(rows, dry_run=True):
-    template = TPLENV.get_template('./sitcon_2022_token.html')
+    template = TPLENV.get_template('./sitcon_2024_token.html')
     _n = 1
     for u in rows:
         if u['mail'] in setting.BLOCK:
@@ -326,7 +326,7 @@ def send_sitcon_token(rows, dry_run=True):
         raw = make_raw_email(
             nickname=u['name'],
             mail=u['mail'],
-            subject=u'[OSCVPass][提醒] SITCON 2022 開源貢獻票 優惠券 (%s)' % u['name'],
+            subject=u'[OSCVPass][提醒] SITCON 2024 開源貢獻票 優惠券 (%s)' % u['name'],
             body=body,
             dry_run=dry_run,
         )
@@ -662,15 +662,15 @@ def format_mail(mail):
 
 if __name__ == '__main__':
     # ----- send Pass/deny ----- #
-    # from pprint import pprint
-    # data = process_csv('./oscvpass_231106_pass.csv', _all=False)
-    # for case in data:
-    #    print(case, len(data[case]))
-    #    for row in data[case]:
-    #        print(row['name'], row['c_01'], row['mail'], row['mail2'])
+    #from pprint import pprint
+    #data = process_csv('./oscvpass_unsend_240108.csv', _all=False)
+    #for case in data:
+    #   print(case, len(data[case]))
+    #   for row in data[case]:
+    #       print(f"[{row['name']}], [{row['c_01']}], [{row['mail']}], [{row['mail2']}]")
 
     # pprint(data['deny'])
-    # send(data=data, case=('deny', 'insufficient_for', 'pass'), dry_run=False)
+    #send(data=data, case=('deny', 'insufficient_for', 'pass'), dry_run=True)
     # send_request_attendee('/run/shm/hash_b0466044.csv', dry_run=True)
 
     # ----- send get token ----- #
@@ -722,24 +722,24 @@ if __name__ == '__main__':
 
     # ----- Gen tokens ----- #
     # gen_token(nums=300, out_path="./sitcon_2024_tokens.csv")
-    # data = process_csv('./oscvpass_231106_all.csv', _all=True)
+    # data = process_csv('./oscvpass_valid_240108.csv', _all=True)
     # data = {'pass': []}
-    # maillist = pickup_unique(data=data, cases=('pass', ))
-    # print(maillist, len(maillist))
-    # merge_token(
-    #        datas=maillist,
-    #        token_path='./mopcon_2023_tokens.csv',
-    #        out_path='./mopcon_2023_tokens_mails.csv')
+    #maillist = pickup_unique(data=data, cases=('pass', ))
+    #print(maillist, len(maillist))
+    #merge_token(
+    #       datas=maillist,
+    #       token_path='./sitcon_2024_tokens.csv',
+    #       out_path='./sitcon_2024_tokens_mails.csv')
 
-    # ----- send SITCON2022 token ----- #
-    # with open('./sitcon_2022_tokens_mails_220725_append.csv', 'r+') as files:
-    #    rows = []
-    #    for user in csv.DictReader(files):
-    #        if not user['mail']:
-    #            continue
-    #        rows.append(user)
+    # ----- send SITCON2024 token ----- #
+    #with open('./sitcon_2024_tokens_mails.csv', 'r+') as files:
+    #   rows = []
+    #   for user in csv.DictReader(files):
+    #       if not user['mail']:
+    #           continue
+    #       rows.append(user)
 
-    #    send_sitcon_token(rows=rows, dry_run=True)
+    #   send_sitcon_token(rows=rows, dry_run=False)
 
     # ----- send PyConTaiwan2023 token ----- #
     # with open('./pycon_2023_tokens_mails_230807.csv', 'r+') as files:
