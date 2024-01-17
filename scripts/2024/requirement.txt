@@ -1,0 +1,6 @@
+boto3
+icalendar
+jinja2
+requests[security]
+pylint
+autopep8
