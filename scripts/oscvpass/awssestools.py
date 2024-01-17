@@ -613,7 +613,7 @@ def send_2023_report(path, dry_run=True):
 
 def send_2024_concom(path, dry_run=True):
     ''' send 2024 concom '''
-    template = TPLENV.get_template('./2023_concom.html')
+    template = TPLENV.get_template('./2024_concom.html')
 
     datas = []
     with open(path, encoding='UTF8') as files:
@@ -695,8 +695,8 @@ def export_unique_lists(path:str):
     data = process_csv(path, _all=True)
     maillist = pickup_unique(data=data, cases=('pass', ))
 
-    with open(f'./mailling_list_{arrow.now().format('YYYYMMDD')}.csv', 'w+', encoding='UTF8') as files:
-        csv_writer = csv.DictWriter(fieldnames=('name', 'mail'))
+    with open(f"./mailling_list_{arrow.now().format('YYYYMMDD')}.csv", 'w+', encoding='UTF8') as files:
+        csv_writer = csv.DictWriter(files, fieldnames=('name', 'mail'))
         csv_writer.writeheader()
         csv_writer.writerows(maillist)
 
@@ -816,5 +816,7 @@ if __name__ == '__main__':
 
     # read_all_mails(path='./oscvpass_all_221215.csv')
     # send_2023_report(path='2023_all_users_yearend.csv', dry_run=False)
+    # send_2024_concom(path='mailling_list_20240109.csv', dry_run=True)
+    # export_unique_lists(path='./oscvpass_all_240109.csv')
 
     pass
