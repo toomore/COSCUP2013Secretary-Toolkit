@@ -3,6 +3,7 @@
 Hi {{name}},
 COSCUP 2024 籌備團隊已在上週順利展開，各組也開始招募今年的志工夥伴，一起加入我們籌備年度盛會！
 這份訊息將引導您準備未來參與 COSCUP 的重要資訊，不論您是以志工、社群夥伴、講者、贊助單位或是會眾們！
+對了，2023 的[議程影片](https://www.youtube.com/@coscup)錄影已全數上傳到 YouTube 了，錯過想聽的議程可以看影片重播！
 
 ## 基礎資訊
 
@@ -44,6 +45,7 @@ COSCUP 將至 [SCaLE21x](https://www.socallinuxexpo.org/scale/21x) 參展，若�
 Hi {{name}},
 The COSCUP 2024 organizing team successfully kicked off last week, and each team has started recruiting volunteers for this year. Join us in preparing for the annual event!
 This message will guide you through important information for future participation in COSCUP, whether you are a volunteer, community partner, speaker, sponsor, or attendee!
+By the way, all the [session videos](https://www.youtube.com/@coscup) from 2023 have been uploaded to YouTube. If you missed any sessions you wanted to hear, you can watch the video replays!
 
 ## Basic Information
 
