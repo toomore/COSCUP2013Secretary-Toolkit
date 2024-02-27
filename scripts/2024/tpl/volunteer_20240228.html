@@ -1,0 +1,505 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>COSCUP Volunteer</title>
+    <style>
+      /* -------------------------------------
+          GLOBAL RESETS
+      ------------------------------------- */
+      img {
+        border: none;
+        -ms-interpolation-mode: bicubic;
+        max-width: 100%; }
+
+      body {
+        background-color: #ffffff;
+        font-family: sans-serif;
+        -webkit-font-smoothing: antialiased;
+        font-size: 14px;
+        line-height: 1.4;
+        margin: 0;
+        padding: 0;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%; }
+
+      table {
+        border-collapse: separate;
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+        width: 100%; }
+        table td {
+          font-family: sans-serif;
+          font-size: 14px;
+          vertical-align: top; }
+
+      /* -------------------------------------
+          BODY & CONTAINER
+      ------------------------------------- */
+
+      .body {
+        background-color: #ffffff;
+        width: 100%; }
+
+      /* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */
+      .container {
+        display: block;
+        margin: 0 auto !important;
+        /* makes it centered */
+        max-width: 580px;
+        padding: 10px; }
+
+      /* This should also be a block element, so that it will fill 100% of the .container */
+      .content {
+        box-sizing: border-box;
+        display: block;
+        margin: 0 auto;
+        max-width: 580px;
+        padding: 10px;
+        background-color: #57c257; }
+
+      /* -------------------------------------
+          HEADER, FOOTER, MAIN
+      ------------------------------------- */
+      .main {
+        background: #fff;
+        border-radius: 3px;
+        width: 100%; }
+
+      .wrapper {
+        box-sizing: border-box;
+        padding: 20px; }
+
+      .footer {
+        clear: both;
+        padding: 10px 0;
+        text-align: center;
+        width: 100%; }
+        .footer td,
+        .footer p,
+        .footer span,
+        .footer a {
+          color: #ffffff;
+          font-size: 12px;
+          text-align: center; }
+
+      /* -------------------------------------
+          TYPOGRAPHY
+      ------------------------------------- */
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: #000000;
+        font-family: sans-serif;
+        font-weight: 400;
+        line-height: 1.4;
+        margin: 0;
+        margin-bottom: 30px; }
+
+      h1 {
+        font-size: 35px;
+        font-weight: 300;
+        text-align: center;
+        text-transform: capitalize; }
+
+      p,
+      ul,
+      ol {
+        font-family: sans-serif;
+        font-size: 14px;
+        font-weight: normal;
+        margin: 0;
+        margin-bottom: 15px; }
+        p li,
+        ul li,
+        ol li {
+          list-style-position: inside;
+          margin-left: 5px; }
+
+      a {
+        color: #3498db;
+        text-decoration: underline; }
+
+      /* -------------------------------------
+          BUTTONS
+      ------------------------------------- */
+      .btn {
+        box-sizing: border-box;
+        width: 100%; }
+        .btn > tbody > tr > td {
+          padding-bottom: 15px; }
+        .btn table {
+          width: auto; }
+        .btn table td {
+          background-color: #ffffff;
+          border-radius: 5px;
+          text-align: center; }
+        .btn a {
+          background-color: #ffffff;
+          border: solid 1px #0a4cba;
+          border-radius: 5px;
+          box-sizing: border-box;
+          color: #0a4cba;
+          cursor: pointer;
+          display: inline-block;
+          font-size: 14px;
+          font-weight: bold;
+          margin: 0;
+          padding: 12px 25px;
+          text-decoration: none;
+          text-transform: capitalize; }
+
+      .btn-primary table td {
+        background-color: #3498db; }
+
+      .btn-primary a {
+        background-color: #047000;
+        border-color: #bdffbb;
+        color: #ffffff; }
+
+      /* -------------------------------------
+          OTHER STYLES THAT MIGHT BE USEFUL
+      ------------------------------------- */
+      .last {
+        margin-bottom: 0; }
+
+      .first {
+        margin-top: 0; }
+
+      .align-center {
+        text-align: center; }
+
+      .align-right {
+        text-align: right; }
+
+      .align-left {
+        text-align: left; }
+
+      .clear {
+        clear: both; }
+
+      .mt0 {
+        margin-top: 0; }
+
+      .mb0 {
+        margin-bottom: 0; }
+
+      .preheader {
+        color: transparent;
+        display: none;
+        height: 0;
+        max-height: 0;
+        max-width: 0;
+        opacity: 0;
+        overflow: hidden;
+        mso-hide: all;
+        visibility: hidden;
+        width: 0; }
+
+      .powered-by a {
+        text-decoration: none; }
+
+      hr {
+        border: 3px #e6ffe6 solid;
+        border-radius: 3px;
+        margin: 20px 0; }
+
+      /* -------------------------------------
+          RESPONSIVE AND MOBILE FRIENDLY STYLES
+      ------------------------------------- */
+      @media only screen and (max-width: 580px) {
+        table[class=body] h1 {
+          font-size: 28px !important;
+          margin-bottom: 10px !important; }
+        table[class=body] p,
+        table[class=body] ul,
+        table[class=body] ol,
+        table[class=body] td,
+        table[class=body] span,
+        table[class=body] a {
+          font-size: 16px !important; }
+        table[class=body] .wrapper,
+        table[class=body] .article {
+          padding: 10px !important; }
+        table[class=body] .content {
+          padding: 0 !important; }
+        table[class=body] .container {
+          padding: 0 !important;
+          width: 100% !important; }
+        table[class=body] .main {
+          border-left-width: 0 !important;
+          border-radius: 0 !important;
+          border-right-width: 0 !important; }
+        table[class=body] .btn table {
+          width: 100% !important; }
+        table[class=body] .btn a {
+          width: 100% !important; }
+        table[class=body] .img-responsive {
+          height: auto !important;
+          max-width: 100% !important;
+          width: auto !important; }}
+
+      /* -------------------------------------
+          PRESERVE THESE STYLES IN THE HEAD
+      ------------------------------------- */
+      @media all {
+        .ExternalClass {
+          width: 100%; }
+        .ExternalClass,
+        .ExternalClass p,
+        .ExternalClass span,
+        .ExternalClass font,
+        .ExternalClass td,
+        .ExternalClass div {
+          line-height: 100%; }
+        .apple-link a {
+          color: inherit !important;
+          font-family: inherit !important;
+          font-size: inherit !important;
+          font-weight: inherit !important;
+          line-height: inherit !important;
+          text-decoration: none !important; }
+        .btn-primary table td:hover {
+          background-color: #34495e !important; }
+        .btn-primary a:hover {
+          background-color: #34495e !important;
+          border-color: #34495e !important; } }
+
+      .quote {
+        color: #334433;
+        font-style: italic;
+        font-size: small;
+      }
+      h2 {
+        font-weight: bold;
+        font-family: "Arial";
+        border-bottom: 1px #243551 dashed;
+        padding-left: 1px;
+        margin-top: 30px;
+        margin-bottom: 12px;
+      }
+      h3 {
+        margin-bottom: 5px;
+        margin-top: 20px;
+        color: #103d88;
+        font-weight: bold;
+      }
+      ol li,
+      ul li {
+        list-style-position: outside;
+        margin-left: 0px;
+        line-height: 2;
+      }
+      .tips {
+        font-family: "Courier New";
+        background-color: #fafafa;
+        padding: 6px;
+        border-radius: 3px;
+        border: 1px #81d4fa solid;
+        font-size: 12px;
+        color: #01579b;
+      }
+      .tips-green {
+        color: #2E7D32;
+        border: 1px #43A047 solid;
+      }
+      pre {
+        font-size: small;
+        color: #607D8B;
+        border: 1px #cccccc dotted;
+        border-radius: 3px;
+        background-color: #eeeeee;
+        padding: 5px;
+      }
+      p small,
+      li small {
+        color: #898989;
+      }
+      p .red-strong {
+        font-weight: bold;
+        color: red;
+      }
+      h2 small {
+        font-size: small;
+        color: #898989;
+      }
+      h3 small {
+        font-size: small;
+        color: #898989;
+      }
+      .btn-tips{
+        font-size: x-small;
+        color: #6E8E6C;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body class="">
+    <table border="0" cellpadding="0" cellspacing="0" class="body">
+      <tr>
+        <td>&nbsp;</td>
+        <td class="container">
+          <div class="content">
+
+            <!-- START CENTERED WHITE CONTAINER -->
+            <span class="preheader">{{preheader}}</span>
+            <table class="main">
+
+              <!-- START MAIN CONTENT AREA -->
+              <tr>
+                <td class="wrapper">
+                  <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td>
+                        <p class="align-right" style="margin-bottom:0px;"><a href="https://coscup.org/"><img height="48" src="https://volunteer.coscup.org/s3/img/coscup_logo_tw.png" alt="COSCUP Logo" title="COSCUP Logo"></a></p>
+                        <p>Hi {{name}},</p>
+                        <p><small>[English below]</small></p>
+                        <p>新年快樂、元宵節快樂，新的一年開始，COSCUP 籌備團隊依舊持續努力進行準備工作，這一期與您更新目前為止重要的訊息！</p>
+                        <p class="align-right"><small><a href="">[線上版本]</a></small></p>
+                        <h2>近期更新</h2>
+                        <h3>FOSDEM 歸來</h3>
+                        <p class="align-center">
+                          <a href="https://ocf.tw/p/global/fosdem-2024/"><img src="https://volunteer.coscup.org/img/2024/fosdem-booth-2.jpg"
+                               alt="OCFxCOSCUP to FOSDEM" title="OCFxCOSCUP to FOSDEM"
+                               style="border-radius: 8px;border:1px solid hsl(142, 52%, 96%);"></a>
+                        </p>
+                        <p>COSCUP 在二月初前往比利時布魯塞爾參加歐洲最大的開源活動 <a href="https://fosdem.org/">FOSDEM</a>，與開放文化基金會一起分享在臺灣的開源社群資訊。我們也介紹 COSCUP 開源人年會再臺灣舉辦的狀況，熱烈邀請他們有機會一定要來參加，會眾或講者都非常歡迎，順便來臺灣旅遊！</p>
+                        <p>更多的新發現，可以參考開放文化基金會的<a href="https://ocf.tw/p/global/fosdem-2024/">活動紀錄</a>！</p>
+                        <h3>SCaLE 21x</h3>
+                        <p class="align-center">
+                          <a href="https://ocf.tw/p/global/fosdem-2024/"><img src="https://volunteer.coscup.org/img/2024/2024_coscup_scale21x_flight.png"
+                               alt="COSCUP to SCaLE21x" title="COSCUP to SCaLE21x"
+                               style="border-radius: 1180px;border:1px solid hsl(0, 0%, 50%);"></a>
+                        </p>
+                        <p>COSCUP 交流組預計三月前往加州參與 <a href="https://www.socallinuxexpo.org/scale/21x">SCaLE 21x</a> （Southern California Linux Expo, <a href="https://www.socallinuxexpo.org/scale/21x/about-scale">SCaLE</a>）擺攤交流活動，這是我們第一次踏入美國，希望能順利完成推廣 COSCUP 的任務。您如果剛好也在加州、或是剛好也要參加 SCaLE 21x，都歡迎來找我們聊聊天或是吃個飯、聊開源！</p>
+                        <p>開源社群夥伴，交流組亦有蒐集物資傳單服務，詳細內容可以<a href="https://hackmd.io/Ylk5jTbiQtqlmaDR7Ad3Lw">參考說明</a>，並在 3/5 與 3/7 前完成相關的物資準備。</p>
+                        <h3>招募開源社群參與</h3>
+                        <p>COSCUP 議程組已經公告徵求開源社群參與！</p>
+                        <p>與其他研討會、年會活動不太一樣的地方，COSCUP 是一群<strong>開源社群一起舉辦</strong>的大型年度研討會，此刻的焦點在各個社群夥伴，由你們來決定今年 COSCUP 在開源參與的多樣性，在此非常誠摯的邀請社群夥伴再次與我們參與 COSCUP 2024 的籌備！</p>
+                        <p>詳細的說明與申請方式，可以參考 <a href="https://blog.coscup.org/2024/02/blog-post.html">Call for participation</a>。提醒重要的截止日期：</p>
+                        <ul>
+                        	<li>社群議程：～ 2024/03/17</li>
+                        	<li>社群攤位：～ 2024/06/03</li>
+                        </ul>
+                        <p>建議儘早申請，避免教室或攤位因數量提前額滿！忘記去年有<a href="https://coscup.org/2023/zh-TW/community">哪些開源社群</a>與<a href="https://volunteer.coscup.org/schedule/2023">他們的議程</a>嗎？</p>
+                        <p>如果您參與的社群還未有想法該如何進行，或是您今年想要試著投稿分享議題，歡迎參考這份內容，希望可以協助您如何完成相關的參與規劃。</p>
+                        <h3>如何贊助我們</h3>
+                        <p>COSCUP 贊助組已努力調整今年的贊助方案，如果您需要預算規劃參考資料，可先參照往年的<a href="https://coscup.org/2023/zh-TW/sponsor">方案內容</a>，如有更多合作提案，也歡迎來信到<a href="mailto:sponsorship@coscup.org">贊助組</a>。</p>
+                        <h2>如何持續關注我們</h2>
+                        <h3>活動行事曆</h3>
+                        <p class="align-center">
+                          <a href="https://volunteer.coscup.org/docs/zh-TW/about_coscup/calendar/"><img src="https://volunteer.coscup.org/img/2024/2024_coscup_calendar.png"
+                               alt="COSCUP Public Calendar" title="COSCUP Public Calendar"
+                               style="border-radius: 4px;border:1px solid hsl(0, 0%, 50%);"></a>
+                        </p>
+                        <p>從 2023 年開始，COSCUP 各組籌備會議與大會活動都統一在同一本的行事曆中，您如果怕錯過重要時刻或是也想身歷其境籌備過程，非常歡迎匯入、同步<a href="https://volunteer.coscup.org/docs/zh-TW/about_coscup/calendar/">此行事曆</a>。</p>
+                        <h3>志工招募</h3>
+                        <p>我們持續招募今年的志工夥伴，如要參與籌備，歡迎前往<a href="https://volunteer.coscup.org/">志工平台</a>完成招募流程！</p>
+                        <h3>舊報攤（過往電子報）</h3>
+                        <p class="align-center">
+                          <a href="https://volunteer.coscup.org/docs/zh-TW/about_coscup/newsletters/overview/"><img src="https://volunteer.coscup.org/img/2024/2024_old_newsletters_zh-tw.png"
+                               alt="COSCUP Public Calendar" title="COSCUP Public Calendar"
+                               style="border-radius: 4px;border:1px solid hsl(121.8, 39.2%, 49%);"></a>
+                        </p>
+                        <p>由於 COSCUP 已經不需要報名就可以參加的活動，我們需要透過電子報的方式發送活動訊息，在過往的時間我們也發行了許多電子報，而這些已發送的內容已經整理到行政組的文件區<a href="https://volunteer.coscup.org/docs/zh-TW/about_coscup/newsletters/overview/">封存可線上查閱</a>。</p>
+                        <p class="align-center">🌟</p>
+                        <hr style="border: 3px solid rgb(214, 244, 210); border-radius: 3px;">
+                        <p>Hi {{name}},</p>
+                        <p>Happy New Year and Happy Lantern Festival! As the new year begins, the COSCUP organizing team continues to work diligently on preparations. In this issue, we bring you updates on the most important information so far!</p>
+                        <p class="align-right"><small><a href="">[Online Version]</a></small></p>
+                        <h2>Recent Updates</h2>
+                        <h3>Return from FOSDEM</h3>
+                        <p class="align-center">
+                          <a href="https://ocf.tw/en/p/global/fosdem-2024/"><img src="https://volunteer.coscup.org/img/2024/fosdem-booth-2.jpg"
+                               alt="OCFxCOSCUP to FOSDEM" title="OCFxCOSCUP to FOSDEM"
+                               style="border-radius: 8px;border:1px solid hsl(142, 52%, 96%);"></a>
+                        </p>
+                        <p>COSCUP went to Brussels, Belgium in early February to participate in <a href="https://fosdem.org/">FOSDEM</a>, the largest open-source event in Europe, where we shared information about the open-source community in Taiwan with the <a href="https://ocf.tw/en/">Open Culture Foundation</a>. We also introduced the status of COSCUP, the annual open-source conference held in Taiwan, and enthusiastically invited them to join us if they have the opportunity. Both attendees and speakers are very welcome, and it&#39;s a great chance to visit Taiwan!</p>
+                        <p>For more discoveries, you can refer to the <a href="https://ocf.tw/p/global/fosdem-2024/">event records</a> of the Open Culture Foundation!</p>
+                        <h3>SCaLE 21x</h3>
+                        <p class="align-center">
+                          <a href="https://ocf.tw/p/global/fosdem-2024/"><img src="https://volunteer.coscup.org/img/2024/2024_coscup_scale21x_flight.png"
+                               alt="COSCUP to SCaLE21x" title="COSCUP to SCaLE21x"
+                               style="border-radius: 1180px;border:1px solid hsl(0, 0%, 50%);"></a>
+                        </p>
+                        <p>The COSCUP Engagement Team plans to attend <a href="https://www.socallinuxexpo.org/scale/21x">SCaLE 21x</a> (Southern California Linux Expo, <a href="https://www.socallinuxexpo.org/scale/21x/about-scale">SCaLE</a>) in California in March for networking and promotional activities. This will be our first time in the United States, and we hope to successfully fulfill our mission of promoting COSCUP. If you happen to be in California or are also attending SCaLE 21x, feel free to come and chat with us, grab a meal, and discuss open-source!</p>
+                        <h3>Recruiting Open Source Communities to Participate</h3>
+                        <p>The COSCUP Program Team has announced the recruitment of open-source communities!</p>
+                        <p>Different from other seminars and annual events, COSCUP is a large-scale annual seminar co-organized by open-source communities. The current focus is on various community partners, and it&#39;s up to you to determine the diversity of open-source participation in COSCUP this year. We sincerely invite community partners to participate in the preparation of COSCUP 2024 once again!</p>
+                        <p>For detailed instructions and application methods, please refer to the <a href="https://blog.coscup.org/2024/02/blog-post.html#anchor2">Call for participation</a>. Important deadlines to note:</p>
+                        <ul>
+                        	<li>Community tracks: ~ March 17, 2024</li>
+                        	<li>Community booths: ~ June 3, 2024</li>
+                        </ul>
+                        <p>It is recommended to apply early to avoid classrooms or booths being filled up in advance! Do you remember which <a href="https://coscup.org/2023/en/community">open-source communities</a> and <a href="https://coscup.org/2023/en/session">their sessions</a> were featured last year?</p>
+                        <h3>How to Sponsor Us</h3>
+                        <p>The COSCUP Sponsorship Team has worked hard to adjust this year&#39;s sponsorship packages. If you need budget planning reference materials, you can first refer to the <a href="https://coscup.org/2023/en/sponsor">previous package contents</a>. If you have more cooperation proposals, feel free to email them to the <a href="mailto:sponsorship@coscup.org">Sponsorship Team</a>.</p>
+                        <h2>How to Stay Updated with Us</h2>
+                        <h3>Event Calendar</h3>
+                        <p class="align-center">
+                          <a href="https://volunteer.coscup.org/docs/about_coscup/calendar/"><img src="https://volunteer.coscup.org/img/2024/2024_coscup_calendar.png"
+                               alt="COSCUP Public Calendar" title="COSCUP Public Calendar"
+                               style="border-radius: 4px;border:1px solid hsl(0, 0%, 50%);"></a>
+                        </p>
+                        <p>Starting from 2023, all COSCUP organizing committee meetings and conference events are unified in the same calendar. If you&#39;re afraid of missing important moments or would like to experience the preparation process firsthand, you are very welcome to import and synchronize <a href="https://volunteer.coscup.org/docs/about_coscup/calendar/">this calendar</a>.</p>
+                        <h3>Volunteer Recruitment</h3>
+                        <p>We continue to recruit volunteer partners for this year. If you want to participate in the preparation, please visit the <a href="https://volunteer.coscup.org/">volunteer.coscup.org</a> to complete the recruitment process!</p>
+                        <p>The current platform only supports Traditional Chinese content. The secretary team is currently working hard to complete the correction of the multilingual framework. Before this is done, if there are any registrations or inquiries regarding volunteer participation, please feel free to <a href="mailto:volunteer@coscup.org">email us</a> directly.</p>
+                        <h3>Archived Newsletters</h3>
+                        <p class="align-center">
+                          <a href="https://volunteer.coscup.org/docs/about_coscup/newsletters/overview/"><img src="https://volunteer.coscup.org/img/2024/2024_old_newsletters.png"
+                               alt="COSCUP Public Calendar" title="COSCUP Public Calendar"
+                               style="border-radius: 4px;border:1px solid hsl(121.8, 39.2%, 49%);"></a>
+                        </p>
+                        <p>Since COSCUP no longer requires registration for participation in events, we need to send event information through newsletters. Over time, we have issued many newsletters, and the content of these previously sent newsletters has been organized and archived in the secretary team&#39;s document for <a href="https://volunteer.coscup.org/docs/about_coscup/newsletters/overview/">online access</a>.</p>
+                        <p class="align-center">🌟</p>
+                        <p class="btn-tips" style="margin-bottom: 0; margin-top: 30px;">如果有任何問題，可以直接回覆此封信件，感謝協助！</p>
+                        <p class="btn-tips">If you have any questions, please reply to this letter.</p>
+                        <p class="btn-tips" style="margin-bottom: 10px;"><a href="https://volunteer.coscup.org/docs/zh-TW/about_coscup/newsletters/overview/">舊報攤（過往電子報）</a> | <a href="https://volunteer.coscup.org/docs/about_coscup/newsletters/overview/">Archived Newsletters</a></p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            <!-- END MAIN CONTENT AREA -->
+            </table>
+
+            <!-- START FOOTER -->
+            <div class="footer">
+              <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td class="content-block">
+                    <span class="apple-link" style="display: inline-block;height: 24px;">
+                      <a href="https://www.facebook.com/coscup/"><img width="24" alt="coscup's facebook" src="https://secretary.coscup.org/s3/icon/facebook-square-brands.png"></a>
+                      <a href="https://t.me/coscupchat"><img width="24" alt="coscup's telegram" src="https://secretary.coscup.org/s3/icon/telegram-brands.png"></a>
+                      <a href="https://twitter.com/coscup"><img width="24" alt="coscup's twitter" src="https://secretary.coscup.org/s3/icon/twitter-square-brands.png"></a>
+                      <a href="https://blog.coscup.org/"><img width="24" alt="coscup's blog" src="https://secretary.coscup.org/s3/icon/blogger-brands.png"></a>
+                      <a href="https://www.flickr.com/photos/coscup/"><img width="24" alt="coscup's flickr" src="https://secretary.coscup.org/s3/icon/flickr-brands.png"></a>
+                      <a href="https://www.youtube.com/user/thecoscup"><img width="24" alt="coscup's youtube" src="https://secretary.coscup.org/s3/icon/youtube-square-brands.png"></a>
+                    </span>
+                    <br>
+                    <span class="apple-link" style="display: inline-block;height: 15px;">COSCUP 行政組 | Secretary Team</span>
+                  </td>
+                  <td class="content-block">
+                    {%if openhash%}
+                      <img src="https://secretary.coscup.org/r/{{ucode}}/{{openhash}}?{{args}}"
+                           border=0 width="1" height="3" alt="">
+                    {% endif %}
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <!-- END FOOTER -->
+
+          <!-- END CENTERED WHITE CONTAINER -->
+
+          <!-- END CENTERED WHITE CONTAINER -->
+          </div>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+  </body>
+</html>
