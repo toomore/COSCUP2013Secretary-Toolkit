@@ -9,11 +9,12 @@ Hi {{name}},
 ### FOSDEM 歸來
 
 COSCUP 在二月初前往比利時布魯塞爾參加歐洲最大的開源活動 [FOSDEM](https://fosdem.org/)，與開放文化基金會一起分享在臺灣的開源社群資訊。我們也介紹 COSCUP 開源人年會再臺灣舉辦的狀況，熱烈邀請他們有機會一定要來參加，會眾或講者都非常歡迎，順便來臺灣旅遊！
+
 更多的新發現，可以參考開放文化基金會的[活動紀錄](https://ocf.tw/p/global/fosdem-2024/)！
 
 ### SCaLE 21x
 
-COSCUP 交流組預計三月前往加州參與 [SCaLE 21x](https://www.socallinuxexpo.org/scale/21x) （Southern California Linux Expo, [SCaLE](https://www.socallinuxexpo.org/scale/21x/about-scale)）擺攤交流活動，這是我們第一次踏入美國，希望能順利完成推廣 COSCUP 的任務。您如果剛好也在加州、或是剛好也要參加 SCaLE 21x，都歡迎來找我們聊聊天或是吃個飯、聊開源！
+COSCUP 交流組預計三月前往加州參與 [SCaLE 21x](https://www.socallinuxexpo.org/scale/21x) （Southern California Linux Expo, [SCaLE](https://www.socallinuxexpo.org/scale/21x/about-scale)）[擺攤交流活動](https://www.socallinuxexpo.org/scale/21x/sponsor/conference-open-source-coders-users-and-promoters)，這是我們第一次踏入美國，希望能順利完成推廣 COSCUP 的任務。您如果剛好也在加州、或是剛好也要參加 SCaLE 21x，都歡迎來找我們聊聊天或是吃個飯、聊開源！
 
 開源社群夥伴，交流組亦有蒐集物資傳單服務，詳細內容可以[參考說明](https://hackmd.io/Ylk5jTbiQtqlmaDR7Ad3Lw)，並在 3/5 與 3/7 前完成相關的物資準備。
 
@@ -29,8 +30,6 @@ COSCUP 議程組已經公告徵求開源社群參與！
 - 社群攤位：～ 2024/06/03
 
 建議儘早申請，避免教室或攤位因數量提前額滿！忘記去年有[哪些開源社群](https://coscup.org/2023/zh-TW/community)與[他們的議程](https://volunteer.coscup.org/schedule/2023)嗎？
-
-如果您參與的社群還未有想法該如何進行，或是您今年想要試著投稿分享議題，歡迎參考這份內容，希望可以協助您如何完成相關的參與規劃。
 
 ### 如何贊助我們
 
@@ -66,7 +65,7 @@ For more discoveries, you can refer to the [event records](https://ocf.tw/p/glob
 
 ### SCaLE 21x
 
-The COSCUP Engagement Team plans to attend [SCaLE 21x](https://www.socallinuxexpo.org/scale/21x) (Southern California Linux Expo, [SCaLE](https://www.socallinuxexpo.org/scale/21x/about-scale)) in California in March for networking and promotional activities. This will be our first time in the United States, and we hope to successfully fulfill our mission of promoting COSCUP. If you happen to be in California or are also attending SCaLE 21x, feel free to come and chat with us, grab a meal, and discuss open-source!
+The COSCUP Engagement Team plans to attend [SCaLE 21x](https://www.socallinuxexpo.org/scale/21x) (Southern California Linux Expo, [SCaLE](https://www.socallinuxexpo.org/scale/21x/about-scale)) in California in March for [networking and promotional activities](https://www.socallinuxexpo.org/scale/21x/sponsor/conference-open-source-coders-users-and-promoters). This will be our first time in the United States, and we hope to successfully fulfill our mission of promoting COSCUP. If you happen to be in California or are also attending SCaLE 21x, feel free to come and chat with us, grab a meal, and discuss open-source!
 
 ### Recruiting Open Source Communities to Participate
 
