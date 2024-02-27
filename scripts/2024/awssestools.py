@@ -564,9 +564,9 @@ def send_240118(dry_run=True):
     template_md = TPLENV.get_template('./volunteer_20240118.md')
 
     if dry_run:
-        path = './coscup_paper_subscribers_00000000_test.csv'
+        path = './coscup_paper_subscribers_6d1k94jz_test.csv'
     else:
-        path = './coscup_paper_subscribers_00000000_20230817_005125.csv'
+        path = './coscup_paper_subscribers_6d1k94jz_20240118_010356.csv'
 
     users = []
     with open(path, 'r+', encoding='UTF8') as files:
