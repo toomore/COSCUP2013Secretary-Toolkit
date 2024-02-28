@@ -608,6 +608,68 @@ def send_240118(dry_run=True):
         queue_sender(raw)
 
 
+def send_240228(dry_run=True):
+    ''' Send 240228 '''
+    template = TPLENV.get_template('./volunteer_20240228_inline.html')
+    template_md = TPLENV.get_template('./volunteer_20240228.md')
+
+    if dry_run:
+        path = './coscup_paper_subscribers_2fe2dbv8_test.csv'
+    else:
+        path = './coscup_paper_subscribers_2fe2dbv8_20240118_010356.csv'
+
+    users = []
+    with open(path, 'r+', encoding='UTF8') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        subject = choice([
+            'COSCUP 2024 近期籌備進度更新 Update Report 2024/02',
+            '近期籌備進度更新 Update Report 2024/02',
+            '[COSCUP] 近期籌備進度更新 Update Report 2024/02',
+            'COSCUP 2024 招募社群參與 議程 攤位 CfP Call for participate proposals booths/stands',
+            '招募社群參與 議程 攤位 CfP Call for participate proposals booths/stands',
+            '[COSCUP] 招募社群參與 議程 攤位 CfP Call for participate proposals booths/stands',
+            'COSCUP 2024 近期更新 我們從 FOSDEM 回來了 Return from FOSDEM',
+            '近期更新 我們從 FOSDEM 回來了 Return from FOSDEM',
+            '[COSCUP] 近期更新 我們從 FOSDEM 回來了 Return from FOSDEM',
+            'COSCUP 2024 近期更新 電子報舊報攤開張 Archived Newsletters Online',
+            '近期更新 電子報舊報攤開張 Archived Newsletters Online',
+            '[COSCUP] 近期更新 電子報舊報攤開張 Archived Newsletters Online',
+            'COSCUP 2024 近期更新 即將前往 SCaLE21x 加州參與擺攤推廣',
+        ])
+
+        u['preheader'] = choice([
+            '捲起袖子一起加入籌備團隊',
+            '我們從 FOSDEM 回來了',
+            '攤位 議程 社群參與招募中',
+            '過往電子報上線，舊報攤開張',
+            '即將前往 SCaLE21x 加州參與推廣',
+        ])
+
+        u['subject'] = subject
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(
+                'COSCUP Volunteer 志工服務', 'volunteer@coscup.org'),
+            list_unsubscribe='<mailto:volunteer+unsubscribe240118@coscup.org>',
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject=subject,
+            body=template.render(**u),
+            text_body=template_md.render(**u),
+        )
+
+        queue_sender(raw)
+
+
 if __name__ == '__main__':
     # send_240118(dry_run=True)
+    # send_240228(dry_run=True)
     pass
