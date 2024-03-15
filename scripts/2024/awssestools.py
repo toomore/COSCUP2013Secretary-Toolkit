@@ -669,7 +669,64 @@ def send_240228(dry_run=True):
         queue_sender(raw)
 
 
+def send_240315(dry_run=True):
+    ''' Send 240315 '''
+    template = TPLENV.get_template('./volunteer_20240315_inline.html')
+    template_md = TPLENV.get_template('./volunteer_20240315.md')
+
+    if dry_run:
+        path = './coscup_paper_subscribers_q36x36i5_test.csv'
+    else:
+        path = './coscup_paper_subscribers_q36x36i5_20240228_044142.csv'
+
+    users = []
+    with open(path, 'r+', encoding='UTF8') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        subject = choice([
+            'COSCUP 2024 近期籌備進度更新 Update Report 2024/03',
+            '近期籌備進度更新 Update Report 2024/03',
+            '[COSCUP] 近期籌備進度更新 Update Report 2024/03',
+            'COSCUP 2024/03 招募社群參與 議程 攤位 CfP Call for participate proposals booths/stands',
+            '即將截止招募社群參與 議程 攤位 CfP Call for participate proposals booths/stands',
+            '[COSCUP] 即將截止招募社群參與 議程 攤位 CfP Call for participate proposals booths/stands',
+            'COSCUP 2024 近期更新 前往 SCaLE21x 加州參與擺攤推廣',
+            'COSCUP 2024 前往 SCaLE21x 加州參與擺攤推廣與如何參與 COSCUP 指南',
+            '[COSCUP] 如何參與 COSCUP 指南、前往 SCaLE21x 加州參與擺攤推廣與',
+            '如何參與 COSCUP 指南、前往 SCaLE21x 加州參與擺攤推廣與',
+        ])
+
+        u['preheader'] = choice([
+            '捲起袖子一起加入籌備團隊、如何參與 COSCUP 指南、SCaLE21x 加州參與推廣',
+            '攤位 議程 社群參與招募中、如何參與 COSCUP 指南、SCaLE21x 加州參與推廣',
+            '如何參與 COSCUP 指南、SCaLE21x 加州參與推廣、捲起袖子一起加入籌備團隊',
+        ])
+
+        u['subject'] = subject
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(
+                'COSCUP Volunteer 志工服務', 'volunteer@coscup.org'),
+            list_unsubscribe='<mailto:volunteer+unsubscribe240315@coscup.org>',
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject=subject,
+            body=template.render(**u),
+            text_body=template_md.render(**u),
+        )
+
+        queue_sender(raw)
+
+
 if __name__ == '__main__':
     # send_240118(dry_run=True)
     # send_240228(dry_run=True)
+    # send_240315(dry_run=True)
     pass
