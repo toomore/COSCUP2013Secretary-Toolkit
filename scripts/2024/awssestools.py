@@ -725,8 +725,54 @@ def send_240315(dry_run=True):
         queue_sender(raw)
 
 
+def send_scale21x(dry_run=True):
+    ''' Send scale21x '''
+    template = TPLENV.get_template('./scale21x_inline.html')
+    template_md = TPLENV.get_template('./scale21x.md')
+
+    if dry_run:
+        path = './scale21x_users_test.csv'
+    else:
+        path = './scale21x_users.csv'
+
+    users = []
+    with open(path, 'r+', encoding='UTF8') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        subject = choice([
+            "[COSCUP] We are glad to have met you at SCaLE21x",
+        ])
+
+        u['preheader'] = choice([
+            "Hope you have the chance to visit Taiwan together sometime",
+        ])
+
+        u['subject'] = subject
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(
+                'COSCUP Engagement Team', 'engagement@coscup.org'),
+            list_unsubscribe='<mailto:engagement+unsubscribe240420@coscup.org>',
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject=subject,
+            body=template.render(**u),
+            text_body=template_md.render(**u),
+        )
+
+        queue_sender(raw)
+
+
 if __name__ == '__main__':
     # send_240118(dry_run=True)
     # send_240228(dry_run=True)
     # send_240315(dry_run=True)
+    # send_scale21x(dry_run=True)
     pass
