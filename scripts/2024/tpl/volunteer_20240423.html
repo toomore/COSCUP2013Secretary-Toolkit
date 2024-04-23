@@ -1,0 +1,447 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>COSCUP Volunteer</title>
+    <style>
+      /* -------------------------------------
+          GLOBAL RESETS
+      ------------------------------------- */
+      img {
+        border: none;
+        -ms-interpolation-mode: bicubic;
+        max-width: 100%; }
+
+      body {
+        background-color: #ffffff;
+        font-family: sans-serif;
+        -webkit-font-smoothing: antialiased;
+        font-size: 14px;
+        line-height: 1.4;
+        margin: 0;
+        padding: 0;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%; }
+
+      table {
+        border-collapse: separate;
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+        width: 100%; }
+        table td {
+          font-family: sans-serif;
+          font-size: 14px;
+          vertical-align: top; }
+
+      /* -------------------------------------
+          BODY & CONTAINER
+      ------------------------------------- */
+
+      .body {
+        background-color: #ffffff;
+        width: 100%; }
+
+      /* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */
+      .container {
+        display: block;
+        margin: 0 auto !important;
+        /* makes it centered */
+        max-width: 580px;
+        padding: 10px; }
+
+      /* This should also be a block element, so that it will fill 100% of the .container */
+      .content {
+        box-sizing: border-box;
+        display: block;
+        margin: 0 auto;
+        max-width: 580px;
+        padding: 10px;
+        background-color: #57c257; }
+
+      /* -------------------------------------
+          HEADER, FOOTER, MAIN
+      ------------------------------------- */
+      .main {
+        background: #fff;
+        border-radius: 3px;
+        width: 100%; }
+
+      .wrapper {
+        box-sizing: border-box;
+        padding: 20px; }
+
+      .footer {
+        clear: both;
+        padding: 10px 0;
+        text-align: center;
+        width: 100%; }
+        .footer td,
+        .footer p,
+        .footer span,
+        .footer a {
+          color: #ffffff;
+          font-size: 12px;
+          text-align: center; }
+
+      /* -------------------------------------
+          TYPOGRAPHY
+      ------------------------------------- */
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: #000000;
+        font-family: sans-serif;
+        font-weight: 400;
+        line-height: 1.4;
+        margin: 0;
+        margin-bottom: 30px; }
+
+      h1 {
+        font-size: 35px;
+        font-weight: 300;
+        text-align: center;
+        text-transform: capitalize; }
+
+      p,
+      ul,
+      ol {
+        font-family: sans-serif;
+        font-size: 14px;
+        font-weight: normal;
+        margin: 0;
+        margin-bottom: 15px; }
+        p li,
+        ul li,
+        ol li {
+          list-style-position: inside;
+          margin-left: 5px; }
+
+      a {
+        color: #3498db;
+        text-decoration: underline; }
+
+      /* -------------------------------------
+          BUTTONS
+      ------------------------------------- */
+      .btn {
+        box-sizing: border-box;
+        width: 100%; }
+        .btn > tbody > tr > td {
+          padding-bottom: 15px; }
+        .btn table {
+          width: auto; }
+        .btn table td {
+          background-color: #ffffff;
+          border-radius: 5px;
+          text-align: center; }
+        .btn a {
+          background-color: #ffffff;
+          border: solid 1px #0a4cba;
+          border-radius: 5px;
+          box-sizing: border-box;
+          color: #0a4cba;
+          cursor: pointer;
+          display: inline-block;
+          font-size: 14px;
+          font-weight: bold;
+          margin: 0;
+          padding: 12px 25px;
+          text-decoration: none;
+          text-transform: capitalize; }
+
+      .btn-primary table td {
+        background-color: #3498db; }
+
+      .btn-primary a {
+        background-color: #047000;
+        border-color: #bdffbb;
+        color: #ffffff; }
+
+      /* -------------------------------------
+          OTHER STYLES THAT MIGHT BE USEFUL
+      ------------------------------------- */
+      .last {
+        margin-bottom: 0; }
+
+      .first {
+        margin-top: 0; }
+
+      .align-center {
+        text-align: center; }
+
+      .align-right {
+        text-align: right; }
+
+      .align-left {
+        text-align: left; }
+
+      .clear {
+        clear: both; }
+
+      .mt0 {
+        margin-top: 0; }
+
+      .mb0 {
+        margin-bottom: 0; }
+
+      .preheader {
+        color: transparent;
+        display: none;
+        height: 0;
+        max-height: 0;
+        max-width: 0;
+        opacity: 0;
+        overflow: hidden;
+        mso-hide: all;
+        visibility: hidden;
+        width: 0; }
+
+      .powered-by a {
+        text-decoration: none; }
+
+      hr {
+        border: 3px #e6ffe6 solid;
+        border-radius: 3px;
+        margin: 20px 0; }
+
+      /* -------------------------------------
+          RESPONSIVE AND MOBILE FRIENDLY STYLES
+      ------------------------------------- */
+      @media only screen and (max-width: 580px) {
+        table[class=body] h1 {
+          font-size: 28px !important;
+          margin-bottom: 10px !important; }
+        table[class=body] p,
+        table[class=body] ul,
+        table[class=body] ol,
+        table[class=body] td,
+        table[class=body] span,
+        table[class=body] a {
+          font-size: 16px !important; }
+        table[class=body] .wrapper,
+        table[class=body] .article {
+          padding: 10px !important; }
+        table[class=body] .content {
+          padding: 0 !important; }
+        table[class=body] .container {
+          padding: 0 !important;
+          width: 100% !important; }
+        table[class=body] .main {
+          border-left-width: 0 !important;
+          border-radius: 0 !important;
+          border-right-width: 0 !important; }
+        table[class=body] .btn table {
+          width: 100% !important; }
+        table[class=body] .btn a {
+          width: 100% !important; }
+        table[class=body] .img-responsive {
+          height: auto !important;
+          max-width: 100% !important;
+          width: auto !important; }}
+
+      /* -------------------------------------
+          PRESERVE THESE STYLES IN THE HEAD
+      ------------------------------------- */
+      @media all {
+        .ExternalClass {
+          width: 100%; }
+        .ExternalClass,
+        .ExternalClass p,
+        .ExternalClass span,
+        .ExternalClass font,
+        .ExternalClass td,
+        .ExternalClass div {
+          line-height: 100%; }
+        .apple-link a {
+          color: inherit !important;
+          font-family: inherit !important;
+          font-size: inherit !important;
+          font-weight: inherit !important;
+          line-height: inherit !important;
+          text-decoration: none !important; }
+        .btn-primary table td:hover {
+          background-color: #34495e !important; }
+        .btn-primary a:hover {
+          background-color: #34495e !important;
+          border-color: #34495e !important; } }
+
+      .quote {
+        color: #334433;
+        font-style: italic;
+        font-size: small;
+      }
+      h2 {
+        font-weight: bold;
+        font-family: "Arial";
+        border-bottom: 1px #243551 dashed;
+        padding-left: 1px;
+        margin-top: 30px;
+        margin-bottom: 12px;
+      }
+      h3 {
+        margin-bottom: 5px;
+        margin-top: 20px;
+        color: #103d88;
+        font-weight: bold;
+      }
+      ol li,
+      ul li {
+        list-style-position: outside;
+        margin-left: 0px;
+        line-height: 2;
+      }
+      .tips {
+        font-family: "Courier New";
+        background-color: #fafafa;
+        padding: 6px;
+        border-radius: 3px;
+        border: 1px #81d4fa solid;
+        font-size: 12px;
+        color: #01579b;
+      }
+      .tips-green {
+        color: #2E7D32;
+        border: 1px #43A047 solid;
+      }
+      pre {
+        font-size: small;
+        color: #607D8B;
+        border: 1px #cccccc dotted;
+        border-radius: 3px;
+        background-color: #eeeeee;
+        padding: 5px;
+      }
+      p small,
+      li small {
+        color: #898989;
+      }
+      p .red-strong {
+        font-weight: bold;
+        color: red;
+      }
+      h2 small {
+        font-size: small;
+        color: #898989;
+      }
+      h3 small {
+        font-size: small;
+        color: #898989;
+      }
+      .btn-tips{
+        font-size: x-small;
+        color: #6E8E6C;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body class="">
+    <table border="0" cellpadding="0" cellspacing="0" class="body">
+      <tr>
+        <td>&nbsp;</td>
+        <td class="container">
+          <div class="content">
+
+            <!-- START CENTERED WHITE CONTAINER -->
+            <span class="preheader">{{preheader}}</span>
+            <table class="main">
+
+              <!-- START MAIN CONTENT AREA -->
+              <tr>
+                <td class="wrapper">
+                  <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td>
+                        <p class="align-right" style="margin-bottom:0px;"><a href="https://coscup.org/"><img height="48" src="https://volunteer.coscup.org/s3/img/coscup_logo_tw.png" alt="COSCUP Logo" title="COSCUP Logo"></a></p>
+                        <p><small>[The English version follows the Chinese version.]</small></p>
+                        <p class="align-right"><small><a href="https://volunteer.coscup.org/docs/zh-TW/about_coscup/newsletters/2024/20240423/">[線上版本]</a></small></p>
+                        <p>本期的內容包括議程徵稿、志工招募、國際交流與國內擺攤活動。嗨 {{name}} 最近過的好嗎？距離今年的活動時間大約還剩下 100 天左右，籌備團隊也持續努力安排事務，希望在今年也能順利的帶給各位滿滿的開源收穫！</p>
+                        <h2>志工招募</h2>
+                        <p>目前各組招募即將尾聲，不分組別需要的人力或是專業度的關係還正在努力找尋志工夥伴，如果您的熱情、興趣與專業切合一下組別，請把握最後時間與機會，與我們一同籌辦 COSCUP 2024！</p>
+                        <h3>製播組</h3>
+                        <p>主要工作內容協助議程錄影、檢查設備、記憶卡更換與回收。部分工作事項在會後的剪輯與整理。<a href="https://volunteer.coscup.org/team/2024/streaming/">製播組</a>團隊已是非常專業的志工夥伴在各大研討會提供專業的技術支援。有興趣加入製播組請展現您的熱情與被託付任務的責任感，到志工平台投出申請！</p>
+                        <h3>記錄組</h3>
+                        <p>主要工作內容在大會活動中、靜態影像的紀錄，想要練習捕捉精彩時刻的畫面，<a href="https://volunteer.coscup.org/team/2024/documentary/">記錄組</a>是個不錯的選擇。記錄組還有一項業務是形象照拍攝，將在會場建立專業攝影棚，對於攝影棚拍攝感興趣的，加入記錄組有機會一同參與！</p>
+                        <h3>場務組</h3>
+                        <p>撐起大會活動的重要組別之一，或是第一次參與志工還不確定哪裡可以去，可以先來場務組認識新朋友！<a href="https://volunteer.coscup.org/team/2024/field/">場務組</a>主要分為：報到、餐飲、攤位、物流、機動。各小組在會場將以排班的方式進行，還是有機會休息、聽議程、逛攤位、參與 COSCUP 其他的活動！</p>
+                        <p>以上是目前還需要志工夥伴們協助參與，另外大會也有「<a href="https://volunteer.coscup.org/tasks/2024">一日志工</a>」的機制，較輕鬆或任務型的方式進行。「一日志工」目前持續公告與張貼任務，歡迎隨時回來關注！</p>
+                        <h2>國際交流</h2>
+                        <p>在 COSCUP 執行國際交流事務目前有交流組與議程組，各自有不同的目標與方式來達成「國際交流」與「國際參與」。對於國際事務有任何建議，歡迎與我們交流！</p>
+                        <p>近期交流組已從 <a href="https://www.socallinuxexpo.org/scale/21x">SCaLE21x</a>、<a href="https://summit.fossasia.org/">FOSSASIA</a> 返回，SCaLE21x 的觀察分享可以參考<a href="https://volunteer.coscup.org/docs/zh-TW/global_engagement/scale21x/">這篇文章</a>。</p>
+                        <p><a href="https://volunteer.coscup.org/img/TPE-HAN.png"><img src="https://volunteer.coscup.org/img/TPE-HAN.png" alt="FOSSASIA Summit 2024，越南河內。" title="FOSSASIA Summit 2024，越南河內。" style="border-radius: 1180px;border:1px solid hsl(0, 0%, 50%);"></a></p>
+                        <p>FOSSASIA 今年比較特別，從原本在舉辦多年的新加坡移到了越南河內，也讓這次出訪擺攤的夥伴感受到越南的特色與濃厚的人情味！</p>
+                        <p><a href="https://volunteer.coscup.org/img/fossasia_event_imgs_1200.jpg"><img src="https://volunteer.coscup.org/img/fossasia_event_imgs_1200.jpg" alt="COSCUP at FOSSASIA Summit 2024，越南河內。" title="COSCUP at FOSSASIA Summit 2024，越南河內。" style="border-radius: 8px;border:1px solid hsl(142, 52%, 96%);"></a></p>
+                        <p>也感到佩服的是，原本也有許多來自歐洲、印度、新加坡、香港、中國、日本、韓國、澳洲、美國的社群也一同聚集到河內參與，FOSSASIA 有許多特色是我們可以參考與採納的，協助擺攤的夥伴在活動的二日、甚至於會後於主辦單位的交流，希望未來我們能夠與他們持續互動、交換彼此在本地的努力！</p>
+                        <h2>議程投稿</h2>
+                        <p>目前我們正在持續徵稿中，<strong>預計在 5/7 截止</strong>，剩下約兩週的時間，請把握機會分享您在開源領域的成果！</p>
+                        <p>我們有撰寫一篇如何成為講者的指南，如果您一直想要突破自我或是還躊躇不前不敢跨出第一步，可以先參考「<a href="https://volunteer.coscup.org/docs/zh-TW/about_coscup/how_to_participate/as_speaker/">議題講者</a>」指南！</p>
+                        <p>開源社群議程軌（<a href="https://volunteer.coscup.org/docs/zh-TW/about_coscup/how_to_participate/2024_cfp/">整理版本</a>）與第一波的<a href="https://blog.coscup.org/2024/04/coscup-booth-now-release.html">社群攤位</a>也已公佈！</p>
+                        <p>以上是這一期的電子報內容，感謝持續關注我們，也歡迎將 COSCUP 活動分享給更多朋友，最重要的是與我們一同籌備、參與！對了，我們在 <a href="https://summit.g0v.tw/2024/">g0v Summit 2024</a> 有一個 COSCUP 攤位，歡迎到現場與我們交換意見！</p>
+                        <p class="align-center">🌟</p>
+                        <hr style="border: 3px solid rgb(214, 244, 210); border-radius: 3px;">
+                        <p class="align-right"><small><a href="https://volunteer.coscup.org/docs/about_coscup/newsletters/2024/20240423/">[Online Version]</a></small></p>
+                        <p>This issue includes call for proposals, call for community booths, international engagement, and domestic booth activities. Hi {{name}}, how have you been lately? There are still about 100 days left until this year&#39;s event, and the organizing team continues to work hard to arrange affairs. We hope to bring you a fruitful open-source experience this year!</p>
+                        <h2>International Engagement</h2>
+                        <p>At COSCUP, international exchange affairs are currently managed by the Engagement Team and the Program Team, each with different goals and approaches to achieve &quot;international engagement&quot; and &quot;international participation.&quot; If you have any suggestions regarding international affairs, feel free to communicate with us!</p>
+                        <p>Recently, the Engagement Team has returned from <a href="https://www.socallinuxexpo.org/scale/21x">SCaLE21x</a> and <a href="https://summit.fossasia.org/">FOSSASIA</a>. Insights and sharing from SCaLE21x can be found in <a href="https://volunteer.coscup.org/docs/global_engagement/scale21x/">this article</a>.</p>
+                        <p><a href="https://volunteer.coscup.org/img/TPE-HAN.png"><img src="https://volunteer.coscup.org/img/TPE-HAN.png" alt="FOSSASIA Summit 2024, Hanoi, Vietnam." title="FOSSASIA Summit 2024, Hanoi, Vietnam." style="border-radius: 1180px;border:1px solid hsl(0, 0%, 50%);"></a></p>
+                        <p>FOSSASIA was particularly unique this year, as it moved from its long-standing location in Singapore to Hanoi, Vietnam. This change allowed our partners participating in the event to experience the unique characteristics and warm hospitality of Vietnam!</p>
+                        <p><a href="https://volunteer.coscup.org/img/fossasia_event_imgs_1200.jpg"><img src="https://volunteer.coscup.org/img/fossasia_event_imgs_1200.jpg" alt="COSCUP at FOSSASIA Summit 2024, Hanoi, Vietnam." title="COSCUP at FOSSASIA Summit 2024, Hanoi, Vietnam." style="border-radius: 8px;border:1px solid hsl(142, 52%, 96%);"></a></p>
+                        <p>It&#39;s also admirable that many communities from Europe, India, Singapore, Hong Kong, China, Japan, Korea, Australia, and the United States gathered in Hanoi to participate in FOSSASIA. FOSSASIA has many features that we can learn from and adopt. Our partners assisting with the booth had exchanges with the organizers during the two-day event and even afterward. We hope to continue interacting and exchanging efforts with them in the future!</p>
+                        <h2>Call for Proposals</h2>
+                        <p>We are currently continuing our call for proposals, with a <strong>deadline set for May 7th</strong>. There are about two weeks left, so please seize the opportunity to share your achievements in the open-source field!</p>
+                        <p>We have prepared a guide on how to become a speaker. If you&#39;ve been wanting to push yourself or have been hesitant to take the first step, you can refer to the &quot;<a href="https://volunteer.coscup.org/docs/about_coscup/how_to_participate/as_speaker/">Speaker Guide</a>&quot;!</p>
+                        <p>The lineup for the Community Tracks (<a href="https://volunteer.coscup.org/docs/about_coscup/how_to_participate/2024_cfp/">Compiled Version</a>) and the first wave of <a href="https://blog.coscup.org/2024/04/coscup-booth-now-release.html">Community Booths</a> has also been announced!</p>
+                        <h2>Call for Community Booths</h2>
+                        <p>We are still accepting applications for open-source community booths, with the <strong>deadline set for June 3rd</strong>. Please note that the number of booths is limited. Non-profit organizations belonging to the FLOSS community or advocating for free and open-source software are welcome to <a href="https://pretalx.coscup.org/coscup-2024-call-for-participation/cfp">apply</a>.</p>
+                        <p>These are the contents of this issue of the newsletter. Thank you for your continued support, and feel free to share the COSCUP event with more friends. Most importantly, join us in planning and participating! Oh, and we have a COSCUP booth at the <a href="https://summit.g0v.tw/2024/">g0v Summit 2024</a>, so feel free to drop by and exchange ideas with us!</p>
+                        <p class="align-center">🌟</p>
+                        <p class="btn-tips" style="margin-bottom: 0; margin-top: 30px;">如果有任何問題，可以直接回覆此封信件，感謝協助！</p>
+                        <p class="btn-tips">If you have any questions, please reply to this letter.</p>
+                        <p class="btn-tips" style="margin-bottom: 10px;"><a href="https://volunteer.coscup.org/docs/zh-TW/about_coscup/newsletters/overview/">舊報攤（過往電子報）</a> | <a href="https://volunteer.coscup.org/docs/about_coscup/newsletters/overview/">Archived Newsletters</a></p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            <!-- END MAIN CONTENT AREA -->
+            </table>
+
+            <!-- START FOOTER -->
+            <div class="footer">
+              <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td class="content-block">
+                    <span class="apple-link" style="display: inline-block;height: 24px;">
+                      <a href="https://www.facebook.com/coscup/"><img width="24" alt="coscup's facebook" src="https://secretary.coscup.org/s3/icon/facebook-square-brands.png"></a>
+                      <a href="https://t.me/coscupchat"><img width="24" alt="coscup's telegram" src="https://secretary.coscup.org/s3/icon/telegram-brands.png"></a>
+                      <a href="https://twitter.com/coscup"><img width="24" alt="coscup's twitter" src="https://secretary.coscup.org/s3/icon/twitter-square-brands.png"></a>
+                      <a href="https://blog.coscup.org/"><img width="24" alt="coscup's blog" src="https://secretary.coscup.org/s3/icon/blogger-brands.png"></a>
+                      <a href="https://www.flickr.com/photos/coscup/"><img width="24" alt="coscup's flickr" src="https://secretary.coscup.org/s3/icon/flickr-brands.png"></a>
+                      <a href="https://www.youtube.com/user/thecoscup"><img width="24" alt="coscup's youtube" src="https://secretary.coscup.org/s3/icon/youtube-square-brands.png"></a>
+                    </span>
+                    <br>
+                    <span class="apple-link" style="display: inline-block;height: 15px;">COSCUP 行政組 | Secretary Team</span>
+                  </td>
+                  <td class="content-block">
+                    {%if openhash%}
+                      <img src="https://secretary.coscup.org/r/{{ucode}}/{{openhash}}?{{args}}"
+                           border=0 width="1" height="3" alt="">
+                    {% endif %}
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <!-- END FOOTER -->
+
+          <!-- END CENTERED WHITE CONTAINER -->
+
+          <!-- END CENTERED WHITE CONTAINER -->
+          </div>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+  </body>
+</html>
