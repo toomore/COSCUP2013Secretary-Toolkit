@@ -827,10 +827,60 @@ def send_240423(dry_run=True):
         queue_sender(raw)
 
 
+def send_240515(dry_run=True):
+    ''' Send 240515 '''
+    template = TPLENV.get_template('./volunteer_20240515_inline.html')
+    template_md = TPLENV.get_template('./volunteer_20240515.md')
+
+    if dry_run:
+        path = './coscup_paper_subscribers_hnxg31pc_test.csv'
+    else:
+        path = './coscup_paper_subscribers_hnxg31pc_20240315_153846.csv'
+
+    users = []
+    with open(path, 'r+', encoding='UTF8') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        subject = choice([
+            'COSCUP 2024/05 最後徵稿、新企劃「開．源遊會」 Final Chance to CfP, Open Source Fair Vendor Invitation',
+            'COSCUP 2024/05 徵稿截止到 5/19、新企劃「開．源遊會」 Final Chance to CfP, Open Source Fair Vendor Invitation',
+        ])
+
+        u['preheader'] = choice([
+            '不要再猶豫，徵稿最後期限到 5/19 請把握成為講者的機會',
+            '徵稿最後期限到 5/19 請把握成為講者的機會，不要再猶豫',
+            '新企劃「開．源遊會」募集招商中，傳說中的開源食譜即將呈現',
+            '傳說中的開源食譜即將呈現，新企劃「開．源遊會」募集招商中',
+        ])
+
+        u['subject'] = subject
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(
+                'COSCUP Volunteer 志工服務', 'volunteer@coscup.org'),
+            list_unsubscribe='<mailto:volunteer+unsubscribe240515@coscup.org>',
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject=subject,
+            body=template.render(**u),
+            text_body=template_md.render(**u),
+        )
+
+        queue_sender(raw)
+
+
 if __name__ == '__main__':
     # send_240118(dry_run=True)
     # send_240228(dry_run=True)
     # send_240315(dry_run=True)
     # send_scale21x(dry_run=True)
     # send_240423(dry_run=True)
+    # send_240515(dry_run=True)
     pass
