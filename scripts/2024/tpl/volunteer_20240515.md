@@ -1,6 +1,6 @@
 # COSCUP 2024/05 籌備進度更新
 
-這一期將會提到稿件募集與新企劃「開．源遊會」，準備好了嗎？我們開始吧！
+這一期將會提到稿件募集與新企劃「開．源遊會」，{{name}} 準備好了嗎？我們開始吧！
 
 ## 稿件募集
 
@@ -22,7 +22,7 @@ https://volunteer.coscup.org/img/paper_240515_news_zh-hant.png
 
 ---
 
-This issue will cover calls for submissions and a new initiative, "Open Source Fair." Are you ready? Let's get started!
+This issue will cover calls for submissions and a new initiative, "Open Source Fair." {{name}}, are you ready? Let's get started!
 
 ## Call for Submissions
 
