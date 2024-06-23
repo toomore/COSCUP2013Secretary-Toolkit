@@ -875,6 +875,50 @@ def send_240515(dry_run=True):
 
         queue_sender(raw)
 
+def send_goldcard(dry_run=True):
+    ''' Send goldcard 240623 '''
+    template = TPLENV.get_template('./taiwan_gold_card_inline.html')
+    template_md = TPLENV.get_template('./taiwan_gold_card.md')
+
+    if dry_run:
+        path = './goldcard_240623_test.csv'
+    else:
+        path = './goldcard_240623.csv'
+
+    users = []
+    with open(path, 'r+', encoding='UTF8') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        subject = choice([
+            'COSCUP X Taiwan Gold Card: a Special Invitation to International Digital Professionals and Talents',
+        ])
+
+        u['preheader'] = choice([
+            'Thanks for your participant',
+        ])
+
+        u['subject'] = subject
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(
+                'COSCUP Sponsorship', 'sponsorship@coscup.org'),
+            list_unsubscribe='<mailto:sponsorship+unsubscribe240623@coscup.org>',
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject=subject,
+            body=template.render(**u),
+            text_body=template_md.render(**u),
+        )
+
+        queue_sender(raw)
+
 
 if __name__ == '__main__':
     # send_240118(dry_run=True)
@@ -883,4 +927,5 @@ if __name__ == '__main__':
     # send_scale21x(dry_run=True)
     # send_240423(dry_run=True)
     # send_240515(dry_run=True)
+    # send_goldcard(dry_run=True)
     pass
