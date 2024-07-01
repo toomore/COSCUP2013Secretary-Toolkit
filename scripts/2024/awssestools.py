@@ -875,6 +875,7 @@ def send_240515(dry_run=True):
 
         queue_sender(raw)
 
+
 def send_goldcard(dry_run=True):
     ''' Send goldcard 240623 '''
     template = TPLENV.get_template('./taiwan_gold_card_inline.html')
@@ -920,6 +921,51 @@ def send_goldcard(dry_run=True):
         queue_sender(raw)
 
 
+def send_community_240701(dry_run=True):
+    ''' Send community 240701 '''
+    template = TPLENV.get_template('./community_20240701_inline.html')
+    template_md = TPLENV.get_template('./community_20240701.md')
+
+    if dry_run:
+        path = './community_240701_test.csv'
+    else:
+        path = './community_240701.csv'
+
+    users = []
+    with open(path, 'r+', encoding='UTF8') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        subject = choice([
+            'COSCUP 社群軌負責人相關活動資訊、前夜派對、一日志工、社群佈告欄',
+        ])
+
+        u['preheader'] = choice([
+            '我們也將迎來第二個十年的里程碑，這一路上還是感謝開源社群不斷的參與與支持開源活動',
+        ])
+
+        u['subject'] = subject
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(
+                'COSCUP 行政組', 'secretary@coscup.org'),
+            list_unsubscribe='<mailto:volunteer+unsubscribe240701@coscup.org>',
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject=subject,
+            body=template.render(**u),
+            text_body=template_md.render(**u),
+        )
+
+        queue_sender(raw)
+
+
 if __name__ == '__main__':
     # send_240118(dry_run=True)
     # send_240228(dry_run=True)
@@ -928,4 +974,5 @@ if __name__ == '__main__':
     # send_240423(dry_run=True)
     # send_240515(dry_run=True)
     # send_goldcard(dry_run=True)
+    # send_community_240701(dry_run=True)
     pass
