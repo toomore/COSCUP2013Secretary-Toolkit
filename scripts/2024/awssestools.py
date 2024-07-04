@@ -974,7 +974,7 @@ def send_ocf_240704(dry_run=True):
     if dry_run:
         path = './coscup_paper_subscribers_51om8v1v_test.csv'
     else:
-        path = './coscup_paper_subscribers_51om8v1v_20240515_045844.csv'
+        path = './coscup_paper_subscribers_51om8v1v_20240704_145556.csv'
 
     users = []
     with open(path, 'r+', encoding='UTF8') as files:
