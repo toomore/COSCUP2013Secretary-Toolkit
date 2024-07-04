@@ -966,6 +966,58 @@ def send_community_240701(dry_run=True):
         queue_sender(raw)
 
 
+def send_ocf_240704(dry_run=True):
+    ''' Send ocf 240704 '''
+    template = TPLENV.get_template('./ocf_20240704_inline.html')
+    template_md = TPLENV.get_template('./ocf_20240704.md')
+
+    if dry_run:
+        path = './coscup_paper_subscribers_51om8v1v_test.csv'
+    else:
+        path = './coscup_paper_subscribers_51om8v1v_20240515_045844.csv'
+
+    users = []
+    with open(path, 'r+', encoding='UTF8') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        subject = choice([
+            "募集臺灣開源運動回憶 Collecting Memories of Taiwan's Open Source Movement",
+            '招募社群回憶錄 - 開源運動在臺灣 Recruiting Community Memoirs - Open Source Movement in Taiwan',
+            "募集臺灣開源運動回憶 7/12 前 Collecting Memories of Taiwan's Open Source Movement by 7/12",
+            '招募社群回憶錄 - 開源運動在臺灣 7/12 前 Recruiting Community Memoirs - Open Source Movement in Taiwan by 7/12',
+        ])
+
+        u['preheader'] = choice([
+            '開放文化基金會協助臺灣開源社群與年會財務與行政支援，十週年特展企劃請求支援中',
+            '開放文化基金會除了協助臺灣開源社群與年會財務與行政支援外，我們也關心網路自由與數位人權',
+            '網路自由、數位人權、開放科技等議題是開放文化基金會持續關注的議題',
+            'Internet Freedom, Digital Human Rights, and Open Technology Issues Are Continually Monitored by the Open Culture Foundation',
+            'The Open Culture Foundation assists the Taiwan open source community with financial and administrative support for annual conferences, and is currently seeking support for the 10th anniversary special exhibition project.',
+        ])
+
+        u['subject'] = subject
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(
+                'COSCUP Volunteer 志工服務', 'volunteer@coscup.org'),
+            list_unsubscribe='<mailto:volunteer+unsubscribe240704@coscup.org>',
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject=subject,
+            body=template.render(**u),
+            text_body=template_md.render(**u),
+        )
+
+        queue_sender(raw)
+
+
 if __name__ == '__main__':
     # send_240118(dry_run=True)
     # send_240228(dry_run=True)
@@ -975,4 +1027,5 @@ if __name__ == '__main__':
     # send_240515(dry_run=True)
     # send_goldcard(dry_run=True)
     # send_community_240701(dry_run=True)
+    # send_ocf_240704(dry_run=True)
     pass
