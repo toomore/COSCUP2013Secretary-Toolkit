@@ -1,0 +1,421 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>COSCUP Secretary</title>
+    <style>
+      /* -------------------------------------
+          GLOBAL RESETS
+      ------------------------------------- */
+      img {
+        border: none;
+        -ms-interpolation-mode: bicubic;
+        max-width: 100%; }
+
+      body {
+        background-color: #ffffff;
+        font-family: sans-serif;
+        -webkit-font-smoothing: antialiased;
+        font-size: 14px;
+        line-height: 1.4;
+        margin: 0;
+        padding: 0;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%; }
+
+      table {
+        border-collapse: separate;
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+        width: 100%; }
+        table td {
+          font-family: sans-serif;
+          font-size: 14px;
+          vertical-align: top; }
+
+      /* -------------------------------------
+          BODY & CONTAINER
+      ------------------------------------- */
+
+      .body {
+        background-color: #ffffff;
+        width: 100%; }
+
+      /* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */
+      .container {
+        display: block;
+        margin: 0 auto !important;
+        /* makes it centered */
+        max-width: 580px;
+        padding: 10px; }
+
+      /* This should also be a block element, so that it will fill 100% of the .container */
+      .content {
+        box-sizing: border-box;
+        display: block;
+        margin: 0 auto;
+        max-width: 580px;
+        padding: 10px;
+        background-color: #57c257; }
+
+      /* -------------------------------------
+          HEADER, FOOTER, MAIN
+      ------------------------------------- */
+      .main {
+        background: #fff;
+        border-radius: 3px;
+        width: 100%; }
+
+      .wrapper {
+        box-sizing: border-box;
+        padding: 20px; }
+
+      .footer {
+        clear: both;
+        padding: 10px 0;
+        text-align: center;
+        width: 100%; }
+        .footer td,
+        .footer p,
+        .footer span,
+        .footer a {
+          color: #ffffff;
+          font-size: 12px;
+          text-align: center; }
+
+      /* -------------------------------------
+          TYPOGRAPHY
+      ------------------------------------- */
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: #000000;
+        font-family: sans-serif;
+        font-weight: 400;
+        line-height: 1.4;
+        margin: 0;
+        margin-bottom: 30px; }
+
+      h1 {
+        font-size: 35px;
+        font-weight: 300;
+        text-align: center;
+        text-transform: capitalize; }
+
+      p,
+      ul,
+      ol {
+        font-family: sans-serif;
+        font-size: 14px;
+        font-weight: normal;
+        margin: 0;
+        margin-bottom: 15px; }
+        p li,
+        ul li,
+        ol li {
+          list-style-position: inside;
+          margin-left: 5px; }
+
+      a {
+        color: #3498db;
+        text-decoration: underline; }
+
+      /* -------------------------------------
+          BUTTONS
+      ------------------------------------- */
+      .btn {
+        box-sizing: border-box;
+        width: 100%; }
+        .btn > tbody > tr > td {
+          padding-bottom: 15px; }
+        .btn table {
+          width: auto; }
+        .btn table td {
+          background-color: #ffffff;
+          border-radius: 5px;
+          text-align: center; }
+        .btn a {
+          background-color: #ffffff;
+          border: solid 1px #0a4cba;
+          border-radius: 5px;
+          box-sizing: border-box;
+          color: #0a4cba;
+          cursor: pointer;
+          display: inline-block;
+          font-size: 14px;
+          font-weight: bold;
+          margin: 0;
+          padding: 12px 25px;
+          text-decoration: none;
+          text-transform: capitalize; }
+
+      .btn-primary table td {
+        background-color: #3498db; }
+
+      .btn-primary a {
+        background-color: #047000;
+        border-color: #bdffbb;
+        color: #ffffff; }
+
+      /* -------------------------------------
+          OTHER STYLES THAT MIGHT BE USEFUL
+      ------------------------------------- */
+      .last {
+        margin-bottom: 0; }
+
+      .first {
+        margin-top: 0; }
+
+      .align-center {
+        text-align: center; }
+
+      .align-right {
+        text-align: right; }
+
+      .align-left {
+        text-align: left; }
+
+      .clear {
+        clear: both; }
+
+      .mt0 {
+        margin-top: 0; }
+
+      .mb0 {
+        margin-bottom: 0; }
+
+      .preheader {
+        color: transparent;
+        display: none;
+        height: 0;
+        max-height: 0;
+        max-width: 0;
+        opacity: 0;
+        overflow: hidden;
+        mso-hide: all;
+        visibility: hidden;
+        width: 0; }
+
+      .powered-by a {
+        text-decoration: none; }
+
+      hr {
+        border: 3px #e6ffe6 solid;
+        border-radius: 3px;
+        margin: 20px 0; }
+
+      /* -------------------------------------
+          RESPONSIVE AND MOBILE FRIENDLY STYLES
+      ------------------------------------- */
+      @media only screen and (max-width: 580px) {
+        table[class=body] h1 {
+          font-size: 28px !important;
+          margin-bottom: 10px !important; }
+        table[class=body] p,
+        table[class=body] ul,
+        table[class=body] ol,
+        table[class=body] td,
+        table[class=body] span,
+        table[class=body] a {
+          font-size: 16px !important; }
+        table[class=body] .wrapper,
+        table[class=body] .article {
+          padding: 10px !important; }
+        table[class=body] .content {
+          padding: 0 !important; }
+        table[class=body] .container {
+          padding: 0 !important;
+          width: 100% !important; }
+        table[class=body] .main {
+          border-left-width: 0 !important;
+          border-radius: 0 !important;
+          border-right-width: 0 !important; }
+        table[class=body] .btn table {
+          width: 100% !important; }
+        table[class=body] .btn a {
+          width: 100% !important; }
+        table[class=body] .img-responsive {
+          height: auto !important;
+          max-width: 100% !important;
+          width: auto !important; }}
+
+      /* -------------------------------------
+          PRESERVE THESE STYLES IN THE HEAD
+      ------------------------------------- */
+      @media all {
+        .ExternalClass {
+          width: 100%; }
+        .ExternalClass,
+        .ExternalClass p,
+        .ExternalClass span,
+        .ExternalClass font,
+        .ExternalClass td,
+        .ExternalClass div {
+          line-height: 100%; }
+        .apple-link a {
+          color: inherit !important;
+          font-family: inherit !important;
+          font-size: inherit !important;
+          font-weight: inherit !important;
+          line-height: inherit !important;
+          text-decoration: none !important; }
+        .btn-primary table td:hover {
+          background-color: #34495e !important; }
+        .btn-primary a:hover {
+          background-color: #34495e !important;
+          border-color: #34495e !important; } }
+
+      .quote {
+        color: #334433;
+        font-style: italic;
+        font-size: small;
+      }
+      h2 {
+        font-weight: bold;
+        font-family: "Arial";
+        border-bottom: 1px #243551 dashed;
+        padding-left: 1px;
+        margin-top: 30px;
+        margin-bottom: 12px;
+      }
+      h3 {
+        margin-bottom: 5px;
+        margin-top: 20px;
+        color: #103d88;
+        font-weight: bold;
+      }
+      ol li,
+      ul li {
+        list-style-position: outside;
+        margin-left: 0px;
+        line-height: 2;
+      }
+      .tips {
+        font-family: "Courier New";
+        background-color: #fafafa;
+        padding: 6px;
+        border-radius: 3px;
+        border: 1px #81d4fa solid;
+        font-size: 12px;
+        color: #01579b;
+      }
+      .tips-green {
+        color: #2E7D32;
+        border: 1px #43A047 solid;
+      }
+      pre {
+        font-size: small;
+        color: #607D8B;
+        border: 1px #cccccc dotted;
+        border-radius: 3px;
+        background-color: #eeeeee;
+        padding: 5px;
+      }
+      p small,
+      li small {
+        color: #898989;
+      }
+      p .red-strong {
+        font-weight: bold;
+        color: red;
+      }
+      h2 small {
+        font-size: small;
+        color: #898989;
+      }
+      h3 small {
+        font-size: small;
+        color: #898989;
+      }
+      .btn-tips{
+        font-size: x-small;
+        color: #6E8E6C;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body class="">
+    <table border="0" cellpadding="0" cellspacing="0" class="body">
+      <tr>
+        <td>&nbsp;</td>
+        <td class="container">
+          <div class="content">
+
+            <!-- START CENTERED WHITE CONTAINER -->
+            <span class="preheader">{{preheader}}</span>
+            <table class="main">
+
+              <!-- START MAIN CONTENT AREA -->
+              <tr>
+                <td class="wrapper">
+                  <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td>
+                        <p class="align-right" style="margin-bottom:0px;"><a href="https://coscup.org/"><img height="48" src="https://volunteer.coscup.org/s3/img/coscup_logo_tw.png" alt="COSCUP Logo" title="COSCUP Logo"></a></p>
+                        <p>Hi {{name}},</p>
+                        <p>感謝您答應我們的邀稿，很高興通知您，您的「{{topic}}」已被收錄在今年開源人年會的議程中，請再次確認您的演講的時間與地點。</p>
+                        <ul>
+                          <li>您的演講時間在：{{time}}</li>
+                          <li>您的演講地點在：台科大 {{location}}</li>
+                        </ul>
+                        <p>教室有投影設備與麥克風，若您當天有播放簡報的需求，請您傳送一份備份給主辦單位，以應對臨時的突發狀況。另外，若您還沒上一成網站更新您的自我介紹，請盡快上傳更新。</p>
+                        <p>本次會場議程繁多，您的演講地點若與之前議程負責人通知您的不同，請以此封信件為主。造成您的不便請見諒，期待您的到來！</p>
+                        <p>敬祝 平安<br>
+                           COSCUP 療癒講座負責人</p>
+                        <p class="align-center">🌟</p>
+                        <hr style="border: 3px solid rgb(214, 244, 210); border-radius: 3px;">
+                        <p>Dear {{name}},</p>
+                        <p>Thank you for accepting our invitation. We are pleased to inform you that your session on "{{topic}}" has been included in this year's COSCUP agenda. Please confirm your presentation time and location once more.</p>
+                        <ul>
+                          <li>Your presentation time is: {{time}}</li>
+                          <li>Your presentation location is: NTUST {{location}}</li>
+                        </ul>
+                        <p>The classroom is equipped with projection facilities and microphones. If you plan to use a presentation, please send a backup copy to the organizers to prepare for any unforeseen issues. Additionally, if you haven't yet updated your biography on the event website, please do so as soon as possible.</p>
+                        <p>Due to the busy schedule at the venue, if the location mentioned here differs from what you were previously told, please refer to this email as the most current information. We apologize for any inconvenience this may cause and look forward to your participation.</p>
+                        <p>Best regards,<br>
+                           COSCUP Healing Lecture Coordinator</p>
+                        <p class="align-center">🌟</p>
+                        <p class="btn-tips" style="margin-bottom: 0; margin-top: 30px;">如果有任何問題，可以直接回覆此封信件，感謝協助！</p>
+                        <p class="btn-tips">If you have any questions, please reply to this letter.</p>
+                        <p class="btn-tips" style="margin-bottom: 10px;"><a href="https://volunteer.coscup.org/docs/zh-TW/about_coscup/newsletters/overview/">舊報攤（過往電子報）</a> | <a href="https://volunteer.coscup.org/docs/about_coscup/newsletters/overview/">Archived Newsletters</a></p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            <!-- END MAIN CONTENT AREA -->
+            </table>
+
+            <!-- START FOOTER -->
+            <div class="footer">
+              <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td class="content-block">
+                    <span class="apple-link" style="display: inline-block;height: 24px;">
+                      <a href="https://www.facebook.com/coscup/"><img width="24" alt="coscup's facebook" src="https://secretary.coscup.org/s3/icon/facebook-square-brands.png"></a>
+                      <a href="https://t.me/coscupchat"><img width="24" alt="coscup's telegram" src="https://secretary.coscup.org/s3/icon/telegram-brands.png"></a>
+                      <a href="https://twitter.com/coscup"><img width="24" alt="coscup's twitter" src="https://secretary.coscup.org/s3/icon/twitter-square-brands.png"></a>
+                      <a href="https://blog.coscup.org/"><img width="24" alt="coscup's blog" src="https://secretary.coscup.org/s3/icon/blogger-brands.png"></a>
+                      <a href="https://www.flickr.com/photos/coscup/"><img width="24" alt="coscup's flickr" src="https://secretary.coscup.org/s3/icon/flickr-brands.png"></a>
+                      <a href="https://www.youtube.com/user/thecoscup"><img width="24" alt="coscup's youtube" src="https://secretary.coscup.org/s3/icon/youtube-square-brands.png"></a>
+                    </span>
+                    <br>
+                    <span class="apple-link" style="display: inline-block;height: 15px;">COSCUP 行政組 | Secretary Team</span>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <!-- END FOOTER -->
+
+          <!-- END CENTERED WHITE CONTAINER -->
+
+          <!-- END CENTERED WHITE CONTAINER -->
+          </div>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+  </body>
+</html>

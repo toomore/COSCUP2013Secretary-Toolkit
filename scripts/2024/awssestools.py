@@ -1018,6 +1018,51 @@ def send_ocf_240704(dry_run=True):
         queue_sender(raw)
 
 
+def send_sec_240714(dry_run=True):
+    ''' Send sec 240714 '''
+    template = TPLENV.get_template('./healing_20240714_inline.html')
+    template_md = TPLENV.get_template('./healing_20240714.md')
+
+    if dry_run:
+        path = './healing_speakers_test.csv'
+    else:
+        path = './healing_speakers.csv'
+
+    users = []
+    with open(path, 'r+', encoding='UTF8') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        subject = choice([
+            "療癒講座講者議程資訊 / Healing Lecture Speaker Agenda Information",
+        ])
+
+        u['preheader'] = choice([
+            "Thank you for participating in COSCUP. If you have any questions, please feel free to reply to this email",
+        ])
+
+        u['subject'] = subject
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(
+                'COSCUP Secretary', 'secretary@coscup.org'),
+            list_unsubscribe='<mailto:secretary+unsubscribe240714@coscup.org>',
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject=subject,
+            body=template.render(**u),
+            text_body=template_md.render(**u),
+        )
+
+        queue_sender(raw)
+
+
 if __name__ == '__main__':
     # send_240118(dry_run=True)
     # send_240228(dry_run=True)
@@ -1028,4 +1073,5 @@ if __name__ == '__main__':
     # send_goldcard(dry_run=True)
     # send_community_240701(dry_run=True)
     # send_ocf_240704(dry_run=True)
+    # send_sec_240714(dry_run=True)
     pass
