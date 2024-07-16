@@ -704,14 +704,14 @@ def export_unique_lists(path:str):
 if __name__ == '__main__':
     # ----- send Pass/deny ----- #
     #from pprint import pprint
-    #data = process_csv('./oscvpass_unsend_240108.csv', _all=False)
+    #data = process_csv('./oscvpass_240716_need_send.csv', _all=False)
     #for case in data:
     #   print(case, len(data[case]))
     #   for row in data[case]:
     #       print(f"[{row['name']}], [{row['c_01']}], [{row['mail']}], [{row['mail2']}]")
 
-    # pprint(data['deny'])
-    #send(data=data, case=('deny', 'insufficient_for', 'pass'), dry_run=True)
+    #pprint(data['deny'])
+    #send(data=data, case=('deny', 'insufficient_for', 'pass'), dry_run=False)
     # send_request_attendee('/run/shm/hash_b0466044.csv', dry_run=True)
 
     # ----- send get token ----- #
@@ -762,7 +762,8 @@ if __name__ == '__main__':
     # send_expired(path='./oscvpass_expired_220512.csv', dry_run=True)
 
     # ----- Gen tokens ----- #
-    # gen_token(nums=300, out_path="./sitcon_2024_tokens.csv")
+    #gen_token(nums=300, out_path="./pycontw_2024_tokens.csv")
+    #gen_token(nums=300, out_path="./hitcon_2024_tokens.csv")
     # data = process_csv('./oscvpass_valid_240108.csv', _all=True)
     # data = {'pass': []}
     #maillist = pickup_unique(data=data, cases=('pass', ))
