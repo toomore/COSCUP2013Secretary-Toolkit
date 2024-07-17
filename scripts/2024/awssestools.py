@@ -1063,6 +1063,59 @@ def send_sec_240714(dry_run=True):
         queue_sender(raw)
 
 
+def send_240718(dry_run=True):
+    ''' Send 240718 '''
+    template = TPLENV.get_template('./volunteer_20240718_inline.html')
+    template_md = TPLENV.get_template('./volunteer_20240718.md')
+
+    if dry_run:
+        path = './coscup_paper_subscribers_u9h7jxq5_test.csv'
+    else:
+        path = './coscup_paper_subscribers_u9h7jxq5_20240718_045844.csv'
+
+    users = []
+    with open(path, 'r+', encoding='UTF8') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        subject = choice([
+            'COSCUP 2024/07 議程公告、前夜派對、會眾服務 Agenda Announcement, Eve Gathering, Attendee Services',
+            'COSCUP 2024/07 前夜派對、議程公告、會眾服務 Agenda Announcement, Eve Gathering, Attendee Services',
+            'COSCUP 2024/07 前夜派對、議程公告、開．源遊會招商 Agenda Announcement, Eve Gathering, Attendee Services',
+            'COSCUP 2024/07 開．源遊會招商、前夜派對、議程公告 Agenda Announcement, Eve Gathering, Attendee Services',
+
+        ])
+
+        u['preheader'] = choice([
+            '療癒講座關注創傷恢復、情感和社會互動的理解等議題講座',
+            '親子工作坊焊接、自製電玩親子手作課程',
+            '療癒市集（按摩小站、紅酒瑜伽、療癒彩繪、療癒睡眠）',
+            '前夜派對酒券開賣中，還有套票可以選購，送禮自用皆宜',
+            '新企劃「開．源遊會」募集招商中，傳說中的開源食譜即將呈現',
+            '傳說中的開源食譜即將呈現，新企劃「開．源遊會」募集招商中',
+        ])
+
+        u['subject'] = subject
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(
+                'COSCUP Volunteer 志工服務', 'volunteer@coscup.org'),
+            list_unsubscribe='<mailto:volunteer+unsubscribe240718@coscup.org>',
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject=subject,
+            body=template.render(**u),
+            text_body=template_md.render(**u),
+        )
+
+        queue_sender(raw)
+
 if __name__ == '__main__':
     # send_240118(dry_run=True)
     # send_240228(dry_run=True)
@@ -1074,4 +1127,5 @@ if __name__ == '__main__':
     # send_community_240701(dry_run=True)
     # send_ocf_240704(dry_run=True)
     # send_sec_240714(dry_run=True)
+    # send_240718(dry_run=True)
     pass
