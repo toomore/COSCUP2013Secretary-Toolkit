@@ -1116,6 +1116,7 @@ def send_240718(dry_run=True):
 
         queue_sender(raw)
 
+
 if __name__ == '__main__':
     # send_240118(dry_run=True)
     # send_240228(dry_run=True)
