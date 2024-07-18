@@ -1071,7 +1071,7 @@ def send_240718(dry_run=True):
     if dry_run:
         path = './coscup_paper_subscribers_u9h7jxq5_test.csv'
     else:
-        path = './coscup_paper_subscribers_u9h7jxq5_20240718_045844.csv'
+        path = './coscup_paper_subscribers_u9h7jxq5_20240718_002421.csv'
 
     users = []
     with open(path, 'r+', encoding='UTF8') as files:
