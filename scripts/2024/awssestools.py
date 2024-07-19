@@ -1117,6 +1117,53 @@ def send_240718(dry_run=True):
         queue_sender(raw)
 
 
+def send_speakers_240719(dry_run=True):
+    ''' Send speakers 240719 '''
+    template = TPLENV.get_template('./speakers_20240718_inline.html')
+    template_md = TPLENV.get_template('./speakers_20240718.md')
+
+    if dry_run:
+        path = './2024_speakers_test.csv'
+    else:
+        path = './2024_speakers.csv'
+
+    users = []
+    with open(path, 'r+', encoding='UTF8') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        subject = choice([
+            'COSCUP 前夜派對、社群佈告欄、會眾服務 / Eve Gathering, Community Board, Attendee Services',
+            'COSCUP 與講者、社群相關的活動準備說明 / Preparation Instructions for Speaker and Community-Related Activities',
+        ])
+
+        u['preheader'] = choice([
+            'Thank you for being a speaker and bringing us the latest open-source topics',
+            'Feel free to join other COSCUP activities and services when you have time',
+            "Is this year's presentation ready?",
+        ])
+
+        u['subject'] = subject
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(
+                'COSCUP 行政組', 'secretary@coscup.org'),
+            list_unsubscribe='<mailto:volunteer+unsubscribe240719@coscup.org>',
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject=subject,
+            body=template.render(**u),
+            text_body=template_md.render(**u),
+        )
+
+        queue_sender(raw)
+
 if __name__ == '__main__':
     # send_240118(dry_run=True)
     # send_240228(dry_run=True)
