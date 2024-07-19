@@ -1119,8 +1119,8 @@ def send_240718(dry_run=True):
 
 def send_speakers_240719(dry_run=True):
     ''' Send speakers 240719 '''
-    template = TPLENV.get_template('./speakers_20240718_inline.html')
-    template_md = TPLENV.get_template('./speakers_20240718.md')
+    template = TPLENV.get_template('./speakers_20240719_inline.html')
+    template_md = TPLENV.get_template('./speakers_20240719.md')
 
     if dry_run:
         path = './2024_speakers_test.csv'
@@ -1164,6 +1164,7 @@ def send_speakers_240719(dry_run=True):
 
         queue_sender(raw)
 
+
 if __name__ == '__main__':
     # send_240118(dry_run=True)
     # send_240228(dry_run=True)
@@ -1176,4 +1177,5 @@ if __name__ == '__main__':
     # send_ocf_240704(dry_run=True)
     # send_sec_240714(dry_run=True)
     # send_240718(dry_run=True)
+    # send_speakers_240719(dry_run=True)
     pass
