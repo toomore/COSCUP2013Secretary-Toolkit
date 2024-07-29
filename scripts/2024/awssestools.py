@@ -1164,6 +1164,68 @@ def send_speakers_240719(dry_run=True):
 
         queue_sender(raw)
 
+def send_240729(dry_run=True):
+    ''' Send 240729 '''
+    template = TPLENV.get_template('./volunteer_20240729_inline.html')
+    template_md = TPLENV.get_template('./volunteer_20240729.md')
+
+    if dry_run:
+        path = './coscup_paper_subscribers_5nrv4bgt_test.csv'
+    else:
+        path = './coscup_paper_subscribers_5nrv4bgt_20240729_080859.csv'
+
+    users = []
+    with open(path, 'r+', encoding='UTF8') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        subject = choice([
+            'COSCUP 2024 活動前最後一週 The Final Week Before the Event',
+            'COSCUP 2024 The Final Week Before the Event 活動前最後一週 ',
+            'COSCUP 2024 你準備好了嗎？活動即將開始 Are you ready? The event is about to begin!',
+            'COSCUP 2024 Are you ready? 你準備好了嗎？活動即將開始 The event is about to begin!',
+            'COSCUP 2024 如何參與、準備 COSCUP？How to Participate and Prepare for COSCUP？',
+            'COSCUP 2024 How to Participate and Prepare for COSCUP？如何參與、準備 COSCUP？'
+
+        ])
+
+        u['preheader'] = choice([
+            '療癒講座關注創傷恢復、情感和社會互動的理解等議題講座',
+            '親子工作坊焊接、自製電玩親子手作課程',
+            '療癒市集（按摩小站、紅酒瑜伽、療癒彩繪、療癒睡眠）',
+            '前夜派對酒券開賣中，還有套票可以選購，送禮自用皆宜',
+            '新企劃「開．源遊會」募集招商中，傳說中的開源食譜即將呈現',
+            '傳說中的開源食譜即將呈現，新企劃「開．源遊會」募集招商中',
+            '手冊：如何參與、準備 COSCUP？',
+            'Healing Lectures: Focus on topics such as trauma recovery, understanding emotions, and social interactions.',
+            'Junior Workshop: Includes activities such as soldering and DIY video game courses for parents and children.',
+            'Healing Market: Features a massage station, wine yoga, therapeutic painting, and sleep therapy.',
+            'Eve Gathering: Drink tickets are now on sale, including conveniently packaged options—perfect for gifts or personal use.',
+            'New Initiative "Fun Fair": Now open for vendor applications. The legendary open-source cookbook is about to be unveiled.',
+            'Handbook: How to Participate and Prepare for COSCUP?',
+        ])
+
+        u['subject'] = subject
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(
+                'COSCUP Volunteer 志工服務', 'volunteer@coscup.org'),
+            list_unsubscribe='<mailto:volunteer+unsubscribe240729@coscup.org>',
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject=subject,
+            body=template.render(**u),
+            text_body=template_md.render(**u),
+        )
+
+        queue_sender(raw)
+>>>>>>> 1b69ec1782847d3136f9b6756742a451dd4ce66c
 
 if __name__ == '__main__':
     # send_240118(dry_run=True)
@@ -1178,4 +1240,5 @@ if __name__ == '__main__':
     # send_sec_240714(dry_run=True)
     # send_240718(dry_run=True)
     # send_speakers_240719(dry_run=True)
+    # send_240729(dry_run=True)
     pass
