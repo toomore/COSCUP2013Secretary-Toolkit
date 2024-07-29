@@ -1164,6 +1164,7 @@ def send_speakers_240719(dry_run=True):
 
         queue_sender(raw)
 
+
 def send_240729(dry_run=True):
     ''' Send 240729 '''
     template = TPLENV.get_template('./volunteer_20240729_inline.html')
@@ -1172,7 +1173,7 @@ def send_240729(dry_run=True):
     if dry_run:
         path = './coscup_paper_subscribers_5nrv4bgt_test.csv'
     else:
-        path = './coscup_paper_subscribers_5nrv4bgt_20240729_080859.csv'
+        path = './coscup_paper_subscribers_5nrv4bgt_20240729_084130.csv'
 
     users = []
     with open(path, 'r+', encoding='UTF8') as files:
@@ -1225,7 +1226,7 @@ def send_240729(dry_run=True):
         )
 
         queue_sender(raw)
->>>>>>> 1b69ec1782847d3136f9b6756742a451dd4ce66c
+
 
 if __name__ == '__main__':
     # send_240118(dry_run=True)
