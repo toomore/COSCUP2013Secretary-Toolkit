@@ -148,7 +148,7 @@ class AwsSESTools(object):
 
         msg_all['Subject'] = kwargs['subject']
         msg_all['X-Github'] = 'toomore/COSCUP2013Secretary-Toolkit'
-        msg_all['X-Mailer'] = 'COSCUP Secretary'
+        msg_all['X-Mailer'] = 'OCF IT Technical Support Team'
 
         if 'list_unsubscribe' in kwargs:
             msg_all['List-Unsubscribe'] = kwargs['list_unsubscribe']
