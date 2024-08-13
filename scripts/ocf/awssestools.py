@@ -617,9 +617,9 @@ def send_vl_240814(dry_run=True):
     template_md = TPLENV.get_template('./ocf_vl_240814.md')
 
     if dry_run:
-        path = './ocf_vl_test.csv'
+        path = './ocf_vl_form_test.csv'
     else:
-        path = './ocf_vl.csv'
+        path = './ocf_vl_form.csv'
 
     users = []
     with open(path, 'r+', encoding='UTF8') as files:
