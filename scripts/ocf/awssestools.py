@@ -770,9 +770,9 @@ def send_240822_crm(dry_run=True):
     template_md = TPLENV.get_template('./ocf_crm_promote.md')
 
     if dry_run:
-        path = './ocf_send_list_1724054538_test.csv'
+        path = './ocf_send_list_1724307791_test.csv'
     else:
-        path = './ocf_send_list_1724054538.csv'
+        path = './ocf_send_list_1724307791.csv'
 
     users = []
     with open(path, 'r+', encoding='UTF8') as files:
