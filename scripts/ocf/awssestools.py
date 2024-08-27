@@ -619,7 +619,7 @@ def send_vl_240814(dry_run=True):
     if dry_run:
         path = './ocf_vl_form_test.csv'
     else:
-        path = './ocf_vl_form.csv'
+        path = './ocf_vl_form_240827.csv'
 
     users = []
     with open(path, 'r+', encoding='UTF8') as files:
@@ -648,7 +648,7 @@ def send_vl_240814(dry_run=True):
         raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
             source=AwsSESTools.mail_header(
                 '財團法人開放文化基金會 OCF', 'hi@ocf.tw'),
-            list_unsubscribe='<mailto:hi+unsubscribe240814@ocf.tw>',
+            list_unsubscribe='<mailto:hi+unsubscribe240824@ocf.tw>',
             to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
             subject=subject,
             body=template.render(**u),
