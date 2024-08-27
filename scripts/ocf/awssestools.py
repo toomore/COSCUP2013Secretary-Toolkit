@@ -872,7 +872,7 @@ def send_booth_osc_240822(dry_run=True):
 
 if __name__ == '__main__':
     # send_240813(dry_run=True)
-    # send_240814(dry_run=True)
+    # send_240827(dry_run=True)
     # send_vl_240814(dry_run=True)
     # send_240816(dry_run=True)
     # send_booth_240821(dry_run=True)
