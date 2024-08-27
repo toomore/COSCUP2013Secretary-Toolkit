@@ -559,15 +559,15 @@ def send_240813(dry_run=True):
         queue_sender(raw)
 
 
-def send_240814(dry_run=True):
-    ''' Send 240814 Volunteer '''
+def send_240827(dry_run=True):
+    ''' Send 240827, 240814 Community '''
     template = TPLENV.get_template('./ocf_booth_240814_inline.html')
     template_md = TPLENV.get_template('./ocf_booth_240814.md')
 
     if dry_run:
         path = './ocf_community_test.csv'
     else:
-        path = './ocf_community.csv'
+        path = './ocf_community_240827.csv'
 
     users = []
     with open(path, 'r+', encoding='UTF8') as files:
@@ -582,13 +582,13 @@ def send_240814(dry_run=True):
         _n += 1
 
         subject = choice([
-            '[社群攤位募集] OCF 開源祭十週年特別活動社群攤位、工作人員募集',
-            '[社群攤位] OCF 開源祭十週年特別活動社群攤位、工作人員募集',
-            '[攤位、工作人員] OCF 開源祭十週年特別活動社群攤位、工作人員募集',
-            '[OCF 開源祭] 社群攤位、工作人員募集中',
-            'OCF 開源祭：社群攤位、工作人員募集中',
-            'OCF 開源祭十週年特別活動：社群攤位、工作人員募集',
-            'OCF 開源祭十週年特別活動 社群攤位、工作人員募集',
+            '[社群攤位募集][即將截止] OCF 開源祭十週年特別活動社群攤位、工作人員募集',
+            '[社群攤位][即將截止] OCF 開源祭十週年特別活動社群攤位、工作人員募集',
+            '[攤位][即將截止] OCF 開源祭十週年特別活動社群攤位、工作人員募集',
+            '[OCF 開源祭][即將截止] 社群攤位、工作人員募集中',
+            '[即將截止] OCF 開源祭：社群攤位、工作人員募集中',
+            '[即將截止] OCF 開源祭十週年特別活動：社群攤位、工作人員募集',
+            '[即將截止] OCF 開源祭十週年特別活動 社群攤位、工作人員募集',
         ])
 
         u['preheader'] = choice([
@@ -601,7 +601,7 @@ def send_240814(dry_run=True):
         raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
             source=AwsSESTools.mail_header(
                 '財團法人開放文化基金會 OCF', 'hi@ocf.tw'),
-            list_unsubscribe='<mailto:hi+unsubscribe240814@ocf.tw>',
+            list_unsubscribe='<mailto:hi+unsubscribe240827@ocf.tw>',
             to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
             subject=subject,
             body=template.render(**u),
