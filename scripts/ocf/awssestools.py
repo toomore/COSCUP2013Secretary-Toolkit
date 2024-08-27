@@ -561,8 +561,8 @@ def send_240813(dry_run=True):
 
 def send_240827(dry_run=True):
     ''' Send 240827, 240814 Community '''
-    template = TPLENV.get_template('./ocf_booth_240814_inline.html')
-    template_md = TPLENV.get_template('./ocf_booth_240814.md')
+    template = TPLENV.get_template('./ocf_booth_240827_inline.html')
+    template_md = TPLENV.get_template('./ocf_booth_240827.md')
 
     if dry_run:
         path = './ocf_community_test.csv'
