@@ -870,6 +870,64 @@ def send_booth_osc_240822(dry_run=True):
         queue_sender(raw)
 
 
+def send_240828(dry_run=True):
+    ''' Send 240828 pr '''
+    template = TPLENV.get_template('./ocf_pr_240828_inline.html')
+    template_md = TPLENV.get_template('./ocf_pr_240828.md')
+
+    if dry_run:
+        path = './ocf_kk0828_test.csv'
+    else:
+        path = './ocf_kk0828.csv'
+
+    users = []
+    with open(path, 'r+', encoding='UTF8') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        subject = choice([
+            '[開源祭] 近期活動更新、感謝募資計畫順利達標',
+            '[開源祭] 募資計畫達標、公民團體、開源社群、市集攤位招募中',
+            '[開源祭] 「開源精神」《時間浸漬 BIOEROSION》募資達標',
+            '[開源祭] 社群懷舊物件、結緣品緊急募集中、感謝募資計畫順利達標',
+            'OCF 「開源祭」近期活動更新、感謝募資計畫順利達標',
+            'OCF 「開源祭」感謝募資計畫順利達標、公民團體、開源社群、市集攤位招募中',
+            'OCF 「開源祭」社群懷舊物件、結緣品緊急募集中、感謝募資計畫順利達標',
+        ])
+
+        u['preheader'] = choice([
+            '關於十週年開源祭活動，懇請協助我們傳達活動訊息、社群攤位、工作人員招募！',
+            '一起來和我們擺攤推廣開源社群、開源精神、開源文化。',
+            '請幫我們呼朋引伴一起來參與志工協助開源祭活動的舉辦。',
+            '最開源的專輯，限量彩膠募資項目，一起來收藏開源音樂專輯',
+            '林強攜手義大利藝術家 Luca Bonaccorsi，首次表演其基於「開放」與「分享」兩大核心理念所創作的全新專輯',
+            '等待 19 年後終於等到林強再次推出新專輯，特別獻給「開源祭」、保證限量發行。這意味著您擁有的不僅僅是一張唱片，而是一件創意且富含「開源精神」的藝術品',
+            '在募資平台 flyingV 上還有搭配彩膠作品的組合包，由於彩膠的數量真的只有限量生產，微微的心動就不要再懷疑了，錯過這次的募資可能就會遺憾終生',
+            '讓這份獨特獻給臺灣開源圈的音樂收藏成為您生活的一部分！',
+        ])
+
+        u['subject'] = subject
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(
+                '財團法人開放文化基金會 OCF', 'hi@ocf.tw'),
+            list_unsubscribe='<mailto:hi+unsubscribe240828@ocf.tw>',
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject=subject,
+            body=template.render(**u),
+            text_body=template_md.render(**u),
+        )
+
+        queue_sender(raw)
+
+
 if __name__ == '__main__':
     # send_240813(dry_run=True)
     # send_240827(dry_run=True)
@@ -878,4 +936,5 @@ if __name__ == '__main__':
     # send_booth_240821(dry_run=True)
     # send_240822_crm(dry_run=True)
     # send_booth_osc_240822(dry_run=True)
+    # send_240828(dry_run=True)
     pass
