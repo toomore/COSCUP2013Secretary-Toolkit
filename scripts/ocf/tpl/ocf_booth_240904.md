@@ -17,7 +17,7 @@ Hi {{name}} {{title}} 您好,
 
 - 提醒：如還未上傳貴單位的 Logo，也請記得協助[上傳](https://forms.gle/p7WBcXyb8VMGr83u6)。
 - 每一攤位的地面空間約 200 x 200 公分。
-- 如果您有適合[攤位木架](https://10years.ocf.tw/img/booth_specifications.webp)可懸掛的識別物，如用於擺攤的布條，都可以在活動當天使用。
+- 如果您有適合[攤位木架](https://10years.ocf.tw/img/booth_specifications.webp)可懸掛的識別物，如用於擺攤的布條，都可以在活動當天使用。（攤位實際展出的[示意圖](https://10years.ocf.tw/img/booth_kanban.webp)）
 - 擺攤期間為活動日 13:00 - 19:00 （18:15 就可以準備撤離）。
 - 目前活動日前間的預報天氣不穩定，雨天備案也在處理中，請稍待通知。
 
