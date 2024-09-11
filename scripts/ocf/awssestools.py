@@ -1022,6 +1022,64 @@ def send_booth_240904(dry_run=True):
         queue_sender(raw)
 
 
+def send_pr_240911(dry_run=True):
+    ''' Send PR 240911 '''
+    template = TPLENV.get_template('./ocf_pr_240911_inline.html')
+    template_md = TPLENV.get_template('./ocf_pr_240911.md')
+
+    if dry_run:
+        path = './ocf_pr_240911_test.csv'
+    else:
+        path = './ocf_pr_240911.csv'
+
+    users = []
+    with open(path, 'r+', encoding='UTF8') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        subject = choice([
+            "[開源祭] 活動即將開始，帶給您目前活動的最新狀況",
+            "[開源祭] 本週末十週年回顧展，探索開源運動歷史",
+            "[開源祭] 市集攤位與開源福利社，還有開源運動回顧展",
+            "[開源祭] 不要錯過！本週末十週年回顧展與現場 RPG 冒險！",
+            "[開源祭] 行程與指南都準備好了！假日一起來水岸廣場走走",
+            "[開源祭] 科技跨界對談、音樂影像表演、開源運動回顧與開源福利社",
+        ])
+
+        u['preheader'] = choice([
+            '十週年開源祭活動，感謝參與社群攤位',
+            '感謝一起來和我們擺攤推廣開源社群、開源精神、開源文化。',
+            '也請幫我們呼朋引伴一起來參與志工協助開源祭活動的舉辦。',
+            '開源祭詳盡行程與遊玩指南都在這裡',
+            '成為「開源人」，體驗實體RPG冒險遊戲',
+            '當科技遇上音樂與藝術，一同狂歡一整晚',
+            '募資計劃順利達標，感謝您的支持',
+            '提交你的懷舊物件，讓更多人回味開源歷程',
+            '新聞稿專區和素材包，助你推廣開源祭活動',
+        ])
+
+        u['subject'] = subject
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(
+                '財團法人開放文化基金會 OCF', 'hi@ocf.tw'),
+            list_unsubscribe='<mailto:10years_unsubscribe+240911@ocf.tw>',
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject=subject,
+            body=template.render(**u),
+            text_body=template_md.render(**u),
+        )
+
+        queue_sender(raw)
+
+
 if __name__ == '__main__':
     # send_240813(dry_run=True)
     # send_240827(dry_run=True)
@@ -1033,4 +1091,5 @@ if __name__ == '__main__':
     # send_240828(dry_run=True)
     # send_booth_240830(dry_run=True)
     # send_booth_240904(dry_run=True)
+    # send_pr_240911(dry_run=True)
     pass
