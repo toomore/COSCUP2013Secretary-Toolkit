@@ -1080,6 +1080,52 @@ def send_pr_240911(dry_run=True):
         queue_sender(raw)
 
 
+def send_vl_240912(dry_run=True):
+    ''' Send 240912 Volunteer '''
+    template = TPLENV.get_template('./ocf_vl_240912_inline.html')
+    template_md = TPLENV.get_template('./ocf_vl_240912.md')
+
+    if dry_run:
+        path = './ocf_vl_0911_test.csv'
+    else:
+        path = './ocf_vl_0911.csv'
+
+    users = []
+    with open(path, 'r+', encoding='UTF8') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        subject = choice([
+            '[請回覆] [開源祭] 工作任務分配與晚餐是否訂購',
+        ])
+
+        u['preheader'] = choice([
+            '關於十週年開源祭活動，懇請協助我們傳達活動訊息、社群攤位、工作人員招募！',
+            '一起來和我們擺攤推廣開源社群、開源精神、開源文化。',
+            '請幫我們呼朋引伴一起來參與志工協助開源祭活動的舉辦。',
+        ])
+
+        u['subject'] = subject
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(
+                '財團法人開放文化基金會 OCF', 'hi@ocf.tw'),
+            list_unsubscribe='<mailto:hi+unsubscribe240912vl@ocf.tw>',
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject=subject,
+            body=template.render(**u),
+            text_body=template_md.render(**u),
+        )
+
+        queue_sender(raw)
+
 if __name__ == '__main__':
     # send_240813(dry_run=True)
     # send_240827(dry_run=True)
@@ -1092,4 +1138,5 @@ if __name__ == '__main__':
     # send_booth_240830(dry_run=True)
     # send_booth_240904(dry_run=True)
     # send_pr_240911(dry_run=True)
+    # send_vl_240912(dry_run=True)
     pass
