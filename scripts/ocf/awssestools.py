@@ -1058,11 +1058,11 @@ def send_pr_240911(dry_run=True):
             '感謝一起來和我們擺攤推廣開源社群、開源精神、開源文化。',
             '也請幫我們呼朋引伴一起來參與志工協助開源祭活動的舉辦。',
             '開源祭詳盡行程與遊玩指南都在這裡',
-            '成為「開源人」，體驗實體RPG冒險遊戲',
+            '成為「開源人」，體驗實體 RPG 冒險遊戲',
             '當科技遇上音樂與藝術，一同狂歡一整晚',
             '募資計劃順利達標，感謝您的支持',
-            '提交你的懷舊物件，讓更多人回味開源歷程',
-            '新聞稿專區和素材包，助你推廣開源祭活動',
+            '找找你的懷舊物件，讓更多人回味開源歷程',
+            '新聞稿專區和素材包，推廣開源祭活動',
         ])
 
         u['subject'] = subject
@@ -1070,7 +1070,7 @@ def send_pr_240911(dry_run=True):
         raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
             source=AwsSESTools.mail_header(
                 '財團法人開放文化基金會 OCF', 'hi@ocf.tw'),
-            list_unsubscribe='<mailto:10years_unsubscribe+240911@ocf.tw>',
+            list_unsubscribe='<mailto:hi+unsubscribe240911@ocf.tw>',
             to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
             subject=subject,
             body=template.render(**u),
