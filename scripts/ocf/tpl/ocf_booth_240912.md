@@ -1,6 +1,6 @@
 # 開源祭擺攤提醒事項
 
-Hi \{\{name\}\} \{\{title\}\},
+Hi {{name}} {{title}},
 
 再二天後就是「開源祭」活動，感謝參與這次的擺攤活動。我們在昨天已一起寄送活動電子報到您的信箱中，如果沒有收到沒關係，這裡有[線上版本](https://10years.ocf.tw/edm/20240911.html)的電子報資訊，也可以將其分享給其他擺攤的夥伴，進而瞭解我們這次活動的概況。
 
@@ -22,4 +22,4 @@ Hi \{\{name\}\} \{\{title\}\},
 
 您的攤位招牌如下：
 
-https://10years.ocf.tw/img/kanban/\{\{kanban\}\}.jpg
+https://10years.ocf.tw/img/kanban/{{kanban}}.jpg
