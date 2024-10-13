@@ -1227,6 +1227,58 @@ def send_240729(dry_run=True):
 
         queue_sender(raw)
 
+def send_241015(dry_run=True):
+    ''' Send 241015 '''
+    template = TPLENV.get_template('./edm_arm_20241029.html')
+    template_md = TPLENV.get_template('./edm_arm_20241029.md')
+
+    if dry_run:
+        path = './coscup_paper_subscribers_edmarm01_test.csv'
+    else:
+        path = './coscup_paper_subscribers_edmarm01_20240729_084130.csv'
+
+    users = []
+    with open(path, 'r+', encoding='UTF8') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        subject = choice([
+            'COSCUP 贊助電子報【免費報名】10/29 Arm 論壇再抽 iPhone 16 Pro 與 Pixel 9 Pro XL：今年首度針對軟體開發者提供系列課程！',
+            'COSCUP 贊助電子報【免費報名】10/29 Arm 論壇今年首度針對軟體開發者提供系列課程！有機會抽中 iPhone 16 Pro 與 Pixel 9 Pro XL',
+            'COSCUP 贊助電子報【誠摯邀請】10/29 Arm 論壇再抽 iPhone 16 Pro 與 Pixel 9 Pro XL：今年首度針對軟體開發者提供系列課程！',
+            'COSCUP 贊助電子報【誠摯邀請】10/29 Arm 論壇今年首度針對軟體開發者提供系列課程！有機會抽中 iPhone 16 Pro 與 Pixel 9 Pro XL',
+        ])
+
+        u['preheader'] = choice([
+            '10/29 Arm 論壇，讓我們一起重塑 AI 運算的未來',
+            'Arm 論壇免費報名參加，還有機會抽中 iPhone 16 Pro, Pixel 9 Pro XL',
+            '誠摯邀請工程人員、ODM/OEM、軟體開發人員、硬體開發人員、系統設計製造人員、半導體產業人員參與',
+            '主題演講將分享低功耗高效率、具有最佳化軟體的 Arm 平台，如何在 AI 時代中掌握商機',
+            '名額有限、請立即報名，10/29 Arm 論壇，讓我們一起重塑 AI 運算的未來',
+            '今年首度針對軟體開發者提供系列課程！10/29 Arm 論壇，讓我們一起重塑 AI 運算的未來',
+        ])
+
+        u['subject'] = subject
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(
+                'COSCUP Volunteer 志工服務', 'volunteer@coscup.org'),
+            list_unsubscribe='<mailto:volunteer+unsubscribe241015@coscup.org>',
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject=subject,
+            body=template.render(**u),
+            text_body=template_md.render(**u),
+        )
+
+        queue_sender(raw)
+
 
 if __name__ == '__main__':
     # send_240118(dry_run=True)
@@ -1242,4 +1294,5 @@ if __name__ == '__main__':
     # send_240718(dry_run=True)
     # send_speakers_240719(dry_run=True)
     # send_240729(dry_run=True)
+    # send_241015(dry_run=True)
     pass
