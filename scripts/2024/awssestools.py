@@ -1252,13 +1252,14 @@ def send_241015(dry_run=True):
         subject = choice([
             'COSCUP 贊助電子報【免費報名】10/29 Arm 論壇再抽 iPhone 16 Pro 與 Pixel 9 Pro XL：今年首度針對軟體開發者提供系列課程！',
             'COSCUP 贊助電子報【免費報名】10/29 Arm 論壇今年首度針對軟體開發者提供系列課程！有機會抽中 iPhone 16 Pro 與 Pixel 9 Pro XL',
-            'COSCUP 贊助電子報【誠摯邀請】10/29 Arm 論壇再抽 iPhone 16 Pro 與 Pixel 9 Pro XL：今年首度針對軟體開發者提供系列課程！',
-            'COSCUP 贊助電子報【誠摯邀請】10/29 Arm 論壇今年首度針對軟體開發者提供系列課程！有機會抽中 iPhone 16 Pro 與 Pixel 9 Pro XL',
+            'COSCUP 贊助電子報【報名最後十天！誠摯邀請】10/29 Arm 論壇再抽 iPhone 16 Pro 與 Pixel 9 Pro XL：今年首度針對軟體開發者提供系列課程！',
+            'COSCUP 贊助電子報【誠摯邀請！倒數報名中！】10/29 Arm 論壇再抽 iPhone 16 Pro 與 Pixel 9 Pro XL：今年首度針對軟體開發者提供系列課程！',
+            'COSCUP 贊助電子報【座位有限！誠摯邀請】10/29 Arm 論壇今年首度針對軟體開發者提供系列課程！有機會抽中 iPhone 16 Pro 與 Pixel 9 Pro XL',
         ])
 
         u['preheader'] = choice([
             '10/29 Arm 論壇，讓我們一起重塑 AI 運算的未來',
-            'Arm 論壇免費報名參加，還有機會抽中 iPhone 16 Pro, Pixel 9 Pro XL',
+            'Arm 論壇最後十天免費報名參加，還有機會抽中 iPhone 16 Pro, Pixel 9 Pro XL',
             '誠摯邀請工程人員、ODM/OEM、軟體開發人員、硬體開發人員、系統設計製造人員、半導體產業人員參與',
             '主題演講將分享低功耗高效率、具有最佳化軟體的 Arm 平台，如何在 AI 時代中掌握商機',
             '名額有限、請立即報名，10/29 Arm 論壇，讓我們一起重塑 AI 運算的未來',
