@@ -1227,6 +1227,7 @@ def send_240729(dry_run=True):
 
         queue_sender(raw)
 
+
 def send_241015(dry_run=True):
     ''' Send 241015 '''
     template = TPLENV.get_template('./edm_arm_20241029.html')
