@@ -1180,9 +1180,9 @@ def send_booth_241028(dry_run=True):
     template_md = TPLENV.get_template('./ocf_booth_cso_241027.md')
 
     if dry_run:
-        path = './ocf_booth_cso_test.csv'
+        path = './ocf_booth_240912_test.csv'
     else:
-        path = './ocf_booth_cso.csv'
+        path = './ocf_booth_240912.csv'
 
     users = []
     with open(path, 'r+', encoding='UTF8') as files:
