@@ -1219,6 +1219,61 @@ def send_booth_241028(dry_run=True):
         queue_sender(raw)
 
 
+def send_rightscon2025(dry_run=True):
+    ''' Send rightscon 2025 '''
+    template = TPLENV.get_template('./ocf_rightscon2025_inline.html')
+    template_md = TPLENV.get_template('./ocf_rightscon2025.md')
+
+    if dry_run:
+        path = './ocf_rightscon_lists_test.csv'
+    else:
+        path = './ocf_rightscon_lists.csv'
+
+    users = []
+    with open(path, 'r+', encoding='UTF8') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        subject = choice([
+            'RightsCon 全球數位人權大會首次來台，邀請您一同參與',
+            '邀請您一同參與，RightsCon 全球數位人權大會首次來台',
+            '[邀請] RightsCon 全球數位人權大會 2025 首次來台舉辦',
+            '[邀請] RightsCon 全球數位人權大會 2/24-27 台北 TICC 首次舉辦',
+            '[優惠票] RightsCon 全球數位人權大會 2025 首次來台舉辦',
+            '[優惠票] RightsCon 全球數位人權大會 2/24-27 台北 TICC 首次舉辦',
+        ])
+
+        u['preheader'] = choice([
+            '今年首次在台舉辦，機會難得，不需要出國即可參與的國際會議',
+            '會議主題關注 AI 發展、政策監管、隱私保護、媒體環境等數位技術與人權交織的影響',
+            '吸引超過 3,000 名專家學者、技術領袖、公民社群夥伴及政策制定者參與',
+            '由國際組織 Access Now 主辦的盛會，並將吸引超過 3,000 名專家學者、技術領袖、公民社群夥伴及政策制定者參與',
+            '希望藉這次機會讓更多臺灣夥伴一起響應、交流數位政策與人權發展趨勢，讓臺灣數位人權的討論更加蓬勃與多元',
+            '我們也整理了 OCF 在 RightsCon 參與的介紹頁面，包含大會議程亮點和周邊活動',
+        ])
+
+        u['subject'] = subject
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(
+                '財團法人開放文化基金會 OCF', 'hi@ocf.tw'),
+            list_unsubscribe='<mailto:hi+unsubscribe250126@ocf.tw>',
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject=subject,
+            body=template.render(**u),
+            text_body=template_md.render(**u),
+        )
+
+        queue_sender(raw)
+
+
 if __name__ == '__main__':
     # send_240813(dry_run=True)
     # send_240827(dry_run=True)
@@ -1234,4 +1289,5 @@ if __name__ == '__main__':
     # send_vl_240912(dry_run=True)
     # send_booth_240912(dry_run=True)
     # send_booth_241028(dry_run=True)
+    # send_rightscon2025(dry_run=True)
     pass
