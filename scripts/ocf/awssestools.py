@@ -1242,12 +1242,18 @@ def send_rightscon2025(dry_run=True):
         _n += 1
 
         subject = choice([
-            'RightsCon 全球數位人權大會首次來台，邀請您一同參與',
-            '邀請您一同參與，RightsCon 全球數位人權大會首次來台',
+            '[邀請] RightsCon 全球數位人權大會首次來台，邀請您一同參與',
+            '【邀請】RightsCon 全球數位人權大會首次來台，邀請您一同參與',
+            '[邀請] 您一同參與，RightsCon 全球數位人權大會首次來台',
+            '【邀請】您一同參與，RightsCon 全球數位人權大會首次來台',
             '[邀請] RightsCon 全球數位人權大會 2025 首次來台舉辦',
+            '【邀請】RightsCon 全球數位人權大會 2025 首次來台舉辦',
             '[邀請] RightsCon 全球數位人權大會 2/24-27 台北 TICC 首次舉辦',
+            '【邀請】RightsCon 全球數位人權大會 2/24-27 台北 TICC 首次舉辦',
             '[優惠票] RightsCon 全球數位人權大會 2025 首次來台舉辦',
+            '【優惠票】RightsCon 全球數位人權大會 2025 首次來台舉辦',
             '[優惠票] RightsCon 全球數位人權大會 2/24-27 台北 TICC 首次舉辦',
+            '【優惠票】RightsCon 全球數位人權大會 2/24-27 台北 TICC 首次舉辦',
         ])
 
         u['preheader'] = choice([
