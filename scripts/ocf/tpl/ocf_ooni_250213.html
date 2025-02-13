@@ -1,0 +1,407 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Open Culture Foundation</title>
+    <style>
+      /* -------------------------------------
+          GLOBAL RESETS
+      ------------------------------------- */
+      img {
+        border: none;
+        -ms-interpolation-mode: bicubic;
+        max-width: 100%; }
+
+      body {
+        background-color: #ffffff;
+        font-family: sans-serif;
+        -webkit-font-smoothing: antialiased;
+        font-size: 14px;
+        line-height: 1.4;
+        margin: 0;
+        padding: 0;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%; }
+
+      table {
+        border-collapse: separate;
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+        width: 100%; }
+        table td {
+          font-family: sans-serif;
+          font-size: 14px;
+          vertical-align: top; }
+
+      /* -------------------------------------
+          BODY & CONTAINER
+      ------------------------------------- */
+
+      .body {
+        background-color: #ffffff;
+        width: 100%; }
+
+      /* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */
+      .container {
+        display: block;
+        margin: 0 auto !important;
+        /* makes it centered */
+        max-width: 640px;
+        padding: 10px; }
+
+      /* This should also be a block element, so that it will fill 100% of the .container */
+      .content {
+        box-sizing: border-box;
+        display: block;
+        margin: 0 auto;
+        max-width: 640px;
+        padding: 10px;
+        background-color: #6450DC; }
+
+      /* -------------------------------------
+          HEADER, FOOTER, MAIN
+      ------------------------------------- */
+      .main {
+        background: #fff;
+        border-radius: 3px;
+        width: 100%; }
+
+      .wrapper {
+        box-sizing: border-box;
+        padding: 20px; }
+
+      .footer {
+        clear: both;
+        padding-top: 10px;
+        text-align: center;
+        width: 100%; }
+        .footer td,
+        .footer p,
+        .footer span,
+        .footer a {
+          color: #ffffff;
+          font-size: 12px;
+          text-align: center; }
+
+      /* -------------------------------------
+          TYPOGRAPHY
+      ------------------------------------- */
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: #000000;
+        font-family: sans-serif;
+        font-weight: 400;
+        line-height: 1.4;
+        margin: 0;
+        margin-bottom: 30px; }
+
+      h1 {
+        font-size: 35px;
+        font-weight: 300;
+        text-align: center;
+        text-transform: capitalize; }
+
+      p,
+      ul,
+      ol {
+        font-family: sans-serif;
+        font-size: 14px;
+        font-weight: normal;
+        margin: 0;
+        margin-bottom: 15px; }
+        p li,
+        ul li,
+        ol li {
+          list-style-position: inside;
+          margin-left: 5px; }
+
+      a {
+        color: #3498db;
+        text-decoration: underline; }
+
+      /* -------------------------------------
+          BUTTONS
+      ------------------------------------- */
+      .btn {
+        box-sizing: border-box;
+        width: 100%; }
+        .btn > tbody > tr > td {
+          padding-bottom: 15px; }
+        .btn table {
+          width: auto; }
+        .btn table td {
+          background-color: #ffffff;
+          border-radius: 5px;
+          text-align: center; }
+        .btn a {
+          background-color: #ffffff;
+          border: solid 1px #0a4cba;
+          border-radius: 5px;
+          box-sizing: border-box;
+          color: #0a4cba;
+          cursor: pointer;
+          display: inline-block;
+          font-size: 14px;
+          font-weight: bold;
+          margin: 0;
+          padding: 12px 25px;
+          text-decoration: none;
+          text-transform: capitalize; }
+
+      .btn-primary table td {
+        background-color: #3498db; }
+
+      .btn-primary a {
+        background-color: #5A4BC3;
+        border-color: #C3B9FF;
+        color: #ffffff; }
+
+      /* -------------------------------------
+          OTHER STYLES THAT MIGHT BE USEFUL
+      ------------------------------------- */
+      .last {
+        margin-bottom: 0; }
+
+      .first {
+        margin-top: 0; }
+
+      .align-center {
+        text-align: center; }
+
+      .align-right {
+        text-align: right; }
+
+      .align-left {
+        text-align: left; }
+
+      .clear {
+        clear: both; }
+
+      .mt0 {
+        margin-top: 0; }
+
+      .mb0 {
+        margin-bottom: 0; }
+
+      .preheader {
+        color: transparent;
+        display: none;
+        height: 0;
+        max-height: 0;
+        max-width: 0;
+        opacity: 0;
+        overflow: hidden;
+        mso-hide: all;
+        visibility: hidden;
+        width: 0; }
+
+      .powered-by a {
+        text-decoration: none; }
+
+      hr {
+        border: 0;
+        border-bottom: 1px solid #f6f6f6;
+        margin: 20px 0; }
+
+      /* -------------------------------------
+          RESPONSIVE AND MOBILE FRIENDLY STYLES
+      ------------------------------------- */
+      @media only screen and (max-width: 640px) {
+        table[class=body] h1 {
+          font-size: 28px !important;
+          margin-bottom: 10px !important; }
+        table[class=body] p,
+        table[class=body] ul,
+        table[class=body] ol,
+        table[class=body] td,
+        table[class=body] span,
+        table[class=body] a {
+          font-size: 16px !important; }
+        table[class=body] .wrapper,
+        table[class=body] .article {
+          padding: 10px !important; }
+        table[class=body] .content {
+          padding: 0 !important; }
+        table[class=body] .container {
+          padding: 0 !important;
+          width: 100% !important; }
+        table[class=body] .main {
+          border-left-width: 0 !important;
+          border-radius: 0 !important;
+          border-right-width: 0 !important; }
+        table[class=body] .btn table {
+          width: 100% !important; }
+        table[class=body] .btn a {
+          width: 100% !important; }
+        table[class=body] .img-responsive {
+          height: auto !important;
+          max-width: 100% !important;
+          width: auto !important; }}
+
+      /* -------------------------------------
+          PRESERVE THESE STYLES IN THE HEAD
+      ------------------------------------- */
+      @media all {
+        .ExternalClass {
+          width: 100%; }
+        .ExternalClass,
+        .ExternalClass p,
+        .ExternalClass span,
+        .ExternalClass font,
+        .ExternalClass td,
+        .ExternalClass div {
+          line-height: 100%; }
+        .apple-link a {
+          color: inherit !important;
+          font-family: inherit !important;
+          font-size: inherit !important;
+          font-weight: inherit !important;
+          line-height: inherit !important;
+          text-decoration: none !important; }
+        .btn-primary table td:hover {
+          background-color: #453798 !important; }
+        .btn-primary a:hover {
+          background-color: #453798 !important;
+          border-color: #453798 !important; } }
+
+      .quote {
+        color: #334433;
+        font-style: italic;
+        font-size: small;
+      }
+      h2 {
+        font-weight: bold;
+        font-family: "Arial";
+        border-bottom: 1px #6450DC dashed;
+        padding-left: 1px;
+        margin-top: 30px;
+        margin-bottom: 12px;
+      }
+      h3 {
+        margin-bottom: 5px;
+        margin-top: 20px;
+        color: #6450DC;
+        font-weight: bold;
+      }
+      ol li,
+      ul li {
+        list-style-position: outside;
+        margin-left: 0px;
+        line-height: 2;
+      }
+      p small,
+      li small {
+        color: #898989;
+      }
+      p .red-strong {
+        font-weight: bold;
+        color: red;
+      }
+      h2 small {
+        font-size: small;
+        color: #898989;
+      }
+      h3 small {
+        font-size: small;
+        color: #898989;
+      }
+    </style>
+  </head>
+  <body class="">
+    <table border="0" cellpadding="0" cellspacing="0" class="body">
+      <tr>
+        <td>&nbsp;</td>
+        <td class="container">
+          <div class="content">
+
+            <!-- START CENTERED WHITE CONTAINER -->
+            <span class="preheader">{{preheader}}</span>
+            <table class="main">
+
+              <!-- START MAIN CONTENT AREA -->
+              <tr>
+                <td class="wrapper">
+                  <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td>
+                        <p class="align-right"><a href="https://ocf.tw/"><img src="https://10years.ocf.tw/img/ocf_logo_purple.png" alt="OCF_" title="OCF_" style="width: 120px;"></a></p>
+                        <p class="align-center"><a target="_blank" href="https://ooni-research.ocf.tw/docs/blog/2025/02/rightscon25-tor-tails-ooni/"><img src="https://ooni-research.ocf.tw/docs/assets/images/tor-pre-event.webp" alt="網路自由工作坊：Tor、Tails、OONI" title="網路自由工作坊：Tor、Tails、OONI" style="border-radius: 8px;"></a></p>
+                        <p>親愛的夥伴 {{name}} 您好：</p>
+                        <p><small>抱歉冒昧打擾！這裡是開放文化基金會（OCF）。敝會夥伴曾在先前的交流活動中有幸獲得您的名片，因此透過郵件聯繫，希望向您介紹一場重要且值得關注的國際盛會。</small></p>
+                        <p>由於 RightsCon 25 今年在臺灣舉辦，因此有許多國際團隊的夥伴將抵達台北參與活動，開放文化基金會 OCF 這次很榮幸邀請到 Tor/OONI 創辦人與團隊人員一起舉辦工作坊與講座。預計在 2/23 下午與晚上時段舉辦活動，機會難得，非常歡迎報名參與！</p>
+                        <p>如果您是 📰 <strong>新聞媒體、記者</strong>相關領域的夥伴，工作坊 #1 Tor, Tails 有保留名額給適合您工作領域使用。對於網路審查、網路監控感興趣的夥伴，工作坊 #2 OONI 也非常適合您透過現有的工具來即時觀察全球網路自由狀況。</p>
+                        <p>最後是晚上的演講活動，邀請到 Tor 共同創辦人 <a href="https://en.wikipedia.org/wiki/Roger_Dingledine" target="_blank">Roger Dingledine</a>，將帶來如何讓 Tor 增強隱私技術與網路自由現況！</p>
+                        <p>機會真的難得，<a href="https://ooni-research.ocf.tw/docs/blog/2025/02/rightscon25-tor-tails-ooni/" target="_blank">快來報名</a>吧！</p>
+                        <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
+                          <tbody>
+                            <tr>
+                              <td align="center">
+                                <table border="0" cellpadding="0" cellspacing="0">
+                                  <tbody>
+                                    <tr>
+                                      <td> <a href="https://ooni-research.ocf.tw/docs/blog/2025/02/rightscon25-tor-tails-ooni/" target="_blank">活動說明頁面</a> </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <hr style="border:3px solid #6978ff;border-radius:8px;">
+                        <p class="align-center"><a target="_blank" href="https://ooni-research.ocf.tw/docs/en/blog/2025/02/rightscon25-tor-tails-ooni/"><img src="https://ooni-research.ocf.tw/docs/en/assets/images/tor-pre-event.webp" alt="Internet Freedom Workshop: Tor、Tails、OONI¶" title="Internet Freedom Workshop: Tor、Tails、OONI¶" style="border-radius: 8px;"></a></p>
+                        <p>Hi {{name}},</p>
+                        <p><small>Apologies for the unsolicited contact! This is the Open Culture Foundation (OCF). One of our partners had the pleasure of receiving your business card during a previous networking event. We are reaching out via email to introduce you to an important and noteworthy international event. </small></p>
+                        <p>Since RightsCon 25 is being held in Taiwan this year, many international team members will be arriving in Taipei to participate in the event. The Open Culture Foundation (OCF) is honored to invite the founders and team members of Tor and OONI to host workshops and lectures. The event is scheduled for the afternoon and evening of February 23rd. This is a rare opportunity, and we warmly welcome you to register and participate!</p>
+                        <p>If you are in the 📰 <strong>journalism or media field</strong>, Workshop #1 on Tor and Tails has reserved spots tailored for your domain. For those interested in internet censorship and surveillance, Workshop #2 on OONI is perfect for using existing tools to observe the global state of internet freedom in real time.</p>
+                        <p>Lastly, the evening lecture features <a href="https://en.wikipedia.org/wiki/Roger_Dingledine" target="_blank">Roger Dingledine</a>, co-founder of Tor, who will discuss how Tor enhances privacy technology and the current state of internet freedom.</p>
+                        <p>Don't miss this unique opportunity to <a href="https://ooni-research.ocf.tw/docs/en/blog/2025/02/rightscon25-tor-tails-ooni/">register</a>!</p>
+                        <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
+                          <tbody>
+                            <tr>
+                              <td align="center">
+                                <table border="0" cellpadding="0" cellspacing="0">
+                                  <tbody>
+                                    <tr>
+                                      <td> <a href="https://ooni-research.ocf.tw/docs/en/blog/2025/02/rightscon25-tor-tails-ooni/" target="_blank">Event Details</a> </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <p class="align-center"><small style="color:#999999;">Thank you.</small></p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            <!-- END MAIN CONTENT AREA -->
+            </table>
+
+            <!-- START FOOTER -->
+            <div class="footer">
+              <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td class="content-block">
+                    <span class="apple-link">
+                      <strong>OCF_</strong> 財團法人開放文化基金會<br>
+                      Open Culture Foundation
+                    </span>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <!-- END FOOTER -->
+
+          <!-- END CENTERED WHITE CONTAINER -->
+          </div>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+  </body>
+</html>

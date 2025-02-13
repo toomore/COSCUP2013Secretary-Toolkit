@@ -1280,6 +1280,68 @@ def send_rightscon2025(dry_run=True):
         queue_sender(raw)
 
 
+def send_ooni_wh_250213(dry_run=True):
+    ''' Send ooni workshop '''
+    template = TPLENV.get_template('./ocf_ooni_250213_inline.html')
+    template_md = TPLENV.get_template('./ocf_ooni_250213.md')
+
+    if dry_run:
+        path = './ocf_rightscon_lists_code_test.csv'
+    else:
+        path = './ocf_rightscon_lists_code.csv'
+
+    users = []
+    with open(path, 'r+', encoding='UTF8') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        subject = choice([
+            '[邀請] 網路自由工作坊：Tor、Tails、OONI',
+            '[邀請] Tor、Tails、OONI 網路自由工作坊',
+            '[邀請] 匿名網路工作坊：Tor、Tails、OONI',
+            '[邀請] Tor、Tails、OONI 匿名網路工作坊',
+            '[邀請] Tor、Tails、OONI 網路自由工作坊，邀請 Roger Dingledine 來台演講',
+            '[邀請] Tor、Tails、OONI 匿名網路工作坊，邀請 Roger Dingledine 來台演講',
+            '[RightsCon 周邊活動] 網路自由工作坊：Tor、Tails、OONI',
+            '[RightsCon 周邊活動] Tor、Tails、OONI 網路自由工作坊',
+            '[RightsCon 周邊活動] 匿名網路工作坊：Tor、Tails、OONI',
+            '[RightsCon 周邊活動] Tor、Tails、OONI 匿名網路工作坊',
+            '[RightsCon 周邊活動] Tor、Tails、OONI 網路自由工作坊，邀請 Roger Dingledine 來台演講',
+            '[RightsCon 周邊活動] Tor、Tails、OONI 匿名網路工作坊，邀請 Roger Dingledine 來台演講',
+        ])
+
+        u['preheader'] = choice([
+            '今年首次在台舉辦，機會難得，不需要出國即可參與的國際會議',
+            '匿名網路工作坊適合新聞媒體、獨立記者所設計的工作坊',
+            '榮幸邀請到 Roger Dingledine 分享網路監控的世界中如何捍衛個人線上隱私權',
+            '榮幸邀請到 Roger Dingledine 分享目前網路自由現況與捍衛個人線上隱私權',
+            '工作坊 #1 Tor, Tails 有保留名額給適合您工作領域使用',
+            '對於網路審查、網路監控感興趣的夥伴，工作坊 #2 OONI 也非常適合您透過現有的工具來即時觀察全球網路自由狀況',
+            '晚上的演講活動，邀請到 Tor 共同創辦人 Roger Dingledine，將帶來如何讓 Tor 增強隱私技術與網路自由現況',
+        ])
+
+        u['subject'] = subject
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(
+                '財團法人開放文化基金會 OCF', 'hi@ocf.tw'),
+            list_unsubscribe='<mailto:hi+unsubscribe250213@ocf.tw>',
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject=subject,
+            body=template.render(**u),
+            text_body=template_md.render(**u),
+        )
+
+        queue_sender(raw)
+
+
 if __name__ == '__main__':
     # send_240813(dry_run=True)
     # send_240827(dry_run=True)
@@ -1296,4 +1358,5 @@ if __name__ == '__main__':
     # send_booth_240912(dry_run=True)
     # send_booth_241028(dry_run=True)
     # send_rightscon2025(dry_run=True)
+    # send_ooni_wh_250213(dry_run=True)
     pass
