@@ -1341,6 +1341,50 @@ def send_ooni_wh_250213(dry_run=True):
 
         queue_sender(raw)
 
+def send_ooni_wh_codes(dry_run=True):
+    ''' Send ooni workshop invitation code'''
+    template = TPLENV.get_template('./ocf_ooni_invitation_code_inline.html')
+    template_md = TPLENV.get_template('./ocf_ooni_invitation_code.md')
+
+    if dry_run:
+        path = './tor_invitation_codes_250217_test.csv'
+    else:
+        path = './tor_invitation_codes_250217.csv'
+
+    users = []
+    with open(path, 'r+', encoding='UTF8') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        subject = choice([
+            '[RightsCon Pre-Event] Tor/Tails 報名最後確認 / Final Registration Confirmation',
+        ])
+
+        u['preheader'] = choice([
+            '請輸入邀請碼完成最後報名 / Please enter the invitation code to complete the final registration.',
+        ])
+
+        u['subject'] = subject
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(
+                'Toomore Chiang', 'toomore@ocf.tw'),
+            list_unsubscribe='<mailto:toomore+unsubscribe250217@ocf.tw>',
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject=subject,
+            body=template.render(**u),
+            text_body=template_md.render(**u),
+        )
+
+        queue_sender(raw)
+
 
 if __name__ == '__main__':
     # send_240813(dry_run=True)
@@ -1359,4 +1403,5 @@ if __name__ == '__main__':
     # send_booth_241028(dry_run=True)
     # send_rightscon2025(dry_run=True)
     # send_ooni_wh_250213(dry_run=True)
+    # send_ooni_wh_codes(dry_run=True)
     pass
