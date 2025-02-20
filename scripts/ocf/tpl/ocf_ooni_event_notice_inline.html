@@ -97,7 +97,7 @@ border-color: #453798 !important
                         <p style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;margin-bottom:15px">感謝參與這次網路自由工作坊與講座，為了方便在眾多活動間能順利參與，以下是您有報名的工作坊或講座，前往活動時請出示該場次的報名資訊與 QRCode 給予現場志工驗證。</p>
                         <p style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;margin-bottom:15px">如果有任何問題，可直接回覆信件詢問，感謝！</p>
                         <h2 style="color:#000000;line-height:1.4;margin:0;font-weight:bold;font-family:&#34;Arial&#34;;border-bottom:1px #6450DC dashed;padding-left:1px;margin-top:30px;margin-bottom:12px">已報名的活動</h2>
-                        {% if w1_code != &#39;&#39; %}
+                        {% if w1_code %}
                         <h3 style="font-family:sans-serif;line-height:1.4;margin:0;margin-bottom:5px;margin-top:20px;color:#6450DC;font-weight:bold">工作坊 #1：如何使用 Tor 避開審查並匿名瀏覽</h3>
                         <ul style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;margin-bottom:15px">
                           <li style="list-style-position:outside;margin-left:0px;line-height:2">活動時間：2/23 14:00 - 17:30</li>
@@ -110,7 +110,7 @@ border-color: #453798 !important
                           </a>
                         </p>
                         {% endif %}
-                        {% if w2_code != &#39;&#39; %}
+                        {% if w2_code %}
                         <h3 style="font-family:sans-serif;line-height:1.4;margin:0;margin-bottom:5px;margin-top:20px;color:#6450DC;font-weight:bold">工作坊 #2：如何使用 OONI 偵測與觀察網路審查狀況</h3>
                         <ul style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;margin-bottom:15px">
                           <li style="list-style-position:outside;margin-left:0px;line-height:2">活動時間：2/23 18:00 - 19:00</li>
@@ -127,7 +127,7 @@ border-color: #453798 !important
                         <h3 style="font-family:sans-serif;line-height:1.4;margin:0;margin-bottom:5px;margin-top:20px;font-weight:bold;color:#d2691e">如何前往晚上講座地點？</h3>
                         <p style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;margin-bottom:15px;color:#c95400">建議的路線是從忠孝新生站（O07, BL14）搭乘捷運到松江南京站（O08, G15），從六號出口出站，然後步行大約五分鐘即可到達。</p>
                         {% endif %}
-                        {% if w3_code != &#39;&#39; %}
+                        {% if w3_code %}
                         <h3 style="font-family:sans-serif;line-height:1.4;margin:0;margin-bottom:5px;margin-top:20px;color:#6450DC;font-weight:bold">講座：Tor 在網路監控的世界中捍衛個人線上隱私權</h3>
                         <ul style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;margin-bottom:15px">
                           <li style="list-style-position:outside;margin-left:0px;line-height:2">活動時間：2/23 19:30 - 21:00</li>
