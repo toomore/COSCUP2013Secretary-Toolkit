@@ -390,7 +390,7 @@
                         <p>Thank you for participating in the Internet Freedom workshop and lecture. To help you smoothly attend the events amidst the busy schedule, here are the workshops or lectures you have registered for. Please present your registration information and QR code to the on-site volunteers upon arrival for verification. </p>
                         <p>If you have any questions, feel free to reply to this email. Thank you! </p>
                         <h2>Registered Events</h2>
-                        {% if w1_code != '' %}
+                        {% if w1_code %}
                         <h3>Workshop 1: Circumventing censorship and navigating anonymously with Tor</h3>
                         <ul>
                           <li>Date/Time: 2/23 14:00 - 17:30 (+08:00)</li>
@@ -411,7 +411,7 @@
                           </a>
                         </p>
                         {% endif %}
-                        {% if w2_code != '' %}
+                        {% if w2_code %}
                         <h3>Workshop 2: Detecting and Measuring Internet Censorship with OONI</h3>
                         <ul>
                           <li>Date/Time: 2/23 18:00 - 19:00 (+08:00)</li>
@@ -436,7 +436,7 @@
                         <h3 style="color: #d2691e;">How do I get to the keynote venue from the workshop?</h3>
                         <p style="color: #c95400;">The recommended route is to take the MRT from Zhongxiao Xinsheng Station (O07, BL14) to Songjiang Nanjing Station (O08, G15) and exit through Exit 6, and then walk for about five minutes to arrive.</p>
                         {% endif %}
-                        {% if w3_code != '' %}
+                        {% if w3_code %}
                         <h3>Keynote: Tor: Defending your online privacy in a surveillance world</h3>
                         <ul>
                           <li>Date/Time: 2/23 19:30 - 21:00 (+08:00)</li>

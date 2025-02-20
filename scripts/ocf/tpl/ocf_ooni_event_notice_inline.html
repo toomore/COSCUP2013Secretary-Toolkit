@@ -147,7 +147,7 @@ border-color: #453798 !important
                         <p style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;margin-bottom:15px">Thank you for participating in the Internet Freedom workshop and lecture. To help you smoothly attend the events amidst the busy schedule, here are the workshops or lectures you have registered for. Please present your registration information and QR code to the on-site volunteers upon arrival for verification. </p>
                         <p style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;margin-bottom:15px">If you have any questions, feel free to reply to this email. Thank you! </p>
                         <h2 style="color:#000000;line-height:1.4;margin:0;font-weight:bold;font-family:&#34;Arial&#34;;border-bottom:1px #6450DC dashed;padding-left:1px;margin-top:30px;margin-bottom:12px">Registered Events</h2>
-                        {% if w1_code != &#39;&#39; %}
+                        {% if w1_code %}
                         <h3 style="font-family:sans-serif;line-height:1.4;margin:0;margin-bottom:5px;margin-top:20px;color:#6450DC;font-weight:bold">Workshop 1: Circumventing censorship and navigating anonymously with Tor</h3>
                         <ul style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;margin-bottom:15px">
                           <li style="list-style-position:outside;margin-left:0px;line-height:2">Date/Time: 2/23 14:00 - 17:30 (+08:00)</li>
@@ -165,7 +165,7 @@ border-color: #453798 !important
                           </a>
                         </p>
                         {% endif %}
-                        {% if w2_code != &#39;&#39; %}
+                        {% if w2_code %}
                         <h3 style="font-family:sans-serif;line-height:1.4;margin:0;margin-bottom:5px;margin-top:20px;color:#6450DC;font-weight:bold">Workshop 2: Detecting and Measuring Internet Censorship with OONI</h3>
                         <ul style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;margin-bottom:15px">
                           <li style="list-style-position:outside;margin-left:0px;line-height:2">Date/Time: 2/23 18:00 - 19:00 (+08:00)</li>
@@ -187,7 +187,7 @@ border-color: #453798 !important
                         <h3 style="font-family:sans-serif;line-height:1.4;margin:0;margin-bottom:5px;margin-top:20px;font-weight:bold;color:#d2691e">How do I get to the keynote venue from the workshop?</h3>
                         <p style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;margin-bottom:15px;color:#c95400">The recommended route is to take the MRT from Zhongxiao Xinsheng Station (O07, BL14) to Songjiang Nanjing Station (O08, G15) and exit through Exit 6, and then walk for about five minutes to arrive.</p>
                         {% endif %}
-                        {% if w3_code != &#39;&#39; %}
+                        {% if w3_code %}
                         <h3 style="font-family:sans-serif;line-height:1.4;margin:0;margin-bottom:5px;margin-top:20px;color:#6450DC;font-weight:bold">Keynote: Tor: Defending your online privacy in a surveillance world</h3>
                         <ul style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;margin-bottom:15px">
                           <li style="list-style-position:outside;margin-left:0px;line-height:2">Date/Time: 2/23 19:30 - 21:00 (+08:00)</li>
