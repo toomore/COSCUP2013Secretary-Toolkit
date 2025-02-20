@@ -1341,6 +1341,7 @@ def send_ooni_wh_250213(dry_run=True):
 
         queue_sender(raw)
 
+
 def send_ooni_wh_codes(dry_run=True):
     ''' Send ooni workshop invitation code'''
     template = TPLENV.get_template('./ocf_ooni_invitation_code_inline.html')
@@ -1349,7 +1350,7 @@ def send_ooni_wh_codes(dry_run=True):
     if dry_run:
         path = './tor_invitation_codes_250217_test.csv'
     else:
-        path = './tor_invitation_codes_250217.csv'
+        path = './tor_invitation_codes_250220_re.csv'
 
     users = []
     with open(path, 'r+', encoding='UTF8') as files:
@@ -1365,6 +1366,7 @@ def send_ooni_wh_codes(dry_run=True):
 
         subject = choice([
             '[RightsCon Pre-Event] Tor/Tails 報名最後確認 / Final Registration Confirmation',
+            # '[最後提醒 Final Call] Tor/Tails 報名最後確認 / Final Registration Confirmation',
         ])
 
         u['preheader'] = choice([
