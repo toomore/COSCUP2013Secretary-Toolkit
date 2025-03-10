@@ -1435,6 +1435,53 @@ def send_ooni_event_notice(dry_run=True):
         queue_sender(raw)
 
 
+def send_ooni_workshop_after_event(dry_run=True):
+    ''' Send ooni workshop after event'''
+    template = TPLENV.get_template('./ocf_ooni_250311_inline.html')
+    template_md = TPLENV.get_template('./ocf_ooni_250311.md')
+
+    if dry_run:
+        path = './tor_event_250311_letter_test.csv'
+    else:
+        path = './tor_event_250311_letter.csv'
+
+    users = []
+    with open(path, 'r+', encoding='UTF8') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        subject = choice([
+            '感謝參與 Tor/Tails, OONI 工作坊與講座活動 / Thank you for joining in the workshops and lectures.',
+            'Thank you for joining in the Tor/Tails and OONI workshops and lectures / 感謝參與 Tor/Tails, OONI 工作坊與講座活動',
+        ])
+
+        u['preheader'] = choice([
+            '活動摘要與簡報整理 | Event Summary and Presentation Compilation ',
+            'Event Summary and Presentation Compilation  | 活動摘要與簡報整理',
+        ])
+
+        u['subject'] = subject
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(
+                'Toomore Chiang', 'toomore@ocf.tw'),
+            list_unsubscribe='<mailto:toomore+unsubscribe250311@ocf.tw>',
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject=subject,
+            body=template.render(**u),
+            text_body=template_md.render(**u),
+        )
+
+        queue_sender(raw)
+
+
 if __name__ == '__main__':
     # send_240813(dry_run=True)
     # send_240827(dry_run=True)
@@ -1454,4 +1501,5 @@ if __name__ == '__main__':
     # send_ooni_wh_250213(dry_run=True)
     # send_ooni_wh_codes(dry_run=True)
     # send_ooni_event_notice(dry_run=True)
+    # send_ooni_workshop_after_event(dry_run=True)
     pass
