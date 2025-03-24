@@ -1482,6 +1482,53 @@ def send_ooni_workshop_after_event(dry_run=True):
         queue_sender(raw)
 
 
+def send_ooni_updates_202503(dry_run=True):
+    ''' Send ooni updates 202503 '''
+    template = TPLENV.get_template('./ocf_ooni_250326_inline.html')
+    template_md = TPLENV.get_template('./ocf_ooni_250326.md')
+
+    if dry_run:
+        path = './tor_event_250311_letter_test.csv'
+    else:
+        path = './tor_event_250311_letter.csv'
+
+    users = []
+    with open(path, 'r+', encoding='UTF8') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        subject = choice([
+            '專案進度更新 2025/03, Project Status and Updates 2025/03',
+            'Project Status and Updates 2025/03, 專案進度更新',
+        ])
+
+        u['preheader'] = choice([
+            '工作坊後續規劃、OONI 團隊發佈「匿名憑證」的實作概念、專案目前翻譯成果與 Tor Relays 觀測站的建立！',
+            "The follow-up plans after the workshop, the OONI team's release of the implementation concept of 'anonymous credentials,' the current translation achievements of the project, and the establishment of the Tor Relays observation station!",
+        ])
+
+        u['subject'] = subject
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(
+                'Toomore Chiang', 'toomore@ocf.tw'),
+            list_unsubscribe='<mailto:toomore+unsubscribe250324@ocf.tw>',
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject=subject,
+            body=template.render(**u),
+            text_body=template_md.render(**u),
+        )
+
+        queue_sender(raw)
+
+
 if __name__ == '__main__':
     # send_240813(dry_run=True)
     # send_240827(dry_run=True)
@@ -1502,4 +1549,5 @@ if __name__ == '__main__':
     # send_ooni_wh_codes(dry_run=True)
     # send_ooni_event_notice(dry_run=True)
     # send_ooni_workshop_after_event(dry_run=True)
+    # send_ooni_updates_202503(dry_run=True)
     pass
