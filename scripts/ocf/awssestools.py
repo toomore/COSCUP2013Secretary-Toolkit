@@ -1554,7 +1554,7 @@ def send_ooni_updates_202504(dry_run=True):
         subject = choice([
             '專案進度更新 2025/04, 匿名網路工作坊活動開始招募, Project Status and Updates 2025/04',
             '2025/04 專案進度更新，並展開匿名網路工作坊活動招募, Project Status and Updates 2025/04',
-            '2025/04 的專案狀態更新，匿名網路工作坊活動現正招募中, , Project Status and Updates 2025/04',
+            '2025/04 的專案狀態更新，匿名網路工作坊活動現正招募中, Project Status and Updates 2025/04',
             'Project Status and Updates 2025/03, 專案進度更新, 匿名網路工作坊活動開始招募',
         ])
 
