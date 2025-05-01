@@ -2,7 +2,7 @@
 
 Hi {{name}},
 
-好久不見了，四月份經歷過很忙碌的階段，OONI-Research 專案也稍微緩慢推進，我們翻譯了一篇來自 OONI 的發佈更新：[新 OONI Explorer 主題審查頁面](https://ooni-research.ocf.tw/docs/blog/2025/04/2025-ooni-explorer-thematic-censorship-pages/)。
+好久不見了，四月份經歷過很忙碌的階段，OCF/OONI-Research 專案也稍微緩慢推進，我們翻譯了一篇來自 OONI 的發佈更新：[新 OONI Explorer 主題審查頁面](https://ooni-research.ocf.tw/docs/blog/2025/04/2025-ooni-explorer-thematic-censorship-pages/)。
 
 另外，我們也協助 eff.org 翻譯的「[Tor 大學挑戰賽計畫](https://toruniversity.eff.org/zh-tw/)」已翻譯完畢且也順利更新的官網上了，但目前還有沒足夠的能量來推廣這個計畫，或許再找個時間想想如何推動、展開。
 
@@ -28,7 +28,7 @@ Hi {{name}},
 
 Hi {{name}},
 
-Long time no see. April was a very busy period, and the OONI-Research project progressed a bit slowly. We translated an update released by OONI: [Launch: New OONI Explorer thematic censorship pages](https://ooni-research.ocf.tw/docs/blog/2025/04/2025-ooni-explorer-thematic-censorship-pages/). Additionally, our translation of the "[Tor University Challenge](https://toruniversity.eff.org/zh-tw/)" for eff.org has been completed and successfully updated on their website. However, we currently lack the energy to promote this program, so perhaps we can brainstorm on how to push it forward.
+Long time no see. April was a very busy period, and the OCF/OONI-Research project progressed a bit slowly. We translated an update released by OONI: [Launch: New OONI Explorer thematic censorship pages](https://ooni-research.ocf.tw/docs/blog/2025/04/2025-ooni-explorer-thematic-censorship-pages/). Additionally, our translation of the "[Tor University Challenge](https://toruniversity.eff.org/zh-tw/)" for eff.org has been completed and successfully updated on their website. However, we currently lack the energy to promote this program, so perhaps we can brainstorm on how to push it forward.
 
 Most importantly, we have started preparing for the "Anonymous Network Workshop" scheduled for 2025/08!
 
