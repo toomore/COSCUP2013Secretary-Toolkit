@@ -1528,6 +1528,7 @@ def send_ooni_updates_202503(dry_run=True):
 
         queue_sender(raw)
 
+
 def send_ooni_updates_202504(dry_run=True):
     ''' Send ooni updates 202504 '''
     template = TPLENV.get_template('./ocf_ooni_250501_inline.html')
@@ -1578,6 +1579,7 @@ def send_ooni_updates_202504(dry_run=True):
         )
 
         queue_sender(raw)
+
 
 if __name__ == '__main__':
     # send_240813(dry_run=True)
