@@ -1528,6 +1528,56 @@ def send_ooni_updates_202503(dry_run=True):
 
         queue_sender(raw)
 
+def send_ooni_updates_202504(dry_run=True):
+    ''' Send ooni updates 202504 '''
+    template = TPLENV.get_template('./ocf_ooni_250501_inline.html')
+    template_md = TPLENV.get_template('./ocf_ooni_250501.md')
+
+    if dry_run:
+        path = './tor_event_250311_letter_test.csv'
+    else:
+        path = './tor_event_250311_letter.csv'
+
+    users = []
+    with open(path, 'r+', encoding='UTF8') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        subject = choice([
+            '專案進度更新 2025/04, 匿名工作坊活動開始招募, Project Status and Updates 2025/04',
+            '2025/04 專案進度更新，並展開匿名工作坊活動招募, Project Status and Updates 2025/04',
+            '2025/04 的專案狀態更新，匿名工作坊活動現正招募中, , Project Status and Updates 2025/04',
+            'Project Status and Updates 2025/03, 專案進度更新, 匿名工作坊活動開始招募',
+        ])
+
+        u['preheader'] = choice([
+            '匿名工作坊活動招募工作人員與培訓小幫手',
+            '匿名工作坊活動正在尋求工作人員和培訓支援志工',
+            '我們正在為匿名工作坊招募活動協助者和訓練幫手',
+            '歡迎加入匿名工作坊，成為工作團隊的一員並協助培訓工作',
+            "Recruiting Staff and Training Helpers for the Anonymous Network Workshop.",
+        ])
+
+        u['subject'] = subject
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(
+                'Toomore Chiang', 'toomore@ocf.tw'),
+            list_unsubscribe='<mailto:toomore+unsubscribe250501@ocf.tw>',
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject=subject,
+            body=template.render(**u),
+            text_body=template_md.render(**u),
+        )
+
+        queue_sender(raw)
 
 if __name__ == '__main__':
     # send_240813(dry_run=True)
@@ -1550,4 +1600,5 @@ if __name__ == '__main__':
     # send_ooni_event_notice(dry_run=True)
     # send_ooni_workshop_after_event(dry_run=True)
     # send_ooni_updates_202503(dry_run=True)
+    # send_ooni_updates_202504(dry_run=True)
     pass
