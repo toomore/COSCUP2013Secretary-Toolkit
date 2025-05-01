@@ -1552,17 +1552,17 @@ def send_ooni_updates_202504(dry_run=True):
         _n += 1
 
         subject = choice([
-            '專案進度更新 2025/04, 匿名工作坊活動開始招募, Project Status and Updates 2025/04',
-            '2025/04 專案進度更新，並展開匿名工作坊活動招募, Project Status and Updates 2025/04',
-            '2025/04 的專案狀態更新，匿名工作坊活動現正招募中, , Project Status and Updates 2025/04',
-            'Project Status and Updates 2025/03, 專案進度更新, 匿名工作坊活動開始招募',
+            '專案進度更新 2025/04, 匿名網路工作坊活動開始招募, Project Status and Updates 2025/04',
+            '2025/04 專案進度更新，並展開匿名網路工作坊活動招募, Project Status and Updates 2025/04',
+            '2025/04 的專案狀態更新，匿名網路工作坊活動現正招募中, , Project Status and Updates 2025/04',
+            'Project Status and Updates 2025/03, 專案進度更新, 匿名網路工作坊活動開始招募',
         ])
 
         u['preheader'] = choice([
-            '匿名工作坊活動招募工作人員與培訓小幫手',
-            '匿名工作坊活動正在尋求工作人員和培訓支援志工',
-            '我們正在為匿名工作坊招募活動協助者和訓練幫手',
-            '歡迎加入匿名工作坊，成為工作團隊的一員並協助培訓工作',
+            '匿名網路工作坊活動招募工作人員與培訓小幫手',
+            '匿名網路工作坊活動正在尋求工作人員和培訓支援志工',
+            '我們正在為匿名網路工作坊招募活動協助者和訓練幫手',
+            '歡迎加入匿名網路工作坊，成為工作團隊的一員並協助培訓工作',
             "Recruiting Staff and Training Helpers for the Anonymous Network Workshop.",
         ])
 
