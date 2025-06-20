@@ -603,7 +603,53 @@ def send_250524(dry_run=True):
 
         queue_sender(raw)
 
+def send_250620(dry_run=True):
+    ''' Send 250620 '''
+    template = TPLENV.get_template('./paper_250620_inline.html')
+    template_md = TPLENV.get_template('./paper_250620.md')
+
+    if dry_run:
+        path = './coscup_paper_subscribers_n7p95lou_test.csv'
+    else:
+        path = './coscup_paper_subscribers_n7p95lou_20250620_154724.csv'
+
+    users = []
+    with open(path, 'r+', encoding='UTF8') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        subject = choice([
+            'COSCUP 六月號，20 周年情報解禁！COSCUP June Edition: 20th Anniversary Info Revealed!',
+        ])
+
+        u['preheader'] = choice([
+            '開源好朋友 Ruby Taiwan 社群攜手合作，於台灣科技大學聯合舉辦 COSCUP x RubyConf Taiwan 2025！',
+            '撐起大會活動的重要組別之一，歡迎第一次想參與志恩歐工，但不確定可以去哪裡的夥伴，先來場務組認識新朋友！',
+        ])
+
+        u['subject'] = subject
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(
+                'COSCUP 會眾信箱', 'attendee@coscup.org'),
+            list_unsubscribe='<mailto:attendee+unsubscribe250620@coscup.org>',
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject=subject,
+            body=template.render(**u),
+            text_body=template_md.render(**u),
+        )
+
+        queue_sender(raw)
+
 
 if __name__ == '__main__':
     # send_250524(dry_run=True)
+    # send_250620(dry_run=True)
     pass
