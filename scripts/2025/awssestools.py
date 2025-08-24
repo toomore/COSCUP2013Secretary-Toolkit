@@ -695,8 +695,55 @@ def send_250807(dry_run=True):
         queue_sender(raw)
 
 
+def send_250825(dry_run=True):
+    ''' Send 250825 '''
+    template = TPLENV.get_template('./paper_250825_inline.html')
+    template_md = TPLENV.get_template('./paper_250825.md')
+
+    if dry_run:
+        path = './coscup_paper_subscribers_rv4ya82s_test.csv'
+    else:
+        path = './coscup_paper_subscribers_rv4ya82s_20250824_171930.csv'
+
+    users = []
+    with open(path, 'r+', encoding='UTF8') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        subject = choice([
+            'COSCUP x RubyConf TW 2025 ：邀請您回饋、回顧與支持',
+            'COSCUP x RubyConf TW 2025: We invite your feedback, reflections, and support',
+        ])
+
+        u['preheader'] = choice([
+            '',
+        ])
+
+        u['subject'] = subject
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(
+                'COSCUP 會眾信箱', 'attendee@coscup.org'),
+            list_unsubscribe='<mailto:attendee+unsubscribe250825@coscup.org>',
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject=subject,
+            body=template.render(**u),
+            text_body=template_md.render(**u),
+        )
+
+        queue_sender(raw)
+
+
 if __name__ == '__main__':
     # send_250524(dry_run=True)
     # send_250620(dry_run=True)
     # send_250807(dry_run=True)
+    # send_250825(dry_run=True)
     pass
