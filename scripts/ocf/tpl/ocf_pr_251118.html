@@ -1,0 +1,398 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Open Culture Foundation</title>
+    <style>
+      /* -------------------------------------
+          GLOBAL RESETS
+      ------------------------------------- */
+      img {
+        border: none;
+        -ms-interpolation-mode: bicubic;
+        max-width: 100%; }
+
+      body {
+        background-color: #ffffff;
+        font-family: sans-serif;
+        -webkit-font-smoothing: antialiased;
+        font-size: 14px;
+        line-height: 1.4;
+        margin: 0;
+        padding: 0;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%; }
+
+      table {
+        border-collapse: separate;
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+        width: 100%; }
+        table td {
+          font-family: sans-serif;
+          font-size: 14px;
+          vertical-align: top; }
+
+      /* -------------------------------------
+          BODY & CONTAINER
+      ------------------------------------- */
+
+      .body {
+        background-color: #ffffff;
+        width: 100%; }
+
+      /* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */
+      .container {
+        display: block;
+        margin: 0 auto !important;
+        /* makes it centered */
+        max-width: 640px;
+        padding: 10px; }
+
+      /* This should also be a block element, so that it will fill 100% of the .container */
+      .content {
+        box-sizing: border-box;
+        display: block;
+        margin: 0 auto;
+        max-width: 640px;
+        padding: 10px;
+        background-color: #6450DC; }
+
+      /* -------------------------------------
+          HEADER, FOOTER, MAIN
+      ------------------------------------- */
+      .main {
+        background: #fff;
+        border-radius: 3px;
+        width: 100%; }
+
+      .wrapper {
+        box-sizing: border-box;
+        padding: 20px; }
+
+      .footer {
+        clear: both;
+        padding-top: 10px;
+        text-align: center;
+        width: 100%; }
+        .footer td,
+        .footer p,
+        .footer span,
+        .footer a {
+          color: #ffffff;
+          font-size: 12px;
+          text-align: center; }
+
+      /* -------------------------------------
+          TYPOGRAPHY
+      ------------------------------------- */
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: #000000;
+        font-family: sans-serif;
+        font-weight: 400;
+        line-height: 1.4;
+        margin: 0;
+        margin-bottom: 30px; }
+
+      h1 {
+        font-size: 35px;
+        font-weight: 300;
+        text-align: center;
+        text-transform: capitalize; }
+
+      p,
+      ul,
+      ol {
+        font-family: sans-serif;
+        font-size: 14px;
+        font-weight: normal;
+        margin: 0;
+        margin-bottom: 15px; }
+        p li,
+        ul li,
+        ol li {
+          list-style-position: inside;
+          margin-left: 5px; }
+
+      a {
+        color: #3498db;
+        text-decoration: underline; }
+
+      /* -------------------------------------
+          BUTTONS
+      ------------------------------------- */
+      .btn {
+        box-sizing: border-box;
+        width: 100%; }
+        .btn > tbody > tr > td {
+          padding-bottom: 15px; }
+        .btn table {
+          width: auto; }
+        .btn table td {
+          background-color: #ffffff;
+          border-radius: 5px;
+          text-align: center; }
+        .btn a {
+          background-color: #ffffff;
+          border: solid 1px #0a4cba;
+          border-radius: 5px;
+          box-sizing: border-box;
+          color: #0a4cba;
+          cursor: pointer;
+          display: inline-block;
+          font-size: 14px;
+          font-weight: bold;
+          margin: 0;
+          padding: 12px 25px;
+          text-decoration: none;
+          text-transform: capitalize; }
+
+      .btn-primary table td {
+        background-color: #3498db; }
+
+      .btn-primary a {
+        background-color: #5A4BC3;
+        border-color: #C3B9FF;
+        color: #ffffff; }
+
+      /* -------------------------------------
+          OTHER STYLES THAT MIGHT BE USEFUL
+      ------------------------------------- */
+      .last {
+        margin-bottom: 0; }
+
+      .first {
+        margin-top: 0; }
+
+      .align-center {
+        text-align: center; }
+
+      .align-right {
+        text-align: right; }
+
+      .align-left {
+        text-align: left; }
+
+      .clear {
+        clear: both; }
+
+      .mt0 {
+        margin-top: 0; }
+
+      .mb0 {
+        margin-bottom: 0; }
+
+      .preheader {
+        color: transparent;
+        display: none;
+        height: 0;
+        max-height: 0;
+        max-width: 0;
+        opacity: 0;
+        overflow: hidden;
+        mso-hide: all;
+        visibility: hidden;
+        width: 0; }
+
+      .powered-by a {
+        text-decoration: none; }
+
+      hr {
+        border: 0;
+        border-bottom: 1px solid #f6f6f6;
+        margin: 20px 0; }
+
+      /* -------------------------------------
+          RESPONSIVE AND MOBILE FRIENDLY STYLES
+      ------------------------------------- */
+      @media only screen and (max-width: 640px) {
+        table[class=body] h1 {
+          font-size: 28px !important;
+          margin-bottom: 10px !important; }
+        table[class=body] p,
+        table[class=body] ul,
+        table[class=body] ol,
+        table[class=body] td,
+        table[class=body] span,
+        table[class=body] a {
+          font-size: 16px !important; }
+        table[class=body] .wrapper,
+        table[class=body] .article {
+          padding: 10px !important; }
+        table[class=body] .content {
+          padding: 0 !important; }
+        table[class=body] .container {
+          padding: 0 !important;
+          width: 100% !important; }
+        table[class=body] .main {
+          border-left-width: 0 !important;
+          border-radius: 0 !important;
+          border-right-width: 0 !important; }
+        table[class=body] .btn table {
+          width: 100% !important; }
+        table[class=body] .btn a {
+          width: 100% !important; }
+        table[class=body] .img-responsive {
+          height: auto !important;
+          max-width: 100% !important;
+          width: auto !important; }}
+
+      /* -------------------------------------
+          PRESERVE THESE STYLES IN THE HEAD
+      ------------------------------------- */
+      @media all {
+        .ExternalClass {
+          width: 100%; }
+        .ExternalClass,
+        .ExternalClass p,
+        .ExternalClass span,
+        .ExternalClass font,
+        .ExternalClass td,
+        .ExternalClass div {
+          line-height: 100%; }
+        .apple-link a {
+          color: inherit !important;
+          font-family: inherit !important;
+          font-size: inherit !important;
+          font-weight: inherit !important;
+          line-height: inherit !important;
+          text-decoration: none !important; }
+        .btn-primary table td:hover {
+          background-color: #453798 !important; }
+        .btn-primary a:hover {
+          background-color: #453798 !important;
+          border-color: #453798 !important; } }
+
+      .quote {
+        color: #334433;
+        font-style: italic;
+        font-size: small;
+      }
+      h2 {
+        font-weight: bold;
+        font-family: "Arial";
+        border-bottom: 1px #6450DC dashed;
+        padding-left: 1px;
+        margin-top: 30px;
+        margin-bottom: 12px;
+      }
+      h3 {
+        margin-bottom: 5px;
+        margin-top: 20px;
+        color: #6450DC;
+        font-weight: bold;
+      }
+      ol li,
+      ul li {
+        list-style-position: outside;
+        margin-left: 0px;
+        line-height: 2;
+      }
+      p small,
+      li small {
+        color: #898989;
+      }
+      p .red-strong {
+        font-weight: bold;
+        color: red;
+      }
+      h2 small {
+        font-size: small;
+        color: #898989;
+      }
+      h3 small {
+        font-size: small;
+        color: #898989;
+      }
+    </style>
+  </head>
+  <body class="">
+    <table border="0" cellpadding="0" cellspacing="0" class="body">
+      <tr>
+        <td>&nbsp;</td>
+        <td class="container">
+          <div class="content">
+
+            <!-- START CENTERED WHITE CONTAINER -->
+            <span class="preheader">{{preheader}}</span>
+            <table class="main">
+
+              <!-- START MAIN CONTENT AREA -->
+              <tr>
+                <td class="wrapper">
+                  <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td>
+                        <p class="align-right"><a href="https://ocf.tw/"><img src="https://10years.ocf.tw/img/ocf_logo_purple.png" alt="OCF_" title="OCF_" style="width: 120px;"></a></p>
+                        <p>Hi {{name}}，您好</p>
+                        <p>去年，我們和你一起見證<strong>林強</strong>與 <strong>Luca Bonaccorsi</strong> 以公眾授權釋出《<a href="https://www.youtube.com/playlist?list=PLFuYOsppHDrlAZhOyeqC7cOaKT3MKkbBo">時間浸漬</a>》，讓音樂像原始碼一樣可<a href="https://10years.ocf.tw/bioerosion-album.html">自由下載</a>、再製、散佈，甚至被用於 Taiwan Plus 紀錄片、兩廳院宣傳與多部創作者短影音，證明開源方法能在文化場景被 <strong>fork</strong> 與 <strong>merge</strong>。</p>
+                        <p>開放文化基金會 OCF <a href="https://10years.ocf.tw/">十週年</a>，我們把開源精神帶進更多文化現場，從北流 JAM JAM ASIA 的「開放音像派對」到<strong>最新延伸專案《明日音》</strong>，邀你把對開源的想像帶進一場以共享為核心的現場實驗。</p>
+                        <p><i>開源不只寫程式，還能長出聲音的新分支 ...</i></p>
+                        <p>今年，這條聲音脈絡繼續延伸：Mong Tong 與新媒體團隊 XTRUX 重新取樣《時間浸漬》的開放素材，以遊戲引擎把聲音與即時影像串起來，讓舞台成為可互動的「實體 repo」。</p>
+                        <p>2025/11/30（日），臺北流行音樂中心 SUB LIVE，我們不開會、不簡報、不放投影片，只想跟你邊聽邊聊、交換近況；現場將設有主題攤位與餐車，是社群久違的線下團聚。晚間由迷幻電子雙人組 Mong Tong 帶來現場演出！</p>
+                        <p>《明日音》限量彩膠與門票正於 <a href="https://www.flyingv.cc/projects/35562">FlyingV 募資中</a>，此次亦為 SUB LIVE 唯一專場，錯過不再！</p>
+                        <h2>演出資訊</h2>
+                        <p class="align-center"><a href="https://www.flyingv.cc/projects/35562"><img src="https://s3.toomore.net/ocf/mong-tong/mong-tong_XTRUX_album_1200.png" alt="迷幻開源宇宙：Mong Tong × XTRUX 《明日音》" title="迷幻開源宇宙：Mong Tong × XTRUX 《明日音》" style="border-radius: 8px;border:1px solid #eeeeee;"></a></p>
+                        <ul>
+                          <li>迷幻開源宇宙：Mong Tong × XTRUX 《明日音》專場</li>
+                          <li>活動時間：2025/11/30 15:00 – 19:00</li>
+                          <li>地點：SUB LIVE（南港區市民大道八段99號）</li>
+                          <li>特別來賓：百合花、黃大旺、White Wu</li>
+                          <li><a href="https://www.flyingv.cc/projects/35562">《明日音》購票資訊</a></li>
+                        </ul>
+                        <div style="margin-bottom:10px;border:1px solid hsl(204, 71%, 39%);background-color:hsl(206, 70%, 96%);border-radius:5px;padding:10px;font-size:0.8rem;">
+                          活動當天 <strong>Pofeng</strong>、<strong>欣穎</strong>也將在開放文化基金會的攤位，歡迎提早過來與我們聊天、聊開源、聊對開源未來的想像，然後再前往排隊進場！<br><br>對了，活動當我們也正在招募志工夥伴協助，歡迎<a href="https://volunteer.ocf.tw/">到這裡填寫聯絡資訊</a>！工作時間：16:30 - 19:15，協助驗票、位置指引、機動工作。當日有提供晚餐、會有行前籌備會議，會議日期確定後會公告。若不克參加，會有說明文件／可當天現場確認，志工活動結束後，可入場聽專場，並可帶 1 位朋友免費入場。但該朋友須事前提供資訊報名。
+                        </div>
+                        <h2>媒體報導</h2>
+                        <p class="align-center"><a href="https://ysolife.com/open-source-co-creation-ai-art-interview/"><img src="https://s3.toomore.net/ocf/mong-tong/7R302668-scaled_1200.jpg" alt="開源不等於免費！解放創作的自由實驗，專訪：林強、Luca Bonaccorsi、李欣穎、蔡宏賢" title="開源不等於免費！解放創作的自由實驗，專訪：林強、Luca Bonaccorsi、李欣穎、蔡宏賢" style="border-radius: 8px;border:1px solid #eeeeee;"></a></p>
+                        <ul>
+                          <li>Blow 吹音樂｜<a href="https://blow.streetvoice.com/84547/">【吹對談】自己定義自己，不需迎合他人的美學：Mong Tong ⇋ XTRUX談新作《明日音》</a></li>
+                          <li>樂手巢｜<a href="https://ysolife.com/mong-tong-sun-moon-darkness/">Mong Tong《明日音》CC 授權專輯募資啟動！專場攜奕碩 × 黃大旺 × 落差草原 WWWW 鼓手共創迷幻開源宇宙</a></li>
+                          <li>樂手巢｜<a href="https://ysolife.com/open-source-co-creation-ai-art-interview/">開源不等於免費！解放創作的自由實驗，專訪：林強、Luca Bonaccorsi、李欣穎、蔡宏賢</a></li>
+                        </ul>
+                        <h2>MV</h2>
+                        <p class="align-center"><a href="https://www.flyingv.cc/projects/35562"><img src="https://s3.toomore.net/ocf/mong-tong/XTRUX_5_1200.png" alt="迷幻開源宇宙：Mong Tong × XTRUX 《明日音》" title="迷幻開源宇宙：Mong Tong × XTRUX 《明日音》" style="border-radius: 8px;border:1px solid #eeeeee; width: 70%;"></a></p>
+                        <ul>
+                          <li><a href="https://youtu.be/VgN-0CHiW2k">Mong Tong - 明日音 Sun Moon Darkness</a></li>
+                          <li><a href="https://youtu.be/0Iqf5yITxdA">Mong Tong feat. 百合花 - 萬引</a></li>
+                          <li><a href="https://youtu.be/Vo2f2ScVauM">Mong Tong feat. 黃大旺 - 強烈建議</a></li>
+                        </ul>
+                        <div style="margin-bottom:10px;border:1px solid hsl(204, 71%, 39%);background-color:hsl(206, 70%, 96%);border-radius:5px;padding:10px;font-size:0.8rem;">
+                          您會收到這封訊息是因為您可能為以下身份：「開源祭十週年特別活動」報名者、flyingV 募資者。我們僅會發送關於「開源祭」活動相關的訊息，如需定期收到來自 OCF 的活動訊息，可以<a href="https://ocf.tw/news/">訂閱電子報</a>，感謝！
+                        </div>
+                        <p class="align-center"><small style="color:#999999;">Thank you.</small></p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            <!-- END MAIN CONTENT AREA -->
+            </table>
+
+            <!-- START FOOTER -->
+            <div class="footer">
+              <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td class="content-block">
+                    <span class="apple-link">
+                      <strong>OCF_</strong> 財團法人開放文化基金會<br>
+                      Open Culture Foundation
+                    </span>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <!-- END FOOTER -->
+
+          <!-- END CENTERED WHITE CONTAINER -->
+          </div>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+  </body>
+</html>

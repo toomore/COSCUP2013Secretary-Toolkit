@@ -1631,6 +1631,66 @@ def send_ooni_survey_250512(dry_run=True):
         queue_sender(raw)
 
 
+def send_pr_251118(dry_run=True):
+    ''' Send PR 251118 '''
+    template = TPLENV.get_template('./ocf_pr_251118_inline.html')
+    template_md = TPLENV.get_template('./ocf_pr_251118.md')
+
+    if dry_run:
+        path = './ocf_send_list_1763113376_test.csv'
+    else:
+        path = './ocf_send_list_1763113376.csv'
+
+    users = []
+    with open(path, 'r+', encoding='UTF8') as files:
+        csv_reader = csv.DictReader(files)
+
+        for u in csv_reader:
+            users.append(u)
+
+    _n = 0
+    for u in users:
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        subject = choice([
+            "開源不只寫程式：11/30 SUB LIVE 一起聽見《明日音》",
+            "從《時間浸漬》到《明日音》：開放音樂的跨界 Hack，限量彩膠募資中",
+            "開源圈線下重聚：Mong Tong × XTRUX 即時聲像唯一專場",
+            "開源不只寫程式：和社群一起驗證「共享→再製→傳播」的新流程",
+            "讓音樂成為可 fork 的 repo：一起在現場驗證共享與再製",
+            "Mong Tong × XTRUX 現場：用遊戲引擎把聲音與影像接到同一個 repo",
+            "11/30 SUB LIVE 唯一專場，Mong Tong × XTRUX 與你線下相見",
+            "限量彩膠與門票於 FlyingV 募資中，支持開放音樂計畫",
+            "從《時間浸漬》到《明日音》，開放素材再製的現場實驗",
+            "OCF 十週年續篇：開源走進文化現場，邀你共創下一個版本",
+        ])
+
+        u['preheader'] = choice([
+            "從《時間浸漬》到《明日音》：一次把「共享→再製→傳播」帶進舞台的開放創作實驗",
+            "Mong Tong × XTRUX：用遊戲引擎把聲音與影像接上同一條管線的即時聲像演出",
+            "沒有簡報、只有交流：主題攤位＋餐車，讓開源社群在線下自在相見",
+            "唯一專場＋限量彩膠募資中：支持開源音樂計畫，讓共享的聲音持續延伸",
+            "OCF 十週年續篇：從開源祭走入更多文化現場，擴散開放精神的影響力",
+            "11/30 SUB LIVE 見：把你的好奇與經驗帶來，一起把開放素材 hack 成下一個版本",
+            "開源不只寫程式，還能長出聲音的新分支 ...",
+        ])
+
+        u['subject'] = subject
+
+        raw = AwsSESTools(setting.AWSID, setting.AWSKEY).send_raw_email(
+            source=AwsSESTools.mail_header(
+                '財團法人開放文化基金會 OCF', 'hi@ocf.tw'),
+            list_unsubscribe='<mailto:hi+unsubscribe251118@ocf.tw>',
+            to_addresses=AwsSESTools.mail_header(u['name'], u['mail']),
+            subject=subject,
+            body=template.render(**u),
+            text_body=template_md.render(**u),
+        )
+
+        queue_sender(raw)
+
+
 if __name__ == '__main__':
     # send_240813(dry_run=True)
     # send_240827(dry_run=True)
@@ -1654,4 +1714,5 @@ if __name__ == '__main__':
     # send_ooni_updates_202503(dry_run=True)
     # send_ooni_updates_202504(dry_run=True)
     # send_ooni_survey_250512(dry_run=True)
+    # send_pr_251118(dry_run=True)
     pass
