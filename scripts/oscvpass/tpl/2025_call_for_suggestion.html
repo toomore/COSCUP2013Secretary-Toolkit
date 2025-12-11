@@ -1,0 +1,465 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>OSCVPass</title>
+    <style>
+      /* -------------------------------------
+          GLOBAL RESETS
+      ------------------------------------- */
+      img {
+        border: none;
+        -ms-interpolation-mode: bicubic;
+        max-width: 100%; }
+
+      body {
+        background-color: #ffffff;
+        font-family: sans-serif;
+        -webkit-font-smoothing: antialiased;
+        font-size: 14px;
+        line-height: 1.4;
+        margin: 0;
+        padding: 0;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%; }
+
+      table {
+        border-collapse: separate;
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+        width: 100%; }
+        table td {
+          font-family: sans-serif;
+          font-size: 14px;
+          vertical-align: top; }
+
+      /* -------------------------------------
+          BODY & CONTAINER
+      ------------------------------------- */
+
+      .body {
+        background-color: #ffffff;
+        width: 100%; }
+
+      /* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */
+      .container {
+        display: block;
+        margin: 0 auto !important;
+        /* makes it centered */
+        max-width: 580px;
+        padding: 10px; }
+
+      /* This should also be a block element, so that it will fill 100% of the .container */
+      .content {
+        box-sizing: border-box;
+        display: block;
+        margin: 0 auto;
+        max-width: 580px;
+        padding: 10px;
+        background-color: #243551; }
+
+      /* -------------------------------------
+          HEADER, FOOTER, MAIN
+      ------------------------------------- */
+      .main {
+        background: #fff;
+        border-radius: 3px;
+        width: 100%; }
+
+      .wrapper {
+        box-sizing: border-box;
+        padding: 20px; }
+
+      .footer {
+        clear: both;
+        padding-top: 10px;
+        text-align: center;
+        width: 100%; }
+        .footer td,
+        .footer p,
+        .footer span,
+        .footer a {
+          color: #ffffff;
+          font-size: 12px;
+          text-align: center; }
+
+      /* -------------------------------------
+          TYPOGRAPHY
+      ------------------------------------- */
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: #000000;
+        font-family: sans-serif;
+        font-weight: 400;
+        line-height: 1.4;
+        margin: 0;
+        margin-bottom: 30px; }
+
+      h1 {
+        font-size: 35px;
+        font-weight: 300;
+        text-align: center;
+        text-transform: capitalize; }
+
+      p,
+      ul,
+      ol {
+        font-family: sans-serif;
+        font-size: 14px;
+        font-weight: normal;
+        margin: 0;
+        margin-bottom: 15px; }
+        p li,
+        ul li,
+        ol li {
+          list-style-position: inside;
+          margin-left: 5px; }
+
+      a {
+        color: #3498db;
+        text-decoration: underline; }
+
+      /* -------------------------------------
+          BUTTONS
+      ------------------------------------- */
+      .btn {
+        box-sizing: border-box;
+        width: 100%; }
+        .btn > tbody > tr > td {
+          padding-bottom: 15px; }
+        .btn table {
+          width: auto; }
+        .btn table td {
+          background-color: #ffffff;
+          border-radius: 5px;
+          text-align: center; }
+        .btn a {
+          background-color: #ffffff;
+          border: solid 1px #0a4cba;
+          border-radius: 5px;
+          box-sizing: border-box;
+          color: #0a4cba;
+          cursor: pointer;
+          display: inline-block;
+          font-size: 14px;
+          font-weight: bold;
+          margin: 0;
+          padding: 12px 25px;
+          text-decoration: none;
+          text-transform: capitalize; }
+
+      .btn-primary table td {
+        background-color: #3498db; }
+
+      .btn-primary a {
+        background-color: #0a4cba;
+        border-color: #0a4cba;
+        color: #ffffff; }
+
+      /* -------------------------------------
+          OTHER STYLES THAT MIGHT BE USEFUL
+      ------------------------------------- */
+      .last {
+        margin-bottom: 0; }
+
+      .first {
+        margin-top: 0; }
+
+      .align-center {
+        text-align: center; }
+
+      .align-right {
+        text-align: right; }
+
+      .align-left {
+        text-align: left; }
+
+      .clear {
+        clear: both; }
+
+      .mt0 {
+        margin-top: 0; }
+
+      .mb0 {
+        margin-bottom: 0; }
+
+      .preheader {
+        color: transparent;
+        display: none;
+        height: 0;
+        max-height: 0;
+        max-width: 0;
+        opacity: 0;
+        overflow: hidden;
+        mso-hide: all;
+        visibility: hidden;
+        width: 0; }
+
+      .powered-by a {
+        text-decoration: none; }
+
+      hr {
+        border: 0;
+        border-bottom: 1px solid #f6f6f6;
+        margin: 20px 0; }
+
+      /* -------------------------------------
+          RESPONSIVE AND MOBILE FRIENDLY STYLES
+      ------------------------------------- */
+      @media only screen and (max-width: 580px) {
+        table[class=body] h1 {
+          font-size: 28px !important;
+          margin-bottom: 10px !important; }
+        table[class=body] p,
+        table[class=body] ul,
+        table[class=body] ol,
+        table[class=body] td,
+        table[class=body] span,
+        table[class=body] a {
+          font-size: 16px !important; }
+        table[class=body] .wrapper,
+        table[class=body] .article {
+          padding: 10px !important; }
+        table[class=body] .content {
+          padding: 0 !important; }
+        table[class=body] .container {
+          padding: 0 !important;
+          width: 100% !important; }
+        table[class=body] .main {
+          border-left-width: 0 !important;
+          border-radius: 0 !important;
+          border-right-width: 0 !important; }
+        table[class=body] .btn table {
+          width: 100% !important; }
+        table[class=body] .btn a {
+          width: 100% !important; }
+        table[class=body] .img-responsive {
+          height: auto !important;
+          max-width: 100% !important;
+          width: auto !important; }}
+
+      /* -------------------------------------
+          PRESERVE THESE STYLES IN THE HEAD
+      ------------------------------------- */
+      @media all {
+        .ExternalClass {
+          width: 100%; }
+        .ExternalClass,
+        .ExternalClass p,
+        .ExternalClass span,
+        .ExternalClass font,
+        .ExternalClass td,
+        .ExternalClass div {
+          line-height: 100%; }
+        .apple-link a {
+          color: inherit !important;
+          font-family: inherit !important;
+          font-size: inherit !important;
+          font-weight: inherit !important;
+          line-height: inherit !important;
+          text-decoration: none !important; }
+        .btn-primary table td:hover {
+          background-color: #34495e !important; }
+        .btn-primary a:hover {
+          background-color: #34495e !important;
+          border-color: #34495e !important; } }
+
+      .quote {
+        color: #334433;
+        font-style: italic;
+        font-size: small;
+      }
+      h2 {
+        font-weight: bold;
+        font-family: "Arial";
+        border-bottom: 1px #243551 dashed;
+        padding-left: 1px;
+        margin-top: 30px;
+        margin-bottom: 12px;
+      }
+      h3 {
+        margin-bottom: 5px;
+        margin-top: 20px;
+        color: #103d88;
+        font-weight: bold;
+      }
+      ol li,
+      ul li {
+        list-style-position: outside;
+        margin-left: 0px;
+        line-height: 2;
+      }
+      span.note {
+        border-radius: 2px;
+        padding: 3px;
+        font-weight: bold;
+        color: #ffffff;
+        font-size: 8pt;
+      }
+      span.first {
+        background-color: #2962FF;
+      }
+      span.second {
+        background-color: #FF6F00;
+      }
+      span.ef {
+        background-color: #7B1FA2;
+      }
+      span.sf {
+        background-color: #9C27B0;
+      }
+      span.local {
+        background-color: #009688;
+      }
+      .tips {
+        font-family: "Courier New";
+        background-color: #fafafa;
+        padding: 6px;
+        border-radius: 3px;
+        border: 1px #81d4fa solid;
+        font-size: 12px;
+        color: #01579b;
+      }
+      .tips-green {
+        color: #2E7D32;
+        border: 1px #43A047 solid;
+      }
+      pre {
+        font-size: small;
+        line-height: 12px;
+        color: #607D8B;
+      }
+      p small,
+      li small {
+        color: #898989;
+      }
+      p .red-strong {
+        font-weight: bold;
+        color: red;
+      }
+      h2 small {
+        font-size: small;
+        color: #898989;
+      }
+      h3 small {
+        font-size: small;
+        color: #898989;
+      }
+    </style>
+  </head>
+  <body class="">
+    <table border="0" cellpadding="0" cellspacing="0" class="body">
+      <tr>
+        <td>&nbsp;</td>
+        <td class="container">
+          <div class="content">
+
+            <!-- START CENTERED WHITE CONTAINER -->
+            <span class="preheader">一年一度的邀請：捐款 OCF，幫我們把開放做得更多</span>
+            <table class="main">
+
+              <!-- START MAIN CONTENT AREA -->
+              <tr>
+                <td class="wrapper">
+                  <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td>
+                        <p class="align-right" style="margin-bottom:0px;"><a href="https://ocf.tw/p/oscvpass/"><img width="140" src="https://s3.toomore.net/oscvpass/img/oscvpass_logo.png" alt="OSCVPass Logo" title="OSCVPass Logo"></a></p>
+                        <p>Hi <strong>{{name}}</strong>：</p>
+                        <p>在數位轉型與 AI 浪潮席捲全球的此刻，開源精神已成為驅動技術創新與社群共創的核心力量。為了更具體肯定在開源領域長期耕耘的個人與團隊，IT Matters Awards 於 2025 年特別新增設「開源社群貢獻獎」，表彰那些以實際行動推動技術共享與社群連結的關鍵推手。</p>
+                        <p>今年度的得獎者橫跨國際企業、本土新創、技術社群與學生組織，充分展現台灣在全球開源版圖上的多元能量。</p>
+                        <p class="align-center">
+                          <a href="https://award.ima.org.tw/">
+                            <img src="https://s3.toomore.net/oscvpass/img/it_matters_awards_2025.jpg"
+                                 alt="IT Matters Awards 2025" title="IT Matters Awards 2025"
+                                 style="border-radius:8px;border:#eeeeee 1px solid;">
+                          </a>
+                          Photo credit: <a href="https://award.ima.org.tw/">IMA 資訊經理人協會</a>
+                        </p>
+                        <p>得獎名單如下：</p>
+                        <ul>
+                          <li>Anyscale ─ 軟體工程師 陳翰儒</li>
+                          <li>PyCon Taiwan ─ 志工 李唯</li>
+                          <li>Twinkle AI ─ 創辦人 黃亮勳</li>
+                          <li>歐噴有限公司 ─ 創辦人 王向榮</li>
+                          <li>SITCON 學生計算機年會 ─ 共同發起人 黃一晉</li>
+                          <li>台灣微軟 ─ 資深解決方案架構師 黃秉鈞</li>
+                          <li>禾薪科技 ─ 工程師 陳毅</li>
+                          <li>CNCF ─ Ambassador 楊承昊</li>
+                          <li>Noetiq ─ CTO 楊維中</li>
+                        </ul>
+                        <p>這九位得獎者來自不同背景，有站在國際前線的雲端與 AI 工程師，也有長年深耕在地社群的志工，更包括推動企業採用開源技術的新創創辦人與技術長。他們共同的特質，是不僅在專業領域有卓越表現，更願意將知識、工具與經驗以開源方式分享，主動回饋社群。</p>
+                        <p>在國際技術舞台上，來自 Anyscale、CNCF 與 Noetiq 的得獎者，透過框架開發、雲端原生推廣與實務導入，協助全球開發者更有效率地運用分散式運算與雲端原生架構，讓前沿技術能以開源模式快速擴散。而台灣微軟與禾薪科技的工程師與架構師，則扮演企業與開源之間的橋樑，將開源工具帶入實際商業情境，推動組織在雲端、資料與 AI 領域的現代化，同時也讓更多企業理解並信任開源。</p>
+                        <p>在社群面向上，PyCon Taiwan 與 SITCON 的代表，以及長期投入開源社群的志工，則以持續不懈的社群經營、會議籌辦與教育推廣，為台灣建立了扎實的技術交流場域。從國際性的 Python 年會到以學生為主體的計算機年會，他們讓新世代工程師有機會在真正開放的社群環境中學習、分享與成長，也讓台灣在國際開源社群中維持高度能見度。</p>
+                        <p>來自 Twinkle AI 與歐噴有限公司等新創團隊的得獎者，則展現開源與創業並行的可能性。他們在 AI 與創新應用領域，以開源技術為基石打造產品與服務，一方面將關鍵元件與心得分享回社群，一方面也證明開源不只是理想主義，而是能支撐實際商業價值與產業升級的關鍵動能。</p>
+                        <h3>向開源推手致敬：讓更多改變在明年發生</h3>
+                        <p>無論是寫程式碼、維護專案、撰寫文件，還是籌辦研討會、帶領讀書會、指導初學者，這些得獎者的日常付出，構成了台灣開源生態最紮實的基礎。他們讓更多人有機會接觸最新技術、參與國際協作，也讓<strong>「分享、透明、協作」</strong>的開源文化在本地紮根發芽。</p>
+                        <p>身為 2025 年首度設立的獎項，「IT Matters 開源社群貢獻獎」所肯定的，並不是一次性的大型專案，而是長期、持續的投入與影響力。透過表揚這九位得獎者，獎項希望向社會傳達一個明確訊息：在數位時代，真正重要的不只是技術本身，而是願意把技術打開、把社群連結在一起的人。未來，期待有更多來自產業、學界與社群的夥伴，加入這股開源力量，讓「IT Matters」不只是一個獎項名稱，而是共同實踐的信念。</p>
+                        <h2>一年一度的邀請：捐款 OCF，幫我們把開放做得更多</h2>
+                        <p class="align-center">
+                          <a href="https://ocf.neticrm.tw/civicrm/contribute/transact?reset=1&id=86">
+                            <img src="https://s3.toomore.net/oscvpass/img/2025_ocf_donation.png"
+                                 alt="OSCVPass" title="OSCVPass"
+                                 style="border-radius:8px;border:#eeeeee 1px solid;">
+                          </a>
+                        </p>
+                        <p>自 2014 年成立以來，開放文化基金會（OCF）一路陪伴台灣各種開源與開放技術<a href="https://ocf.tw/p/community">社群</a>成長，協助社群舉辦大型研討會、工作坊與黑客松，讓更多人有機會接觸開源軟體、開放授權與開放資料。<strong>我們不只在背後協助<a href="https://ocf.tw/p/admin/">行政</a>、募資與國際連結，也持續向政府、企業與 NGO 溝通開源精神的價值，幫助他們理解並採用開源，讓開放協作真正走進公共服務與產業現場。</strong>多年來，許多開源貢獻者、志工與開發者，正是因為參與這些由 OCF 支持的社群活動，才走進開源世界、持續在專案中貢獻、在國內外舞台上發光！</p>
+                        <p>我們相信，「<a href="https://ocf.tw/about/">開放</a>」是一個創新社會與公民參與民主的重要基礎，<strong>而開源社群正是這股力量的核心</strong>。隨著議題與專案持續擴大，OCF 也需要更穩定的資源，才能在明年繼續支持更多社群、推進更多開源專案（如：<a href="https://oscvpass.ocf.tw/">OSCVPass</a>、<a href="https://openstartervillage.ocf.tw/zh-Hant/">開源星手村</a>、<a href="https://security.ocf.tw/">資訊安全資源指引</a> ... 等）與倡議。現在，我們在年末向所有關心開源、在乎數位權利與網路自由的朋友發出邀請：如果你曾因開源受惠，或希望這樣的文化在台灣長長久久，歡迎以定期或單筆捐款的方式支持開放文化基金會，成為我們推動開源與開放技術的堅實後盾，讓這股改變世界的力量在明年持續發生。</p>
+                        <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
+                          <tbody>
+                            <tr>
+                              <td align="center">
+                                <table border="0" cellpadding="0" cellspacing="0">
+                                  <tbody>
+                                    <tr>
+                                      <td> <a href="https://ocf.neticrm.tw/civicrm/contribute/transact?reset=1&id=86" target="_blank">立即捐款</a> </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <h2>OSCVPass 現正募集意見回饋</h2>
+                        <p class="align-center">
+                          <a href="https://oscvpass.ocf.tw/">
+                            <img src="https://oscvpass.ocf.tw/assets/images/oscvpass_1920x960.png"
+                                 alt="OSCVPass" title="OSCVPass"
+                                 style="border-radius:8px;border:#eeeeee 1px solid;">
+                          </a>
+                        </p>
+                        <p>OSCVPass 計畫自推出以來，已持續運作數年，隨著 2025 年接近尾聲，我們希望能透過貢獻者、社群的回饋，讓明年度的專案設計與執行更加到位。無論是你認為值得保留與強化的亮點，或是在流程、資格、回饋機制與網站內容上覺得需要調整之處，都誠摯邀請你在<a href="https://github.com/ocftw/OSCVPass/discussions/41">此討論串</a>留下建議。</p>
+                        <p>目前我們也正在調整 OSCVPass 的<a href="https://oscvpass.ocf.tw/">網站內容</a>：近期已加入開源授權條款的介紹與歷屆審核通過專案列表，未來將陸續補上開源專案起手式等新手引導，希望讓 OSCVPass 不再只是「開源貢獻者證明」的申請入口，同時也成為想投入開源的朋友的一站式起點。</p>
+                        <p><a href="https://github.com/ocftw/OSCVPass/discussions/41">這些意見</a>將作為我們規劃下一年度 OSCVPass 的重要參考依據，懇請協助給予回饋，讓這個計畫能在明年以更好的樣貌陪伴大家，謝謝！</p>
+                        <p class="align-center"><small style="color:#999999;">Thank you.</small></p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            <!-- END MAIN CONTENT AREA -->
+            </table>
+
+            <!-- START FOOTER -->
+            <div class="footer">
+              <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td class="content-block">
+                    <span class="apple-link">OSCVPass | ocf.tw 開放文化基金會</span>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <!-- END FOOTER -->
+
+          <!-- END CENTERED WHITE CONTAINER -->
+          </div>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+  </body>
+</html>
