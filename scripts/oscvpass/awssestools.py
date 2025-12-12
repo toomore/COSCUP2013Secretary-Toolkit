@@ -5,6 +5,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.utils import formataddr
 from uuid import uuid4
+from random import choice
 
 import setting
 
@@ -697,6 +698,43 @@ def send_2024_concom(path, dry_run=True):
             return
 
 
+def send_2025_call_for_suggestion(path, dry_run=True):
+    ''' send 2025 call for suggestion '''
+    template = TPLENV.get_template('./2025_call_for_suggestion.html')
+
+    datas = []
+    with open(path, encoding='UTF8') as files:
+        for u in csv.DictReader(files):
+            datas.append(u)
+
+    _n = 1
+    for u in datas:
+        body = template.render(**u)
+
+        if dry_run:
+            u['mail'] = setting.TESTMAIL
+
+        subject = choice([
+            "[OSCVPass] 「IT Matters 開源社群貢獻獎」得獎報導、讓更多開源故事發生：贊助 OCF 幫我們把開放做得更多、你的意見很重要：OCSVPass 明年調整方向意見徵求",
+            "[OSCVPass] 你的意見很重要：OCSVPass 明年調整方向意見徵求、「IT Matters 開源社群貢獻獎」得獎報導、讓更多開源故事發生：贊助 OCF 幫我們把開放做得更多",
+            "[OSCVPass] 讓更多開源故事發生：贊助 OCF 幫我們把開放做得更多、「IT Matters 開源社群貢獻獎」得獎報導",
+        ])
+
+        raw = make_raw_email(
+            nickname=u['name'].strip(),
+            mail=u['mail'].strip().lower(),
+            subject=subject,
+            body=body,
+            dry_run=dry_run,
+        )
+        print(SENDER.client.send_raw_email(RawMessage={'Data': raw}))
+        print(_n, u['name'], u['mail'])
+        _n += 1
+
+        if dry_run:
+            return
+
+
 def read_all_mails(path):
     ''' Read all mails '''
     data = process_csv(path, _all=True)
@@ -896,5 +934,7 @@ if __name__ == '__main__':
     # send_2023_report(path='2023_all_users_yearend.csv', dry_run=False)
     # send_2024_concom(path='mailling_list_20240109.csv', dry_run=True)
     # export_unique_lists(path='./oscvpass_all_240109.csv')
+
+    # send_2025_call_for_suggestion(path='./oscvpass_raw_all_251212_code.csv', dry_run=True)
 
     pass
