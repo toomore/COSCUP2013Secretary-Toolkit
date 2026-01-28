@@ -339,7 +339,7 @@ def send_g0v_token(rows, dry_run=True):
 
 
 def send_sitcon_token(rows, dry_run=True):
-    template = TPLENV.get_template('./sitcon_2024_token.html')
+    template = TPLENV.get_template('./sitcon_2025_token.html')
     _n = 1
     for u in rows:
         if u['mail'] in setting.BLOCK:
@@ -355,7 +355,7 @@ def send_sitcon_token(rows, dry_run=True):
         raw = make_raw_email(
             nickname=u['name'],
             mail=u['mail'],
-            subject=u'[OSCVPass][提醒] SITCON 2024 開源貢獻票 優惠券 (%s)' % u['name'],
+            subject=u'[OSCVPass][提醒] SITCON 2025 開源貢獻票 優惠券 (%s)' % u['name'],
             body=body,
             dry_run=dry_run,
         )
@@ -798,7 +798,7 @@ def export_unique_lists(path: str):
 if __name__ == '__main__':
     # ----- send Pass/deny ----- #
     # from pprint import pprint
-    # data = process_csv('./oscvpass_240716_need_send.csv', _all=False)
+    # data = process_csv('./oscvpass_raw_all_260128_min.csv', _all=False)
     # for case in data:
     #   print(case, len(data[case]))
     #   for row in data[case]:
@@ -878,7 +878,7 @@ if __name__ == '__main__':
     #       out_path='./sitcon_2024_tokens_mails.csv')
 
     # ----- send SITCON2024 token ----- #
-    # with open('./sitcon_2024_tokens_mails.csv', 'r+') as files:
+    # with open('./sitcon_2025_tokens_mails_min.csv', 'r+') as files:
     #   rows = []
     #   for user in csv.DictReader(files):
     #       if not user['mail']:
